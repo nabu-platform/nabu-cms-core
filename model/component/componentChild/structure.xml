@@ -1,0 +1,11 @@
+<structure comment="This allows you to reference existing components to allow them as child components" name="componentChild">
+    <field comment="The parent in which it can be created" name="parentComponentId" type="java.util.UUID"/>
+    <field comment="The child component type to be created" name="childComponentId" type="java.util.UUID"/>
+    <field comment="The id of the action that allows you to create such a component" name="createActionId" type="java.util.UUID"/>
+    <field minOccurs="0" name="minOccurs" type="java.lang.Integer"/>
+    <field minOccurs="0" name="maxOccurs" type="java.lang.Integer"/>
+    <field minOccurs="0" name="roleId" type="java.util.UUID"/>
+    <field comment="The view of the component in the parent" minOccurs="0" name="parentView" type="java.lang.String"/>
+    <field comment="The anchor of the view in the parent" minOccurs="0" name="parentAnchor" type="java.lang.String"/>
+    <field comment="0 = no load, 1 = load node descriptors, 2 = load full, 3 = load full + recursive" minOccurs="0" name="loadType" type="java.lang.Integer"/>
+</structure>

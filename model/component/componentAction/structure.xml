@@ -1,0 +1,8 @@
+<structure name="componentAction">
+    <field name="id" type="java.util.UUID"/>
+    <field name="componentId" type="java.util.UUID"/>
+    <field comment="The name of the action should map to a method in the vue component (unless it is mixed in). It is also used to target permissions" name="name" type="java.lang.String"/>
+    <field comment="The anchor in the parent where the action button/icon is added to" name="anchor" type="java.lang.String"/>
+    <field comment="The (optional) target where any new content triggered by the action is shown" minOccurs="0" name="target" type="java.lang.String"/>
+    <field comment="The mixin allows you to mixin new actions into a component" minOccurs="0" name="mixin" type="java.lang.String"/>
+</structure>
