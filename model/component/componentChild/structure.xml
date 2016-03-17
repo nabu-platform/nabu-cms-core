@@ -1,7 +1,7 @@
 <structure comment="This allows you to reference existing components to allow them as child components" name="componentChild">
     <field comment="The parent in which it can be created" name="parentComponentId" type="java.util.UUID"/>
     <field comment="The child component type to be created" name="childComponentId" type="java.util.UUID"/>
-    <field comment="The id of the action that allows you to create such a component" name="createActionId" type="java.util.UUID"/>
+    <field comment="The id of the action that allows you to create such a component. It is possible that creation is not user-driven and involves no actions." minOccurs="0" name="createActionId" type="java.util.UUID"/>
     <field minOccurs="0" name="minOccurs" type="java.lang.Integer"/>
     <field minOccurs="0" name="maxOccurs" type="java.lang.Integer"/>
     <field minOccurs="0" name="roleId" type="java.util.UUID"/>
