@@ -19,4 +19,8 @@
     <field minOccurs="0" name="salt" type="java.lang.String"/>
     <field minOccurs="0" name="password" type="java.lang.String"/>
     <field comment="A user controlled &quot;soft delete&quot;. Basically a user can deactivate his account with the option of reactivating it later on. In the intermediate the user is not included in any automatic processes." name="active" type="java.lang.Boolean"/>
+    <field comment="If a user is blocked (e.g. faulty login etc), this is the timestamp the block began." minOccurs="0" name="blocked" type="java.util.Date"/>
+    <field comment="The amount of invites left that the user can do" minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
+    <field comment="The last time the password was updated (used to trigger password change)" name="passwordUpdated" type="java.util.Date"/>
+    <field comment="The last time the secret was updated" minOccurs="0" name="secretUpdated" type="java.util.Date"/>
 </structure>

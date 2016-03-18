@@ -44,3 +44,17 @@ A group is merely a collection of users where you can belong to.
 The node you set the permission on is not necessarily the node it is useful for, for example you could set the permission "tickets.deleteTicket" on the root component "ticketProject"
 This would mean that you have the permission on _all_ tickets within that scope.
 It is not unusual to have no roles on an action, this means you can only access those via groups and they are usually moderator-related actions
+
+## Node Relations
+
+A relation means two nodes are somehow related to one another, this can either from a user to a node point of view:
+
+- favorite: allows the user to add something to his favorite bookmarks (any node, including potentially another user), this is a private fact
+- like: allows the user to express his like of some other node (including a user), this is a public fact
+
+A node can also be related to another node because a user has related them. For example in the case of tickets, a user could determine that two tickets are about the same thing and link them.
+
+A relation can also exist between two users:
+
+- friends: for example if you are building a contact list
+- invite: for invite-only websites, we keep track of who invited you (or more specifically: of the invitation you accepted, there could be multiple people inviting you)

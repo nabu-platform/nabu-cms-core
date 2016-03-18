@@ -1,0 +1,6 @@
+<structure name="cms">
+    <field comment="The id of the web application this CMS instance belongs to" name="webApplicationId" type="java.lang.String"/>
+    <field comment="This is the smtp server used to send all emails" name="smtpClientId" type="java.lang.String"/>
+    <field comment="The default &quot;from&quot; address used in all the emails" minOccurs="0" name="defaultFrom" type="java.lang.String"/>
+    <structure definition="nabu.web.cms.core.model.configuration.user" name="user"/>
+</structure>
