@@ -1,0 +1,9 @@
+<structure name="root">
+    <structure definition="nabu.web.cms.core.types.model.core.Node" name="node" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure definition="nabu.web.cms.core.types.model.core.Node" maxOccurs="unbounded" name="parents" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure definition="nabu.web.cms.core.rest.types.nodeOutput" maxOccurs="unbounded" minOccurs="0" name="children" superType="nabu.web.cms.core.types.model.core.Node"/>
+    <structure definition="nabu.web.cms.core.types.model.core.Node" maxOccurs="unbounded" minOccurs="0" name="related" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure definition="nabu.web.cms.core.types.model.core.NodeAttachment" maxOccurs="unbounded" minOccurs="0" name="attachments" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure comment="Additional key/value pairs for this node" definition="nabu.utils.types.Property" maxOccurs="unbounded" minOccurs="0" name="properties"/>
+    <structure definition="nabu.web.cms.core.rest.types.tagOutput" maxOccurs="unbounded" minOccurs="0" name="tags"/>
+</structure>

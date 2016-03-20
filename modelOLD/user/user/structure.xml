@@ -1,0 +1,26 @@
+<structure name="user" superType="nabu.web.cms.core.modelOLD.node.node">
+    <field name="email" type="java.lang.String"/>
+    <field minOccurs="0" name="latitude" type="java.lang.Double"/>
+    <field minOccurs="0" name="longitude" type="java.lang.Double"/>
+    <field minOccurs="0" name="firstName" type="java.lang.String"/>
+    <field minOccurs="0" name="lastName" type="java.lang.String"/>
+    <field minOccurs="0" name="dateOfBirth" type="java.util.Date"/>
+    <field minOccurs="0" name="male" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="phoneNumber" type="java.lang.String"/>
+    <field minOccurs="0" name="faxNumber" type="java.lang.String"/>
+    <field minOccurs="0" name="country" type="java.lang.String"/>
+    <field minOccurs="0" name="state" type="java.lang.String"/>
+    <field minOccurs="0" name="city" type="java.lang.String"/>
+    <field minOccurs="0" name="street" type="java.lang.String"/>
+    <field minOccurs="0" name="number" type="java.lang.String"/>
+    <field comment="If the user account was created via an external identity provider, put the id of it here" minOccurs="0" name="externalIdentityProviderId" type="java.util.UUID"/>
+    <field comment="The user verification code used for activating an account and requesting a new password" minOccurs="0" name="verificationCode" type="java.lang.String"/>
+    <field minOccurs="0" name="secret" type="java.lang.String"/>
+    <field minOccurs="0" name="salt" type="java.lang.String"/>
+    <field minOccurs="0" name="password" type="java.lang.String"/>
+    <field comment="A user controlled &quot;soft delete&quot;. Basically a user can deactivate his account with the option of reactivating it later on. In the intermediate the user is not included in any automatic processes." name="active" type="java.lang.Boolean"/>
+    <field comment="If a user is blocked (e.g. faulty login etc), this is the timestamp the block began." minOccurs="0" name="blocked" type="java.util.Date"/>
+    <field comment="The amount of invites left that the user can do" minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
+    <field comment="The last time the password was updated (used to trigger password change)" name="passwordUpdated" type="java.util.Date"/>
+    <field comment="The last time the secret was updated" minOccurs="0" name="secretUpdated" type="java.util.Date"/>
+</structure>
