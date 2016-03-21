@@ -1,0 +1,21 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.nodeOutput</outputDefinition>
+	<sql>select
+	owner_id,
+	published_utc,
+	verified,
+	parent_id,
+	name,
+	title,
+	description,
+	comment,
+	version,
+	context,
+	latitude,
+	longitude,
+	language,
+	assigned_role_id,
+	component_id
+from node
+where id= :id</sql>
+</jdbcService>

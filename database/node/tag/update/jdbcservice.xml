@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeTag</inputDefinition>
+	<sql>update node_tag set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	node_id = case when :nodeId is null then node_id else :nodeId end,
+	tag_id = case when :tagId is null then tag_id else :tagId end
+ where id = :id</sql>
+</jdbcService>

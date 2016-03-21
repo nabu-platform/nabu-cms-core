@@ -1,0 +1,44 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.Node</inputDefinition>
+	<sql>insert into node (
+	id,
+	db_created_utc,
+	db_modified_utc,
+	owner_id,
+	published_utc,
+	verified,
+	enabled,
+	parent_id,
+	name,
+	title,
+	description,
+	comment,
+	version,
+	context,
+	latitude,
+	longitude,
+	language,
+	assigned_role_id,
+	component_id
+) values (
+	:id,
+ timezone ('UTC', current_timestamp),
+ timezone ('UTC', current_timestamp),
+	:ownerId,
+	:publishedUtc,
+	:verified,
+	:enabled,
+	:parentId,
+	:name,
+	:title,
+	:description,
+	:comment,
+	:version,
+	:context,
+	:latitude,
+	:longitude,
+	:language,
+	:assignedRoleId,
+	:componentId
+)</sql>
+</jdbcService>

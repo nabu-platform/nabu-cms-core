@@ -1,2 +1,14 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="18e06abd-cb00-4ddb-8002-b5db6c766ea6" disabled="false">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" id="137d7ffe-b679-469f-bad3-a5932a812d15" disabled="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" id="1650d013-295f-4059-81c8-bc7b3a736eba" disabled="false" fixedValue="false" optional="false">
+			<from>input/node</from>
+			<to>output/node/node</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" id="0d37e4a1-9f3c-4ccd-ad2e-9f64818781b9" disabled="false" y="206" x="122" serviceId="nabu.web.cms.core.database.node.tag.selectByNodeId" temporaryMapping="true" invocationOrder="0" resultName="result3a3924fee27d44b7a645d41b966e2c9b">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" id="9fa17182-081a-489c-a8fd-7ba791a6ba8d" disabled="false" fixedValue="false" optional="false">
+			<from>result3a3924fee27d44b7a645d41b966e2c9b/results</from>
+			<to>output/node/tags</to>
+		</steps>
+	</steps>
 </sequence>
