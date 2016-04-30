@@ -15,6 +15,8 @@ Actions have an anchor which indicates where the button/icon is shown in the par
 It also has an optional "target" which is where any content that the action triggers should be shown. If no target is given, the default target for the component should be checked, for example a menu will almost always load in the same target anchor.
 If the default anchor is not set, the content should open in the same anchor as the action parent is in.
 
+Note: the backend is responsible for calculating which actions the current user is allowed to take and send them to the frontend. The backend does _not_ send a list of user roles and component-configured roles to the frontend for calculation, this would be easier but exposes too much information.
+
 ## Component
 
 A component is any (preferably reusable) bit of code. It usually combines database tables with rest services and frontend javascript code/static resources.
