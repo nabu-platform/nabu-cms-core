@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update role_permission set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	role_id = case when :roleId is null then role_id else :roleId end,
+	action_id = case when :actionId is null then action_id else :actionId end,
+	inherit = case when :inherit is null then inherit else :inherit end,
+	node_id = case when :nodeId is null then node_id else :nodeId end
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.RolePermission</inputDefinition>
+</jdbcService>

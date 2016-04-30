@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update tag set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	name = case when :name is null then name else :name end,
+	parent_id = case when :parentId is null then parent_id else :parentId end,
+	verified_utc = case when :verifiedUtc is null then verified_utc else :verifiedUtc end,
+	tag_group_id = case when :tagGroupId is null then tag_group_id else :tagGroupId end
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.Tag</inputDefinition>
+</jdbcService>

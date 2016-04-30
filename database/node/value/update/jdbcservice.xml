@@ -1,0 +1,9 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update node_value set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	value = case when :value is null then value else :value end,
+	node_id = case when :nodeId is null then node_id else :nodeId end,
+	component_key_id = case when :componentKeyId is null then component_key_id else :componentKeyId end
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeValue</inputDefinition>
+</jdbcService>

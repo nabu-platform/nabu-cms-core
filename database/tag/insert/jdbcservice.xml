@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>insert into tag (
+	id,
+	db_created_utc,
+	db_modified_utc,
+	name,
+	parent_id,
+	verified_utc,
+	tag_group_id
+) values (
+	:id,
+ timezone ('UTC', current_timestamp),
+ timezone ('UTC', current_timestamp),
+	:name,
+	:parentId,
+	:verifiedUtc,
+	:tagGroupId
+)</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.Tag</inputDefinition>
+</jdbcService>

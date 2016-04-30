@@ -1,0 +1,18 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>insert into relation_type (
+	id,
+	db_created_utc,
+	db_modified_utc,
+	name,
+	display_name,
+	user_relation
+) values (
+	:id,
+ timezone ('UTC', current_timestamp),
+ timezone ('UTC', current_timestamp),
+	:name,
+	:displayName,
+	:userRelation
+)</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.RelationType</inputDefinition>
+</jdbcService>

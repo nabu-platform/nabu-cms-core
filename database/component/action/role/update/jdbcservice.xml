@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update component_action_role set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	role_id = case when :roleId is null then role_id else :roleId end,
+	component_action_id = case when :componentActionId is null then component_action_id else :componentActionId end
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentActionRole</inputDefinition>
+</jdbcService>

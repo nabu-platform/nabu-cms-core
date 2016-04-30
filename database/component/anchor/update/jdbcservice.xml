@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update component_anchor set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	name = :name,
+	display_name = :displayName,
+	main = :main,
+	component_id = :componentId
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAnchor</inputDefinition>
+</jdbcService>

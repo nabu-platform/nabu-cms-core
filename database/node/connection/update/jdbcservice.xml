@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update node_connection set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	source_id = case when :sourceId is null then source_id else :sourceId end,
+	target_id = case when :targetId is null then target_id else :targetId end,
+	connection_status_id = case when :connectionStatusId is null then connection_status_id else :connectionStatusId end,
+	connection_type_id = case when :connectionTypeId is null then connection_type_id else :connectionTypeId end
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeConnection</inputDefinition>
+</jdbcService>

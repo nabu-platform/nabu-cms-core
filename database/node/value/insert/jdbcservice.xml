@@ -1,0 +1,18 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>insert into node_value (
+	id,
+	db_created_utc,
+	db_modified_utc,
+	value,
+	node_id,
+	component_key_id
+) values (
+	:id,
+ timezone ('UTC', current_timestamp),
+ timezone ('UTC', current_timestamp),
+	:value,
+	:nodeId,
+	:componentKeyId
+)</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeValue</inputDefinition>
+</jdbcService>

@@ -1,0 +1,12 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.rest.types.nodeRelationOutput</outputDefinition>
+	<sql>select
+	nr.id,
+	nr.source_id,
+	nr.target_id,
+	rt.name
+from 
+	node_relation nr inner join relation_type rt on nr.relation_type_id =rt.id
+where
+	nr.source_id= :nodeId or nr.target_id= :nodeId</sql>
+</jdbcService>

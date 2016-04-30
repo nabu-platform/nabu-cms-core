@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>update connection_type set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	name = case when :name is null then name else :name end
+ where id = :id</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.ConnectionType</inputDefinition>
+</jdbcService>

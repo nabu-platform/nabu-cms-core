@@ -1,0 +1,16 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>insert into component_attachment_thumbnail (
+	id,
+	db_created_utc,
+	db_modified_utc,
+	component_attachment_id,
+	thumbnail_type_id
+) values (
+	:id,
+ timezone ('UTC', current_timestamp),
+ timezone ('UTC', current_timestamp),
+	:componentAttachmentId,
+	:thumbnailTypeId
+)</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachmentThumbnail</inputDefinition>
+</jdbcService>
