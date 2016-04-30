@@ -1,12 +1,13 @@
 <structure name="root">
     <structure definition="nabu.web.cms.core.types.nodeOutput" name="node"/>
-    <structure definition="nabu.web.cms.core.types.nodeOutput" maxOccurs="unbounded" name="parents"/>
+    <structure definition="nabu.web.cms.core.types.nodeOutput" maxOccurs="unbounded" minOccurs="0" name="parents"/>
     <structure definition="nabu.web.cms.core.rest.types.nodeOutput" maxOccurs="unbounded" minOccurs="0" name="children"/>
     <structure comment="Additional key/value pairs for this node" definition="nabu.utils.types.Property" maxOccurs="unbounded" minOccurs="0" name="extended"/>
     <structure definition="nabu.web.cms.core.rest.types.tagOutput" maxOccurs="unbounded" minOccurs="0" name="tags"/>
     <structure definition="nabu.web.cms.core.rest.types.nodeRelationOutput" maxOccurs="unbounded" minOccurs="0" name="relations"/>
     <structure definition="nabu.web.cms.core.rest.types.nodeConnectionOutput" maxOccurs="unbounded" minOccurs="0" name="connections"/>
-    <structure definition="nabu.web.cms.core.rest.types.nodeAttachmentOutput" maxOccurs="unbounded" minOccurs="0" name="attachments"/>
-    <structure comment="The actions the current user is allowed to take" definition="nabu.web.cms.core.rest.types.actionOutput" maxOccurs="unbounded" minOccurs="0" name="actions"/>
+    <structure definition="nabu.web.cms.core.rest.types.nodeAttachmentOutput" maxOccurs="unbounded" minOccurs="0" name="attachments" superType="nabu.web.cms.core.types.nodeAttachmentOutput"/>
+    <structure comment="The actions the current user is allowed to take" definition="nabu.web.cms.core.rest.types.nodeAuditOutput" maxOccurs="unbounded" minOccurs="0" name="actions"/>
     <structure comment="Configuration for this node" definition="nabu.utils.types.Property" maxOccurs="unbounded" minOccurs="0" name="configuration"/>
+    <structure definition="nabu.web.cms.core.rest.types.nodeAuditOutput" maxOccurs="unbounded" minOccurs="0" name="audits"/>
 </structure>

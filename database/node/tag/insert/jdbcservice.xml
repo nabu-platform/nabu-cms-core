@@ -1,5 +1,4 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<inputDefinition>nabu.web.cms.core.types.model.core.NodeTag</inputDefinition>
 	<sql>insert into node_tag (
 	id,
 	db_created_utc,
@@ -8,9 +7,10 @@
 	tag_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
+timezone ('UTC', current_timestamp),
  timezone ('UTC', current_timestamp),
 	:nodeId,
 	:tagId
 )</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeTag</inputDefinition>
 </jdbcService>

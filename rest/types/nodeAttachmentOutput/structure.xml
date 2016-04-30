@@ -1,6 +1,3 @@
-<structure name="root">
-    <field name="source" type="java.net.URI"/>
-    <field name="thumbnail" type="java.net.URI"/>
-    <field name="contentType" type="java.lang.String"/>
-    <field minOccurs="0" name="size" type="java.lang.Long"/>
+<structure name="root" superType="nabu.web.cms.core.types.nodeAttachmentOutput">
+    <structure definition="nabu.web.cms.core.rest.types.nodeAttachmentOutput" maxOccurs="unbounded" minOccurs="0" name="children" superType="nabu.web.cms.core.types.nodeAttachmentOutput"/>
 </structure>
