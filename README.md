@@ -58,3 +58,27 @@ A relation can also exist between two users:
 
 - friends: for example if you are building a contact list
 - invite: for invite-only websites, we keep track of who invited you (or more specifically: of the invitation you accepted, there could be multiple people inviting you)
+
+# Components/Views/Templates
+
+In the ideal world there is a component "blog" which can have multiple "views" on said blog. Each view could do wildly different things with the same information.
+However, this poses a problem for composing your components, each component has one or more views but each view can have one or more differently named anchors.
+This quickly makes calculation of available anchors a tricky thing, which in turn makes anchor targeting tricky.
+
+This can complicate matters when for example creating a menu component that lives inside of a page component. How do you target an anchor if the page component can have wildly differing views?
+This gets more complex the deeper you get. There are two options if we go down this path:
+
+- a lot of many-to-many tables linking every possible combination
+- a lot of duplication, for example take the action, you would have to duplicate the component action (e.g. update) per view as it would (might) need a different anchor to reside in, a different anchor to target with content etc. This would seriously mess up usability of the permission system.
+
+One more thing to keep in mind is that in the frontend, vuejs has the concept of a component, but it does not have the concept of a "view" per se, it does not allow you to attach wildly different views to one component, this would mean that for entirely different views on the same backend component, you would need multiple vuejs components.
+
+What vuejs _does_ allow is templating. Template switching is more lightweight than view switching as templates can (must) adhere to a certain "spec". They can only call actions defined in the component, access state from that component etc. If further restricted in having to provide certain anchors for a given component, templates give you enough flexibility to visually play change a component while retaining the rigidity required to swap them out dynamically.
+
+One remaining question: there are generally two radically different views of a single backend component: list view and read view. In very special cases there can be others, but rarely so.
+From both a frontend (vuejs) and backend (database) perspective it is much easier to think of them as separate components. It is however possible that they still share some things like actions: a delete on a read view and a delete in a list view are fundamentally the same thing. One could also argue to switch out templates but:
+
+- there are very likely to be different anchors involved
+- there are very likely to be completely separate actions involved (select all vs single select) etc
+
+Apart from some overlap in component action, they are entirely decoupled. For the overlap (most notably delete) we will currently have to duplicate the action.
