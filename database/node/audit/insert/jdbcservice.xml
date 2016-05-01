@@ -5,18 +5,18 @@
 	db_modified_utc,
 	actor_id,
 	action_id,
-	log,
-	error,
-	node_id
+	description,
+	node_id,
+	node_audit_state_id
 ) values (
 	:id,
 	timezone ('UTC', current_timestamp),
 	timezone ('UTC', current_timestamp),
 	:actorId,
 	:actionId,
-	:log,
-	:error,
-	:nodeId
+	:description,
+	:nodeId,
+	:nodeAuditStateId
 )</sql>
 	<inputDefinition>nabu.web.cms.core.types.model.core.NodeAudit</inputDefinition>
 </jdbcService>

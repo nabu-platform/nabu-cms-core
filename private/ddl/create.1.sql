@@ -179,7 +179,8 @@ create table node_audit (
 	db_modified_utc timestamp not null,
 	actor_id uuid not null,
 	action_id uuid not null,
-	description varchar,
+	log varchar,
+	error varchar,
 	node_id uuid not null
 );
 

@@ -3,9 +3,9 @@
 	db_modified_utc =  timezone ('UTC', current_timestamp),
 	actor_id = case when :actorId is null then actor_id else :actorId end,
 	action_id = case when :actionId is null then action_id else :actionId end,
-	log = case when :log is null then log else :log end,
-	error = case when :error is null then error else :error end,
-	node_id = case when :nodeId is null then node_id else :nodeId end
+	description = case when :description is null then description else :description end,
+	node_id = case when :nodeId is null then node_id else :nodeId end,
+	node_audit_state_id = case when :nodeAuditStateId is null then node_audit_state_id else :nodeAuditStateId end
  where id = :id</sql>
 	<inputDefinition>nabu.web.cms.core.types.model.core.NodeAudit</inputDefinition>
 </jdbcService>
