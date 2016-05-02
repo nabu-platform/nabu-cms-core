@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachment</inputDefinition>
 	<sql>update component_attachment set
 	db_modified_utc =  timezone ('UTC', current_timestamp),
 	content_types = case when :contentTypes is null then content_types else :contentTypes end,
@@ -6,7 +7,9 @@
 	min_occurs = case when :minOccurs is null then min_occurs else :minOccurs end,
 	max_occurs = case when :maxOccurs is null then max_occurs else :maxOccurs end,
 	role_id = case when :roleId is null then role_id else :roleId end,
-	component_id = case when :componentId is null then component_id else :componentId end
+	width = case when :width is null then width else :width end,
+	height = case when :height is null then height else :height end,
+	component_id = case when :componentId is null then component_id else :componentId end,
+	attachment_group_id = case when :attachmentGroupId is null then attachment_group_id else :attachmentGroupId end
  where id = :id</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachment</inputDefinition>
 </jdbcService>

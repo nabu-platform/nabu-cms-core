@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachmentThumbnail</inputDefinition>
 	<sql>insert into component_attachment_thumbnail (
 	id,
 	db_created_utc,
@@ -7,10 +8,9 @@
 	thumbnail_type_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
 	:componentAttachmentId,
 	:thumbnailTypeId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachmentThumbnail</inputDefinition>
 </jdbcService>

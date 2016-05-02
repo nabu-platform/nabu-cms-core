@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentRelationType</inputDefinition>
 	<sql>insert into component_relation_type (
 	id,
 	db_created_utc,
@@ -8,11 +9,10 @@
 	relation_type_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
 	:roleId,
 	:componentId,
 	:relationTypeId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentRelationType</inputDefinition>
 </jdbcService>

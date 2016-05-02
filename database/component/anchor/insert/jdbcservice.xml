@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAnchor</inputDefinition>
 	<sql>insert into component_anchor (
 	id,
 	db_created_utc,
@@ -6,15 +7,14 @@
 	name,
 	display_name,
 	main,
-	component_id
+	component_template_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
 	:name,
 	:displayName,
 	:main,
-	:componentId
+	:componentTemplateId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAnchor</inputDefinition>
 </jdbcService>

@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachment</inputDefinition>
 	<sql>insert into component_attachment (
 	id,
 	db_created_utc,
@@ -8,17 +9,22 @@
 	min_occurs,
 	max_occurs,
 	role_id,
-	component_id
+	width,
+	height,
+	component_id,
+	attachment_group_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
 	:contentTypes,
 	:maxSize,
 	:minOccurs,
 	:maxOccurs,
 	:roleId,
-	:componentId
+	:width,
+	:height,
+	:componentId,
+	:attachmentGroupId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachment</inputDefinition>
 </jdbcService>

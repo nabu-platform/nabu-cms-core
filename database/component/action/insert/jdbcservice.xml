@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAction</inputDefinition>
 	<sql>insert into component_action (
 	id,
 	db_created_utc,
@@ -6,21 +7,16 @@
 	name,
 	display_name,
 	icon,
-	anchor_id,
-	target_id,
 	mixin,
 	component_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+ 	timezone ('UTC', current_timestamp),
 	:name,
 	:displayName,
 	:icon,
-	:anchorId,
-	:targetId,
 	:mixin,
 	:componentId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAction</inputDefinition>
 </jdbcService>
