@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.Role</inputDefinition>
 	<sql>insert into role (
 	id,
 	db_created_utc,
@@ -7,10 +8,9 @@
 	pseudo
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
 	:name,
 	:pseudo
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.Role</inputDefinition>
 </jdbcService>

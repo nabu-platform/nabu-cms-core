@@ -1,5 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<sql>insert into role_permission (
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeActionRole</inputDefinition>
+	<sql>insert into node_action_role (
 	id,
 	db_created_utc,
 	db_modified_utc,
@@ -9,12 +10,11 @@
 	node_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
 	:roleId,
 	:actionId,
 	:inherit,
 	:nodeId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.RolePermission</inputDefinition>
 </jdbcService>
