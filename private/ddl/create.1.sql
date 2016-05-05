@@ -142,6 +142,7 @@ create table component_configuration (
 	db_modified_utc timestamp not null,
 	key varchar not null,
 	value varchar not null,
+	frontend boolean not null,
 	component_id uuid not null
 );
 create table component_key (
