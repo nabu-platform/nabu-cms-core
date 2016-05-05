@@ -1,0 +1,18 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentConfiguration</inputDefinition>
+	<sql>insert into component_configuration (
+	id,
+	db_created_utc,
+	db_modified_utc,
+	key,
+	value,
+	component_id
+) values (
+	:id,
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	:key,
+	:value,
+	:componentId
+)</sql>
+</jdbcService>

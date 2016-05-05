@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.utils.types.Property</outputDefinition>
+	<sql>select
+	key,
+	value
+from component_configuration
+where component_id = :componentId</sql>
+</jdbcService>

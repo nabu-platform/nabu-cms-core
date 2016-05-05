@@ -1,0 +1,14 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.Component</outputDefinition>
+	<sql>select
+	id,
+	db_created_utc,
+	db_modified_utc,
+	name,
+	component_template_id,
+	parent_id,
+	node_enricher,
+	component_action_id
+from component
+where id = :id</sql>
+</jdbcService>

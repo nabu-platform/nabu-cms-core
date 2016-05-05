@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="componentId" type="java.util.UUID"/>
+        <field name="connection" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure definition="nabu.web.cms.core.types.component.component" name="component"/>
+    </structure>
+    <structure definition="nabu.web.cms.core.types.model.core.Component" name="component" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure definition="nabu.web.cms.core.database.component.action.actionOutput" maxOccurs="unbounded" minOccurs="0" name="actions" superType="nabu.web.cms.core.types.component.componentAction"/>
+    <structure definition="nabu.web.cms.core.database.component.attachment.attachmentOutput" maxOccurs="unbounded" minOccurs="0" name="attachments" superType="nabu.web.cms.core.types.component.componentAttachment"/>
+</structure>

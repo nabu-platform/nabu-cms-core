@@ -1,0 +1,9 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.component.componentAttachmentThumbnail</outputDefinition>
+	<sql>select
+	tt.width,
+	tt.height
+	tt.name
+from component_attachment_thumbnail cat join thumbnail_type tt on cat.thumbnail_type_id = tt.id
+where cat.component_attachment_id = :componentAttachmentId</sql>
+</jdbcService>

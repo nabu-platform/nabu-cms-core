@@ -1,0 +1,13 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.component.componentChild</outputDefinition>
+	<sql>select
+	c.child_id as component_id,
+	c.min_occurs,
+	c.max_occurs,
+	t.name as child_template,
+	a.name as parent_anchor,
+	l.name as load_type
+from component_child c join load_type l on c.load_type_id = l.id join component_anchor a on c.parent_anchor_id = a.id
+	join component_template t on c.child_template_id = t.id
+where c.parent_id = :parentId</sql>
+</jdbcService>

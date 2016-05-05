@@ -1,0 +1,14 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.database.component.attachment.attachmentOutput</outputDefinition>
+	<sql>select
+	a.name,
+	ca.content_types,
+	ca.max_size,
+	ca.min_occurs,
+	ca.max_occurs,
+	ca.width,
+	ca.height,
+	ca.id
+from component_attachment ca join attachment_group a on ca.attachment_group_id = a.id
+where ca.component_id = :componentId</sql>
+</jdbcService>
