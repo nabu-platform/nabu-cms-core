@@ -1,0 +1,9 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.component.componentRelation</outputDefinition>
+	<sql>select
+	r.name,
+	r.user_relation
+from component_relation_type c join relation_type r on c.relation_type_id = r.id
+where c.component_id = :componentId
+</sql>
+</jdbcService>

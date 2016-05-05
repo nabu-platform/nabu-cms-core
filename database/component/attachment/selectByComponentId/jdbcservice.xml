@@ -8,6 +8,7 @@
 	ca.max_occurs,
 	ca.width,
 	ca.height,
+	null,
 	ca.id
 from component_attachment ca join attachment_group a on ca.attachment_group_id = a.id
 where ca.component_id = :componentId</sql>

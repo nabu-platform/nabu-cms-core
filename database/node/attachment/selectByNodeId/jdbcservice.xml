@@ -1,0 +1,13 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.database.node.attachment.attachmentOutput</outputDefinition>
+	<sql>select
+	a.uri,
+	a.name,
+	a.content_type,
+	a.size,
+	g.name,
+	null,
+	a.id
+from node_attachment a join attachment_group g on a.attachment_group_id = g.id
+where a.node_id = :nodeId</sql>
+</jdbcService>

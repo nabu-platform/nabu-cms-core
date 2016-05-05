@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.utils.types.Property</outputDefinition>
+	<sql>select
+	k.key,
+	v.value
+from node_value v join component_key k on v.component_key_id = k.id
+where v.node_id = :nodeId</sql>
+</jdbcService>

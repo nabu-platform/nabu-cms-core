@@ -1,8 +1,11 @@
 <structure name="root">
     <field name="componentId" type="java.util.UUID"/>
+    <field name="name" type="java.lang.String"/>
     <field minOccurs="0" name="minOccurs" type="java.lang.Integer"/>
     <field minOccurs="0" name="maxOccurs" type="java.lang.Integer"/>
     <field name="childTemplate" type="java.lang.String"/>
     <field name="parentAnchor" type="java.lang.String"/>
     <field name="loadType" type="java.lang.String"/>
+    <field name="createAction" type="java.lang.String"/>
+    <structure definition="nabu.web.cms.core.types.component.componentRole" maxOccurs="unbounded" minOccurs="0" name="roles"/>
 </structure>
