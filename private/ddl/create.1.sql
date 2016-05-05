@@ -1,13 +1,74 @@
+-- Masterdata
+create table load_type (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null,
+	display_name varchar
+);
+create table relation_type (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null,
+	display_name varchar,
+	user_relation boolean not null
+);
+create table thumbnail_type (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	width integer,
+	height integer,
+	name varchar not null,
+	display_name varchar
+);
+create table tag_group (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null
+);
+create table role (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null,
+	pseudo boolean not null
+);
+create table tag (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null,
+	parent_id uuid,
+	verified_utc timestamp,
+	tag_group_id uuid not null
+);
+create table attachment_group (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null
+);
+create table audit_state (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	name varchar not null
+);
+
+-- Components
 create table component (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
 	name varchar not null,
-	view varchar not null,
-	default_target varchar,
+	component_template_id uuid not null,
+	parent_id uuid,
+	node_enricher varchar,
 	component_action_id uuid not null
 );
-
 create table component_action (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -15,12 +76,9 @@ create table component_action (
 	name varchar not null,
 	display_name varchar,
 	icon varchar,
-	anchor_id uuid,
-	target_id uuid,
 	mixin varchar,
 	component_id uuid not null
 );
-
 create table component_action_role (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -28,7 +86,6 @@ create table component_action_role (
 	role_id uuid not null,
 	component_action_id uuid not null
 );
-
 create table component_anchor (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -36,9 +93,16 @@ create table component_anchor (
 	name varchar not null,
 	display_name varchar,
 	main boolean not null,
-	component_id uuid not null
+	component_template_id uuid not null
 );
-
+create table component_anchor_action (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	target_anchor_id uuid,
+	component_anchor_id uuid not null,
+	component_action_id uuid not null
+);
 create table component_attachment (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -47,10 +111,11 @@ create table component_attachment (
 	max_size bigint not null,
 	min_occurs integer,
 	max_occurs integer,
-	role_id uuid,
-	component_id uuid not null
+	width integer,
+	height integer,
+	component_id uuid not null,
+	attachment_group_id uuid not null
 );
-
 create table component_attachment_thumbnail (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -58,61 +123,53 @@ create table component_attachment_thumbnail (
 	component_attachment_id uuid not null,
 	thumbnail_type_id uuid not null
 );
-
 create table component_child (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
 	min_occurs integer,
 	max_occurs integer,
-	parent_template_id uuid,
-	parent_anchor_id uuid,
+	child_template_id uuid,
+	parent_anchor_id uuid not null,
 	parent_id uuid not null,
 	child_id uuid not null,
-	component_action_id uuid not null,
-	component_load_type_id uuid not null
+	create_action_id uuid,
+	load_type_id uuid not null
 );
-
+create table component_configuration (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	key varchar not null,
+	value varchar not null,
+	component_id uuid not null
+);
 create table component_key (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
 	key varchar not null,
 	role_id uuid,
+	data_type varchar,
 	component_id uuid not null
 );
-
-
-create table component_load_type (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	name varchar not null,
-	display_name varchar
-);
-
-
 create table component_relation_type (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
-	role_id uuid,
 	component_id uuid not null,
 	relation_type_id uuid not null
 );
-
 create table component_tag_group (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
 	min_occurs integer,
 	max_occurs integer,
-	role_id uuid,
 	component_id uuid not null,
 	tag_group_id uuid not null,
 	default_tag_id uuid
 );
-
 create table component_template (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -123,20 +180,7 @@ create table component_template (
 	component_id uuid not null
 );
 
-create table connection_status (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	name varchar not null
-);
-
-create table connection_type (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	name varchar not null
-);
-
+-- Nodes
 create table node (
 	id uuid primary key,
 	db_created_utc timestamp not null,
@@ -158,87 +202,7 @@ create table node (
 	assigned_role_id uuid,
 	component_id uuid not null
 );
-
-create table node_attachment (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	uri null not null,
-	name varchar not null,
-	content_type varchar not null,
-	size bigint not null,
-	context varchar,
-	parent_id uuid,
-	thumbnail_type_id uuid,
-	node_id uuid not null
-);
-
-create table node_audit (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	actor_id uuid not null,
-	action_id uuid not null,
-	log varchar,
-	error varchar,
-	node_id uuid not null
-);
-
-create table node_connection (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	source_id uuid not null,
-	target_id uuid not null,
-	connection_status_id uuid not null,
-	connection_type_id uuid not null
-);
-
-create table node_relation (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	source_id uuid not null,
-	target_id uuid not null,
-	relation_type_id uuid not null
-);
-
-create table node_tag (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	node_id uuid not null,
-	tag_id uuid not null
-);
-
-
-create table node_value (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	value varchar not null,
-	node_id uuid not null,
-	component_key_id uuid not null
-);
-
-create table relation_type (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	name varchar not null,
-	display_name varchar,
-	user_relation boolean not null
-);
-
-create table role (
-	id uuid primary key,
-	db_created_utc timestamp not null,
-	db_modified_utc timestamp not null,
-	name varchar not null,
-	pseudo boolean not null
-);
-
-create table role_permission (
+create table node_action_role (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
@@ -247,30 +211,57 @@ create table role_permission (
 	inherit boolean,
 	node_id uuid
 );
-
-create table tag (
+create table node_attachment (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
+	uri varchar not null,
 	name varchar not null,
-	parent_id uuid,
-	verified_utc timestamp,
-	tag_group_id uuid not null
+	content_type varchar not null,
+	size bigint not null,
+	attachment_group_id uuid not null,
+	node_id uuid not null
 );
-
-create table tag_group (
+create table node_attachment_thumbnail (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
-	name varchar not null
+	thumbnail_type_id uuid not null,
+	uri varchar not null,
+	size bigint not null,
+	content_type varchar not null,
+	node_attachment_id uuid not null
 );
-
-create table thumbnail_type (
+create table node_audit (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
-	width integer,
-	height integer,
-	name varchar not null,
-	display_name varchar
+	actor_id uuid not null,
+	action_id uuid not null,
+	description varchar,
+	node_id uuid not null,
+	audit_state_id uuid not null
+);
+create table node_relation (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	source_id uuid not null,
+	target_id uuid not null,
+	relation_type_id uuid not null
+);
+create table node_tag (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	node_id uuid not null,
+	tag_id uuid not null
+);
+create table node_value (
+	id uuid primary key,
+	db_created_utc timestamp not null,
+	db_modified_utc timestamp not null,
+	value varchar not null,
+	node_id uuid not null,
+	component_key_id uuid not null
 );

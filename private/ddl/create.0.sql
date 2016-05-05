@@ -1,0 +1,2 @@
+﻿CREATE USER nabu WITH PASSWORD 'nabu';
+GRANT CREATE ON DATABASE nabu TO nabu;

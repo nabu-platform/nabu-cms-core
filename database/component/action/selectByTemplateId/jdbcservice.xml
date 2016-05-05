@@ -10,6 +10,6 @@
 from component_anchor an1
 	join component_anchor_action aa on an1.id = aa.component_anchor_id
 	join component_anchor an2 on aa.target_anchor_id = an2.id
-	join component_action ac on ac.id = an1.component_action_id
-where ac.component_template_id = :templateId</sql>
+	join component_action ac on ac.id = aa.component_action_id
+where an1.component_template_id = :templateId</sql>
 </jdbcService>

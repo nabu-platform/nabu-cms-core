@@ -2,11 +2,11 @@
 	<outputDefinition>nabu.web.cms.core.types.component.componentTag</outputDefinition>
 	<sql>select
 	tg.name,
-	ctg.min_occurs
+	ctg.min_occurs,
 	ctg.max_occurs,
 	t.name
 from component_tag_group ctg 
-join tag_group tg on t.tag_group_id = g.id
-right outer join tag t on ctg.default_tag_id = t.id
+	join tag_group tg on ctg.tag_group_id = tg.id
+	right outer join tag t on ctg.default_tag_id = t.id
 where ctg.component_id = :componentId</sql>
 </jdbcService>
