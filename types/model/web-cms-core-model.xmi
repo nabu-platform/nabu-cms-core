@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu May 05 22:16:27 CEST 2016'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon May 09 07:59:42 CEST 2016'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -55,6 +55,15 @@
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:StructuralFeature.multiplicity>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001191'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>Some nodes have to be validated by a moderator/admin before they can be viewed by the general public.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000A9D'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
               <UML:StructuralFeature.type>
                 <UML:DataType href = 'http://argouml.org/user-profiles/baseTypes.xmi#be.nabu.uml.xmi:base:types:0000000000000004'/>
               </UML:StructuralFeature.type>
@@ -239,6 +248,30 @@
                 <UML:Class xmi.idref = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009DA'/>
               </UML:StructuralFeature.type>
             </UML:Attribute>
+            <UML:Attribute xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001188'
+              name = 'priority' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001189'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:000000000000118A'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:ModelElement.taggedValue>
+                <UML:TaggedValue xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:000000000000118B'
+                  isSpecification = 'false'>
+                  <UML:TaggedValue.dataValue>Allows you to prioritize nodes, for example sticky posts in a forum.</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.type>
+                    <UML:TagDefinition xmi.idref = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000A9D'/>
+                  </UML:TaggedValue.type>
+                </UML:TaggedValue>
+              </UML:ModelElement.taggedValue>
+              <UML:StructuralFeature.type>
+                <UML:DataType href = 'http://argouml.org/user-profiles/baseTypes.xmi#be.nabu.uml.xmi:base:types:0000000000000002'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
           </UML:Classifier.feature>
         </UML:Class>
         <UML:Class xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000991'
@@ -356,11 +389,44 @@
                 <UML:Class xmi.idref = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D77'/>
               </UML:StructuralFeature.type>
             </UML:Attribute>
+            <UML:Attribute xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:000000000000118C'
+              name = 'verified' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:000000000000118D'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:000000000000118E'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:DataType href = 'http://argouml.org/user-profiles/baseTypes.xmi#be.nabu.uml.xmi:base:types:0000000000000004'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
           </UML:Classifier.feature>
         </UML:Class>
         <UML:Class xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000992'
           name = 'NodeRelation' visibility = 'public' isSpecification = 'false' isRoot = 'false'
-          isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+          isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+          <UML:Classifier.feature>
+            <UML:Attribute xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001192'
+              name = 'verified' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001193'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001194'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:DataType href = 'http://argouml.org/user-profiles/baseTypes.xmi#be.nabu.uml.xmi:base:types:0000000000000004'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+          </UML:Classifier.feature>
+        </UML:Class>
         <UML:Class xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000993'
           name = 'NodeTag' visibility = 'public' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
@@ -499,13 +565,13 @@
               </UML:StructuralFeature.type>
             </UML:Attribute>
             <UML:Attribute xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009A8'
-              name = 'verifiedUtc' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              name = 'verified' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
               changeability = 'changeable' targetScope = 'instance'>
               <UML:StructuralFeature.multiplicity>
-                <UML:Multiplicity xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009AC'>
+                <UML:Multiplicity xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001190'>
                   <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009AB'
-                      lower = '0' upper = '1'/>
+                    <UML:MultiplicityRange xmi.id = '127-0-1-1--5550d6ad:1547006cf2b:-8000:000000000000118F'
+                      lower = '1' upper = '1'/>
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:StructuralFeature.multiplicity>
@@ -519,7 +585,7 @@
                 </UML:TaggedValue>
               </UML:ModelElement.taggedValue>
               <UML:StructuralFeature.type>
-                <UML:DataType href = 'http://argouml.org/user-profiles/baseTypes.xmi#be.nabu.uml.xmi:base:types:0000000000000020'/>
+                <UML:DataType href = 'http://argouml.org/user-profiles/baseTypes.xmi#be.nabu.uml.xmi:base:types:0000000000000004'/>
               </UML:StructuralFeature.type>
             </UML:Attribute>
           </UML:Classifier.feature>
@@ -1254,7 +1320,7 @@
               <UML:ModelElement.taggedValue>
                 <UML:TaggedValue xmi.id = '127-0-1-1--e3fa99d:154661664bc:-8000:0000000000000D24'
                   isSpecification = 'false'>
-                  <UML:TaggedValue.dataValue>Whether or not this is a pseudo role. Pseudo roles can not be assigned to people, they are interpreted, for example &quot;$owner&quot;, &quot;$guest&quot;, &quot;$user&quot;, &quot;$assignee&quot;,...</UML:TaggedValue.dataValue>
+                  <UML:TaggedValue.dataValue>Whether or not this is a pseudo role. Pseudo roles can not be assigned to people, they are interpreted, for example &quot;$owner&quot;, &quot;$guest&quot;, &quot;$user&quot;, &quot;$assignee&quot;, &quot;$noone&quot;...</UML:TaggedValue.dataValue>
                   <UML:TaggedValue.type>
                     <UML:TagDefinition xmi.idref = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000A9D'/>
                   </UML:TaggedValue.type>
