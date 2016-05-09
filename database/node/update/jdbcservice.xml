@@ -17,6 +17,7 @@
 	longitude = case when :longitude is null then longitude else :longitude end,
 	language = case when :language is null then language else :language end,
 	assigned_role_id = case when :assignedRoleId is null then assigned_role_id else :assignedRoleId end,
+	priority = case when :priority is null then priority else :priority end,
 	component_id = case when :componentId is null then component_id else :componentId end
  where id = :id</sql>
 </jdbcService>

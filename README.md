@@ -17,6 +17,23 @@ If the default anchor is not set, the content should open in the same anchor as 
 
 Note: the backend is responsible for calculating which actions the current user is allowed to take and send them to the frontend. The backend does _not_ send a list of user roles and component-configured roles to the frontend for calculation, this would be easier but exposes too much information.
 
+Additional note: every node (that extends the generic node component) will have default actions:
+
+- attachmentCreate: $owner
+- attachmentVerify: moderator
+- attachmentDelete: moderator, $owner
+- tagCreate: $owner
+- tagVerify: moderator
+- tagDelete: moderator, $owner
+- relationCreate: $user
+- relationVerify: moderator
+- relationDelete: $user, moderator
+
+Not all of these actions are always important as there are configuration booleans to toggle the need for verification on each part. The assigned roles are allowed to perform these actions if required.
+
+If someone has the right to perform "attachmentCreate", the actual creation of attachments will still be validated against the definition of attachments and the current attachments. This means if the current amount of attachments >= maxOccurs of said attachment, it will not be offered as a button and will be blocked in the backend if the call is made.
+Most of these actions are validated against the current state of the component which is passed along to the frontend when requesting the node.
+
 ## Component
 
 A component is any (preferably reusable) bit of code. It usually combines database tables with rest services and frontend javascript code/static resources.
@@ -40,6 +57,9 @@ You can explicitly set a role on an action, these will (most of the time) be pse
 - $user: you are logged in
 - $owner: you are the owner of the current node 
 - $assignee: you are the assigned user for the current node
+- $noone: a dummy role to indicate no one is allowed to do this, it is used to offer additional features to child components
+- moderator: a role that allows site-wide moderation, usually verifying stuff, deleting stuff,...
+- administrator: a role that allows site-wide administration, which allows you to configure components, roles,...
 
 Apart from that you can manage permissions in groups. The permission is the fully qualified name of the action (e.g. "tickets.deleteTicket") which can be assigned to a group and a node.
 A group is merely a collection of users where you can belong to.
