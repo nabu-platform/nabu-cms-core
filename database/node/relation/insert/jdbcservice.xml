@@ -1,18 +1,20 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeRelation</inputDefinition>
 	<sql>insert into node_relation (
 	id,
 	db_created_utc,
 	db_modified_utc,
+	verified,
 	source_id,
 	target_id,
 	relation_type_id
 ) values (
 	:id,
- timezone ('UTC', current_timestamp),
- timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	timezone ('UTC', current_timestamp),
+	:verified,
 	:sourceId,
 	:targetId,
 	:relationTypeId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.NodeRelation</inputDefinition>
 </jdbcService>

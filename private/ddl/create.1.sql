@@ -42,7 +42,7 @@ create table tag (
 	db_modified_utc timestamp not null,
 	name varchar not null,
 	parent_id uuid,
-	verified_utc timestamp,
+	verified boolean not null,
 	tag_group_id uuid not null
 );
 create table attachment_group (
@@ -201,6 +201,7 @@ create table node (
 	longitude decimal,
 	language varchar,
 	assigned_role_id uuid,
+	priority integer not null,
 	component_id uuid not null
 );
 create table node_action_role (
@@ -221,6 +222,7 @@ create table node_attachment (
 	content_type varchar not null,
 	size bigint not null,
 	attachment_group_id uuid not null,
+	verified boolean not null,
 	node_id uuid not null
 );
 create table node_attachment_thumbnail (
@@ -247,6 +249,7 @@ create table node_relation (
 	id uuid primary key,
 	db_created_utc timestamp not null,
 	db_modified_utc timestamp not null,
+	verified boolean not null,
 	source_id uuid not null,
 	target_id uuid not null,
 	relation_type_id uuid not null
