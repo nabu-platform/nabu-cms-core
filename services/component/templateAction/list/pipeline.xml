@@ -1,0 +1,9 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="componentId" type="java.util.UUID"/>
+        <field name="connection" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure definition="nabu.web.cms.core.types.component.componentTemplateActionOutput" maxOccurs="unbounded" minOccurs="0" name="templateActions"/>
+    </structure>
+</structure>

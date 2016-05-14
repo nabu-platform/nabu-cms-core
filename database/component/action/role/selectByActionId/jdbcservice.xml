@@ -1,8 +1,13 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.web.cms.core.types.component.componentRole</outputDefinition>
+	<outputDefinition>nabu.web.cms.core.types.component.componentActionRoleOutput</outputDefinition>
 	<sql>select
-	r.name as name,
-	r.pseudo as pseudo
-from component_action_role a join role r on a.role_id = r.id
-where a.component_action_id = :actionId</sql>
+	r.name,
+	r.pseudo,
+	car.id
+	
+from 
+	component_action_role car join role r on car.role_id = r.id
+
+where 
+	car.component_action_id = :actionId</sql>
 </jdbcService>

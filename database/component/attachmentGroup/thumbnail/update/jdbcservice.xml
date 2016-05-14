@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachmentGroupThumbnail</inputDefinition>
+	<sql>update component_attachment_group_thumbnail set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	component_attachment_group_id = :componentAttachmentGroupId,
+	thumbnail_type_id = :thumbnailTypeId
+ where id = :id</sql>
+</jdbcService>

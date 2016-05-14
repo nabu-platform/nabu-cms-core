@@ -1,0 +1,13 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeAttachment</inputDefinition>
+	<sql>update node_attachment set
+	db_modified_utc =  timezone ('UTC', current_timestamp),
+	uri = case when :uri is null then uri else :uri end,
+	name = case when :name is null then name else :name end,
+	content_type = case when :contentType is null then content_type else :contentType end,
+	size = case when :size is null then size else :size end,
+	attachment_group_id = case when :attachmentGroupId is null then attachment_group_id else :attachmentGroupId end,
+	verified = case when :verified is null then verified else :verified end,
+	node_id = case when :nodeId is null then node_id else :nodeId end
+ where id = :id</sql>
+</jdbcService>

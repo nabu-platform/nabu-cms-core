@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon May 09 07:59:42 CEST 2016'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat May 14 16:11:19 CEST 2016'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -909,7 +909,7 @@
           </UML:Classifier.feature>
         </UML:Class>
         <UML:Class xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009C0'
-          name = 'ComponentAttachment' visibility = 'public' isSpecification = 'false'
+          name = 'ComponentAttachmentGroup' visibility = 'public' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
           <UML:Classifier.feature>
             <UML:Attribute xmi.id = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:0000000000000A9A'
@@ -2309,7 +2309,7 @@ It is possible that creation is not user-driven and involves no actions.</UML:Ta
           </UML:Classifier.feature>
         </UML:Class>
         <UML:Class xmi.id = '127-0-1-1--e3fa99d:154661664bc:-8000:0000000000000D71'
-          name = 'ComponentAttachmentThumbnail' visibility = 'public' isSpecification = 'false'
+          name = 'ComponentAttachmentGroupThumbnail' visibility = 'public' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
         <UML:Association xmi.id = '127-0-1-1--e3fa99d:154661664bc:-8000:0000000000000D75'
           name = '' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -2614,33 +2614,6 @@ It is possible that creation is not user-driven and involves no actions.</UML:Ta
             </UML:Attribute>
           </UML:Classifier.feature>
         </UML:Class>
-        <UML:Association xmi.id = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D7B'
-          name = '' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Association.connection>
-            <UML:AssociationEnd xmi.id = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D7C'
-              visibility = 'public' isSpecification = 'false' isNavigable = 'false' ordering = 'unordered'
-              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
-              <UML:AssociationEnd.participant>
-                <UML:Class xmi.idref = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009C0'/>
-              </UML:AssociationEnd.participant>
-            </UML:AssociationEnd>
-            <UML:AssociationEnd xmi.id = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D7D'
-              visibility = 'public' isSpecification = 'false' isNavigable = 'true' ordering = 'unordered'
-              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D7F'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D7E'
-                      lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
-              <UML:AssociationEnd.participant>
-                <UML:Class xmi.idref = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D77'/>
-              </UML:AssociationEnd.participant>
-            </UML:AssociationEnd>
-          </UML:Association.connection>
-        </UML:Association>
         <UML:Association xmi.id = '-64--88-0-114-4fb957ba:1546b2a4d0e:-8000:0000000000001034'
           name = '' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Association.connection>
@@ -2862,6 +2835,33 @@ It is possible that creation is not user-driven and involves no actions.</UML:Ta
               </UML:AssociationEnd.multiplicity>
               <UML:AssociationEnd.participant>
                 <UML:Class xmi.idref = '127-0-1-1--5550d6ad:1547006cf2b:-8000:0000000000001154'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+          </UML:Association.connection>
+        </UML:Association>
+        <UML:Association xmi.id = '-64--88-0-114-7d74f309:154aea36c19:-8000:0000000000001059'
+          name = '' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Association.connection>
+            <UML:AssociationEnd xmi.id = '-64--88-0-114-7d74f309:154aea36c19:-8000:000000000000105A'
+              visibility = 'public' isSpecification = 'false' isNavigable = 'true' ordering = 'unordered'
+              aggregation = 'aggregate' targetScope = 'instance' changeability = 'changeable'>
+              <UML:AssociationEnd.participant>
+                <UML:Class xmi.idref = '-64--88-0-114-5e941d9d:1538e7a7fbc:-8000:00000000000009C0'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+            <UML:AssociationEnd xmi.id = '-64--88-0-114-7d74f309:154aea36c19:-8000:000000000000105B'
+              visibility = 'public' isSpecification = 'false' isNavigable = 'true' ordering = 'unordered'
+              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88-0-114-7d74f309:154aea36c19:-8000:000000000000105D'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88-0-114-7d74f309:154aea36c19:-8000:000000000000105C'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Class xmi.idref = '127-0-1-1-5d5a2fcd:15467eb2b89:-8000:0000000000000D77'/>
               </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
           </UML:Association.connection>

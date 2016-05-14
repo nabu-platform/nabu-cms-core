@@ -1,8 +1,12 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.web.cms.core.types.component.componentExtension</outputDefinition>
+	<outputDefinition>nabu.web.cms.core.types.component.componentKeyOutput</outputDefinition>
 	<sql>select
-	key,
-	data_type
-from component_key
-where component_id = :componentId</sql>
+	ck.key,
+	ck.data_type,
+	r.name,
+	ck.id
+from 
+	component_key ck join role r on ck.role_id= r.id
+where 
+	ck.component_id = :componentId</sql>
 </jdbcService>

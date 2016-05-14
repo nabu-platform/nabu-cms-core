@@ -1,0 +1,18 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.component.componentOutput</outputDefinition>
+	<sql>select
+	c.name,
+	ct.name,
+	c.node_enricher,
+	c.id,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null
+from 
+	component c join component_template ct on c.component_template_id= ct.id  
+where c.id = :id</sql>
+</jdbcService>

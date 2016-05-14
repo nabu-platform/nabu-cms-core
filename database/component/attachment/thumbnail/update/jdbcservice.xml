@@ -1,8 +1,0 @@
-<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<sql>update component_attachment_thumbnail set
-	db_modified_utc =  timezone ('UTC', current_timestamp),
-	component_attachment_id = case when :componentAttachmentId is null then component_attachment_id else :componentAttachmentId end,
-	thumbnail_type_id = case when :thumbnailTypeId is null then thumbnail_type_id else :thumbnailTypeId end
- where id = :id</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.ComponentAttachmentThumbnail</inputDefinition>
-</jdbcService>
