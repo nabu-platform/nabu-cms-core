@@ -1,23 +1,20 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.web.cms.core.types.model.core.Node</inputDefinition>
-	<sql>update node set
-	db_modified_utc =  timezone ('UTC', current_timestamp),
+	<sql>update nodes set
+	modified = case when :modified is null then modified else :modified end,
 	owner_id = case when :ownerId is null then owner_id else :ownerId end,
-	published_utc = case when :publishedUtc is null then published_utc else :publishedUtc end,
+	published = case when :published is null then published else :published end,
 	verified = case when :verified is null then verified else :verified end,
 	enabled = case when :enabled is null then enabled else :enabled end,
 	parent_id = case when :parentId is null then parent_id else :parentId end,
+	version = case when :version is null then version else :version end,
+	priority = case when :priority is null then priority else :priority end,
 	name = case when :name is null then name else :name end,
 	title = case when :title is null then title else :title end,
 	description = case when :description is null then description else :description end,
-	comment = case when :comment is null then comment else :comment end,
-	version = case when :version is null then version else :version end,
-	context = case when :context is null then context else :context end,
-	latitude = case when :latitude is null then latitude else :latitude end,
-	longitude = case when :longitude is null then longitude else :longitude end,
-	language = case when :language is null then language else :language end,
-	assigned_role_id = case when :assignedRoleId is null then assigned_role_id else :assignedRoleId end,
-	priority = case when :priority is null then priority else :priority end,
+	path = case when :path is null then path else :path end,
+	slug = case when :slug is null then slug else :slug end,
+	language_id = case when :languageId is null then language_id else :languageId end,
 	component_id = case when :componentId is null then component_id else :componentId end
  where id = :id</sql>
 </jdbcService>

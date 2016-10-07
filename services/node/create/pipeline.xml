@@ -1,0 +1,22 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connection" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
+        <field minOccurs="0" name="ownerId" type="java.util.UUID"/>
+        <field minOccurs="0" name="parentId" type="java.util.UUID"/>
+        <field minOccurs="0" name="languageId" type="java.util.UUID"/>
+        <field name="componentId" type="java.util.UUID"/>
+        <field minOccurs="0" name="priority" type="java.lang.Integer"/>
+        <field minOccurs="0" name="name" type="java.lang.String"/>
+        <field minOccurs="0" name="title" type="java.lang.String"/>
+        <field minOccurs="0" name="description" type="java.lang.String"/>
+        <field minOccurs="0" name="slug" type="java.lang.String"/>
+        <field minOccurs="0" name="published" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
+    </structure>
+    <structure name="output">
+        <field name="nodeId" type="java.util.UUID"/>
+    </structure>
+    <structure collectionName="Nodes" definition="nabu.web.cms.core.types.model.core.Node" name="node" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.web.cms.core.types.model.core.Node" minOccurs="0" name="parent" namespace="nabu.web.cms.core.types.model.core"/>
+</structure>

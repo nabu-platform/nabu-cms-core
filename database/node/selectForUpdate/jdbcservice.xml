@@ -19,5 +19,6 @@
 	language_id,
 	component_id
 from nodes
-where id = :id</sql>
+where id = :id
+for update</sql>
 </jdbcService>
