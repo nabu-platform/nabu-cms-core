@@ -1,0 +1,38 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="908ded96-6805-4b48-ad7e-1f10b762c9c8">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="43fe38ed-593a-484e-9b38-1b4e112b0682">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="321acd24-6ee4-4166-a5c5-3abf47fd9ccd" serviceId="nabu.web.cms.core.utils.initializeConfiguration" resultName="result5175cbaac9f24e41ada1788354bed4bb" invocationOrder="0" temporaryMapping="true" x="172" y="73">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a908e72c-275b-46e1-a063-1326c2c4f5cf" fixedValue="false" optional="false">
+				<from>input/configuration</from>
+				<to>configuration</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a262624c-aa0b-4887-bad1-894f4d54881a" fixedValue="false" optional="true">
+			<from>result5175cbaac9f24e41ada1788354bed4bb/configuration/defaultLanguage</from>
+			<to>input/language</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="658a9a8f-fc92-4d0b-a857-34ef2a382e8d">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b11417dd-dee3-4630-a3aa-ab8882b2e748" serviceId="nabu.web.cms.core.database.translation.selectTranslation" resultName="resultf2f77753bad24b9ebe2248674c08a9e2" invocationOrder="0" temporaryMapping="true" x="42" y="41">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7a8e9555-96d5-40cd-bb85-c9fa287696a6" fixedValue="false" optional="false">
+				<from>input/configuration/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4fbb4a71-6a01-4762-ab7d-cf4b9146bb1b" fixedValue="false" optional="false">
+				<from>input/category</from>
+				<to>parameters/context</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cf6f15f5-c471-47d4-a2f6-e0137b4a46a1" fixedValue="false" optional="false">
+				<from>input/language</from>
+				<to>parameters/language</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1bd06fca-3f24-4c3a-95e1-a33894f4da21" fixedValue="false" optional="false">
+				<from>input/key</from>
+				<to>parameters/name</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="512ed0e0-b437-4404-84de-b4925eb95e10" fixedValue="false" optional="false">
+			<from>resultf2f77753bad24b9ebe2248674c08a9e2/results[0]/translation</from>
+			<to>output/translation</to>
+		</steps>
+	</steps>
+</sequence>

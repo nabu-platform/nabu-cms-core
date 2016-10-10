@@ -1,0 +1,24 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="73cbecfb-5cb5-4c21-9e41-19652ac1d966">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="32da620a-1420-4693-b259-84ccbcc6aef0">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/token != null" id="448142a0-8d7d-447d-85a6-d4a9a4bef1b3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="a61760d8-2a2a-4e35-8633-46842ec8f67b" serviceId="nabu.web.cms.core.database.user.selectLanguageByAlias" resultName="result374d6fb9c03d410c89671af90b662757" invocationOrder="0" temporaryMapping="true" x="120" y="62">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0cd96f69-b932-47bf-a739-d35642f38f9b" fixedValue="false" optional="false">
+					<from>input/configuration/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="57e4c4c9-25ef-4b2b-84a7-97c1ddc44cbe" fixedValue="false" optional="false">
+					<from>input/token/name</from>
+					<to>parameters/alias</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9e2f7131-c514-433d-ba1d-f571ae5932f9" fixedValue="false" optional="false">
+					<from>input/token/realm</from>
+					<to>parameters/realm</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4ada3480-dcee-48df-b323-da0eb2e6ac38" fixedValue="false" optional="false">
+				<from>result374d6fb9c03d410c89671af90b662757/results[0]/language</from>
+				<to>output/language</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

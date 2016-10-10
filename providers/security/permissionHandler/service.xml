@@ -23,6 +23,53 @@
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" id="ceac510c-3c9a-4fc6-ba2b-756800a1e961">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" comment="Get the user (if any)" id="4d23a568-f644-4a66-942f-862999d86bd2">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="input/token != null" id="cf8e1fbc-420d-4262-99d4-44e283cc98d2">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="45430adb-dad1-45ee-8ed7-475144aaa2ab">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="3e13ddf1-bf6f-4d8c-a14a-5f635d3e0cb1" serviceId="nabu.web.cms.core.database.user.selectByAlias" resultName="result2129e08ddde64d2db97a7473c21df295" invocationOrder="0" temporaryMapping="true" x="63" y="58">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9baf6565-0ecb-443e-a29c-aa4baaea5b7f" fixedValue="false" optional="false">
+								<from>input/token/name</from>
+								<to>parameters/alias</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="baf00967-bc2b-46a5-b15e-8c2a50fec24e" fixedValue="false" optional="false">
+								<from>input/token/realm</from>
+								<to>parameters/realm</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4352aa70-51cc-41e4-89f1-872b00836c93" fixedValue="false" optional="false">
+								<from>input/configuration/connectionId</from>
+								<to>connection</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="849140c9-5d30-4d89-b219-1b5a38121116" fixedValue="false" optional="false">
+							<from>result2129e08ddde64d2db97a7473c21df295/results[0]</from>
+							<to>user</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="b3f9e0c3-5ad7-44c3-a197-7f43d91419e6" query="user">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="f0befec2-3ed1-4216-b489-292f26c86dac" message="=&quot;Invalid user: &quot; + input/token/name" xsi:nil="true"/>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="1d6c2423-c1a4-4312-b271-844aa5678bfc">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7c0c0d7e-c8b0-49c4-8407-276ec7f5ba7a" serviceId="nabu.web.cms.core.providers.security.getUserRoles" resultName="result921516a141b4448a8f601d92479c5118" invocationOrder="0" temporaryMapping="true" x="47" y="74">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d7d8abb5-8722-4ff4-b20c-c34861a01e6f" fixedValue="false" optional="false">
+									<from>input/token/name</from>
+									<to>alias</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f46d3a64-8e3d-411e-96d4-47b041725bc8" fixedValue="false" optional="false">
+									<from>input/token/realm</from>
+									<to>realm</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="54275c65-5e3f-418a-b2d3-29f5206c0055" fixedValue="false" optional="false">
+									<from>input/configuration/connectionId</from>
+									<to>connection</to>
+								</steps>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="228930e9-860e-4086-a7ce-15bebf4be799" fixedValue="false" optional="false">
+								<from>result921516a141b4448a8f601d92479c5118/roles</from>
+								<to>userRoles</to>
+							</steps>
+						</steps>
+					</steps>
+				</steps>
+			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" comment="Get any context-driven roles" id="1b77d6bb-e46b-4efd-8f30-7149e27afec3">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="input/context != null" id="fec68b5d-d91f-49af-8888-30cfa23aa1de">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="59d5092c-c764-4600-b1c4-497abfb16327">
@@ -51,7 +98,6 @@
 								<to>string</to>
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a1566b93-a4e4-488b-9cff-0911f0120511" fixedValue="true" optional="false">
-								<from></from>
 								<to>separator</to>
 							</steps>
 						</steps>
@@ -150,6 +196,10 @@
 					<to>allRoles</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Drop" disabled="false" id="f36e04ed-3276-4ab9-a5e0-a9a42b254386" path="actionRoles" xsi:nil="true"/>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c197b8b9-d5fa-4e61-b0a9-7d91f31d4cb2" fixedValue="true" optional="false">
+					<from>false</from>
+					<to>output/response</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.For" disabled="false" id="94b624dc-f7ba-4d22-99e9-570f415b7cb4" variable="role">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="ff57fa4e-5516-46d9-927f-f1e04368a14d">
@@ -157,7 +207,44 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="42dcfdea-1898-4e0f-909d-c15ea94631df" query="role/pseudo">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" label="true" id="e13604c4-920b-4395-b675-cc481a4014d2" query="role/name">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="&quot;$owner&quot;" comment="The current user is the &quot;owner&quot; of the node" id="dc95bf07-be82-46f1-902a-7cb7eb42f1f0">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d26388ba-4ca9-47e6-a7e2-cb682569eaa9" fixedValue="true" optional="false">
+								<from>=output/response || (node != null &amp;&amp; user != null &amp;&amp; user/id == node/id)</from>
+								<to>output/response</to>
+							</steps>
 						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="&quot;$guest&quot;" comment="There is no current user" id="f9cb8789-89c2-43f7-bdf6-a180cc586747">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="afdb20ad-51da-4e49-a057-d0a8cf4e6256" fixedValue="true" optional="false">
+								<from>=output/response || input/token == null</from>
+								<to>output/response</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="&quot;$user&quot;" comment="There is _a_ user" id="12ab26e6-5b88-4335-945a-aca47e2f2ce4">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1d4a122d-7ea3-4297-93c8-d7516c8953c7" fixedValue="true" optional="false">
+								<from>=output/response || user != null</from>
+								<to>output/response</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" id="6797902e-5196-4df9-862d-0d3be6126a68" message="=&quot;Unknown pseudo role: &quot; + role/name" xsi:nil="true"/>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" id="bfeb91df-690a-460f-9889-f6829d14c356">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Check if the user has the role" id="29d7b444-d2e1-4db5-b345-b5388afe9bf9">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e32e82a4-0120-403a-b402-6833e43cfa0f" fixedValue="false" optional="false">
+								<from>userRoles[name == /role/name]</from>
+								<to>targetedRole</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Update output" id="48002c21-4475-43dc-9b1e-b16a35b56800">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="25e13539-6812-4668-9cb1-bb1ddf5b3b03" fixedValue="true" optional="false">
+								<from>=response/output || targetedRole != null</from>
+								<to>output/response</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Drop" disabled="false" id="0de5089a-f560-4ef4-a4bb-5157afe80d04" path="targetedRole" xsi:nil="true"/>
+						</steps>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" comment="Stop if the user already has the permission" id="81f876e7-6cfd-4fb8-992b-50755d837d03" query="output/response">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Break" disabled="false" label="true" id="b309b06b-2b7b-4323-98f2-406b0ae4bc20">
+						<count>1</count>
 					</steps>
 				</steps>
 				<query>allRoles</query>
