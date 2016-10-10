@@ -1,0 +1,28 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>insert into node_audits (
+	id,
+	created,
+	modified,
+	actor_id,
+	description,
+	host,
+	port,
+	device_id,
+	node_id,
+	component_action_id,
+	audit_state_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:actorId,
+	:description,
+	:host,
+	:port,
+	:deviceId,
+	:nodeId,
+	:componentActionId,
+	:auditStateId
+)</sql>
+	<inputDefinition>nabu.web.cms.core.types.model.core.NodeAudit</inputDefinition>
+</jdbcService>

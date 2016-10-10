@@ -1,0 +1,26 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.UserDevice</inputDefinition>
+	<sql>insert into user_devices (
+	id,
+	created,
+	modified,
+	allowed,
+	name,
+	description,
+	verification_code,
+	secret,
+	secret_modified,
+	user_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:allowed,
+	:name,
+	:description,
+	:verificationCode,
+	:secret,
+	:secretModified,
+	:userId
+)</sql>
+</jdbcService>

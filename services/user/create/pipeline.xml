@@ -1,14 +1,26 @@
 <structure name="pipeline">
-    <structure name="input">
+    <structure name="input" validate="true">
         <field name="connection" type="java.lang.String"/>
-        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
+        <field name="transactionId" type="java.lang.String"/>
         <field name="alias" type="java.lang.String"/>
-        <field minOccurs="0" name="verificationCode" type="java.lang.String"/>
         <field minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
         <field minOccurs="0" name="anonymous" type="java.lang.Boolean"/>
         <field minOccurs="0" name="languageId" type="java.util.UUID"/>
+        <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="password" type="java.lang.String"/>
+        <field name="realm" type="java.lang.String"/>
+        <field minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
+        <structure minOccurs="0" name="oauth2Token">
+            <field name="oauth2Provider" type="java.lang.String"/>
+            <field name="token" type="java.lang.String"/>
+            <field name="activeUntil" type="java.util.Date"/>
+            <field minOccurs="0" name="refreshToken" type="java.lang.String"/>
+        </structure>
     </structure>
     <structure name="output">
         <field minOccurs="0" name="userId" type="java.util.UUID"/>
+        <field minOccurs="0" name="verificationCode" type="java.lang.String"/>
     </structure>
+    <structure collectionName="Users" definition="nabu.web.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure collectionName="UserOauth2Credentials" definition="nabu.web.cms.core.types.model.core.UserOauth2Credential" name="credential" namespace="nabu.web.cms.core.types.model.core"/>
 </structure>

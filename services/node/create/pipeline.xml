@@ -1,5 +1,5 @@
 <structure name="pipeline">
-    <structure name="input">
+    <structure name="input" validate="true">
         <field name="connection" type="java.lang.String"/>
         <field minOccurs="0" name="transactionId" type="java.lang.String"/>
         <field minOccurs="0" name="ownerId" type="java.util.UUID"/>
@@ -16,6 +16,7 @@
     </structure>
     <structure name="output">
         <field name="nodeId" type="java.util.UUID"/>
+        <field name="created" type="java.util.Date"/>
     </structure>
     <structure collectionName="Nodes" definition="nabu.web.cms.core.types.model.core.Node" name="node" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Nodes" definition="nabu.web.cms.core.types.model.core.Node" minOccurs="0" name="parent" namespace="nabu.web.cms.core.types.model.core"/>

@@ -1,0 +1,22 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="d17135fe-85f0-4a32-9ed2-9aaa958f82ac">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Set defaults" id="18d85c9b-9adf-4f68-9420-71c7b4d57671">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="edd4f659-ce23-42a4-9176-631ceb04aff0" optional="true" fixedValue="true">
+			<from>10</from>
+			<to>input/configuration/maxAmountOfDevices</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="611242c3-9ab2-42fd-b7cd-8b24cab4944f" optional="true" fixedValue="true">
+			<from>true</from>
+			<to>input/configuration/allowNewDevices</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8e199cce-9f97-47c9-9a68-b88f8e5ed01d" optional="true" fixedValue="true">
+			<from>true</from>
+			<to>input/configuration/allowRemember</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c6ce305d-d2f2-45a3-b455-be9a2883f8f8">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b82bfa39-082d-406a-ae24-cf4f18b1f1e4" optional="false" fixedValue="false">
+			<from>input/configuration</from>
+			<to>output/configuration</to>
+		</steps>
+	</steps>
+</sequence>

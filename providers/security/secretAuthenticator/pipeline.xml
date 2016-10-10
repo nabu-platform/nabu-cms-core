@@ -1,0 +1,9 @@
+<structure interface="be.nabu.eai.authentication.api.SecretAuthenticator.authenticate" name="pipeline">
+    <structure name="input">
+        <structure definition="nabu.web.cms.core.configuration" name="configuration"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="Users" definition="nabu.web.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure collectionName="UserDevices" definition="nabu.web.cms.core.types.model.core.UserDevice" minOccurs="0" name="currentDevice" namespace="nabu.web.cms.core.types.model.core"/>
+    <field name="suppliedHash" type="java.lang.String"/>
+</structure>

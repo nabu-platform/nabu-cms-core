@@ -1,0 +1,53 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="54ae3613-f791-489c-9d97-5bad2e0689cc">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="e8f8b8a6-cf00-495c-97ca-1470711d201f">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="68ca593c-b0fa-4c17-89af-44c635e17300" serviceId="nabu.web.cms.core.database.user.selectByVerificationCode" resultName="result73a8be8025a645ef81ddb8397a0d49b8" temporaryMapping="true" invocationOrder="0" x="52" y="94">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6594592c-6dae-43e8-bd21-ee5e759f1f7e" fixedValue="false" optional="false">
+				<from>input/alias</from>
+				<to>parameters/alias</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f2fc67e6-c473-440a-94d6-2563f3fcbec0" fixedValue="false" optional="false">
+				<from>input/verificationCode</from>
+				<to>parameters/verificationCode</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9e95ca2e-2650-478e-9b42-11ec6c4091a5" fixedValue="false" optional="false">
+				<from>input/connection</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="faf6205d-4795-472c-af81-e52fc7cd3cab" fixedValue="false" optional="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ac9c74bf-7d17-4ea8-a2d9-63215948c5c2" fixedValue="false" optional="false">
+			<from>result73a8be8025a645ef81ddb8397a0d49b8/results[0]</from>
+			<to>user</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="20f316c0-6e85-4c8e-a2d3-f78a0949a2e0" query="user">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="0aa8cbdb-3f85-4683-9466-29e892dadd37" message="=&quot;No user found with alias '&quot; + input/alias + &quot;' and verification code: &quot; + input/verificationCode">
+			<code>VERIFICATION-1</code>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Update node" id="fbd28925-c55d-41a4-b74d-f9bbd28be180">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="498791bb-3406-428b-9a05-2fda752da0bf" serviceId="nabu.web.cms.core.database.node.update" resultName="resultd45afdd0b7664765afbfc808f7e1a9d8" temporaryMapping="true" invocationOrder="1" x="382" y="34">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f7ade231-dd55-45e1-a549-00f40905e8a9" fixedValue="false" optional="false">
+				<from>input/connection</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="165e4dd3-1fe6-41f1-a9de-4eee4ac0fb61" fixedValue="false" optional="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9d4fe1c9-37bc-4a6e-93de-87d9c740b977" fixedValue="false" optional="false">
+				<from>user/id</from>
+				<to>parameters[0]/id</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f4193c93-58ba-4f42-ba5b-1cc06fa703a8" fixedValue="false" optional="false">
+				<from>resultefac612d8dcb4813a4fcddc440b2dbe3/date</from>
+				<to>parameters[0]/verified</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7ff13553-691e-40eb-8e69-79c6f46d2808" serviceId="nabu.utils.Date.now" resultName="resultefac612d8dcb4813a4fcddc440b2dbe3" temporaryMapping="true" invocationOrder="0" x="48" y="247">
+		</steps>
+	</steps>
+</sequence>

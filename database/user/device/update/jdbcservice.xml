@@ -1,0 +1,13 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.UserDevice</inputDefinition>
+	<sql>update user_devices set
+	modified = case when :modified is null then modified else :modified end,
+	allowed = case when :allowed is null then allowed else :allowed end,
+	name = case when :name is null then name else :name end,
+	description = case when :description is null then description else :description end,
+	verification_code = case when :verificationCode is null then verification_code else :verificationCode end,
+	secret = case when :secret is null then secret else :secret end,
+	secret_modified = case when :secretModified is null then secret_modified else :secretModified end,
+	user_id = case when :userId is null then user_id else :userId end
+ where id = :id</sql>
+</jdbcService>
