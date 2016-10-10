@@ -1,0 +1,11 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connection" type="java.lang.String"/>
+        <field name="realm" type="java.lang.String"/>
+        <field name="alias" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="Roles" definition="nabu.web.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="roles" namespace="nabu.web.cms.core.types.model.core"/>
+    </structure>
+    <structure collectionName="Users" definition="nabu.web.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.web.cms.core.types.model.core"/>
+</structure>

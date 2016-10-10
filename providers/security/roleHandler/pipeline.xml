@@ -1,4 +1,7 @@
-<structure name="pipeline">
-    <structure name="input"/>
+<structure interface="be.nabu.libs.authentication.api.RoleHandler.hasRole" name="pipeline">
+    <structure name="input">
+        <structure definition="nabu.web.cms.core.configuration" name="configuration"/>
+    </structure>
     <structure name="output"/>
+    <structure collectionName="Roles" definition="nabu.web.cms.core.types.model.core.Role" minOccurs="0" name="requestedRole" namespace="nabu.web.cms.core.types.model.core"/>
 </structure>
