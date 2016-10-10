@@ -1,13 +1,12 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.User</outputDefinition>
 	<sql>select
 	id,
 	created,
 	modified,
-	secret,
 	password,
 	salt,
 	password_modified,
-	secret_modified,
 	alias,
 	verification_code,
 	invites_left,
@@ -17,5 +16,4 @@
 from users
 where verification_code = :verificationCode
 and alias = :alias</sql>
-	<outputDefinition>nabu.web.cms.core.types.model.core.User</outputDefinition>
 </jdbcService>

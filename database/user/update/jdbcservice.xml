@@ -2,11 +2,9 @@
 	<inputDefinition>nabu.web.cms.core.types.model.core.User</inputDefinition>
 	<sql>update users set
 	modified = case when :modified is null then modified else :modified end,
-	secret = case when :secret is null then secret else :secret end,
 	password = case when :password is null then password else :password end,
 	salt = case when :salt is null then salt else :salt end,
 	password_modified = case when :passwordModified is null then password_modified else :passwordModified end,
-	secret_modified = case when :secretModified is null then secret_modified else :secretModified end,
 	alias = case when :alias is null then alias else :alias end,
 	verification_code = case when :verificationCode is null then verification_code else :verificationCode end,
 	invites_left = case when :invitesLeft is null then invites_left else :invitesLeft end,

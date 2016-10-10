@@ -1,13 +1,12 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.User</outputDefinition>
 	<sql>select
 	u.id,
 	u.created,
 	u.modified,
-	u.secret,
 	u.password,
 	u.salt,
 	u.password_modified,
-	u.secret_modified,
 	u.alias,
 	u.verification_code,
 	u.invites_left,
@@ -20,5 +19,4 @@ and u.realm = :realm
 and n.enabled = true
 and n.verified is not null
 and n.published is not null</sql>
-	<outputDefinition>nabu.web.cms.core.types.model.core.User</outputDefinition>
 </jdbcService>

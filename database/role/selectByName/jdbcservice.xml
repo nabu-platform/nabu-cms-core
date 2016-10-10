@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.Role</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	name,
+	pseudo
+from roles
+where name = :name</sql>
+</jdbcService>

@@ -1,0 +1,16 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.GroupRole</inputDefinition>
+	<sql>insert into group_roles (
+	id,
+	created,
+	modified,
+	group_id,
+	role_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:groupId,
+	:roleId
+)</sql>
+</jdbcService>

@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.UserGroup</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	user_id,
+	group_id
+from user_groups
+where user_id = :userId</sql>
+</jdbcService>

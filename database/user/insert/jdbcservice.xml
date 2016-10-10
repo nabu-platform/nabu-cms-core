@@ -1,13 +1,12 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.User</inputDefinition>
 	<sql>insert into users (
 	id,
 	created,
 	modified,
-	secret,
 	password,
 	salt,
 	password_modified,
-	secret_modified,
 	alias,
 	verification_code,
 	invites_left,
@@ -18,11 +17,9 @@
 	:id,
 	:created,
 	:modified,
-	:secret,
 	:password,
 	:salt,
 	:passwordModified,
-	:secretModified,
 	:alias,
 	:verificationCode,
 	:invitesLeft,
@@ -30,5 +27,4 @@
 	:anonymous,
 	:realm
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.User</inputDefinition>
 </jdbcService>

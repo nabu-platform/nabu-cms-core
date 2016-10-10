@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.GroupRole</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	group_id,
+	role_id
+from group_roles
+where group_id = :groupId</sql>
+</jdbcService>
