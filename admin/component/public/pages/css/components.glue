@@ -1,0 +1,9 @@
+@cache
+
+for (resource : resources())
+	if (resource ~ ".*\.css" && resource != "media.css" && resource != "web.css" && resource != "mobile.css")
+		echo(resource(resource) + "\n")
+
+for (resource : resources("index"))
+	if (resource ~ ".*\.css")
+		echo(resource(resource, "index") + "\n")

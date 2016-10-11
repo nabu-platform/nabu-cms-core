@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.web.cms.core.types.model.core.UserOauth2Credential</inputDefinition>
 	<sql>insert into user_oauth2_credentials (
 	id,
 	created,
@@ -7,6 +8,8 @@
 	token,
 	active_until,
 	refresh_token,
+	account_id,
+	token_type,
 	user_id
 ) values (
 	:id,
@@ -16,7 +19,8 @@
 	:token,
 	:activeUntil,
 	:refreshToken,
+	:accountId,
+	:tokenType,
 	:userId
 )</sql>
-	<inputDefinition>nabu.web.cms.core.types.model.core.UserOauth2Credential</inputDefinition>
 </jdbcService>

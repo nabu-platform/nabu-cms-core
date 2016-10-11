@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connectionId" type="java.lang.String"/>
+        <field name="userId" type="java.util.UUID"/>
+        <field name="provider" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field minOccurs="0" name="token" type="java.lang.String"/>
+    </structure>
+    <structure collectionName="UserOauth2Credentials" definition="nabu.web.cms.core.types.model.core.UserOauth2Credential" minOccurs="0" name="oauth2Credential" namespace="nabu.web.cms.core.types.model.core"/>
+    <field name="remainingActivePeriod" type="java.lang.Double"/>
+</structure>

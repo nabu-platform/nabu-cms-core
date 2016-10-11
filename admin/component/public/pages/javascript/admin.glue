@@ -1,0 +1,16 @@
+@cache
+
+response.header("Content-Type", "application/javascript")
+
+# Inject all the utils
+nabu.javascript.utils()
+
+# Inject main javascript
+for (resource : resources())
+	echo(resource(resource) + "\n")
+
+# Inject modular javascript
+for (script : getRepository())
+	if (script/namespace == "cms.admin")
+		function(script/namespace + "." + script/name)()
+		echo("\n")

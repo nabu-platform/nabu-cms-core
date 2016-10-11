@@ -1,0 +1,17 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.cms.core.types.model.core.UserOauth2Credential</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	oauth2_provider,
+	token,
+	active_until,
+	refresh_token,
+	account_id,
+	token_type,
+	user_id
+from user_oauth2_credentials
+where oauth2_provider = :provider
+and user_id = :userId</sql>
+</jdbcService>
