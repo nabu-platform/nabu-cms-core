@@ -1,16 +1,28 @@
 <structure name="pipeline">
-    <structure name="input" validate="true">
-        <field name="connectionId" type="java.lang.String"/>
-        <field name="userId" type="java.util.UUID"/>
-        <structure definition="be.nabu.libs.authentication.api.Device" name="device"/>
-        <field name="maxAmountOfNewDevices" type="java.lang.Integer"/>
-        <field name="allowNewDevices" type="java.lang.Boolean"/>
-        <field minOccurs="0" name="sendDeviceVerificationService" type="java.lang.String"/>
-    </structure>
-    <structure name="output">
-        <structure collectionName="UserDevices" definition="nabu.web.cms.core.types.model.core.UserDevice" name="device" namespace="nabu.web.cms.core.types.model.core"/>
-    </structure>
-    <structure collectionName="UserDevices" definition="nabu.web.cms.core.types.model.core.UserDevice" maxOccurs="unbounded" minOccurs="0" name="devices" namespace="nabu.web.cms.core.types.model.core"/>
-    <structure collectionName="UserDevices" definition="nabu.web.cms.core.types.model.core.UserDevice" minOccurs="0" name="currentDevice" namespace="nabu.web.cms.core.types.model.core"/>
-    <field minOccurs="0" name="amountOfDevices" type="java.lang.Integer"/>
+   <structure name="input" validate="true">
+      <field name="connectionId" type="java.lang.String"/>
+      <field name="userId" type="java.util.UUID"/>
+      <structure definition="be.nabu.libs.authentication.api.Device" name="device"/>
+      <field name="maxAmountOfNewDevices" type="java.lang.Integer"/>
+      <field name="allowNewDevices" type="java.lang.Boolean"/>
+      <field minOccurs="0" name="sendDeviceVerificationService" type="java.lang.String"/>
+   </structure>
+   <structure name="output">
+      <structure collectionName="UserDevices"
+                 definition="nabu.cms.core.types.model.core.UserDevice"
+                 name="device"
+                 namespace="nabu.web.cms.core.types.model.core"/>
+   </structure>
+   <structure collectionName="UserDevices"
+              definition="nabu.cms.core.types.model.core.UserDevice"
+              maxOccurs="unbounded"
+              minOccurs="0"
+              name="devices"
+              namespace="nabu.web.cms.core.types.model.core"/>
+   <structure collectionName="UserDevices"
+              definition="nabu.cms.core.types.model.core.UserDevice"
+              minOccurs="0"
+              name="currentDevice"
+              namespace="nabu.web.cms.core.types.model.core"/>
+   <field minOccurs="0" name="amountOfDevices" type="java.lang.Integer"/>
 </structure>

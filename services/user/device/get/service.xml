@@ -2,7 +2,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="21afaf6b-a40c-4828-9d8f-8d7b956e08fa" query="input/userId">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="null" id="766ecf27-a2fe-454f-b620-b4da0960fd2a">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="77579634-d6f6-4e1b-b22b-dae55af90c70">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5fd1afc9-16c6-4a92-8f9a-b7d9031f632a" serviceId="nabu.utils.Runtime.getCurrentToken" resultName="result5c454efeb26f4b618800cddccdb056c0" temporaryMapping="true" invocationOrder="0" x="38" y="82">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5fd1afc9-16c6-4a92-8f9a-b7d9031f632a" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.Runtime.getCurrentToken" resultName="result5c454efeb26f4b618800cddccdb056c0" x="38" y="82">
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="86c85007-5232-4c96-8343-a6e0bbad5836" fixedValue="false" optional="false">
 					<from>result5c454efeb26f4b618800cddccdb056c0/token/name</from>
@@ -15,7 +15,7 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="18f1373e-7365-43fc-9396-7d0f7ecfb330">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d4f8c707-773e-43a3-86fd-55a2bc5274ca" serviceId="nabu.web.cms.core.database.user.device.selectById" resultName="result204b618d8b274c398e85aa74c94dca7b" temporaryMapping="true" invocationOrder="0" x="85" y="64">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d4f8c707-773e-43a3-86fd-55a2bc5274ca" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.device.selectById" resultName="result204b618d8b274c398e85aa74c94dca7b" x="85" y="64">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="53bb94a7-69b6-422b-ae2d-4a97a510a059" fixedValue="false" optional="false">
 				<from>input/connectionId</from>
 				<to>connection</to>

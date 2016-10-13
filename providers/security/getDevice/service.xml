@@ -1,6 +1,6 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="effd218e-a3e2-49a1-bc45-ea9689fc9e09">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get user devices" id="8d9f3a30-36ad-4601-a49c-8c09a3eec770">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="25c3701c-80d3-4e64-84a1-c990aa1a4f5d" serviceId="nabu.web.cms.core.database.user.device.selectByUserId" resultName="resultca6a0e46618a46e0b71f1383bb04e64d" invocationOrder="0" temporaryMapping="true" x="60" y="43">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="25c3701c-80d3-4e64-84a1-c990aa1a4f5d" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.device.selectByUserId" resultName="resultca6a0e46618a46e0b71f1383bb04e64d" x="60" y="43">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="96f1d90d-2d4b-4eff-b03b-bf2c64c2d7b3" fixedValue="false" optional="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
@@ -22,7 +22,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="ac17d500-deed-460d-8146-253b3daa4c59" query="currentDevice">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="null" id="cbd4a93c-9abf-4713-bc49-b0e0d690750b">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d6f5207f-faca-470e-9b2c-01d31afd67be">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="306d674a-a36a-4374-8cf8-7e2e778f9894" serviceId="nabu.utils.List.size" resultName="result63966e7d5235473887ce7af27ec180cc" invocationOrder="0" temporaryMapping="true" x="41" y="126">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="306d674a-a36a-4374-8cf8-7e2e778f9894" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.List.size" resultName="result63966e7d5235473887ce7af27ec180cc" x="41" y="126">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="458f4f0a-61db-4244-b294-693a408a2554" fixedValue="false" optional="false">
 						<from>devices</from>
 						<to>list</to>
@@ -43,7 +43,7 @@
 					<from>input/device/deviceId</from>
 					<to>currentDevice/id</to>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="4d325ff3-e4dc-460c-82fb-08b96bbf91b8" serviceId="nabu.utils.Date.now" resultName="result253eef23b74245b3a16bc20e00153bbc" invocationOrder="0" temporaryMapping="true" x="70" y="230">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="4d325ff3-e4dc-460c-82fb-08b96bbf91b8" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.Date.now" resultName="result253eef23b74245b3a16bc20e00153bbc" x="70" y="230">
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="94bdf2b8-9d91-41d1-9cdd-0290e62c0283" fixedValue="false" optional="false">
 					<from>result253eef23b74245b3a16bc20e00153bbc/date</from>
@@ -53,7 +53,7 @@
 					<from>result253eef23b74245b3a16bc20e00153bbc/date</from>
 					<to>currentDevice/modified</to>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="57ec7c9e-c86f-41f7-909c-8da9c0a19dab" serviceId="nabu.web.cms.core.utils.security.guessDeviceName" resultName="result735918952f654803885d844528d5f3bf" invocationOrder="0" temporaryMapping="true" x="99" y="38">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="57ec7c9e-c86f-41f7-909c-8da9c0a19dab" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.utils.security.guessDeviceName" resultName="result735918952f654803885d844528d5f3bf" x="99" y="38">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c7a1158e-db16-465f-bf0f-c54951318625" fixedValue="false" optional="false">
 						<from>input/device/deviceDescription</from>
 						<to>deviceDescription</to>
@@ -79,7 +79,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="45da43c6-a1a5-4785-a322-4c852106737d" query="currentDevice/allowed">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="false" id="f6dde3c2-75a4-4d0f-bb76-1b716a008b71">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="21cb5894-f3f4-48ec-958a-63cd17ba220f">
-						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="44b09071-6ce6-481a-9bce-1d3ad8381da2" serviceId="nabu.utils.Server.uuid" resultName="resultded63864b72848ba879e5114e7b6402f" invocationOrder="0" temporaryMapping="true" x="90" y="137">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="44b09071-6ce6-481a-9bce-1d3ad8381da2" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.Server.uuid" resultName="resultded63864b72848ba879e5114e7b6402f" x="90" y="137">
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7ce2d236-062b-41b2-9122-9725ca19086e" fixedValue="false" optional="false">
 							<from>resultded63864b72848ba879e5114e7b6402f/uuid</from>
@@ -88,7 +88,7 @@
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="303cb3f4-53f8-4bf2-a530-e39d1c0a3025">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/sendDeviceVerificationService != nul" id="7ad0de0c-19e2-434a-b583-4d52a7bea71a">
-							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="25664bd6-23bb-4247-820a-7057db259916" serviceId="nabu.web.cms.core.interfaces.sendDeviceVerification" resultName="result9c02703163544b649bc19a7cb934098b" invocationOrder="0" temporaryMapping="true" x="121" y="71">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="25664bd6-23bb-4247-820a-7057db259916" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.interfaces.sendDeviceVerification" resultName="result9c02703163544b649bc19a7cb934098b" x="121" y="71">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6c43c95d-6673-4e70-8523-8011437b96c6" fixedValue="false" optional="false">
 									<from>currentDevice/id</from>
 									<to>deviceId</to>
@@ -111,7 +111,7 @@
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Create device" id="cebaf9d2-0c44-4810-af6b-ad1c405a53da">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="962ecfe4-610e-485f-9d99-43e0cbe95a8a" serviceId="nabu.web.cms.core.database.user.device.insert" resultName="result930a385b9d8f49eda2a08384d749bdbf" invocationOrder="0" temporaryMapping="true" x="51" y="74">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="962ecfe4-610e-485f-9d99-43e0cbe95a8a" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.device.insert" resultName="result930a385b9d8f49eda2a08384d749bdbf" x="51" y="74">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4c7c34a1-352e-4907-86b0-036e840e4f4a" fixedValue="false" optional="false">
 						<from>currentDevice</from>
 						<to>parameters[0]</to>

@@ -1,5 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<inputDefinition>nabu.web.cms.core.types.model.core.User</inputDefinition>
+	<inputDefinition>nabu.cms.core.types.model.core.User</inputDefinition>
 	<sql>update users set
 	modified = case when :modified is null then modified else :modified end,
 	password = case when :password is null then password else :password end,

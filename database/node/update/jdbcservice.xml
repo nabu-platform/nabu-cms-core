@@ -1,5 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<inputDefinition>nabu.web.cms.core.types.model.core.Node</inputDefinition>
+	<inputDefinition>nabu.cms.core.types.model.core.Node</inputDefinition>
 	<sql>update nodes set
 	modified = case when :modified is null then modified else :modified end,
 	owner_id = case when :ownerId is null then owner_id else :ownerId end,

@@ -1,5 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<inputDefinition>nabu.web.cms.core.types.model.core.UserOauth2Credential</inputDefinition>
+	<inputDefinition>nabu.cms.core.types.model.core.UserOauth2Credential</inputDefinition>
 	<sql>update user_oauth2_credentials set
 	modified = case when :modified is null then modified else :modified end,
 	token = case when :token is null then token else :token end,

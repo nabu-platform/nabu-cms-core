@@ -1,5 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<inputDefinition>nabu.web.cms.core.types.model.core.UserDevice</inputDefinition>
+	<inputDefinition>nabu.cms.core.types.model.core.UserDevice</inputDefinition>
 	<sql>update user_devices set
 	modified = case when :modified is null then modified else :modified end,
 	allowed = case when :allowed is null then allowed else :allowed end,
