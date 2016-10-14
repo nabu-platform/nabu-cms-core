@@ -1,16 +1,9 @@
-<structure interface="be.nabu.eai.authentication.api.PasswordAuthenticator.authenticate"
-           name="pipeline">
-   <structure name="input">
-      <structure definition="nabu.cms.core.configuration" name="configuration"/>
-   </structure>
-   <structure name="output"/>
-   <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User"
-              minOccurs="0"
-              name="user"
-              namespace="nabu.web.cms.core.types.model.core"/>
-   <field name="suppliedHash" type="java.lang.String"/>
-   <structure collectionName="UserDevices"
-              definition="nabu.cms.core.types.model.core.UserDevice"
-              name="currentDevice"
-              namespace="nabu.web.cms.core.types.model.core"/>
+<structure interface="be.nabu.eai.authentication.api.PasswordAuthenticator.authenticate" name="pipeline">
+    <structure name="input">
+        <structure definition="nabu.cms.core.configuration" name="configuration"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.web.cms.core.types.model.core"/>
+    <field name="suppliedHash" type="java.lang.String"/>
+    <structure collectionName="UserDevices" definition="nabu.cms.core.types.model.core.UserDevice" name="currentDevice" namespace="nabu.web.cms.core.types.model.core"/>
 </structure>

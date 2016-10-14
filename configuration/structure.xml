@@ -1,10 +1,15 @@
 <structure name="root">
-    <field name="connectionId" type="java.lang.String"/>
-    <field comment="Defaults to &quot;true&quot;" minOccurs="0" name="allowNewDevices" type="java.lang.Boolean"/>
-    <field comment="Defaults to &quot;true&quot;" minOccurs="0" name="allowRemember" type="java.lang.Boolean"/>
-    <field comment="Defaults to 10" minOccurs="0" name="maxAmountOfDevices" type="java.lang.Integer"/>
-    <field comment="Defaults to &quot;en&quot;" minOccurs="0" name="defaultLanguage" type="java.lang.String"/>
-    <structure minOccurs="0" name="implementations">
-        <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>
-    </structure>
+   <field name="connectionId" type="java.lang.String"/>
+   <field comment="Defaults to &#34;true&#34;" minOccurs="0" name="allowNewDevices"
+          type="java.lang.Boolean"/>
+   <field comment="Defaults to &#34;true&#34;" minOccurs="0" name="allowRemember"
+          type="java.lang.Boolean"/>
+   <field comment="Defaults to 10" minOccurs="0" name="maxAmountOfDevices"
+          type="java.lang.Integer"/>
+   <field comment="Defaults to &#34;en&#34;" minOccurs="0" name="defaultLanguage"
+          type="java.lang.String"/>
+   <structure minOccurs="0" name="implementations">
+      <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>
+      <field minOccurs="0" name="hasPseudoRole" type="java.lang.String"/>
+   </structure>
 </structure>

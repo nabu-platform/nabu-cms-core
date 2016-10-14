@@ -1,0 +1,10 @@
+<structure name="pipeline">
+   <structure name="input">
+      <field name="role" type="java.lang.String"/>
+      <field minOccurs="0" name="context" type="java.lang.String"/>
+      <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+   </structure>
+   <structure name="output">
+      <field name="hasRole" type="java.lang.Boolean"/>
+   </structure>
+</structure>

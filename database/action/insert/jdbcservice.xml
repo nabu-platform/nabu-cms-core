@@ -1,0 +1,16 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.Action</inputDefinition>
+	<sql>insert into actions (
+	id,
+	created,
+	modified,
+	name,
+	component_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:name,
+	:componentId
+)</sql>
+</jdbcService>

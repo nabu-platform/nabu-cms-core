@@ -1,0 +1,17 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="alias" type="java.lang.String"/>
+        <field minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
+        <field minOccurs="0" name="anonymous" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="languageId" type="java.util.UUID"/>
+        <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="password" type="java.lang.String"/>
+        <field name="realm" type="java.lang.String"/>
+        <field minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
+        <field minOccurs="0" name="auditId" type="java.util.UUID"/>
+    </structure>
+    <structure name="output">
+        <field name="auditId" type="java.util.UUID"/>
+    </structure>
+</structure>

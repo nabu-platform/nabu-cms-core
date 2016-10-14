@@ -6,23 +6,27 @@
 	modified,
 	actor_id,
 	description,
-	host,
-	port,
 	device_id,
-	node_id,
-	component_action_id,
-	audit_state_id
+	host,
+	error_code,
+	error_log,
+	parent_id,
+	action_id,
+	audit_level_id,
+	node_id
 ) values (
 	:id,
 	:created,
 	:modified,
 	:actorId,
 	:description,
-	:host,
-	:port,
 	:deviceId,
-	:nodeId,
-	:componentActionId,
-	:auditStateId
+	:host,
+	:errorCode,
+	:errorLog,
+	:parentId,
+	:actionId,
+	:auditLevelId,
+	:nodeId
 )</sql>
 </jdbcService>

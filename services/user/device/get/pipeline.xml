@@ -1,14 +1,11 @@
 <structure name="pipeline">
-   <structure name="input" validate="true">
-      <field name="connectionId" type="java.lang.String"/>
-      <field minOccurs="0" name="transactionId" type="java.lang.String"/>
-      <field minOccurs="0" name="userId" type="java.util.UUID"/>
-      <field name="deviceId" type="java.util.UUID"/>
-   </structure>
-   <structure name="output">
-      <structure collectionName="UserDevices"
-                 definition="nabu.cms.core.types.model.core.UserDevice"
-                 name="device"
-                 namespace="nabu.web.cms.core.types.model.core"/>
-   </structure>
+    <structure name="input" validate="true">
+        <field name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="userId" type="java.util.UUID"/>
+        <field name="deviceId" type="java.util.UUID"/>
+        <field name="auditId" type="java.util.UUID"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="UserDevices" definition="nabu.cms.core.types.model.core.UserDevice" name="device" namespace="nabu.web.cms.core.types.model.core"/>
+    </structure>
 </structure>

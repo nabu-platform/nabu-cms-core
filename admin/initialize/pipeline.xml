@@ -1,20 +1,18 @@
 <structure name="pipeline">
-   <structure name="input" validate="true">
-      <field name="connectionId" type="java.lang.String"/>
-      <field name="realm" type="java.lang.String"/>
-      <field name="adminPassword" type="java.lang.String"/>
-      <field comment="Defaults to &#34;admin&#34;" minOccurs="0" name="adminAlias"
-             type="java.lang.String"/>
-      <field comment="Defaults to &#34;admin&#34;" minOccurs="0" name="adminGroup"
-             type="java.lang.String"/>
-   </structure>
-   <structure name="output">
-      <field name="adminUserId" type="java.util.UUID"/>
-      <field name="adminRoleId" type="java.util.UUID"/>
-      <field name="adminGroupId" type="java.util.UUID"/>
-      <field name="userComponentId" type="java.util.UUID"/>
-   </structure>
-   <field name="groupRoleId" type="java.util.UUID"/>
-   <field name="userGroupId" type="java.util.UUID"/>
-   <field name="adminRole" type="java.lang.String"/>
+    <structure name="input" validate="true">
+        <field name="connectionId" type="java.lang.String"/>
+        <field name="realm" type="java.lang.String"/>
+        <field name="adminPassword" type="java.lang.String"/>
+        <field comment="Defaults to &quot;admin&quot;" minOccurs="0" name="adminAlias" type="java.lang.String"/>
+        <field comment="Defaults to &quot;admin&quot;" minOccurs="0" name="adminGroup" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field name="adminUserId" type="java.util.UUID"/>
+        <field name="adminRoleId" type="java.util.UUID"/>
+        <field name="adminGroupId" type="java.util.UUID"/>
+        <field name="userComponentId" type="java.util.UUID"/>
+    </structure>
+    <field name="groupRoleId" type="java.util.UUID"/>
+    <field name="userGroupId" type="java.util.UUID"/>
+    <field name="adminRole" type="java.lang.String"/>
 </structure>
