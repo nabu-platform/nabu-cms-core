@@ -34,10 +34,6 @@
 				<from>input/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2a24fe48-7f9d-4b11-83cc-d368461f977a" optional="false" fixedValue="false">
-				<from>input/auditId</from>
-				<to>transaction</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7d4c97b6-b98e-41ac-a303-05c8e8e3e251" optional="false" fixedValue="false">
 				<from>input/auditId</from>
 				<to>parameters[0]/id</to>
@@ -63,5 +59,12 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="fbd48f1c-4966-4659-a35f-4fe78a2f38af" serviceId="nabu.utils.Date.now" resultName="result75cce59e78a84d3eb67d0010570c9f4f" invocationOrder="0" temporaryMapping="true" x="14" y="274">
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="63dca8ba-a698-4dfc-ad26-7f36950dad5d" serviceId="nabu.utils.Transaction.rollback" resultName="result0d84018d11384f12b7235d68d961eeee" invocationOrder="0" temporaryMapping="true" x="364" y="266">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e2302c33-c8d4-4f9a-b915-da0c87bb860f" optional="false" fixedValue="false">
+				<from>input/auditId</from>
+				<to>transactionId</to>
+			</steps>
+		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" id="016e3db6-e13b-4615-8782-9aac1d571dae" message="=input/exception" xsi:nil="true"/>
 </sequence>

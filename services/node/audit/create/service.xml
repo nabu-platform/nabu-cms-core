@@ -1,14 +1,14 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="c6778022-bc84-4785-b31b-7bdfc769653a">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="642b5696-b30b-44f0-8742-72004151812f" query="input/level">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="642b5696-b30b-44f0-8742-72004151812f" query="input/errorLog">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" id="47eec7a1-52aa-4ab2-87d9-111a9e862dc7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="baf3b0b6-7b09-4840-b5be-681b782c79d9" optional="true" fixedValue="true">
-				<from>error</from>
+				<from>info</from>
 				<to>input/level</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="47eec7a1-52aa-4ab2-87d9-111a9e862dc7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="baf3b0b6-7b09-4840-b5be-681b782c79d9" optional="true" fixedValue="true">
-				<from>info</from>
+				<from>error</from>
 				<to>input/level</to>
 			</steps>
 		</steps>
@@ -21,10 +21,6 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5a17fbab-1ff5-4b04-a016-5ec417b25fda" optional="false" fixedValue="false">
 			<from>resultb183186f4e144acdbc0c20628060a80c/token</from>
 			<to>token</to>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="864da5ba-a4ab-42cf-8e72-8286b38f7cd9" optional="false" fixedValue="false">
-			<from>resultbf9ad1f30053458a9825a5f56940883f/device</from>
-			<to>device</to>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="aa1a13e2-d735-4228-baa5-8218b40b113a" serviceId="nabu.cms.core.database.action.selectByName" resultName="result8bf3d0a117ea44acb7756411482fd9a0" invocationOrder="0" temporaryMapping="true" x="48" y="248">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="095631cf-9d32-4004-9def-bf45747364df" optional="false" fixedValue="false">
@@ -59,6 +55,10 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="51569047-688d-4461-867c-ab2010d21f88" optional="false" fixedValue="false">
 			<from>result61ceb22e1d6a41438a7bb1b617d98fa9/results[0]</from>
 			<to>auditLevel</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e0c9248e-ab8a-451f-b98c-236f4ecf5345" optional="true" fixedValue="false">
+			<from>resultbf9ad1f30053458a9825a5f56940883f/device</from>
+			<to>input/device</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="17c33ce7-9600-41b3-bd56-39b6b48959b6" query="auditLevel">
@@ -112,14 +112,6 @@
 			<from>input/description</from>
 			<to>audit/description</to>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a42cabef-b9c1-4943-95af-ee2f6745dd49" optional="false" fixedValue="false">
-			<from>device/deviceId</from>
-			<to>audit/deviceId</to>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="373479e0-1309-4ba7-aa92-06a476be0ad5" optional="false" fixedValue="false">
-			<from>device/remoteHost</from>
-			<to>audit/host</to>
-		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7953997a-766d-4e06-8420-75e519a848bc" optional="false" fixedValue="false">
 			<from>action/id</from>
 			<to>audit/actionId</to>
@@ -144,16 +136,20 @@
 			<from>input/parentAuditId</from>
 			<to>audit/parentId</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="93502fdd-6cec-47e2-9a77-8c0638f508fc" optional="false" fixedValue="false">
+			<from>input/device/deviceId</from>
+			<to>audit/deviceId</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2cfcc50b-b86f-47bd-9da3-0c71a0a14a7a" optional="false" fixedValue="false">
+			<from>input/device/remoteHost</from>
+			<to>audit/host</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="33a07324-98bd-445e-883f-c647b7a1e4a5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="786cd8b0-7b27-4d19-928f-529a364e7e32" serviceId="nabu.cms.core.database.node.audit.insert" resultName="result8ea8d385eb4d465f81b543dee89df43e" invocationOrder="0" temporaryMapping="true" x="243" y="107">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1716a5cf-27a1-4a4b-9ea4-609089a0c123" optional="false" fixedValue="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="74902e85-8e99-41c4-8f75-f6cf4b752875" optional="false" fixedValue="false">
-				<from>output/auditId</from>
-				<to>transaction</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b81712a3-3b28-4ef5-b5cb-1a8af4c862bb" optional="false" fixedValue="false">
 				<from>audit</from>

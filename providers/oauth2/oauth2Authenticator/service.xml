@@ -194,6 +194,10 @@
 				<from>user/id</from>
 				<to>nodeId</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b812b0e1-2c53-4840-89ee-69043d447c53" optional="false" fixedValue="false">
+				<from>input/device</from>
+				<to>device</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="33fb9ef0-c693-4f90-be32-1c1cfa2100e1" optional="false" fixedValue="false">
 			<from>result5b0c1ff1865e4c5fa1cfb2c32c94a47c/auditId</from>
@@ -488,10 +492,6 @@
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Map the rest of the token" id="67ca298c-0a84-410b-8b91-ab236a9aae6e">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fcb5f0ae-e9c2-4fb8-8b58-1aac62faf165" optional="false" fixedValue="false">
-				<from>input/credentials</from>
-				<to>output/response/credentials[0]</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5e1ceb84-cfeb-430b-b85c-9b5cfa383545" optional="false" fixedValue="false">
 				<from>input/realm</from>
 				<to>output/response/realm</to>
