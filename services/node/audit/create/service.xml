@@ -69,7 +69,7 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" comment="Get the user (if any)" id="961fb923-e2fc-45cd-b20f-15d73058d981">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="token != null" id="f7305723-ddd8-4a49-89cb-657cc1ec9225">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="74a54a11-702c-422c-acd0-7373f056f354" serviceId="nabu.cms.core.database.user.selectByAlias" resultName="result8f009efbbfff40bf80727e645681c568" invocationOrder="0" temporaryMapping="true" x="101" y="77">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="74a54a11-702c-422c-acd0-7373f056f354" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="result8f009efbbfff40bf80727e645681c568" invocationOrder="0" temporaryMapping="true" x="101" y="77">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="086e91ec-0fdc-46cc-a13d-7ad82c02373f" optional="false" fixedValue="false">
 					<from>input/connectionId</from>
 					<to>connection</to>

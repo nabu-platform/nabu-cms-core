@@ -10,8 +10,10 @@
         <field name="realm" type="java.lang.String"/>
         <field minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
         <field minOccurs="0" name="auditId" type="java.util.UUID"/>
+        <field minOccurs="0" name="trackChanges" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <field name="auditId" type="java.util.UUID"/>
+        <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
     </structure>
 </structure>

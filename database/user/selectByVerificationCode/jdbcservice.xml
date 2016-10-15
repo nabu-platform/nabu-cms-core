@@ -1,19 +1,21 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.User</outputDefinition>
 	<sql>select
-	id,
-	created,
-	modified,
-	password,
-	salt,
-	password_modified,
-	alias,
-	verification_code,
-	invites_left,
-	blocked_since,
-	anonymous,
-	realm
-from users
-where verification_code = :verificationCode
-and alias = :alias</sql>
+	u.id,
+	u.created,
+	u.modified,
+	u.password,
+	u.salt,
+	u.password_modified,
+	u.alias,
+	u.verification_code,
+	u.invites_left,
+	u.blocked_since,
+	u.anonymous,
+	u.realm
+from users u join nodes n on u.id = n.id
+where u.verification_code = :verificationCode
+and u.alias = :alias
+and n.enabled = true
+and n.verified is null</sql>
 </jdbcService>

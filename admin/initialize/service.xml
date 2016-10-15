@@ -67,7 +67,7 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" comment="Create admin user" id="4285503e-51c2-476c-857c-6aae658bfc84">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="8b179cff-96cf-4206-ade3-e5c3fb7a0008">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="371d355f-3d1e-4c97-ab2f-798e41a863fa" serviceId="nabu.cms.core.database.user.selectByAlias" resultName="result5815e59e77ec44139591655990d47933" invocationOrder="0" temporaryMapping="true" x="33" y="124">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="371d355f-3d1e-4c97-ab2f-798e41a863fa" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="result5815e59e77ec44139591655990d47933" invocationOrder="0" temporaryMapping="true" x="33" y="124">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="93853788-44c3-4e30-afdd-a185441e2b56" optional="false" fixedValue="false">
 					<from>input/connectionId</from>
 					<to>connection</to>

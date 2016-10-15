@@ -16,8 +16,12 @@
 			<from>en</from>
 			<to>input/configuration/defaultLanguage</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e1bd87c0-b977-4a82-9de2-c794b6d01d53" optional="true" fixedValue="true">
+			<from>true</from>
+			<to>input/configuration/allowAnonymousDevices</to>
+		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c6ce305d-d2f2-45a3-b455-be9a2883f8f8">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Map to output" id="c6ce305d-d2f2-45a3-b455-be9a2883f8f8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b82bfa39-082d-406a-ae24-cf4f18b1f1e4" optional="false" fixedValue="false">
 			<from>input/configuration</from>
 			<to>output/configuration</to>

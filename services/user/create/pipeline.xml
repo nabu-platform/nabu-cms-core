@@ -1,19 +1,20 @@
 <structure name="pipeline">
     <structure name="input" validate="true">
         <field name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
         <field minOccurs="0" name="alias" type="java.lang.String"/>
         <field minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
         <field minOccurs="0" name="anonymous" type="java.lang.Boolean"/>
         <field minOccurs="0" name="languageId" type="java.util.UUID"/>
         <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="published" type="java.lang.Boolean"/>
         <field minOccurs="0" name="password" type="java.lang.String"/>
         <field name="realm" type="java.lang.String"/>
         <field minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
-        <field minOccurs="0" name="auditId" type="java.util.UUID"/>
+        <field minOccurs="0" name="trackChanges" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
-        <field name="auditId" type="java.util.UUID"/>
     </structure>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
 </structure>

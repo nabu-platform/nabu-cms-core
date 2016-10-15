@@ -18,5 +18,6 @@ where u.alias = :alias
 and u.realm = :realm
 and n.enabled = true
 and n.verified is not null
-and n.published is not null</sql>
+and n.published is not null
+and n.published &lt; current_timestamp</sql>
 </jdbcService>

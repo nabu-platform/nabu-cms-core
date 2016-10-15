@@ -26,7 +26,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" comment="Get the user (if any)" id="4d23a568-f644-4a66-942f-862999d86bd2">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="input/token != null" id="cf8e1fbc-420d-4262-99d4-44e283cc98d2">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="45430adb-dad1-45ee-8ed7-475144aaa2ab">
-						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="3e13ddf1-bf6f-4d8c-a14a-5f635d3e0cb1" serviceId="nabu.cms.core.database.user.selectByAlias" resultName="result2129e08ddde64d2db97a7473c21df295" invocationOrder="0" temporaryMapping="true" x="63" y="58">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="3e13ddf1-bf6f-4d8c-a14a-5f635d3e0cb1" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="result2129e08ddde64d2db97a7473c21df295" invocationOrder="0" temporaryMapping="true" x="63" y="58">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9baf6565-0ecb-443e-a29c-aa4baaea5b7f" optional="false" fixedValue="false">
 								<from>input/token/name</from>
 								<to>parameters/alias</to>
@@ -48,7 +48,7 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="b3f9e0c3-5ad7-44c3-a197-7f43d91419e6" query="user">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="f0befec2-3ed1-4216-b489-292f26c86dac" message="=&quot;Invalid user: &quot; + input/token/name" xsi:nil="true"/>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="1d6c2423-c1a4-4312-b271-844aa5678bfc">
-							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7c0c0d7e-c8b0-49c4-8407-276ec7f5ba7a" serviceId="nabu.cms.core.providers.security.getUserRoles" resultName="result921516a141b4448a8f601d92479c5118" invocationOrder="0" temporaryMapping="true" x="47" y="74">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7c0c0d7e-c8b0-49c4-8407-276ec7f5ba7a" serviceId="nabu.cms.core.services.user.getRoles" resultName="result921516a141b4448a8f601d92479c5118" invocationOrder="0" temporaryMapping="true" x="47" y="74">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d7d8abb5-8722-4ff4-b20c-c34861a01e6f" optional="false" fixedValue="false">
 									<from>input/token/name</from>
 									<to>alias</to>
@@ -224,7 +224,33 @@
 								<to>output/response</to>
 							</steps>
 						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" id="6797902e-5196-4df9-862d-0d3be6126a68" message="=&quot;Unknown pseudo role: &quot; + role/name" xsi:nil="true"/>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="453c2734-9ce5-4bb8-af8b-803be7365051" query="input/configuration/implementations/hasPseudoRole">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="6797902e-5196-4df9-862d-0d3be6126a68" message="=&quot;Unknown pseudo role: &quot; + role/name" xsi:nil="true"/>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="31acf4c7-ed2e-4e5c-87f4-9a9b38e51abd">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b320584e-9a6a-4c61-8a70-1c935815cce6" serviceId="nabu.cms.core.interfaces.hasPseudoRole" resultName="result2469dbb25d2e4d518c1d73ad419945d6" invocationOrder="0" temporaryMapping="true" x="70" y="95">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="25901635-0976-4571-9e07-29fdb7d9fdf6" optional="false" fixedValue="false">
+										<from>role/name</from>
+										<to>role</to>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f0e12627-b5a5-49af-bbae-d2d47565a573" optional="false" fixedValue="false">
+										<from>input/context</from>
+										<to>context</to>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e2865907-6122-4946-9bf2-926b903009a8" optional="false" fixedValue="false">
+										<from>input/token</from>
+										<to>token</to>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="abc5dd9e-1716-42c8-9db8-6ff48a19d288" optional="false" fixedValue="false">
+										<from>input/configuration/implementations/hasPseudoRole</from>
+										<to>implementationId</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e7f35dbd-0cfb-4f99-823b-14ddb891e0b1" optional="false" fixedValue="false">
+									<from>result2469dbb25d2e4d518c1d73ad419945d6/hasRole</from>
+									<to>output/response</to>
+								</steps>
+							</steps>
+						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" id="bfeb91df-690a-460f-9889-f6829d14c356">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Check if the user has the role" id="29d7b444-d2e1-4db5-b345-b5388afe9bf9">
