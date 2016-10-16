@@ -6,5 +6,7 @@ where u.alias = :alias
 and u.realm = :realm
 and n.enabled = true
 and n.verified is not null
-and n.published is not null</sql>
+and n.started is not null
+and n.started &lt; current_timestamp
+and (n.stopped is null or n.stopped &gt; current_timestamp)</sql>
 </jdbcService>

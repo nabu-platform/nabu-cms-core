@@ -1,11 +1,12 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.cms.core.types.model.core.Node</inputDefinition>
 	<sql>insert into nodes (
+	started,
+	stopped,
 	id,
 	created,
 	modified,
 	owner_id,
-	published,
 	verified,
 	enabled,
 	parent_id,
@@ -19,11 +20,12 @@
 	language_id,
 	component_id
 ) values (
+	:started,
+	:stopped,
 	:id,
 	:created,
 	:modified,
 	:ownerId,
-	:published,
 	:verified,
 	:enabled,
 	:parentId,

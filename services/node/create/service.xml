@@ -6,7 +6,7 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3092b4dd-5b65-4f7e-ac00-be1c54dfde86" optional="true" fixedValue="true">
 			<from>true</from>
-			<to>input/published</to>
+			<to>input/active</to>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cbfae39d-57ec-4320-9347-eb0fad5c2936" optional="true" fixedValue="true">
 			<from>true</from>
@@ -124,11 +124,11 @@
 			</steps>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="afcb59ee-bab4-4257-9880-b0816a6d36f9" query="input/published">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="afcb59ee-bab4-4257-9880-b0816a6d36f9" query="input/active">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="true" id="0d61daa0-3420-44e1-a989-2e7a29196b21">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="84c20820-16c9-4307-8067-139f5b93ddfc" optional="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2e274c92-a264-4fc5-bc8f-a4789a15a13c" optional="false" fixedValue="false">
 				<from>node/created</from>
-				<to>node/published</to>
+				<to>node/started</to>
 			</steps>
 		</steps>
 	</steps>

@@ -1,9 +1,10 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.cms.core.types.model.core.Node</inputDefinition>
 	<sql>update nodes set
+	started = case when :started is null then started else :started end,
+	stopped = case when :stopped is null then stopped else :stopped end,
 	modified = case when :modified is null then modified else :modified end,
 	owner_id = case when :ownerId is null then owner_id else :ownerId end,
-	published = case when :published is null then published else :published end,
 	verified = case when :verified is null then verified else :verified end,
 	enabled = case when :enabled is null then enabled else :enabled end,
 	parent_id = case when :parentId is null then parent_id else :parentId end,

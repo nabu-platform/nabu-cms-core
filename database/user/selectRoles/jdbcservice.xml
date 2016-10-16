@@ -9,5 +9,8 @@
 from roles r join group_roles gr on r.id = gr.role_id
 join groups g on gr.group_id = g.id
 join user_groups ug on ug.group_id = g.id
-where ug.user_id = :userId</sql>
+where ug.user_id = :userId
+and ug.started is not null
+and ug.started &lt; current_timestamp
+and (ug.stopped is null or ug.stopped &gt; current_timestamp)</sql>
 </jdbcService>
