@@ -1,4 +1,7 @@
 <structure interface="be.nabu.libs.services.jdbc.api.ChangeTracker.track" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
+    <field name="auditId" type="java.util.UUID"/>
+    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" name="historyValue" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" maxOccurs="unbounded" minOccurs="0" name="historyValues" namespace="nabu.cms.core.types.model.core"/>
 </structure>

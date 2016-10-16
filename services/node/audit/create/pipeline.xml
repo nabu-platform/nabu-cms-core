@@ -9,6 +9,7 @@
         <field minOccurs="0" name="errorLog" type="java.lang.String"/>
         <field minOccurs="0" name="parentAuditId" type="java.util.UUID"/>
         <structure definition="be.nabu.libs.authentication.api.Device" minOccurs="0" name="device"/>
+        <field comment="Whether or not to inject the audit id into the context" minOccurs="0" name="inject" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <field name="auditId" type="java.util.UUID"/>

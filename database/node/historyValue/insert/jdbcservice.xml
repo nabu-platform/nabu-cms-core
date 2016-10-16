@@ -1,0 +1,28 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.NodeHistoryValue</inputDefinition>
+	<sql>insert into node_history_values (
+	id,
+	created,
+	modified,
+	valid_until,
+	valid_from,
+	table_name,
+	field_name,
+	new_value,
+	node_id,
+	change_type,
+	node_audit_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:validUntil,
+	:validFrom,
+	:tableName,
+	:fieldName,
+	:newValue,
+	:nodeId,
+	:changeType,
+	:nodeAuditId
+)</sql>
+</jdbcService>
