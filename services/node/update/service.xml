@@ -113,10 +113,6 @@
 				<from>input/languageId</from>
 				<to>parameters[0]/languageId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="076fecaa-f295-4ef9-9e58-ef08cb8b5309" optional="false" fixedValue="false">
-				<from>input/published</from>
-				<to>parameters[0]/published</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3ebe978d-e1da-4b02-be95-ac74e9da9248" optional="false" fixedValue="false">
 				<from>input/verified</from>
 				<to>parameters[0]/verified</to>
@@ -136,6 +132,10 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d2ce25f1-2771-4093-a39f-a978b272f947" optional="false" fixedValue="false">
 				<from>input/trackChanges</from>
 				<to>trackChanges</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="73922981-780f-417d-85fc-0ead31899bd7" optional="false" fixedValue="false">
+				<from>input/published</from>
+				<to>parameters[0]/started</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7ff27951-4af8-44c3-a3c2-2b888d9288d5" serviceId="nabu.utils.Date.now" resultName="result6e1558021d7f4cb8802cfbd6dd751aa6" invocationOrder="0" temporaryMapping="true" x="34" y="21">

@@ -249,6 +249,10 @@
 						<from>output/adminGroupId</from>
 						<to>parameters[0]/groupId</to>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="81ac831a-ba97-464b-a0d2-8017024a0a5e" optional="false" fixedValue="false">
+						<from>result303e13800bfc4f98bc2d007f92b2688c/date</from>
+						<to>parameters[0]/started</to>
+					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="ef640167-6a3f-480d-a205-dd56ffba90a5" serviceId="nabu.utils.Date.now" resultName="result303e13800bfc4f98bc2d007f92b2688c" invocationOrder="0" temporaryMapping="true" x="50" y="242">
 				</steps>

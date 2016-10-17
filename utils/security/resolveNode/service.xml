@@ -1,0 +1,99 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="e1fce796-f83f-4fcc-a4dd-ba45afe71185">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Split to check if you give a hint as to which type it is" id="f7efa3ca-50ba-4774-9082-53cb9e2e4b96">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="573b3a29-8d59-4050-847b-7e250bf5792a" serviceId="nabu.utils.String.split" resultName="result4a4edf50b0d642be8ad8529c8c774f33" invocationOrder="0" temporaryMapping="true" x="20" y="38">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="31bc3c3a-50ac-4d48-aa3d-fa0f25001754" optional="false" fixedValue="false">
+				<from>input/context</from>
+				<to>string</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9623dfea-5dc3-4f8f-bd36-5682b4aceb5c" optional="false" fixedValue="true">
+				<from>:</from>
+				<to>separator</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d6b28a01-969e-431d-81ee-36812d4904e5" optional="false" fixedValue="false">
+			<from>result4a4edf50b0d642be8ad8529c8c774f33/parts</from>
+			<to>parts</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b2277825-3927-46f3-a1cb-d2b73ffbe190" serviceId="nabu.utils.List.size" resultName="result7bdaa41e8b4d4793919b86105c4cc05f" invocationOrder="1" temporaryMapping="true" x="225" y="201">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="552746f7-df8f-4a76-a4c0-d1e5ebb852bc" optional="false" fixedValue="false">
+				<from>result4a4edf50b0d642be8ad8529c8c774f33/parts</from>
+				<to>list</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="576a5826-3cd5-4759-9e32-683982d57cf2" optional="false" fixedValue="false">
+			<from>result7bdaa41e8b4d4793919b86105c4cc05f/size</from>
+			<to>amountOfParts</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="56b3c021-be20-4893-b2d2-6cac4e7d7dd2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" label="amountOfParts == 1" id="1c2b8806-a5a0-4512-835a-eb151cb5ae4b">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/context ~ &quot;[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}&quot; || input/context ~ &quot;[a-f0-9]{32}&quot;" id="ccfd6acd-3367-4889-91d5-568603d4db11">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="6319b2b6-5f96-40cb-a55b-007aa408a4a5" serviceId="nabu.cms.core.database.node.selectById" resultName="result1617d2338c08409782900ac139412fd3" invocationOrder="0" temporaryMapping="true" x="96" y="70">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="60eaffa2-1592-4ea2-a70c-85b9da45ffc8" optional="false" fixedValue="false">
+						<from>input/connectionId</from>
+						<to>connection</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="efc9ef4c-861d-4305-9eb0-89745a5bfb44" optional="false" fixedValue="false">
+						<from>parts[0]</from>
+						<to>parameters/id</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0d71cab2-83c1-4ccb-83b0-3f65155f5f2f" optional="false" fixedValue="false">
+					<from>result1617d2338c08409782900ac139412fd3/results[0]</from>
+					<to>output/node</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="48baeb20-84ce-4a1d-b106-8b9ea80d7c80">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="2c7f76fe-ae49-4cf9-838f-db999634c1d0" serviceId="nabu.cms.core.database.node.selectBySlug" resultName="result46b611009b0b4c89b820618c788ca5b8" invocationOrder="0" temporaryMapping="true" x="88" y="71">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c9d4e72e-6f0b-4d03-8ab9-cf9a045ca56a" optional="false" fixedValue="false">
+						<from>input/connectionId</from>
+						<to>connection</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3f4ff418-c17f-41ef-84bd-c04085ec366c" optional="false" fixedValue="false">
+						<from>parts[0]</from>
+						<to>parameters/slug</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ab7f8d7a-203f-432b-abad-f5a0accaebb9" optional="false" fixedValue="false">
+					<from>result46b611009b0b4c89b820618c788ca5b8/results[0]</from>
+					<to>output/node</to>
+				</steps>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="amountOfParts == 2 &amp;&amp; parts[0] == &quot;id&quot;" id="48baeb20-84ce-4a1d-b106-8b9ea80d7c80">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="c528bed3-4366-4db4-a487-da663a2419b9" serviceId="nabu.cms.core.database.node.selectById" resultName="result781f172a23414391a82a5063271a04e7" invocationOrder="0" temporaryMapping="true" x="139" y="61">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="55e93398-a16b-4cb0-ac11-337979f2cf8d" optional="false" fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="721784a1-9cac-46a8-81ce-31a991ec4288" optional="false" fixedValue="false">
+					<from>parts[1]</from>
+					<to>parameters/id</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="af649098-b28e-43d1-8569-5ef9a8192165" optional="false" fixedValue="false">
+				<from>result781f172a23414391a82a5063271a04e7/results[0]</from>
+				<to>output/node</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="amountOfParts == 2 &amp;&amp; parts[0] == &quot;slug&quot;" id="48baeb20-84ce-4a1d-b106-8b9ea80d7c80">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="2c7f76fe-ae49-4cf9-838f-db999634c1d0" serviceId="nabu.cms.core.database.node.selectBySlug" resultName="result46b611009b0b4c89b820618c788ca5b8" invocationOrder="0" temporaryMapping="true" x="88" y="71">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c9d4e72e-6f0b-4d03-8ab9-cf9a045ca56a" optional="false" fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3f4ff418-c17f-41ef-84bd-c04085ec366c" optional="false" fixedValue="false">
+					<from>parts[1]</from>
+					<to>parameters/slug</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ab7f8d7a-203f-432b-abad-f5a0accaebb9" optional="false" fixedValue="false">
+				<from>result46b611009b0b4c89b820618c788ca5b8/results[0]</from>
+				<to>output/node</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="5f36c404-22fe-4505-adb8-210d665e3545" query="output/node">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="45eeba61-9181-4719-85c0-7bcfaf185390" message="=&quot;Can not find node: &quot; + input/context" xsi:nil="true"/>
+	</steps>
+</sequence>

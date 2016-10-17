@@ -15,7 +15,7 @@
 	u.realm
 from users u join nodes n on u.id = n.id
 where u.verification_code = :verificationCode
-and u.alias = :alias
+and u.id = :userId
 and n.enabled = true
 and n.verified is null</sql>
 </jdbcService>

@@ -47,23 +47,42 @@
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" id="7a44d212-d315-47be-8807-95b4504cad19">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d41507af-7f63-44d8-8aaa-1a3ad71079f0">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8edd6c9c-434c-4ca5-8dbb-af30fe87a80e" serviceId="nabu.cms.core.services.user.getRoles" resultName="resultcfad4a86d8454d59bac90b2993596030" invocationOrder="0" temporaryMapping="true" x="30" y="52">
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6431a274-219c-4800-832a-d5673cc5062b" optional="false" fixedValue="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="78e7c9db-2036-4c50-8f01-e7682842d943">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="e4293d74-7f5f-4eed-af7f-1b19a8014f1f" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="result1b253825051f4b5bbd2954021488d6a7" invocationOrder="0" temporaryMapping="true" x="24" y="56">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0da81462-747a-4665-9487-2045165de78e" optional="false" fixedValue="false">
 							<from>input/configuration/connectionId</from>
 							<to>connection</to>
 						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfb12505-3103-4958-8df2-2fe5a1a74728" optional="false" fixedValue="false">
-							<from>input/token/realm</from>
-							<to>realm</to>
-						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="160e67a2-ea6d-47dd-9563-76dba4384ec9" optional="false" fixedValue="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5e8b0755-45fd-4744-9844-2a33499b3e46" optional="false" fixedValue="false">
 							<from>input/token/name</from>
-							<to>alias</to>
+							<to>parameters/alias</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c397161d-2527-473d-97fd-a33579c450aa" optional="false" fixedValue="false">
+							<from>input/token/realm</from>
+							<to>parameters/realm</to>
 						</steps>
 					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="24ee19a2-9f46-44ee-ad36-9974a70396a3" optional="false" fixedValue="false">
-						<from>resultcfad4a86d8454d59bac90b2993596030/roles[name = /input/role and pseudo = false]</from>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="891c5a67-e676-47e9-a64d-5c9269646e13" optional="false" fixedValue="false">
+						<from>result1b253825051f4b5bbd2954021488d6a7/results[0]</from>
+						<to>user</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="3128db02-ae2b-4c0b-8263-b77e107d2fe7" query="user">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="f23b1ba1-9140-4b1f-b46b-2e087072b528" message="=&quot;Invalid user token: &quot; + input/token/name" xsi:nil="true"/>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d41507af-7f63-44d8-8aaa-1a3ad71079f0">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="e0aa5e39-b432-4944-a950-10a7952169c7" serviceId="nabu.cms.core.database.user.selectPotentialRoles" resultName="result1282149acd4e475582b6c4f608baaab2" invocationOrder="0" temporaryMapping="true" x="46" y="71">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ccb0b715-f8ee-4882-a82b-e8d7f4fbbd0c" optional="false" fixedValue="false">
+							<from>input/configuration/connectionId</from>
+							<to>connection</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2ec36214-eba0-4c5d-880a-997c2f68414c" optional="false" fixedValue="false">
+							<from>user/id</from>
+							<to>parameters/userId</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="87bd88a0-af1a-4b60-a3df-20c40c4140ca" optional="false" fixedValue="false">
+						<from>result1282149acd4e475582b6c4f608baaab2/results[name == /input/role]</from>
 						<to>requestedRole</to>
 					</steps>
 				</steps>

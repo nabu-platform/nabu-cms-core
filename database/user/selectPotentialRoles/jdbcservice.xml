@@ -12,5 +12,8 @@ join user_groups ug on ug.group_id = g.id
 where ug.user_id = :userId
 and ug.started is not null
 and ug.started &lt; current_timestamp
-and (ug.stopped is null or ug.stopped &gt; current_timestamp)</sql>
+and (ug.stopped is null or ug.stopped &gt; current_timestamp)
+and gr.started is not null
+and gr.started &lt; current_timestamp
+and (gr.stopped is null or gr.stopped &gt; current_timestamp)</sql>
 </jdbcService>

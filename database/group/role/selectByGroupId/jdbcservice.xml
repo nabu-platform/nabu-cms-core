@@ -4,8 +4,13 @@
 	id,
 	created,
 	modified,
+	started,
+	stopped,
+	service,
+	inherit,
 	group_id,
-	role_id
+	role_id,
+	node_id
 from group_roles
 where group_id = :groupId</sql>
 </jdbcService>

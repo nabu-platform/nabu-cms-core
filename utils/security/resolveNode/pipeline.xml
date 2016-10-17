@@ -1,0 +1,11 @@
+<structure name="pipeline">
+    <structure name="input" validate="true">
+        <field name="connectionId" type="java.lang.String"/>
+        <field name="context" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" name="node" namespace="nabu.web.cms.core.types.model.core"/>
+    </structure>
+    <field maxOccurs="unbounded" minOccurs="0" name="parts" type="java.lang.String"/>
+    <field minOccurs="0" name="amountOfParts" type="java.lang.Integer"/>
+</structure>

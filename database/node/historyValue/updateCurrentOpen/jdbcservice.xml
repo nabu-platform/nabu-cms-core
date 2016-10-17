@@ -2,9 +2,10 @@
 	<inputDefinition>nabu.cms.core.types.model.core.NodeHistoryValue</inputDefinition>
 	<sql>update node_history_values set
 	modified = case when :modified is null then modified else :modified end,
-	valid_until = case when :validUntil is null then valid_until else :validUntil end
+	stopped = case when :stopped is null then stopped else :stopped end
 where table_name = :tableName
 and node_id = :nodeId
-and where field_name = :fieldName
-and where valid_until is null</sql>
+and field_name = :fieldName
+and started is not null
+and stopped is null</sql>
 </jdbcService>

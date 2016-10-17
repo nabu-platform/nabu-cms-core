@@ -5,15 +5,16 @@
     <structure name="output"/>
     <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" minOccurs="0" name="action" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" minOccurs="0" name="node" namespace="nabu.web.cms.core.types.model.core"/>
-    <field maxOccurs="unbounded" minOccurs="0" name="nodeIds" type="java.lang.String"/>
-    <field minOccurs="0" name="amountOfParts" type="java.lang.Integer"/>
-    <field name="inherit" type="java.lang.Boolean"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="nodeIds" type="java.util.UUID"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="nodeRoles" namespace="nabu.web.cms.core.types.model.core"/>
-    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="allRoles" namespace="nabu.web.cms.core.types.model.core"/>
-    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="actionRoles" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="pseudoRoles" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" minOccurs="0" name="targetedRole" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="userRoles" namespace="nabu.web.cms.core.types.model.core"/>
     <field name="auditLevel" type="java.lang.String"/>
     <field name="auditCode" type="java.lang.String"/>
+    <structure collectionName="GroupRoles" definition="nabu.cms.core.types.model.core.GroupRole" maxOccurs="unbounded" minOccurs="0" name="groupRoles" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="GroupRoles" definition="nabu.cms.core.types.model.core.GroupRole" maxOccurs="unbounded" minOccurs="0" name="activeGroupRoles" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="activeRoles" namespace="nabu.cms.core.types.model.core"/>
+    <field minOccurs="0" name="amountOfActiveRoles" type="java.lang.Integer"/>
 </structure>
