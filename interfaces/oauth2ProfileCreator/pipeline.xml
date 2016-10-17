@@ -1,10 +1,12 @@
 <structure name="pipeline">
     <structure name="input">
         <field name="oauth2Provider" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
         <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
         <structure collectionName="UserDevices" definition="nabu.cms.core.types.model.core.UserDevice" name="device" namespace="nabu.web.cms.core.types.model.core"/>
         <structure definition="java.lang.Object" name="properties"/>
         <field name="auditId" type="java.util.UUID"/>
+        <structure definition="nabu.cms.core.configuration" name="configuration"/>
     </structure>
     <structure name="output"/>
 </structure>

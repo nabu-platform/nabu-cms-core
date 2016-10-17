@@ -550,7 +550,7 @@
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="0a9c077b-0bb1-4e3f-ae26-0a48b9e242d4">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/configuration/implementations/oauth2ProfileCreator != null" id="44e8e09d-d53c-461a-a499-4b50b6320cf6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="newUser &amp;&amp; input/configuration/implementations/oauth2ProfileCreator != null" id="44e8e09d-d53c-461a-a499-4b50b6320cf6">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="45cb7d9f-e4f2-4511-8124-d59b550156bf" serviceId="nabu.cms.core.interfaces.oauth2ProfileCreator" resultName="result6901ec1522ec42e5a9b6ecae6b31d320" invocationOrder="0" temporaryMapping="true" x="70" y="98">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fec54891-d32f-4956-b2fe-421b5a61964a" optional="false" fixedValue="false">
 						<from>input/oauth2Provider</from>
@@ -575,6 +575,14 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="739bdc6c-ddbe-43bb-a1ae-742aeb3e44c6" optional="false" fixedValue="false">
 						<from>properties</from>
 						<to>properties</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="50b78815-e81a-42a5-967d-421fd27ea8da" optional="false" fixedValue="false">
+						<from>input/configuration</from>
+						<to>configuration</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="968381d4-4ea3-4c34-9d2e-f5d8053ce59e" optional="false" fixedValue="false">
+						<from>auditId</from>
+						<to>transactionId</to>
 					</steps>
 				</steps>
 			</steps>

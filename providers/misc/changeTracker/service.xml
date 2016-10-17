@@ -10,6 +10,12 @@
 			<from>result65ddcac2e9144c9c9affb4dce32f6b14/value</from>
 			<to>auditId</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="989942a0-386d-48fa-9b26-42abd5f47dbc" serviceId="nabu.utils.Date.now" resultName="result498cf214054844cdb44b2b2ff501bd99" invocationOrder="0" temporaryMapping="true" x="55" y="62">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="464563f8-23d3-48f9-b36d-08e339031a00" optional="false" fixedValue="false">
+			<from>result498cf214054844cdb44b2b2ff501bd99/date</from>
+			<to>now</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="9929b7ec-1262-4120-9abd-a052e4ea0a61" query="auditId">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" id="4425b10a-ad07-4bd1-b2c9-36341e2ab3d3">
@@ -30,10 +36,6 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.For" disabled="false" id="4f891049-0bd6-48e1-bec5-5d2fc2f2c42b" variable="change">
 		<steps xsi:type="be.nabu.libs.services.vm.step.For" disabled="false" id="91c6a01a-fb10-4ab0-9a1d-51c919a9cfdc" variable="value" index="key">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Map audit" id="52be9d46-2f8b-4aa3-9ec9-1d79fe454f95">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9b63c4f4-ae45-44ef-8cbf-762b451f0720" optional="false" fixedValue="false">
-					<from>change/primaryKey</from>
-					<to>historyValue/nodeId</to>
-				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fe9c47d7-c53e-4f9a-8f81-738241673f0d" optional="false" fixedValue="false">
 					<from>auditId</from>
 					<to>historyValue/nodeAuditId</to>
@@ -43,16 +45,6 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0ec7921a-d892-4c20-896d-955416088949" optional="false" fixedValue="false">
 					<from>result18fd24482755403caf8ae13a69d8d608/uuid</from>
 					<to>historyValue/id</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="0f36c7d5-8ec0-48f1-9947-5ca54dab166b" serviceId="nabu.utils.Date.now" resultName="resultb15645526f8f46dcad127258d11c27e0" invocationOrder="0" temporaryMapping="true" x="91" y="287">
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4a3d64a7-03ad-4f1a-9a5f-2f2a8ccd6779" optional="false" fixedValue="false">
-					<from>resultb15645526f8f46dcad127258d11c27e0/date</from>
-					<to>historyValue/created</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="542c7f31-6054-488b-b854-d1743279183a" optional="false" fixedValue="false">
-					<from>resultb15645526f8f46dcad127258d11c27e0/date</from>
-					<to>historyValue/modified</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="15f31fed-5e3b-4f64-a4fd-d6e11852d0c8" optional="false" fixedValue="false">
 					<from>change/type</from>
@@ -70,8 +62,20 @@
 					<from>input/tableName</from>
 					<to>historyValue/tableName</to>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e0fdde17-95c5-477f-a912-96a663f1dc8f" optional="false" fixedValue="false">
-					<from>resultb15645526f8f46dcad127258d11c27e0/date</from>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a7935313-1497-4e6a-bf35-0ccff0252c91" optional="false" fixedValue="false">
+					<from>change/primaryKey</from>
+					<to>historyValue/instanceId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8bdc501e-0599-4de5-86ff-2265ed7ab47d" optional="false" fixedValue="false">
+					<from>now</from>
+					<to>historyValue/created</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="45c44fc9-fdab-4194-a904-3f68a1a2190f" optional="false" fixedValue="false">
+					<from>now</from>
+					<to>historyValue/modified</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bd133bfb-1b64-4384-a88a-45c2b680c73b" optional="false" fixedValue="false">
+					<from>now</from>
 					<to>historyValue/started</to>
 				</steps>
 			</steps>

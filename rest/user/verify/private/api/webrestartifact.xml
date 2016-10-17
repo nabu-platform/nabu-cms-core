@@ -4,5 +4,7 @@
     <path>/user/verify/{userId}</path>
     <queryParameters>verificationCode</queryParameters>
     <role>$guest</role>
+    <permissionContext>=input/path/userId</permissionContext>
+    <permissionAction>user.verify</permissionAction>
     <configurationType>nabu.cms.core.configuration</configurationType>
 </restInterface>
