@@ -1,0 +1,10 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="mustExist" type="java.lang.Boolean"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
+    </structure>
+    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+</structure>

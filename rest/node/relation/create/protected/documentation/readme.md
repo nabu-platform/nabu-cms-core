@@ -1,0 +1,1 @@
+For relations between users and nodes, the user is _always_ the source and the node is the target

@@ -1,0 +1,12 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.NodeExternalId</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	external_id,
+	node_id,
+	external_id_type_id
+from node_external_ids
+where node_id = :nodeId</sql>
+</jdbcService>
