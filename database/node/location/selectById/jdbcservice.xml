@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.NodeLocation</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	x,
+	y,
+	street,
+	city,
+	post_code,
+	country,
+	province,
+	additional,
+	number,
+	district,
+	node_id
+from node_locations
+where id = :id</sql>
+</jdbcService>

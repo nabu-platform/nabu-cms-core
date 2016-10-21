@@ -1,10 +1,12 @@
 <structure name="pipeline">
-   <structure name="input">
-      <field name="role" type="java.lang.String"/>
-      <field minOccurs="0" name="context" type="java.lang.String"/>
-      <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
-   </structure>
-   <structure name="output">
-      <field name="hasRole" type="java.lang.Boolean"/>
-   </structure>
+    <structure name="input">
+        <field name="role" type="java.lang.String"/>
+        <field minOccurs="0" name="context" type="java.lang.String"/>
+        <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+        <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
+        <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" minOccurs="0" name="node" namespace="nabu.cms.core.types.model.core"/>
+    </structure>
+    <structure name="output">
+        <field name="hasRole" type="java.lang.Boolean"/>
+    </structure>
 </structure>

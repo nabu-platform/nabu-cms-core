@@ -1,0 +1,12 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.NodeRelation</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	source_id,
+	target_id,
+	relation_type_id
+from node_relations
+where id = :id</sql>
+</jdbcService>

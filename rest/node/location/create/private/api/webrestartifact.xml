@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>POST</method>
+    <path>/node/{nodeId}/location</path>
+    <role>$user</role>
+    <permissionContext>=input/path/nodeId</permissionContext>
+    <permissionAction>location.create</permissionAction>
+    <input>nabu.cms.core.types.rest.node.locationCreateInput</input>
+    <output>nabu.cms.core.types.rest.node.locationOutput</output>
+    <configurationType>nabu.cms.core.configuration</configurationType>
+</restInterface>

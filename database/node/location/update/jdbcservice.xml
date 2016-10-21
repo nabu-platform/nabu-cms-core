@@ -1,0 +1,17 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.NodeLocation</inputDefinition>
+	<sql>update node_locations set
+	modified = :modified,
+	x = :x,
+	y = :y,
+	street = :street,
+	city = :city,
+	post_code = :postCode,
+	country = :country,
+	province = :province,
+	additional = :additional,
+	number = :number,
+	district = :district,
+	node_id = :nodeId
+ where id = :id</sql>
+</jdbcService>

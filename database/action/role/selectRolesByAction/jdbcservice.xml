@@ -8,5 +8,5 @@
 	r.pseudo
 from roles r join action_roles ar on ar.role_id = r.id
 join actions a on a.id = ar.action_id
-where a.name = :action</sql>
+where a.id = :actionId</sql>
 </jdbcService>

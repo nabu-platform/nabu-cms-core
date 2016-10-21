@@ -1,0 +1,30 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
+	<sql>select
+	n.id,
+	n.created,
+	n.modified,
+	n.started,
+	n.stopped,
+	n.owner_id,
+	n.verified,
+	n.enabled,
+	n.parent_id,
+	n.version,
+	n.priority,
+	n.name,
+	n.title,
+	n.description,
+	n.path,
+	n.slug,
+	n.language_id,
+	n.component_id
+from users u join nodes n on u.id = n.id
+where u.alias = :alias
+and u.realm = :realm
+and n.enabled = true
+and n.verified is not null
+and n.started is not null
+and n.started &lt; current_timestamp
+and (n.stopped is null or n.stopped &gt; current_timestamp)</sql>
+</jdbcService>
