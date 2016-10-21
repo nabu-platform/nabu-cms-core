@@ -1,0 +1,54 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="1f5faf52-0c68-4ac9-8c20-bbeb20df3698">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get user by alias and realm" id="98106c59-1eb3-4c28-b7ee-279c423fa756">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7f59a6fa-1ff8-4be9-84e9-4a08de9259db" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="resultcfd7cf9945214080ad3933aa19952744" y="23" x="66">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfff3adf-2c34-4af0-afa3-cbbccbb162a4" fixedValue="false" optional="false" mask="false">
+				<from>input/realm</from>
+				<to>parameters/realm</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cac1cbb9-25bf-4595-adb0-21254faf70b9" fixedValue="false" optional="false" mask="false">
+				<from>input/alias</from>
+				<to>parameters/alias</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="be2f29eb-17aa-4781-a1f8-ebbfaee88f23" fixedValue="false" optional="false" mask="false">
+			<from>resultcfd7cf9945214080ad3933aa19952744/results[0]</from>
+			<to>user</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="0e143d08-cfd9-4cbb-9f27-3f9e4cb76789">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="user != null" id="261977eb-573c-4b5e-9898-75ee96905893">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Generate hash from user submitted password" id="30f5cd80-cb6f-4896-8213-4d98dac0dee1">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="50510d75-c95a-47df-adec-55902381cb37" invocationOrder="0" temporaryMapping="true" serviceId="djobby.implementations.security.utils.hashPassword" resultName="result57db95f7f0fa405eb992607f936bb91c" y="131" x="88">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b7a88479-44c3-4410-971b-5ab4c95df76b" fixedValue="false" optional="false" mask="false">
+						<from>user/realm</from>
+						<to>realm</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="18249947-3abe-485a-a6b4-38225115324d" fixedValue="false" optional="false" mask="false">
+						<from>user/salt</from>
+						<to>salt</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b83cda44-f9b8-4cf3-a204-40ef21c552f5" fixedValue="false" optional="false" mask="false">
+						<from>input/alias</from>
+						<to>name</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b288f729-2f27-49ef-bb47-cd2bb836a749" fixedValue="false" optional="false" mask="false">
+						<from>input/password</from>
+						<to>password</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e7fdc4f4-09b7-4181-b9f7-de36fc269778" fixedValue="false" optional="false" mask="false">
+					<from>result57db95f7f0fa405eb992607f936bb91c/hash</from>
+					<to>suppliedHash</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="8c536bf3-7325-433c-9706-0ddbded838f8" query="suppliedHash">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="user/password" id="4db05a3d-8fd1-4d48-b755-f9aac3c75400">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2a57ada8-9590-4a24-82e7-e47334bd1b76" fixedValue="false" optional="false" mask="false">
+						<from>user</from>
+						<to>output/user</to>
+					</steps>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+</sequence>
