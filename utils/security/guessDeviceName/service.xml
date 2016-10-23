@@ -1,57 +1,63 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="c4a0f272-63a8-40c6-9db4-19e0fc005f58">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="fabef871-6594-49de-a6df-a4f7eb5f8fd1">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription == null" id="be03a9b6-a70d-41a3-9883-8515e8669210">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b21b3146-6fac-46ca-914b-d45362cbdef7" optional="false" mask="false" fixedValue="true">
+				<from>Unknown Device</from>
+				<to>output/name</to>
+			</steps>
+		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*Samsung.*&quot;" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 				<from>Samsung Device</from>
 				<to>output/name</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*Android.*&quot;" id="f7d03121-6f9a-4e91-a4f9-59c7bab9e3e4">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2e064a19-a615-40b4-bf9a-aba7c079c567" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2e064a19-a615-40b4-bf9a-aba7c079c567" optional="false" mask="false" fixedValue="true">
 				<from>Android Device</from>
 				<to>output/name</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*Linux.*&quot;" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 				<from>Linux Device</from>
 				<to>output/name</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*iPhone.*&quot;" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 				<from>Apple iPhone</from>
 				<to>output/name</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*iPad.*&quot;" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 				<from>Apple iPad</from>
 				<to>output/name</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*iPod.*&quot;" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 				<from>Apple iPhone</from>
 				<to>output/name</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" label="input/deviceDescription ~ &quot;(?i).*Apple.*&quot;" id="29853897-10bd-43bb-bc08-9b1309e1f959">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/deviceDescription ~ &quot;(?i).*mobile.*&quot;" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 					<from>Apple Mobile Device</from>
 					<to>output/name</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="8893ee97-3068-49f4-b5b6-9e94e4697ce2">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" fixedValue="true">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2592d70a-3289-47ac-9088-a259796c1ed6" optional="false" mask="false" fixedValue="true">
 					<from>Apple Device</from>
 					<to>output/name</to>
 				</steps>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="ccbb8d35-fc02-4b3b-b33b-1ca1395f2e76">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ac5f58bf-98b9-447a-8f2c-50f79a8f9461" optional="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ac5f58bf-98b9-447a-8f2c-50f79a8f9461" optional="false" mask="false" fixedValue="true">
 				<from>Windows Device</from>
 				<to>output/name</to>
 			</steps>
