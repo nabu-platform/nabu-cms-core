@@ -2,10 +2,13 @@
 	<inputDefinition>nabu.cms.core.types.model.core.UserOauth2Credential</inputDefinition>
 	<sql>update user_oauth2_credentials set
 	modified = case when :modified is null then modified else :modified end,
+	web_application = case when :webApplication is null then web_application else :webApplication end,
+	oauth2_provider = case when :oauth2Provider is null then oauth2_provider else :oauth2Provider end,
 	token = case when :token is null then token else :token end,
 	active_until = case when :activeUntil is null then active_until else :activeUntil end,
 	refresh_token = case when :refreshToken is null then refresh_token else :refreshToken end,
 	account_id = case when :accountId is null then account_id else :accountId end,
-	token_type = case when :tokenType is null then token_type else :tokenType end
+	token_type = case when :tokenType is null then token_type else :tokenType end,
+	user_id = case when :userId is null then user_id else :userId end
  where id = :id</sql>
 </jdbcService>

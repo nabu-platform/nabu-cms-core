@@ -4,6 +4,7 @@
 	id,
 	created,
 	modified,
+	web_application,
 	oauth2_provider,
 	token,
 	active_until,
@@ -13,5 +14,6 @@
 	user_id
 from user_oauth2_credentials
 where oauth2_provider = :provider
+and web_application = :webApplication
 and user_id = :userId</sql>
 </jdbcService>
