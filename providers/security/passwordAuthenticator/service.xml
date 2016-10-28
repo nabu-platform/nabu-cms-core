@@ -136,10 +136,6 @@
 									<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="true" comment="Create a new secret" id="6269502b-4424-4381-a81a-a839b10bcea6">
 										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="1715ceea-8a8a-4bba-9017-e7fdbac2509e" serviceId="nabu.utils.Server.uuid" resultName="result26d815b27f2841abb5ffb04fa433090b" invocationOrder="0" temporaryMapping="true" y="19" x="23">
 										</steps>
-										<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="427c5811-9341-436f-b407-3f7152ad9ec2" optional="false" mask="false" fixedValue="false">
-											<from>result26d815b27f2841abb5ffb04fa433090b/uuid</from>
-											<to>output/response/secret</to>
-										</steps>
 										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="51c836b7-ee80-4856-bb80-70fc7013dbd3" serviceId="nabu.utils.Date.now" resultName="result9eccbba9a94a4604a93003e7ed7f0591" invocationOrder="0" temporaryMapping="true" y="371" x="51">
 										</steps>
 										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d9c1864e-3df5-44fc-98a8-351f941feb80" serviceId="nabu.cms.core.utils.security.hashPassword" resultName="result0604e9e04b224b89a8c67de161d2de96" invocationOrder="1" temporaryMapping="true" y="154" x="69">
@@ -190,6 +186,10 @@
 												<to>trackChanges</to>
 											</steps>
 										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ca53a310-2058-4f98-a3d3-c0cc989f5df2" optional="false" mask="false" fixedValue="false">
+											<from>result26d815b27f2841abb5ffb04fa433090b/uuid</from>
+											<to>secret</to>
+										</steps>
 									</steps>
 								</steps>
 							</steps>
@@ -206,6 +206,10 @@
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c9f99e57-ff9f-44a7-980d-ec755579c100" optional="false" mask="false" fixedValue="false">
 								<from>input/credentials/name</from>
 								<to>output/response/name</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="16e0fd82-9566-4632-bf5b-9ff98d0cc116" optional="false" mask="false" fixedValue="false">
+								<from>secret</from>
+								<to>output/response/secret</to>
 							</steps>
 						</steps>
 					</steps>
@@ -228,13 +232,14 @@
 								<from>auditId</from>
 								<to>auditId</to>
 							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ee535d8e-4465-4a45-b9e5-5b3486c49ed2" optional="false" mask="false" fixedValue="true">
+								<from>false</from>
+								<to>rethrow</to>
+							</steps>
 						</steps>
 					</steps>
 				</steps>
 			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" id="6a7745a7-faa9-4dce-b5fa-2070ea8cea6f" message="=&quot;Invalid user: &quot; + input/credentials/name">
-			<code>CMS-AUTH-2</code>
 		</steps>
 	</steps>
 </sequence>
