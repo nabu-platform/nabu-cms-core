@@ -1,0 +1,38 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.HttpAccessLog</inputDefinition>
+	<sql>insert into http_access_logs (
+	id,
+	created,
+	modified,
+	connection_created,
+	remote_ip,
+	remote_host,
+	remote_port,
+	local_port,
+	local_host,
+	http_version,
+	method,
+	target,
+	accept_language,
+	user_agent,
+	session,
+	user_device_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:connectionCreated,
+	:remoteIp,
+	:remoteHost,
+	:remotePort,
+	:localPort,
+	:localHost,
+	:httpVersion,
+	:method,
+	:target,
+	:acceptLanguage,
+	:userAgent,
+	:session,
+	:userDeviceId
+)</sql>
+</jdbcService>
