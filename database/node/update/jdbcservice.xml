@@ -17,5 +17,6 @@
 	slug = case when :slug is null then slug else :slug end,
 	language_id = case when :languageId is null then language_id else :languageId end,
 	component_id = case when :componentId is null then component_id else :componentId end
- where id = :id</sql>
+where id = :id
+and enabled = true</sql>
 </jdbcService>
