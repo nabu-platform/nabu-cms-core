@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.LocationType</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	name
+from location_types
+where name = :name</sql>
+</jdbcService>
