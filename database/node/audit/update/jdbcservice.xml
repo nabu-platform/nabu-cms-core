@@ -4,11 +4,12 @@
 	modified = case when :modified is null then modified else :modified end,
 	actor_id = case when :actorId is null then actor_id else :actorId end,
 	description = case when :description is null then description else :description end,
-	device_id = case when :deviceId is null then device_id else :deviceId end,
+	user_device_id = case when :userDeviceId is null then user_device_id else :userDeviceId end,
 	host = case when :host is null then host else :host end,
 	error_code = case when :errorCode is null then error_code else :errorCode end,
 	error_log = case when :errorLog is null then error_log else :errorLog end,
 	parent_id = case when :parentId is null then parent_id else :parentId end,
+	device_id = case when :deviceId is null then device_id else :deviceId end,
 	action_id = case when :actionId is null then action_id else :actionId end,
 	audit_level_id = case when :auditLevelId is null then audit_level_id else :auditLevelId end,
 	node_id = case when :nodeId is null then node_id else :nodeId end
