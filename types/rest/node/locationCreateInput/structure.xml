@@ -9,4 +9,8 @@
     <field minOccurs="0" name="additional" type="java.lang.String"/>
     <field minOccurs="0" name="number" type="java.lang.String"/>
     <field minOccurs="0" name="district" type="java.lang.String"/>
+    <field minOccurs="0" name="firstName" type="java.lang.String"/>
+    <field minOccurs="0" name="lastName" type="java.lang.String"/>
+    <field minOccurs="0" name="priority" type="java.lang.Integer"/>
+    <field foreignKey="nabu.cms.core.types.model.core.LocationType:id" minOccurs="0" name="locationTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>
