@@ -1,7 +1,7 @@
 <structure interface="be.nabu.libs.services.jdbc.api.ChangeTracker.track" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <field name="auditId" type="java.util.UUID"/>
+    <field name="auditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" name="historyValue" namespace="nabu.cms.core.types.model.core"/>
     <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" maxOccurs="unbounded" minOccurs="0" name="historyValues" namespace="nabu.cms.core.types.model.core"/>
     <field minOccurs="0" name="now" type="java.util.Date"/>
