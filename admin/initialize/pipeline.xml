@@ -7,12 +7,12 @@
         <field comment="Defaults to &quot;admin&quot;" minOccurs="0" name="adminGroup" type="java.lang.String"/>
     </structure>
     <structure name="output">
-        <field name="adminUserId" type="java.util.UUID"/>
-        <field name="adminRoleId" type="java.util.UUID"/>
-        <field name="adminGroupId" type="java.util.UUID"/>
-        <field name="userComponentId" type="java.util.UUID"/>
+        <field name="adminUserId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="adminRoleId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="adminGroupId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="userComponentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     </structure>
-    <field name="groupRoleId" type="java.util.UUID"/>
-    <field name="userGroupId" type="java.util.UUID"/>
+    <field name="groupRoleId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field name="userGroupId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field name="adminRole" type="java.lang.String"/>
 </structure>

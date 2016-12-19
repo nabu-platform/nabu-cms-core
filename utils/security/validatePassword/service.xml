@@ -1,16 +1,21 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="1f5faf52-0c68-4ac9-8c20-bbeb20df3698">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get user by alias and realm" id="98106c59-1eb3-4c28-b7ee-279c423fa756">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7f59a6fa-1ff8-4be9-84e9-4a08de9259db" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="resultcfd7cf9945214080ad3933aa19952744" invocationOrder="0" temporaryMapping="true" y="23" x="66">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfff3adf-2c34-4af0-afa3-cbbccbb162a4" optional="false" mask="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7f59a6fa-1ff8-4be9-84e9-4a08de9259db" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="resultcfd7cf9945214080ad3933aa19952744" y="23" x="66">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfff3adf-2c34-4af0-afa3-cbbccbb162a4" fixedValue="false" optional="false" mask="false">
 				<from>input/realm</from>
 				<to>parameters/realm</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cac1cbb9-25bf-4595-adb0-21254faf70b9" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cac1cbb9-25bf-4595-adb0-21254faf70b9" fixedValue="false" optional="false" mask="false">
 				<from>input/alias</from>
 				<to>parameters/alias</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f104790f-2e0c-4840-ade3-d02cc42cc798" fixedValue="false" optional="false" mask="false">
+				<from>input/caseInsensitive</from>
+				<to>parameters/caseInsensitive</to>
+			</steps>
+			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="be2f29eb-17aa-4781-a1f8-ebbfaee88f23" optional="false" mask="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="be2f29eb-17aa-4781-a1f8-ebbfaee88f23" fixedValue="false" optional="false" mask="false">
 			<from>resultcfd7cf9945214080ad3933aa19952744/results[0]</from>
 			<to>user</to>
 		</steps>
@@ -18,32 +23,33 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="0e143d08-cfd9-4cbb-9f27-3f9e4cb76789">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="user != null" id="261977eb-573c-4b5e-9898-75ee96905893">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Generate hash from user submitted password" id="30f5cd80-cb6f-4896-8213-4d98dac0dee1">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8780cc4f-9010-44b2-b0bd-bdb5f8f808ac" serviceId="nabu.cms.core.utils.security.hashPassword" resultName="result73e0d7d55e154828b7441dee74429290" invocationOrder="0" temporaryMapping="true" y="45" x="40">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="60a2c2f3-2f03-441b-b493-321eaf09e0a4" optional="false" mask="false" fixedValue="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8780cc4f-9010-44b2-b0bd-bdb5f8f808ac" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.utils.security.hashPassword" resultName="result73e0d7d55e154828b7441dee74429290" y="45" x="40">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="60a2c2f3-2f03-441b-b493-321eaf09e0a4" fixedValue="false" optional="false" mask="false">
 						<from>user/realm</from>
 						<to>realm</to>
 					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="13657a44-0c4b-4ac9-af4f-ea9276428ab6" optional="false" mask="false" fixedValue="false">
-						<from>input/alias</from>
-						<to>name</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bb3a8ee9-c2b6-4963-8d36-fb2b2a5ec0bd" optional="false" mask="false" fixedValue="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bb3a8ee9-c2b6-4963-8d36-fb2b2a5ec0bd" fixedValue="false" optional="false" mask="false">
 						<from>input/password</from>
 						<to>password</to>
 					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfbb0300-89e2-481e-a7c8-a04151fad6e5" optional="false" mask="false" fixedValue="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfbb0300-89e2-481e-a7c8-a04151fad6e5" fixedValue="false" optional="false" mask="false">
 						<from>user/salt</from>
 						<to>salt</to>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cecaac14-738f-411d-b642-658bd18f5f66" fixedValue="false" optional="false" mask="false">
+						<from>user/alias</from>
+						<to>name</to>
+					</steps>
+					<asynchronous>false</asynchronous>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="668000d2-b8e7-4c45-9fac-430ea0485749" optional="false" mask="false" fixedValue="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="668000d2-b8e7-4c45-9fac-430ea0485749" fixedValue="false" optional="false" mask="false">
 					<from>result73e0d7d55e154828b7441dee74429290/hash</from>
 					<to>suppliedHash</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="8c536bf3-7325-433c-9706-0ddbded838f8" query="suppliedHash">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="user/password" id="4db05a3d-8fd1-4d48-b755-f9aac3c75400">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2a57ada8-9590-4a24-82e7-e47334bd1b76" optional="false" mask="false" fixedValue="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2a57ada8-9590-4a24-82e7-e47334bd1b76" fixedValue="false" optional="false" mask="false">
 						<from>user</from>
 						<to>output/user</to>
 					</steps>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>POST</method>
+    <path>/user/{userId}/password/update</path>
+    <role>$user</role>
+    <permissionContext>=input/path/userId</permissionContext>
+    <permissionAction>user.updatePassword</permissionAction>
+    <input>nabu.cms.core.types.rest.user.updatePasswordInput</input>
+    <configurationType>nabu.cms.core.configuration</configurationType>
+</restInterface>
