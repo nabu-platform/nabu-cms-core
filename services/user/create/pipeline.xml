@@ -1,18 +1,21 @@
 <structure name="pipeline">
     <structure name="input" validate="true">
-        <field name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
         <field minOccurs="0" name="transactionId" type="java.lang.String"/>
-        <field minOccurs="0" name="id" type="java.util.UUID"/>
+        <field minOccurs="0" name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <field minOccurs="0" name="alias" type="java.lang.String"/>
         <field minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
         <field minOccurs="0" name="anonymous" type="java.lang.Boolean"/>
-        <field minOccurs="0" name="languageId" type="java.util.UUID"/>
+        <field minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
         <field minOccurs="0" name="active" type="java.lang.Boolean"/>
         <field minOccurs="0" name="password" type="java.lang.String"/>
         <field name="realm" type="java.lang.String"/>
         <field minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
         <field minOccurs="0" name="trackChanges" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="name" type="java.lang.String"/>
+        <field minOccurs="0" name="title" type="java.lang.String"/>
+        <field minOccurs="0" name="description" type="java.lang.String"/>
     </structure>
     <structure name="output">
         <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>

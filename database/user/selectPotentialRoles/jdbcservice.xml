@@ -5,7 +5,8 @@
 	r.created,
 	r.modified,
 	r.name,
-	r.pseudo
+	r.pseudo,
+	r.owner_id
 from roles r join group_roles gr on r.id = gr.role_id
 join groups g on gr.group_id = g.id
 join user_groups ug on ug.group_id = g.id

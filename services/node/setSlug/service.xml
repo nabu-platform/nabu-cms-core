@@ -3,19 +3,20 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="input/slug ~ &quot;[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}&quot; || input/slug ~ &quot;[a-f0-9]{32}&quot;" id="cfdc2cbb-556a-4fb2-8887-92b529dbda77" message="A slug can not have the same layout as a UUID" xsi:nil="true"/>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="32dc32fa-1810-4d73-beb8-5f18ee3f2880">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="65b20c0c-4299-4877-af37-0273ea7ebb76" serviceId="nabu.cms.core.database.node.update" resultName="result94b9f376661d4725a1749e0bf6552f6c" invocationOrder="0" temporaryMapping="true" x="31" y="65">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7ad7d907-6974-4069-9485-ed2cafdbd990" optional="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="65b20c0c-4299-4877-af37-0273ea7ebb76" serviceId="nabu.cms.core.database.node.update" resultName="result94b9f376661d4725a1749e0bf6552f6c" invocationOrder="0" temporaryMapping="true" y="65" x="31">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7ad7d907-6974-4069-9485-ed2cafdbd990" mask="false" fixedValue="false" optional="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3d63286c-9437-4743-94d4-59c1c9103674" optional="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3d63286c-9437-4743-94d4-59c1c9103674" mask="false" fixedValue="false" optional="false">
 				<from>input/nodeId</from>
 				<to>parameters[0]/id</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3ce7e0ea-f8a7-4d58-b83a-9d21848ba9f9" optional="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3ce7e0ea-f8a7-4d58-b83a-9d21848ba9f9" mask="false" fixedValue="false" optional="false">
 				<from>input/slug</from>
 				<to>parameters[0]/slug</to>
 			</steps>
+			<asynchronous>false</asynchronous>
 		</steps>
 	</steps>
 </sequence>

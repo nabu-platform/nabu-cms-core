@@ -1,7 +1,14 @@
 For dev the endpoint is:
 
+- :api store: https://api-store-o.antwerpen.be/
 - :login: https://api-oauth2-o.antwerpen.be/v1/authorize?service=AStad.AProfiel.v1
 - :token: https://api-gw-o.antwerpen.be/astad/aprofiel/v1/oauth2/token
+
+For qlty the endpoint is (supposedly):
+
+- :api store: https://api-store-a.antwerpen.be/
+- :login: https://api-oauth2-a.antwerpen.be/v1/authorize?service=AStad.AProfiel.v1
+- :token: https://api-gw-a.antwerpen.be/astad/aprofiel/v1/oauth2/token
 
 For prd the endpoint is:
 

@@ -1,15 +1,15 @@
 <structure name="pipeline">
     <structure name="input">
-        <field name="connection" type="java.lang.String"/>
+        <field minOccurs="0" name="connection" type="java.lang.String"/>
         <field minOccurs="0" name="transaction" type="java.lang.String"/>
-        <field name="id" type="java.util.UUID"/>
-        <field minOccurs="0" name="ownerId" type="java.util.UUID"/>
-        <field minOccurs="0" name="parentId" type="java.util.UUID"/>
+        <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="parentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <field minOccurs="0" name="priority" type="java.lang.Integer"/>
         <field minOccurs="0" name="name" type="java.lang.String"/>
         <field minOccurs="0" name="title" type="java.lang.String"/>
         <field minOccurs="0" name="description" type="java.lang.String"/>
-        <field minOccurs="0" name="languageId" type="java.util.UUID"/>
+        <field minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <field minOccurs="0" name="published" timezone="UTC" type="java.util.Date"/>
         <field minOccurs="0" name="verified" timezone="UTC" type="java.util.Date"/>
         <field minOccurs="0" name="enabled" type="java.lang.Boolean"/>

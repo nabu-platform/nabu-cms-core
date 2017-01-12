@@ -9,6 +9,7 @@
 	refresh_token = case when :refreshToken is null then refresh_token else :refreshToken end,
 	account_id = case when :accountId is null then account_id else :accountId end,
 	token_type = case when :tokenType is null then token_type else :tokenType end,
+	resource = case when :resource is null then resource else :resource end,
 	user_id = case when :userId is null then user_id else :userId end
  where id = :id</sql>
 </jdbcService>

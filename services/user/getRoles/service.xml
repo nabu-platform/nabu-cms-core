@@ -1,16 +1,17 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="e2daad1d-8433-42d6-8fd2-e85867593fa2">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="984e9a16-e9db-42ee-8cb1-91991b87f596">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="84d2d722-20fc-4727-9300-12d76fa7f78c" serviceId="nabu.cms.core.database.user.selectGroupRoles" resultName="result80fb5285ccb346928a9ad7d157c130af" invocationOrder="0" temporaryMapping="true" x="70" y="104">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3c0a74b6-0228-47cc-9c2d-6ccf94f52b53" optional="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="84d2d722-20fc-4727-9300-12d76fa7f78c" serviceId="nabu.cms.core.database.user.selectGroupRoles" resultName="result80fb5285ccb346928a9ad7d157c130af" invocationOrder="0" temporaryMapping="true" y="104" x="70">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3c0a74b6-0228-47cc-9c2d-6ccf94f52b53" mask="false" fixedValue="false" optional="false">
 				<from>input/connection</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2b819914-434a-4abe-b45f-3dc1efd5fea7" optional="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2b819914-434a-4abe-b45f-3dc1efd5fea7" mask="false" fixedValue="false" optional="false">
 				<from>input/userId</from>
 				<to>parameters/userId</to>
 			</steps>
+			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1a07faf0-49ca-47be-849b-47f3adae433a" optional="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1a07faf0-49ca-47be-849b-47f3adae433a" mask="false" fixedValue="false" optional="false">
 			<from>result80fb5285ccb346928a9ad7d157c130af/results</from>
 			<to>groupRoles</to>
 		</steps>
