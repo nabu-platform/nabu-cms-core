@@ -1,3 +1,28 @@
+-- masterdata
+
+-- relation types
+insert into master_data_categories ( id, created, modified, name ) values ( '1a42fc4f-768f-4264-a9d4-ed5a6da8cea1', timestamp '2017-01-12 13:30:28.646', timestamp '2017-01-12 13:30:28.646', 'relationType' );
+insert into master_data_entries ( id, created, modified, name, master_data_category_id ) values ( '5e58afb0-3961-4dd3-8741-6e8336f4f58a', timestamp '2017-01-12 13:31:44.872', timestamp '2017-01-12 13:31:44.872', 'favorite', '1a42fc4f-768f-4264-a9d4-ed5a6da8cea1' );
+insert into master_data_entries ( id, created, modified, name, master_data_category_id ) values ( '671a885d-5db9-4bbf-8246-1d86d1483b2a', timestamp '2017-01-12 13:31:47.547', timestamp '2017-01-12 13:31:47.547', 'like', '1a42fc4f-768f-4264-a9d4-ed5a6da8cea1' );
+
+-- location types
+insert into master_data_categories ( id, created, modified, name ) values ( 'ba2c8e60-6cd1-4ed2-9734-8210d83b7518', timestamp '2017-01-12 13:39:27.771', timestamp '2017-01-12 13:39:27.771', 'locationType' );
+insert into master_data_entries ( id, created, modified, name, master_data_category_id ) values ( '6da7fa81-7e1a-4373-9f09-f0853fbcc348', timestamp '2017-01-12 13:39:44.716', timestamp '2017-01-12 13:39:44.716', 'invoice', 'ba2c8e60-6cd1-4ed2-9734-8210d83b7518' );
+insert into master_data_entries ( id, created, modified, name, master_data_category_id ) values ( '272216c9-2ba3-41b8-92b7-427a7e07d964', timestamp '2017-01-12 13:39:47.894', timestamp '2017-01-12 13:39:47.894', 'delivery', 'ba2c8e60-6cd1-4ed2-9734-8210d83b7518' );
+
+-- audit levels
+insert into master_data_categories ( id, created, modified, name ) values ( '4b75cf5d-3fd2-49f6-913e-e11c0633bde8', timestamp '2017-01-12 13:49:12.760', timestamp '2017-01-12 13:49:12.760', 'auditLevel' );
+insert into master_data_entries ( id, created, modified, name, master_data_category_id ) values ( '926bb4b1-5c30-4b89-99bc-daf30a605143', timestamp '2017-01-12 13:49:27.340', timestamp '2017-01-12 13:49:27.340', 'info', '4b75cf5d-3fd2-49f6-913e-e11c0633bde8' );
+insert into master_data_entries ( id, created, modified, name, master_data_category_id ) values ( '304363f3-afe3-4bc6-bb7b-9c6389401bb0', timestamp '2017-01-12 13:49:28.741', timestamp '2017-01-12 13:49:28.741', 'error', '4b75cf5d-3fd2-49f6-913e-e11c0633bde8' );
+
+-- language
+insert into master_data_categories ( id, created, modified, name ) values ( '3c433c9d-188d-451d-b0cc-c99da901e47f', timestamp '2017-01-12 14:07:33.281', timestamp '2017-01-12 14:07:33.281', 'language' );
+
+
+-- external id type
+insert into master_data_categories ( id, created, modified, name ) values ( 'b0d6502e-6c06-4879-9dcb-061282068d0b', timestamp '2017-01-12 14:00:35.005', timestamp '2017-01-12 14:00:35.005', 'externalIdType' );
+
+
 insert into components (
 	id,
 	created,
@@ -20,28 +45,7 @@ insert into components (
 	timestamp '2016-10-07 14:35:42.435',
 	'user'
 );
-insert into audit_levels (
-	id,
-	created,
-	modified,
-	name
-) values (
-	'b8d812e1-17f8-4a66-b577-04681fb198ab',
-	timestamp '2016-10-21 15:07:54.862',
-	timestamp '2016-10-21 15:07:54.862',
-	'info'
-);
-insert into audit_levels (
-	id,
-	created,
-	modified,
-	name
-) values (
-	'21ee67b7-5e54-4ff5-b1eb-fc5c8c348e70',
-	timestamp '2016-10-21 15:08:13.138',
-	timestamp '2016-10-21 15:08:13.138',
-	'error'
-);
+
 insert into actions (
 	id,
 	created,
@@ -146,26 +150,4 @@ insert into roles (
 	'$owner',
 	true,
 	null
-);
-insert into relation_types (
-	id,
-	created,
-	modified,
-	name
-) values (
-	'5eec3438-35be-4347-9e7c-b4bdc6519a43',
-	timestamp '2016-10-25 10:53:01.436',
-	timestamp '2016-10-25 10:53:01.436',
-	'favorite'
-);
-insert into relation_types (
-	id,
-	created,
-	modified,
-	name
-) values (
-	'd8e7fa6c-d710-4c18-909b-43e263e2ff4d',
-	timestamp '2016-10-25 10:53:13.916',
-	timestamp '2016-10-25 10:53:13.916',
-	'like'
 );

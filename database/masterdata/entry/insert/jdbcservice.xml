@@ -1,0 +1,16 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.masterdata.types.model.masterdata.MasterDataEntry</inputDefinition>
+	<sql>insert into master_data_entries (
+	id,
+	created,
+	modified,
+	name,
+	master_data_category_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:name,
+	:masterDataCategoryId
+)</sql>
+</jdbcService>

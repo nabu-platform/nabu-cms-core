@@ -1,0 +1,19 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="adcda036-022b-42dc-b8de-6ddab4ed029d">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="ef25fda2-5715-473d-b61d-b56d0d9603d5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="f577e40c-7b04-4c98-9f18-33f45c34a64b" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.entry.selectByIds" resultName="resultc45688b6f4514b5693be57ccd918de15" y="84" x="54">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="75d2d4d6-7e4c-47c3-9600-fb77902bc848" optional="false" mask="false" fixedValue="false">
+				<from>input/configuration/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="12521a21-5ea0-4a53-9440-a11a9cc62590" optional="false" mask="false" fixedValue="false">
+				<from>input/query/entryId</from>
+				<to>parameters/id</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="54e9e4ee-29d4-440f-8d7c-e98f473da5a3" optional="false" mask="true" fixedValue="false">
+			<from>resultc45688b6f4514b5693be57ccd918de15/results</from>
+			<to>output/content/entries</to>
+		</steps>
+	</steps>
+</sequence>

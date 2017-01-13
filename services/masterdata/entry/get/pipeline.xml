@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field name="category" type="java.lang.String"/>
+        <field name="name" type="java.lang.String"/>
+        <field minOccurs="0" name="create" type="java.lang.Boolean"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="MasterDataEntries" definition="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry" name="entry" namespace="nabu.cms.masterdata.types.model.masterdata"/>
+    </structure>
+    <structure collectionName="MasterDataCategories" definition="nabu.cms.masterdata.types.model.masterdata.MasterDataCategory" minOccurs="0" name="category" namespace="nabu.cms.masterdata.types.model.masterdata"/>
+</structure>

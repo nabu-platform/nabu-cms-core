@@ -1,11 +1,11 @@
 <structure name="pipeline">
     <structure name="input">
         <field name="connectionId" type="java.lang.String"/>
-        <field name="auditId" type="java.util.UUID"/>
+        <field name="auditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <structure definition="java.lang.Exception" name="exception"/>
         <field minOccurs="0" name="rethrow" type="java.lang.Boolean"/>
     </structure>
     <structure name="output"/>
     <structure definition="nabu.utils.types.ExceptionSummary" minOccurs="0" name="summary"/>
-    <structure collectionName="AuditLevels" definition="nabu.cms.core.types.model.core.AuditLevel" minOccurs="0" name="auditLevel" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="AuditLevels" definition="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry" minOccurs="0" name="auditLevel" namespace="nabu.cms.core.types.model.core"/>
 </structure>

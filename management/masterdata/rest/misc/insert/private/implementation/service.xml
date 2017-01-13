@@ -1,0 +1,62 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="f3ce285a-840b-43d2-887b-75f79f70b2c5">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="f6a0ef6a-2ad6-4b7f-8ddd-d42910892796">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/content/categories != null" comment="Build categories" id="cc65de92-69a3-42e7-b9b2-c70c80f4ace5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8caffe02-7a1b-4b55-a4aa-933da57348bd" invocationOrder="0" temporaryMapping="true" serviceId="nabu.services.jdbc.Services.buildInserts" resultName="resulta4d1a398e551416b9a0c050c19a0a623" y="100" x="46">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e81b545d-1caf-4d92-be18-6f03791b52d2" optional="false" mask="false" fixedValue="false">
+					<from>input/content/categories</from>
+					<to>instances</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="af9fcc8f-234d-46ad-92e2-d26c54de3e69" optional="false" mask="false" fixedValue="false">
+					<from>input/query/dialect[0]</from>
+					<to>dialect</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="af0e2bba-9b18-491a-b46e-ac672c1e3ae3" invocationOrder="1" temporaryMapping="true" serviceId="nabu.utils.List.addAll" resultName="result5d434d80bb304fc4810ae20254b7bd05" y="252" x="228">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8b6fe8c9-c518-4ffa-a51d-f1c2fefc17a3" optional="false" mask="false" fixedValue="false">
+					<from>output/content/inserts</from>
+					<to>list</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="17e26736-b9ea-4dc8-a4f0-b69c2d480804" optional="false" mask="false" fixedValue="false">
+					<from>resulta4d1a398e551416b9a0c050c19a0a623/inserts</from>
+					<to>objects</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="274aeff3-7f2e-4d36-bcdc-576ee6990f7d" optional="false" mask="false" fixedValue="false">
+				<from>result5d434d80bb304fc4810ae20254b7bd05/list</from>
+				<to>output/content/inserts</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="f6293de9-dede-43a7-ba95-1c6fe7c1aeaa">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/content/entries != null" comment="Build entries" id="cc65de92-69a3-42e7-b9b2-c70c80f4ace5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8caffe02-7a1b-4b55-a4aa-933da57348bd" invocationOrder="0" temporaryMapping="true" serviceId="nabu.services.jdbc.Services.buildInserts" resultName="resulta4d1a398e551416b9a0c050c19a0a623" y="100" x="46">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="af9fcc8f-234d-46ad-92e2-d26c54de3e69" optional="false" mask="false" fixedValue="false">
+					<from>input/query/dialect[0]</from>
+					<to>dialect</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6ccf2290-a131-430c-a8ff-3715c3702e68" optional="false" mask="false" fixedValue="false">
+					<from>input/content/entries</from>
+					<to>instances</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="af0e2bba-9b18-491a-b46e-ac672c1e3ae3" invocationOrder="1" temporaryMapping="true" serviceId="nabu.utils.List.addAll" resultName="result5d434d80bb304fc4810ae20254b7bd05" y="252" x="228">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8b6fe8c9-c518-4ffa-a51d-f1c2fefc17a3" optional="false" mask="false" fixedValue="false">
+					<from>output/content/inserts</from>
+					<to>list</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="17e26736-b9ea-4dc8-a4f0-b69c2d480804" optional="false" mask="false" fixedValue="false">
+					<from>resulta4d1a398e551416b9a0c050c19a0a623/inserts</from>
+					<to>objects</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="274aeff3-7f2e-4d36-bcdc-576ee6990f7d" optional="false" mask="false" fixedValue="false">
+				<from>result5d434d80bb304fc4810ae20254b7bd05/list</from>
+				<to>output/content/inserts</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

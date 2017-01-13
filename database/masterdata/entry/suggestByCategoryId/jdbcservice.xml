@@ -1,0 +1,13 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.masterdata.types.model.masterdata.MasterDataEntry</outputDefinition>
+	<sql>select
+	e.id,
+	e.created,
+	e.modified,
+	e.name,
+	e.master_data_category_id
+from master_data_entries e
+where e.master_data_category_id = :masterDataCategoryId
+and lower(e.name) like lower(:suggestion) 
+order by length(e.name)</sql>
+</jdbcService>

@@ -1,16 +1,16 @@
 <structure name="location">
     <field name="x" type="java.lang.Double"/>
     <field name="y" type="java.lang.Double"/>
-    <field minOccurs="0" name="street" type="java.lang.String"/>
-    <field minOccurs="0" name="city" type="java.lang.String"/>
-    <field minOccurs="0" name="postCode" type="java.lang.String"/>
-    <field minOccurs="0" name="country" type="java.lang.String"/>
-    <field minOccurs="0" name="province" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="streetId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="cityId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="postCodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="countryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="provinceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field minOccurs="0" name="additional" type="java.lang.String"/>
     <field minOccurs="0" name="number" type="java.lang.String"/>
-    <field minOccurs="0" name="district" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="districtId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field minOccurs="0" name="firstName" type="java.lang.String"/>
     <field minOccurs="0" name="lastName" type="java.lang.String"/>
     <field minOccurs="0" name="priority" type="java.lang.Integer"/>
-    <field foreignKey="nabu.cms.core.types.model.core.LocationType:id" minOccurs="0" name="locationTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="locationTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>
