@@ -1,0 +1,26 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="33bfed08-274f-457b-a557-767133a67173">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="1e8fe18f-7bf8-4c33-8d60-173e002b095a">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="a3dc4903-7a19-4613-8bd5-c1128b08153d" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.entry.selectByCategoryAndId" resultName="resultc3054cc3aff44fbbaa546ae14b5daa14" y="60" x="31">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="21951d28-caaa-46c5-aa74-43cec40ef108" optional="false" fixedValue="false" mask="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d53be767-573a-41e5-a024-91ddbe61739d" optional="false" fixedValue="false" mask="false">
+				<from>input/category</from>
+				<to>parameters/category</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ae4acaea-8692-4305-b42e-62fe93e2530d" optional="false" fixedValue="false" mask="false">
+				<from>input/entryId</from>
+				<to>parameters/id</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a441948c-03a9-4797-a943-4f8acc4b2d75" optional="false" fixedValue="false" mask="false">
+			<from>resultc3054cc3aff44fbbaa546ae14b5daa14/rowCount</from>
+			<to>rowCount</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="bbcc0bbc-93c4-4858-ae6f-267a6ad021a7" query="rowCount">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="0" id="12d6f1aa-f58e-4284-9f51-c625b17f61a3" message="=&quot;The master data entry '&quot; + input/entryId + &quot;' does not belong to the category '&quot; + input/category  +&quot;'&quot;" xsi:nil="true"/>
+	</steps>
+</sequence>
