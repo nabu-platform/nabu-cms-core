@@ -8,8 +8,8 @@
 	t.name,
 	t.translation,
 	t.language_id
-from translations t join languages l on t.language_id = l.id
-where l.name = :language
+from translations t join master_data_entries me on t.language_id = me.id
+where me.name = :language
 and t.context = :context
 and t.name = :name</sql>
 </jdbcService>
