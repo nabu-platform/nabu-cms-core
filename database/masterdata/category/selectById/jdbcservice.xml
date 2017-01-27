@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.MasterDataCategory</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	name
+from master_data_categories
+where id = :id</sql>
+</jdbcService>

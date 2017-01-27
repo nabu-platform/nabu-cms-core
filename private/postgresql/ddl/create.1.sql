@@ -7,3 +7,5 @@ alter table user_oauth2_credentials add constraint oauth2_unique unique(web_appl
 
 create unique index alias_unique on users (lower(alias), realm);
 
+-- make sure tags can only be set once on a node
+alter table node_tags add constraint tag_unique unique(node_id, definition_id);

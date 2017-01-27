@@ -1,0 +1,22 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.Node</inputDefinition>
+	<sql>update nodes set
+	started = case when :started is null then started else :started end,
+	stopped = case when :stopped is null then stopped else :stopped end,
+	modified = case when :modified is null then modified else :modified end,
+	owner_id = case when :ownerId is null then owner_id else :ownerId end,
+	verified = case when :verified is null then verified else :verified end,
+	enabled = case when :enabled is null then enabled else :enabled end,
+	parent_id = case when :parentId is null then parent_id else :parentId end,
+	version = case when :version is null then version else :version end,
+	priority = case when :priority is null then priority else :priority end,
+	name = case when :name is null then name else :name end,
+	title = case when :title is null then title else :title end,
+	description = case when :description is null then description else :description end,
+	path = case when :path is null then path else :path end,
+	slug = case when :slug is null then slug else :slug end,
+	language_id = case when :languageId is null then language_id else :languageId end,
+	component_id = case when :componentId is null then component_id else :componentId end
+where id = :id
+and enabled = true</sql>
+</jdbcService>

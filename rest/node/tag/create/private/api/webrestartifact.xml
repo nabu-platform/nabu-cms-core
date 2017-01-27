@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>POST</method>
+    <path>/node/{nodeId}/tag</path>
+    <queryParameters>definitionId</queryParameters>
+    <role>$user</role>
+    <permissionContext>=input/path/nodeId</permissionContext>
+    <permissionAction>tag.create</permissionAction>
+    <output>nabu.cms.core.types.rest.node.tag</output>
+    <configurationType>nabu.cms.core.configuration</configurationType>
+</restInterface>

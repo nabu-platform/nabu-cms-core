@@ -19,10 +19,6 @@
 					<from>input/path/categoryId</from>
 					<to>parameters/masterDataCategoryId</to>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1ec78e28-bd4e-4291-8ef9-0000b8a175ae" optional="false" mask="false" fixedValue="false">
-					<from>input/query/q[0]</from>
-					<to>parameters/suggestion</to>
-				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8c753a26-5061-42e8-9573-4adeff11e73b" optional="false" mask="false" fixedValue="false">
 					<from>input/configuration/connectionId</from>
 					<to>connection</to>
@@ -30,6 +26,10 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e0d559f6-25a7-4b9c-8e56-8a293e24c165" optional="false" mask="false" fixedValue="false">
 					<from>input/configuration/masterdata/amountOfSuggestions</from>
 					<to>limit</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="194c53b1-b277-45ae-b649-53cd31a6f64f" optional="false" mask="false" fixedValue="true">
+					<from>=input/query/q[0] + "%"</from>
+					<to>parameters/suggestion</to>
 				</steps>
 				<asynchronous>false</asynchronous>
 			</steps>

@@ -1,11 +1,19 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="a31df5c2-04f7-41e1-968c-457a63994242">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="1fe0c88b-3eae-4941-bdc2-c2541e12317b">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="32457273-01f9-468d-b841-1022f5b18d1d" serviceId="nabu.utils.Runtime.getCurrentToken" resultName="resultdc9f8398a0404e1fa050cc76f2cf44eb" invocationOrder="0" temporaryMapping="true" y="81" x="46">
-			<asynchronous>false</asynchronous>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="45292830-26c9-4fc4-a1ee-798a2994781f" query="input/token">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" id="1fe0c88b-3eae-4941-bdc2-c2541e12317b">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="32457273-01f9-468d-b841-1022f5b18d1d" serviceId="nabu.utils.Runtime.getCurrentToken" resultName="resultdc9f8398a0404e1fa050cc76f2cf44eb" invocationOrder="0" temporaryMapping="true" y="81" x="46">
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b5ccfd23-a59e-449e-b288-0456c21e279b" mask="false" fixedValue="false" optional="false">
+				<from>resultdc9f8398a0404e1fa050cc76f2cf44eb/token</from>
+				<to>token</to>
+			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b5ccfd23-a59e-449e-b288-0456c21e279b" mask="false" fixedValue="false" optional="false">
-			<from>resultdc9f8398a0404e1fa050cc76f2cf44eb/token</from>
-			<to>token</to>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="500522eb-7a76-470f-a62a-d927d97ea772">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2443a303-4ac1-4cd3-9a35-74f9c55e463b" mask="false" fixedValue="false" optional="false">
+				<from>input/token</from>
+				<to>token</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="ed92855a-accc-40f8-90aa-608183f98112">

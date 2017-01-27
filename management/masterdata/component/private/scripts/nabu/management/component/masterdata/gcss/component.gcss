@@ -1,0 +1,3 @@
+for (resource : resources("nabu.management.component.masterdata.tpl.component"))
+	if (resource ~ ".*\.gcss")
+		eval(resource(resource, "nabu.management.component.masterdata.tpl.component"), scope(1))
