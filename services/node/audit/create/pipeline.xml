@@ -1,6 +1,6 @@
 <structure name="pipeline">
     <structure name="input">
-        <field name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
         <field minOccurs="0" name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <field name="action" type="java.lang.String"/>
         <field minOccurs="0" name="description" type="java.lang.String"/>
@@ -8,6 +8,7 @@
         <field minOccurs="0" name="errorCode" type="java.lang.String"/>
         <field minOccurs="0" name="errorLog" type="java.lang.String"/>
         <field minOccurs="0" name="parentAuditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
         <structure definition="be.nabu.libs.authentication.api.Device" minOccurs="0" name="device"/>
         <field comment="Whether or not to inject the audit id into the context" minOccurs="0" name="inject" type="java.lang.Boolean"/>
     </structure>

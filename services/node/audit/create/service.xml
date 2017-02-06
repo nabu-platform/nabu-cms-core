@@ -1,4 +1,10 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="c6778022-bc84-4785-b31b-7bdfc769653a" transactionVariable="transactionId">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c6e99e97-ebc7-414a-8a3e-4a8667d76c3c">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="95a0bfa9-be1e-4505-b107-8a1c6a9035d8" optional="false" mask="false" fixedValue="false">
+			<from>input/token</from>
+			<to>token</to>
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="642b5696-b30b-44f0-8742-72004151812f" query="input/errorLog">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" id="47eec7a1-52aa-4ab2-87d9-111a9e862dc7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="baf3b0b6-7b09-4840-b5be-681b782c79d9" optional="true" mask="false" fixedValue="true">
@@ -20,7 +26,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="0b5a9fbb-84b6-45d3-8ca9-56c004cd1c47" serviceId="nabu.utils.Runtime.getCurrentDevice" resultName="resultbf9ad1f30053458a9825a5f56940883f" invocationOrder="0" temporaryMapping="true" y="187" x="88">
 			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5a17fbab-1ff5-4b04-a016-5ec417b25fda" optional="false" mask="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5a17fbab-1ff5-4b04-a016-5ec417b25fda" optional="true" mask="false" fixedValue="false">
 			<from>resultb183186f4e144acdbc0c20628060a80c/token</from>
 			<to>token</to>
 		</steps>

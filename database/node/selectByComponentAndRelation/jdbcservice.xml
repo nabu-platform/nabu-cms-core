@@ -1,0 +1,27 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
+	<sql>select
+	n.id,
+	n.created,
+	n.modified,
+	n.started,
+	n.stopped,
+	n.owner_id,
+	n.verified,
+	n.enabled,
+	n.parent_id,
+	n.version,
+	n.priority,
+	n.name,
+	n.title,
+	n.description,
+	n.path,
+	n.slug,
+	n.language_id,
+	n.component_id
+from nodes n join node_relations nr on n.id = nr.target_id
+where component_id = :componentId
+and nr.source_id = :sourceId
+and nr.relation_type_id = :relationTypeId
+order by created, name, path desc</sql>
+</jdbcService>
