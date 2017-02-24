@@ -20,7 +20,7 @@ application.views.MasterdataOverview = Vue.extend({
 	activate: function(done) {
 		var self = this;
 		nabu.utils.ajax({
-			url: "${server.root()}api/cms/masterdata/connection",
+			url: "${server.root()}api/connection",
 			success: function(response) {
 				var content = JSON.parse(response.responseText);
 				if (content.ids) {
