@@ -1,0 +1,17 @@
+@path
+@output nabu.cms.core.types.components.user
+@operationId nabu.cms.core.login
+@title Allows the user to log in
+@tags user
+
+@content
+nabu.cms.core.types.components.login login ?= null
+
+if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember))
+	response.code(400)
+	abort()
+else
+	response.content(structure(
+			alias: user.token()/alias,
+			realm: user.token()/realm
+		))

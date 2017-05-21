@@ -1,0 +1,18 @@
+@path
+@operationId nabu.cms.core.verify
+@title Allows the user to verify his account
+@tags user
+
+@get
+userId ?= null
+
+@get
+verificationCode ?= null
+
+nabu.cms.core.services.user.verify(
+	connectionId: "fodged.identity.artifacts.jdbc",
+	userId: userId,
+	verificationCode: verificationCode)
+	
+# on success redirect to the service root
+redirect(server.root())
