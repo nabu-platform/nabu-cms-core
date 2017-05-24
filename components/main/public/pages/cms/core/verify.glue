@@ -9,10 +9,13 @@ userId ?= null
 @get
 verificationCode ?= null
 
+@get
+redirect ?= server.root()
+
 nabu.cms.core.services.user.verify(
-	connectionId: "fodged.identity.artifacts.jdbc",
+	connectionId: application.configuration("nabu.cms.core.configuration")/connectionId,
 	userId: userId,
 	verificationCode: verificationCode)
 	
 # on success redirect to the service root
-redirect(server.root())
+redirect(redirect)

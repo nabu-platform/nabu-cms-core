@@ -1,0 +1,36 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
+	<sql>select
+	n.id,
+	n.created,
+	n.modified,
+	n.started,
+	n.stopped,
+	n.owner_id,
+	n.verified,
+	n.enabled,
+	n.parent_id,
+	n.version,
+	n.priority,
+	n.name,
+	n.title,
+	n.description,
+	n.path,
+	n.slug,
+	n.language_id,
+	n.component_id
+from nodes n join group_roles gr on n.path like '%' || gr.node_id || '%'
+-- on n.id = gr.node_id
+join groups g on gr.group_id = g.id
+join user_groups ug on g.id = ug.group_id
+join users u on ug.user_id = u.id
+join roles r on gr.role_id = r.id
+join action_roles ar on ar.role_id = r.id
+join actions a on ar.action_id = a.id
+where u.id = :userId
+and a.name = :action
+and (:componentId is null or n.component_id = :componentId)
+
+-- must be set to inherit or must be equal
+and (gr.inherit = true or gr.node_id = n.id)</sql>
+</jdbcService>
