@@ -16,33 +16,50 @@ nabu.services.cms.Masterdata = function Masterdata($services) {
 		}
 	};
 	
-	this.preloaded = ${{
+${{
 
 configuration = application.configuration("nabu.cms.core.configuration")
 
+stripper = lambda(x, structure(x, created: null, modified: null))
 preloaded = series()
 for (name : configuration/masterdata/preloadedCategories)
 	entries = nabu.cms.core.database.masterdata.category.selectByName(
 		connection: configuration/connectionId,
 		parameters: structure(name: name))/results
-	entries = derive(lambda(x, structure(x, created: null, modified: null)), entries)
+	entries = derive(stripper, entries)
 	preloaded = merge(preloaded, structure(
 		name: name,
 		entries: entries))
-echo(json.stringify(structure(preloaded: preloaded)))
+echo("this.preloaded = " + json.stringify(structure(preloaded: preloaded)) + ";")
 
+categories = nabu.cms.core.database.masterdata.category.selectAll(application.configuration("nabu.cms.core.configuration")/connectionId)/results
+categories = derive(stripper, categories)
+
+echo("this.categoryList = " + json.stringify(structure(categories: categories)) + ";")
 }};
-	
+
 	// make it watchable
 	Vue.observe(this.state, true);
-	
-	this.category = function(name) {
+
+	// we can only list preloaded categories, use suggest for other categories	
+	this.list = function(name) {
 		for (var i = 0; i < this.preloaded.length; i++) {
-			if (this.preloaded[i].length.name == name) {
+			if (this.preloaded[i].length.name == name || this.preloaded[i].length.id == name) {
 				return this.preloaded[i].entries;
 			}
 		}
 		return null;
+	}
+	
+	this.categories = function() {
+		return this.categoryList.categories;
+	}
+	
+	this.suggest = function(category, suggestion) {
+		return $services.swagger.execute("nabu.cms.core.rest.masterdata.category.suggest", {
+			categoryId: category,
+			q: suggestion
+		});
 	}
 	
 	this.resolve = function(masterdataId) {
