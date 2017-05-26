@@ -19,7 +19,7 @@
 	n.slug,
 	n.language_id,
 	n.component_id
-from nodes n join group_roles gr on n.path like '%' || gr.node_id || '%'
+from nodes n join group_roles gr on n.path like '%' || replace(gr.node_id::text, '-', '') || '%'
 -- on n.id = gr.node_id
 join groups g on gr.group_id = g.id
 join user_groups ug on g.id = ug.group_id

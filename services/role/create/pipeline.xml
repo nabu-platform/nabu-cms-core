@@ -5,6 +5,6 @@
         <field comment="Defaults to &quot;false&quot;" minOccurs="0" name="pseudo" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
-        <field name="roleId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" name="role" namespace="nabu.cms.core.types.model.core"/>
     </structure>
 </structure>

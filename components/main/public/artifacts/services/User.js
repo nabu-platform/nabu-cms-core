@@ -40,6 +40,7 @@ nabu.services.cms.User = function User($services) {
 		return $services.swagger.execute("nabu.cms.core.logout").then(
 			function() {
 				Vue.set(self.state, "token", null);
+				$services.$clear();
 			}
 		);
 	}
