@@ -23,20 +23,20 @@ configuration = application.configuration("nabu.cms.core.configuration")
 stripper = lambda(x, structure(x, created: null, modified: null))
 preloaded = series()
 for (name : configuration/masterdata/preloadedCategories)
-	entries = nabu.cms.core.database.masterdata.category.selectByName(
+	entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
 		connection: configuration/connectionId,
 		parameters: structure(name: name))/results
 	entries = derive(stripper, entries)
 	preloaded = merge(preloaded, structure(
 		name: name,
 		entries: entries))
-echo("this.preloaded = " + json.stringify(structure(preloaded: preloaded)) + ";")
+echo("	this.preloaded = " + json.stringify(structure(preloaded: preloaded)) + ";\n")
 
 categories = nabu.cms.core.database.masterdata.category.selectAll(application.configuration("nabu.cms.core.configuration")/connectionId)/results
 categories = derive(stripper, categories)
 
-echo("this.categoryList = " + json.stringify(structure(categories: categories)) + ";")
-}};
+echo("	this.categories = " + json.stringify(structure(categories: categories)) + ";\n")
+}}
 
 	// make it watchable
 	Vue.observe(this.state, true);
@@ -44,15 +44,24 @@ echo("this.categoryList = " + json.stringify(structure(categories: categories)) 
 	// we can only list preloaded categories, use suggest for other categories	
 	this.list = function(name) {
 		for (var i = 0; i < this.preloaded.length; i++) {
-			if (this.preloaded[i].length.name == name || this.preloaded[i].length.id == name) {
+			if (this.preloaded[i].name == name || this.preloaded[i].id == name) {
 				return this.preloaded[i].entries;
 			}
 		}
 		return null;
 	}
 	
-	this.categories = function() {
-		return this.categoryList.categories;
+	this.entry = function(category, name) {
+		for (var i = 0; i < this.preloaded.length; i++) {
+			if (this.preloaded[i].name == category || this.preloaded[i].id == category) {
+				for (var j = 0; j < this.preloaded[i].entries.length; j++) {
+					if (this.preloaded[i].entries[j].name == name || this.preloaded[i].entries[j].id == name) {
+						return this.preloaded[i].entries[j];
+					}
+				}
+			}
+		}
+		return null;
 	}
 	
 	this.suggest = function(category, suggestion) {
