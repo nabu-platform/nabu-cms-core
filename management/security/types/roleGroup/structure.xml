@@ -1,0 +1,7 @@
+<structure name="roleGroup" superType="nabu.cms.core.types.model.core.GroupRole">
+    <field minOccurs="0" name="nodeName" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field minOccurs="0" name="ownerName" type="java.lang.String"/>
+    <field name="name" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="relationId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

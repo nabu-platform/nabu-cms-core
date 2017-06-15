@@ -1,0 +1,19 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="9bb916d3-f33c-4b78-a69c-a30b198bb22f">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="806b1142-6161-45cc-9772-c0c8043437bb">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="eb3bc540-3cd8-4d12-b08a-e5ffb5f5f06f" serviceId="nabu.cms.core.database.group.role.deleteByIdAndRoleId" resultName="resultd7b77b6a4f704fbaae0813b5bf392096" invocationOrder="0" temporaryMapping="true" y="74" x="41">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3aa5350c-b58c-4a15-b42d-b986e644257f" mask="false" optional="false" fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>parameters[0]/roleId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bd06b0f9-af0f-4b2b-9045-09e1e2b18736" mask="false" optional="false" fixedValue="false">
+				<from>input/configuration/connectionFilter</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="31cedb95-53b4-4d11-b8ff-746e412ebb08" mask="false" optional="false" fixedValue="false">
+				<from>input/path/groupRoleId</from>
+				<to>parameters[0]/groupRoleId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

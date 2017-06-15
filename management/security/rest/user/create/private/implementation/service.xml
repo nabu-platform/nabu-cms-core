@@ -1,0 +1,39 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="55f1ca42-ebce-49b2-bd6d-299ec8cdcfc0">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="eb9dcecf-f005-4d6e-b347-c14a98f1909e">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="827a4934-10d7-4ad5-bc04-7c334516a178" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.services.user.create" resultName="resultd699ece3acf443da9cf15c0cd12a090c" y="22" x="168">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="558dc452-4ede-4dd9-9340-a84a6cae570c" mask="false" fixedValue="false" optional="false">
+				<from>input/query/connectionId[0]</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="42b9c360-ac3f-4c4a-9d37-9cc1e739f930" mask="false" fixedValue="false" optional="false">
+				<from>input/content/alias</from>
+				<to>alias</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fb3a49ec-a340-43dd-8694-ccec4613882f" mask="false" fixedValue="false" optional="false">
+				<from>input/content/password</from>
+				<to>password</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1437f98d-ab44-4182-a9eb-fc4e93852b82" mask="false" fixedValue="false" optional="false">
+				<from>input/content/realm</from>
+				<to>realm</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a1ff345e-abbe-481e-b466-f08e834c7706" mask="false" fixedValue="true" optional="false">
+				<from>false</from>
+				<to>trackChanges</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="375e5222-9f50-4921-bb0e-3bfabaa2b979" mask="false" fixedValue="true" optional="false">
+				<from>true</from>
+				<to>active</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d75087d6-7a05-4293-a6cb-570977c66e42" mask="false" fixedValue="true" optional="false">
+				<from>false</from>
+				<to>verified</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5befbfaa-e38b-4197-907b-e1f37643e7b2" mask="false" fixedValue="false" optional="false">
+			<from>resultd699ece3acf443da9cf15c0cd12a090c/user</from>
+			<to>user</to>
+		</steps>
+	</steps>
+</sequence>

@@ -1,0 +1,19 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="90ad399c-a170-49a6-a55a-79ea876f5023">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="69a78376-4cdc-40ad-a275-28a37a963008">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="0a371bfe-6a5b-4959-8eaf-f29b7789212d" serviceId="nabu.cms.core.management.security.database.user.selectGroups" resultName="resultcface8a03cdf4990ad08c060f8e83679" invocationOrder="0" temporaryMapping="true" y="68" x="17">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e90944d9-54b3-4964-bc53-a225e129944d" mask="false" fixedValue="false" optional="false">
+				<from>input/path/userId</from>
+				<to>parameters/userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="280244aa-3184-4a33-96b2-e43a23653a50" mask="false" fixedValue="false" optional="false">
+				<from>input/query/connectionId[0]</from>
+				<to>connection</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9e899d6b-4624-4e2f-95ab-b6c48325013c" mask="false" fixedValue="false" optional="false">
+			<from>resultcface8a03cdf4990ad08c060f8e83679/results</from>
+			<to>output/content/groups</to>
+		</steps>
+	</steps>
+</sequence>

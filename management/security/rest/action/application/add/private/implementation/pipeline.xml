@@ -1,0 +1,7 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure definition="be.nabu.libs.authentication.api.Permission" maxOccurs="unbounded" minOccurs="0" name="permissions"/>
+    <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" maxOccurs="unbounded" minOccurs="0" name="existing" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" name="action" namespace="nabu.cms.core.types.model.core"/>
+</structure>

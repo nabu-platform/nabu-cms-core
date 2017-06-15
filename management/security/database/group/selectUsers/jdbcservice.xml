@@ -1,0 +1,25 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.security.types.groupUser</outputDefinition>
+	<sql>select
+	u.id,
+	ug.created,
+	ug.modified,
+	null,
+	null,
+	u.password_modified,
+	u.alias,
+	u.verification_code,
+	u.invites_left,
+	u.blocked_since,
+	u.anonymous,
+	u.realm,
+	ug.started,
+	ug.stopped,
+	n.verified,
+	n.enabled,
+	ug.id
+from users u join nodes n on u.id = n.id
+left outer join user_groups ug on ug.user_id = u.id
+where ug.group_id = :groupId
+and (:name is null or u.alias ilike '%' || :name || '%')</sql>
+</jdbcService>

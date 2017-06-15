@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.Action</inputDefinition>
+	<sql>update actions set
+	created = :created,
+	modified = :modified,
+	name = :name,
+	audit = :audit,
+	component_id = :componentId
+ where id = :id</sql>
+</jdbcService>

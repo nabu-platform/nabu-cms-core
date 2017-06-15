@@ -1,0 +1,25 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.security.types.roleGroup</outputDefinition>
+	<sql>select
+	r.id,
+	gr.created,
+	gr.modified,
+	gr.started,
+	gr.stopped,
+	gr.service,
+	gr.inherit,
+	gr.group_id,
+	gr.role_id,
+	gr.node_id,
+	context.name,
+	owner.id,
+	case when u.alias is not null then u.alias else owner.name end,
+	r.name,
+	gr.id
+from roles r join group_roles gr on r.id = gr.role_id
+left outer join nodes owner on owner.id = r.owner_id
+left outer join nodes context on context.id = gr.node_id
+left outer join users u on owner.id = u.id
+where gr.group_id = :groupId
+and (:name is null or r.name ilike '%' || :name || '%')</sql>
+</jdbcService>

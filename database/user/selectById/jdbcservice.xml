@@ -1,0 +1,18 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	id,
+	created,
+	modified,
+	password,
+	salt,
+	password_modified,
+	alias,
+	verification_code,
+	invites_left,
+	blocked_since,
+	anonymous,
+	realm
+from users
+where id=:id</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.User</outputDefinition>
+</jdbcService>

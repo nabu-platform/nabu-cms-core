@@ -1,0 +1,12 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Action</outputDefinition>
+	<sql>select
+	a.id,
+	a.created,
+	a.modified,
+	a.name,
+	a.audit,
+	a.component_id
+from actions a join action_roles ar on ar.action_id = a.id
+where ar.role_id = :roleId</sql>
+</jdbcService>

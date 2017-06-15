@@ -1,0 +1,38 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="1e093951-ad5e-493e-a159-48f86f75d704">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="29da5a22-72f5-45c7-af17-d9f5f547b565">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="df8d70d2-fc93-4bb6-b468-2ddb30b31fa6" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.group.selectByUserAndGroupId" resultName="resultb43b71851585465b84f13011837e91f0" y="57" x="60">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3e7a1903-e9ca-48bb-ac66-abb376b2df46" mask="false" fixedValue="false" optional="false">
+				<from>input/userId</from>
+				<to>parameters/userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ace1ad6e-6169-4ed4-bcc3-0dc2ea5cec26" mask="false" fixedValue="false" optional="false">
+				<from>input/groupId</from>
+				<to>parameters/groupId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="02785e12-5b13-4cf9-b6cc-16171c63bc9e" mask="false" fixedValue="false" optional="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fff756a5-af77-4d5f-b03f-997c30464a39" mask="false" fixedValue="false" optional="false">
+			<from>resultb43b71851585465b84f13011837e91f0/results[0]</from>
+			<to>member</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="9c022960-23e7-4544-9d5c-45a398cf9ec4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" name="member != null" id="124b055d-02fa-4157-80e3-3a263d9d6ddb">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5d55ec6b-bef7-4729-bb8e-46f3bb04f829" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.user.group.deleteById" resultName="resulte3d63e53d33c45009460e81810ded2a0" y="114" x="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3ab1abbd-e0f0-4739-a0a2-5431c4741d36" mask="false" fixedValue="false" optional="false">
+					<from>member/id</from>
+					<to>parameters[0]/id</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="37dc026d-4450-46fa-8d1c-8465470af442" mask="false" fixedValue="false" optional="false">
+					<from>input/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

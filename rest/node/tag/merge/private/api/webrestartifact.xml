@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>PUT</method>
+    <path>/node/{nodeId}/tag</path>
+    <queryParameters>definitionId</queryParameters>
+    <role>$user</role>
+    <permissionContext>=input/path/nodeId</permissionContext>
+    <permissionAction>tag.merge</permissionAction>
+    <output>nabu.cms.core.types.rest.node.tagList</output>
+    <configurationType>nabu.cms.core.configuration</configurationType>
+    <lenient>false</lenient>
+</restInterface>

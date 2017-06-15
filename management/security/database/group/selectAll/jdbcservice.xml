@@ -1,0 +1,17 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.security.types.group</outputDefinition>
+	<sql>select
+	g.id,
+	g.created,
+	g.modified,
+	g.name,
+	g.owner_id,
+	case when u.alias is not null then u.alias else owner.name end
+from groups g left outer join nodes owner on owner.id = g.owner_id
+left outer join users u on u.id = owner.id
+where (:name is null or g.name ilike '%' || :name || '%' 
+	or (owner.name is not null and owner.name ilike '%' || :name || '%')
+	or (u.alias is not null and u.alias ilike '%' || :name || '%'))
+and (:ids is null or g.id = any(:ids))
+order by g.name</sql>
+</jdbcService>
