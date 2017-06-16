@@ -1,0 +1,41 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.auditing.types.audit</outputDefinition>
+	<sql>select
+	a.id,
+	a.created,
+	a.modified,
+	a.actor_id,
+	a.description,
+	a.user_device_id,
+	a.host,
+	a.error_code,
+	a.error_log,
+	a.parent_id,
+	a.device_id,
+	a.audit_level_id,
+	a.action_id,
+	a.node_id,
+	d.name,
+	d.description,
+	m.name,
+	actions.name,
+	case when nu.alias is not null then nu.alias else n.name end,
+	c.name,
+	--case when u.alias is not null then u.alias else nu.alias end,
+	u.alias,
+	u is not null
+from node_audits a left outer join user_devices d on a.device_id = d.id
+join master_data_entries m on m.id = a.audit_level_id
+join actions on a.action_id = actions.id
+left outer join nodes n on n.id = a.node_id
+left outer join users nu on nu.id = a.node_id
+left outer join components c on n.component_id = c.id
+left outer join users u on a.actor_id = u.id
+
+where :name is null 
+or (u.alias is not null and u.alias ilike '%' || :name || '%')
+or (n.name is not null and n.name ilike '%' || :name || '%')
+or (nu.alias is not null and nu.alias ilike '%' || :name || '%')
+or actions.name ilike '%' || :name || '%'
+order by created desc</sql>
+</jdbcService>

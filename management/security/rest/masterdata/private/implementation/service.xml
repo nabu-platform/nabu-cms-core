@@ -1,0 +1,65 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="1752fb40-b34e-4d2a-b0a2-18abb2e8333e">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d4667344-2f89-4e40-8255-c479b78e149f">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="947882fc-3c64-474b-ae89-8d0901d17e8c" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.reflection.Node.listByType" resultName="resultb2116c4897db478496b8e1278ab06b9f" y="90" x="68">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fcfa2917-484a-44ae-9bc0-9e24b36369d2" mask="false" fixedValue="true" optional="false">
+				<from>be.nabu.eai.module.web.application.WebApplication</from>
+				<to>type</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="75f5377d-64b6-4dda-8d3f-45176626a8b2" mask="false" fixedValue="false" optional="false">
+			<from>resultb2116c4897db478496b8e1278ab06b9f/nodes[/input/configuration/webApplicationFilter = null || id ~ /input/configuration/webApplicationFilter]/id</from>
+			<to>output/content/applications</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For" disabled="false" id="b1094a14-10fb-42df-83d7-22ad406db0b0" variable="application">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="b57a165a-1551-4f18-af10-37cf9a02f2e6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b3a3dfb7-629f-4ad0-bf7c-a241fd6c4e06" invocationOrder="0" temporaryMapping="true" serviceId="nabu.web.application.Services.information" resultName="resulte7d4f40bd6cd4b0c8fa4fe3a9856afea" y="143" x="182">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="28f8e3f6-3ad8-45fb-b40b-8f7ffe33bfd2" mask="false" fixedValue="false" optional="false">
+					<from>application</from>
+					<to>webApplicationId</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f6e828c1-e470-4528-b694-a3bf764b1dbe" mask="false" fixedValue="false" optional="false">
+				<from>resulte7d4f40bd6cd4b0c8fa4fe3a9856afea/information/realm</from>
+				<to>realm</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="e74cd5b1-cb6f-4e88-bf70-3552c8137788" invocationOrder="1" temporaryMapping="true" serviceId="nabu.utils.List.contains" resultName="resultf7f2eb26807d44578cce35a58aba13bb" y="225" x="271">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="03729216-fa7d-4525-a19b-005020f7c681" mask="false" fixedValue="false" optional="false">
+					<from>resulte7d4f40bd6cd4b0c8fa4fe3a9856afea/information/realm</from>
+					<to>object</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d1868d61-5b1b-4450-b80d-3ed6f076c81b" mask="false" fixedValue="false" optional="false">
+					<from>output/content/realms</from>
+					<to>list</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="eae44a56-d34f-43dd-9258-15d9813d98ee" mask="false" fixedValue="false" optional="false">
+				<from>resultf7f2eb26807d44578cce35a58aba13bb/contains</from>
+				<to>contains</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="367203fd-f49c-4df6-94ec-84a988e8af1f" query="contains">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="false" id="ab9a339d-f72d-4c05-a9ed-0aa01c9626f1">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d519697e-52c1-4ada-a035-90e692d17ec3" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.List.add" resultName="resultd3d2fb9f461f49c0b691653cca078003" y="105" x="67">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="79048116-2053-4496-b357-6735271654be" mask="false" fixedValue="false" optional="false">
+						<from>realm</from>
+						<to>object</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5c016abf-8007-4e56-9c42-7d9eac7e6261" mask="false" fixedValue="false" optional="false">
+						<from>output/content/realms</from>
+						<to>list</to>
+					</steps>
+					<asynchronous>false</asynchronous>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e6bc2eb2-93d7-4e60-8257-eca22e37fa09" mask="false" fixedValue="false" optional="false">
+					<from>resultd3d2fb9f461f49c0b691653cca078003/list</from>
+					<to>output/content/realms</to>
+				</steps>
+			</steps>
+		</steps>
+		<query>output/content/applications</query>
+	</steps>
+</sequence>

@@ -50,7 +50,15 @@ application.views.SecurityRoles = Vue.extend({
 			
 		},
 		addAction: function(role) {
-			
+			var self = this;
+			this.$prompt(function() {
+				return new application.views.SecurityActions({ data: { notIds: role.actions ? role.actions.map(function(x) { return x.id }) : null }});
+			}).then(function(actions) {
+				self.$services.swagger.execute("nabu.cms.core.management.security.rest.role.action.add", { roleId: role.id, actionId: actions.map(function(x) { return x.id }), connectionId: self.connection }).then(function() {
+					role.actions = null;
+					self.loadActions(role);
+				});
+			})
 		},
 		deleteGroup: function(role, group) {
 			this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.group.remove", { roleId: role.id, groupRoleId: group.relationId }).then(function() {
@@ -61,7 +69,7 @@ application.views.SecurityRoles = Vue.extend({
 			});
 		},
 		deleteAction: function(role, action) {
-			this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.action.remove", { roleId: role.id, actionId: action.id }).then(function() {
+			this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.action.remove", { roleId: role.id, actionId: action.id, connectionId: this.connection }).then(function() {
 				var index = role.actions.indexOf(action);
 				if (index >= 0) {
 					role.actions.splice(index, 1);

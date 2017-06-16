@@ -6,7 +6,7 @@
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
 		<div class="filter">
-			<n-form-text v-focus v-timeout:input="load" v-model="name" placeholder="name" class="search"/>
+			<n-form-text v-focus v-timeout:input="load" v-model="name" placeholder="search" class="search"/>
 		</div>
 		<div class="row" :class="{ 'table': $services.manager.tableView() }">
 			<div class="card table-header">
@@ -21,7 +21,7 @@
 					<span class="value">{{ formatDate(role.created) }}</span>
 				</div>
 				<div class="property last">
-					<span class="key">Created</span>
+					<span class="key">Pseudo</span>
 					<n-form-switch class="value fill" :value="role.pseudo"/>
 				</div>
 				<n-collapsible title="Actions" :load="function() { return loadActions(role) }">

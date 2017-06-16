@@ -83,6 +83,6 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Drop" disabled="false" id="184110db-b4c9-4a31-b80c-01cfb76863a9" path="action" xsi:nil="true"/>
 		</steps>
-		<query>permissions[action !# /existing/name]</query>
+		<query>permissions[action !# /existing/name &amp;&amp; action !~ "^=.*"]</query>
 	</steps>
 </sequence>

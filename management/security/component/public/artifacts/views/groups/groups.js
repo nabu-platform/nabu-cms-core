@@ -52,9 +52,9 @@ application.views.SecurityGroups = Vue.extend({
 		addUser: function(group) {
 			var self = this;
 			this.$prompt(function() {
-				return new application.views.SecurityUsers();
-			}).then(function(user) {
-				self.$services.swagger.execute("nabu.cms.core.management.security.rest.group.user.invite", { groupId: group.id, userId: user.id, connectionId: self.connection }).then(function() {
+				return new application.views.SecurityUsers({ data: { notIds: group.users ? group.users.map(function(x) { return x.id }) : [] }});
+			}).then(function(users) {
+				self.$services.swagger.execute("nabu.cms.core.management.security.rest.group.user.invite", { groupId: group.id, userId: users.map(function(x) { return x.id }), connectionId: self.connection }).then(function() {
 					group.users = null;
 					self.loadUsers(group);
 				});
@@ -68,11 +68,11 @@ application.views.SecurityGroups = Vue.extend({
 				}
 			});
 		},
-		deleteAction: function(role, action) {
-			this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.action.remove", { roleId: role.id, actionId: action.id }).then(function() {
-				var index = role.actions.indexOf(action);
+		deleteUser: function(group, user) {
+			this.$services.swagger.execute("nabu.cms.core.management.security.rest.group.user.uninvite", { groupId: group.id, userId: user.id, connectionId: this.connection }).then(function() {
+				var index = group.users.indexOf(user);
 				if (index >= 0) {
-					role.actions.splice(index, 1);
+					group.users.splice(index, 1);
 				}
 			});
 		}

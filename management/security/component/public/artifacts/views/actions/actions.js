@@ -6,13 +6,15 @@ application.views.SecurityActions = Vue.extend({
 			totalPages: 1,
 			name: null,
 			ids: [],
-			webApplications: []
+			notIds: [],
+			webApplications: [],
+			selected: []
 		}
 	},
 	methods: {
 		load: function(page) {
 			var self = this;
-			return this.$services.swagger.execute("nabu.cms.core.management.security.rest.action.list", { connectionId: this.connection, page: page ? page : 0, name: this.name, ids: this.ids }).then(function(actionList) {
+			return this.$services.swagger.execute("nabu.cms.core.management.security.rest.action.list", { connectionId: this.connection, page: page ? page : 0, name: this.name, ids: this.ids, notIds: this.notIds }).then(function(actionList) {
 				self.webApplications.splice(0, self.webApplications.length);
 				self.actions.splice(0, self.actions.length);
 				if (actionList.actions) {
@@ -65,12 +67,10 @@ application.views.SecurityActions = Vue.extend({
 				}
 			});
 		},
-		deleteAction: function(role, action) {
-			this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.action.remove", { roleId: role.id, actionId: action.id }).then(function() {
-				var index = role.actions.indexOf(action);
-				if (index >= 0) {
-					role.actions.splice(index, 1);
-				}
+		deleteAction: function(action) {
+			var self = this;
+			this.$services.swagger.execute("nabu.cms.core.management.security.rest.action.remove", { actionId: action.id, connectionId: self.connection }).then(function() {
+				self.load();
 			});
 		},
 		toggleAudit: function(action) {

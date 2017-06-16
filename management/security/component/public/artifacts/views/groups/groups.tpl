@@ -6,7 +6,7 @@
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
 		<div class="filter">
-			<n-form-text v-timeout:input="load" v-model="name" placeholder="filter" class="search"/>
+			<n-form-text v-timeout:input="load" v-model="name" placeholder="search" class="search"/>
 		</div>
 		<div class="row" :class="{ 'table': $services.manager.tableView() }">
 			<div class="card table-header">
@@ -23,6 +23,7 @@
 					<div class="list">
 						<div class="entry" v-for="user in group.users">
 							<a href="javascript:void(0)" @click="$services.router.route('securityUsers', { ids: [user.id] })">{{ user.alias }}</a>
+							<span class="detail">{{ user.realm }}</span>
 							<button class="delete" @click="deleteUser(group, user)"></button>
 						</div>
 					</div>
@@ -40,7 +41,6 @@
 						</div>
 					</div>
 					<div class="actions">
-						<button @click="$services.router.route('securityRoles', { ids: group.roles.map(function(x) { return x.id }) })">Roles</button>
 						<button class="add" @click="addRole(group)">Role</button>
 					</div>
 				</n-collapsible>

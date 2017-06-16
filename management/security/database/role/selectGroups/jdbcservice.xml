@@ -21,5 +21,6 @@ left outer join nodes owner on owner.id = g.owner_id
 left outer join nodes context on context.id = gr.node_id
 left outer join users u on owner.id = u.id
 where gr.role_id = :roleId
-and (:name is null or g.name ilike '%' || :name || '%')</sql>
+and (:name is null or g.name ilike '%' || :name || '%')
+order by g.name</sql>
 </jdbcService>

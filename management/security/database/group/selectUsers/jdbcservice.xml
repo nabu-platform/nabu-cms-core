@@ -21,5 +21,6 @@
 from users u join nodes n on u.id = n.id
 left outer join user_groups ug on ug.user_id = u.id
 where ug.group_id = :groupId
-and (:name is null or u.alias ilike '%' || :name || '%')</sql>
+and (:name is null or u.alias ilike '%' || :name || '%')
+order by u.alias</sql>
 </jdbcService>

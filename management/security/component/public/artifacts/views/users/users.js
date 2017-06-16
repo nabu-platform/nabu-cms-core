@@ -6,13 +6,15 @@ application.views.SecurityUsers = Vue.extend({
 			totalPages: 1,
 			name: null,
 			ids: [],
-			grid: false
+			grid: false,
+			selected: [],
+			notIds: []
 		}
 	},
 	methods: {
 		load: function(page) {
 			var self = this;
-			return this.$services.swagger.execute("nabu.cms.core.management.security.rest.user.list", { connectionId: this.connection, page: page ? page : 0, name: this.name, ids: this.ids }).then(function(userList) {
+			return this.$services.swagger.execute("nabu.cms.core.management.security.rest.user.list", { connectionId: this.connection, page: page ? page : 0, name: this.name, ids: this.ids, notIds: this.notIds }).then(function(userList) {
 				self.users.splice(0, self.users.length);
 				if (userList.users) {
 					nabu.utils.arrays.merge(self.users, userList.users);

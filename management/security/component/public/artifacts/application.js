@@ -66,4 +66,6 @@ application.configuration.modules.push(function($services) {
 		},
 		url: "/security/actions"
 	});
+	
+	return $services.$register(nabu.cms.Security);
 });

@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.auditing.types.change</outputDefinition>
+	<sql>select
+	h.id,
+	h.created,
+	h.modified,
+	h.started,
+	h.stopped,
+	h.table_name,
+	h.field_name,
+	h.new_value,
+	h.instance_id,
+	h.change_type,
+	h.context_id,
+	case when u.alias is not null then u.alias else n.name end
+from node_history_values h
+left outer join nodes n on n.id = h.instance_id
+left outer join users u on n.id = u.id
+where h.context_id = :auditId</sql>
+</jdbcService>

@@ -20,5 +20,7 @@
 	null
 from users u join nodes n on u.id = n.id
 where (:name is null or u.alias ilike '%' || :name || '%')
-and (:ids is null or u.id = any(:ids))</sql>
+and (:ids is null or u.id = any(:ids))
+and (:notIds is null or u.id &lt;&gt; all(:notIds))
+order by u.alias</sql>
 </jdbcService>

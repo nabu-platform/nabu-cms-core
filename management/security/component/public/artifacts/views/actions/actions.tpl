@@ -1,13 +1,13 @@
 <template id="securityActions">
 	<section id="securityActions">
-		<div class="page-menu">
+		<div class="page-menu" v-show="!$resolve">
 			<h1 class="title">Actions</h1>
 			<button v-if="!ids.length" class="info"><span class="n-icon n-icon-plus"></span>Action</button>
-			<button v-if="!ids.length && webApplications.length" @click="addWebApplication()" title="From Web Application"><span class="n-icon n-icon-plus"></span>Web Application</button>
+			<button v-if="!ids.length && $services.security.applications().length" @click="addWebApplication()" title="From Web Application"><span class="n-icon n-icon-plus"></span>Web Application</button>
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
 		<div class="filter">
-			<n-form-text v-focus v-timeout:input="load" v-model="name" placeholder="name" class="search"/>
+			<n-form-text v-focus v-timeout:input="load" v-model="name" placeholder="search" class="search"/>
 		</div>
 		<div class="row" :class="{ 'table': $services.manager.tableView() }">
 			<div class="card table-header">
@@ -15,8 +15,8 @@
 				<span>Created</span>
 				<span>Audit</span>
 			</div>
-			<div class="card fill" v-for="action in actions">
-				<h2 v-css.show-details>{{ action.name }}</h2>
+			<div class="card fill" v-for="action in actions" :class="{'selected': selected.indexOf(action) >= 0}">
+				<h2 v-css.show-details><n-form-checkbox type="checkbox" :editable="true" :item="action" v-model="selected" class="select" v-if="$resolve"/>{{ action.name }}<button @click="$confirm({ message: 'Are you sure you want to delete this action?', type: 'question', ok: 'Delete' }).then(deleteAction.bind(this, action));$event.stopPropagation()" class="delete"></button></h2>
 				<div class="property">
 					<span class="key">Created</span>
 					<span class="value">{{ formatDate(action.created) }}</span>
@@ -38,6 +38,10 @@
 					</div>
 				</n-collapsible>
 			</div>
+		</div>
+		<div class="actions" v-if="$resolve">
+			<a href="javascript:void(0)" @click="$reject()">Cancel</a>
+			<button class="info" @click="$resolve(selected)">Ok</button>
 		</div>
 		<n-paging ref="paging" :total="totalPages" :load="load"/>
 	</section>

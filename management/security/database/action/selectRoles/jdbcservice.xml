@@ -20,5 +20,6 @@ from roles r join action_roles gr on r.id = gr.role_id
 left outer join nodes owner on owner.id = r.owner_id
 left outer join users u on owner.id = u.id
 where gr.action_id = :actionId
-and (:name is null or r.name ilike '%' || :name || '%')</sql>
+and (:name is null or r.name ilike '%' || :name || '%')
+order by r.name</sql>
 </jdbcService>

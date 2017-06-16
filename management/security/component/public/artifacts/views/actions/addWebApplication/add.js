@@ -3,7 +3,10 @@ application.views.SecurityActionsAddWebApplication = Vue.extend({
 	data: function() {
 		return {
 			application: null,
-			applications: []
+			applications: null
 		}
+	},
+	created: function() {
+		this.applications = this.$services.security.applications();
 	}
 });

@@ -1,0 +1,19 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="2c6b143b-5f6c-486b-9f82-c06ed7a97d53">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="78cfb414-cdb6-41f5-b99b-e685fd9e378e">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7b27be13-bc11-466d-9221-ed4bfdddb037" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.management.auditing.database.audit.selectHistory" resultName="result540918a850ee40908ff706e4e2825416" y="53" x="15">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="768e5f0d-f3b0-4bfe-8e65-32ec5b5a688f" mask="false" fixedValue="false" optional="false">
+				<from>input/query/connectionId[0]</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7bc9bbdb-c769-47ac-8e76-65b8d21f5dee" mask="false" fixedValue="false" optional="false">
+				<from>input/path/auditId</from>
+				<to>parameters/auditId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7ee5d3e7-fcd7-4f63-b077-74a631ac0e97" mask="false" fixedValue="false" optional="false">
+			<from>result540918a850ee40908ff706e4e2825416/results</from>
+			<to>output/content/changes</to>
+		</steps>
+	</steps>
+</sequence>

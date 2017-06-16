@@ -6,7 +6,7 @@
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
 		<div class="filter">
-			<n-form-text v-timeout:input="load" v-focus v-model="name" placeholder="name" class="search"/>
+			<n-form-text v-timeout:input="load" v-focus v-model="name" placeholder="search" class="search"/>
 		</div>
 		<div class="row" :class="{ 'table': $services.manager.tableView() }">
 			<div class="card table-header">
@@ -16,8 +16,8 @@
 				<span>Password</span>
 				<span>Enabled</span>
 			</div>
-			<div class="card fill" v-for="user in users">
-				<h2 v-css.show-details><button class="select" @click="$resolve(user)" v-if="$resolve"></button>{{ user.alias }}<span class="detail">{{ user.realm }}</span></h2>
+			<div class="card fill" v-for="user in users" :class="{'selected': selected.indexOf(user) >= 0}">
+				<h2 v-css.show-details><n-form-checkbox v-model="selected" :item="user" v-if="$resolve"/>{{ user.alias }}<span class="detail">{{ user.realm }}</span></h2>
 				<div class="property">
 					<span class="key">Created</span>
 					<span class="value">{{ formatDate(user.created) }}</span>
@@ -28,7 +28,7 @@
 				</div>
 				<div class="property">
 					<span class="key">Password</span>
-					<span class="value">{{ user.passwordModified ? formatDate(user.passwordModified) : 'unmodified' }} <button class="info" @click="updatePassword(user)" title="Set New Password"><span class="n-icon n-icon-refresh"></span></button></span>
+					<span class="value" :class="{'highlight': !user.passwordModified}">{{ user.passwordModified ? formatDate(user.passwordModified) : 'unmodified' }} <button class="info" @click="updatePassword(user)" title="Set New Password"><span class="n-icon n-icon-refresh"></span></button></span>
 				</div>
 				<div class="property last">
 					<span class="key">Enabled</span>
@@ -48,6 +48,10 @@
 					</div>
 				</n-collapsible>
 			</div>
+		</div>
+		<div class="actions" v-if="$resolve">
+			<a href="javascript:void(0)" @click="$reject()">Cancel</a>
+			<button class="info" @click="$resolve(selected)">Ok</button>
 		</div>
 		<n-paging ref="paging" :total="totalPages" :load="load"/>
 	</section>
