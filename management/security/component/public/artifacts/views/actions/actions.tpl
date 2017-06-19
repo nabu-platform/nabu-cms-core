@@ -39,10 +39,10 @@
 				</n-collapsible>
 			</div>
 		</div>
+		<n-paging ref="paging" :total="totalPages" :load="load"/>
 		<div class="actions" v-if="$resolve">
 			<a href="javascript:void(0)" @click="$reject()">Cancel</a>
 			<button class="info" @click="$resolve(selected)">Ok</button>
 		</div>
-		<n-paging ref="paging" :total="totalPages" :load="load"/>
 	</section>
 </template>
