@@ -1,8 +1,9 @@
 @path
 @output nabu.cms.core.types.components.user
 @operationId nabu.cms.core.remember
-@title Will try to refresh the user session or remember the user identity
+@title Remember
 @tags user
+## Will try to refresh the user session or remember the user identity
 
 if (!user.authenticated() && !user.refresh() && !user.remember())
 	response.code(401);
