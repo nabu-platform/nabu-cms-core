@@ -4,8 +4,7 @@
     <path>/node/{nodeId}/relation</path>
     <queryParameters>type</queryParameters>
     <role>$user</role>
-    <permissionContext>=input/path/nodeId</permissionContext>
-    <permissionAction>="user.relate." + input/query/type[0]</permissionAction>
     <output>nabu.cms.core.types.rest.node.relationOutput</output>
     <configurationType>nabu.cms.core.configuration</configurationType>
+    <lenient>false</lenient>
 </restInterface>

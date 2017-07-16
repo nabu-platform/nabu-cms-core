@@ -34,10 +34,20 @@ application.configuration.modules.push(function($services) {
 	else {
 		menu.actions.push(entry);
 	}
+
+	var loadQuickmenu = function() {
+		var buttons = [];
+		buttons.push({ class: 'n-icon-user', route: "securityUsers", title: "Users" });
+		buttons.push({ class: 'n-icon-users', route: "securityGroups", title: "Groups" });
+		buttons.push({ class: 'n-icon-gears', route: "securityRoles", title: "Roles" });
+		buttons.push({ class: 'n-icon-link', route: "securityActions", title: "Actions" });
+		$services.manager.quickmenu(buttons);
+	}
 	
 	$services.router.register({
 		alias: "securityRoles",
 		enter: function(parameters) {
+			loadQuickmenu();
 			return new application.views.SecurityRoles({data:parameters});
 		},
 		url: "/security/roles"
@@ -46,6 +56,7 @@ application.configuration.modules.push(function($services) {
 	$services.router.register({
 		alias: "securityGroups",
 		enter: function(parameters) {
+			loadQuickmenu();
 			return new application.views.SecurityGroups({data:parameters});
 		},
 		url: "/security/groups"
@@ -54,6 +65,7 @@ application.configuration.modules.push(function($services) {
 	$services.router.register({
 		alias: "securityUsers",
 		enter: function(parameters) {
+			loadQuickmenu();
 			return new application.views.SecurityUsers({data:parameters});
 		},
 		url: "/security/users"
@@ -62,9 +74,19 @@ application.configuration.modules.push(function($services) {
 	$services.router.register({
 		alias: "securityActions",
 		enter: function(parameters) {
+			loadQuickmenu();
 			return new application.views.SecurityActions({data:parameters});
 		},
 		url: "/security/actions"
+	});
+	
+	$services.router.register({
+		alias: "securityNodes",
+		enter: function(parameters) {
+			loadQuickmenu();
+			return new application.views.SecurityNodes({data:parameters});
+		},
+		url: "/security/nodes"
 	});
 	
 	return $services.$register(nabu.cms.Security);

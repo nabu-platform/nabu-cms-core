@@ -19,7 +19,7 @@
 	n.enabled,
 	null
 from users u join nodes n on u.id = n.id
-where (:name is null or u.alias ilike '%' || :name || '%')
+where (:name is null or u.alias ilike '%' || :name || '%' or u.realm ilike '%' || :name || '%')
 and (:ids is null or u.id = any(:ids))
 and (:notIds is null or u.id &lt;&gt; all(:notIds))
 order by u.alias</sql>

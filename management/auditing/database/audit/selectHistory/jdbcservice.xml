@@ -12,7 +12,8 @@
 	h.instance_id,
 	h.change_type,
 	h.context_id,
-	case when u.alias is not null then u.alias else n.name end
+	case when u.alias is not null then u.alias else n.name end,
+	null
 from node_history_values h
 left outer join nodes n on n.id = h.instance_id
 left outer join users u on n.id = u.id

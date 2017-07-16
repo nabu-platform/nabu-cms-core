@@ -17,7 +17,7 @@
 				<span>Target</span>
 			</div>
 			<div class="card fill" v-for="audit in audits" :key="audit.id">
-				<h2 v-css.show-details>{{ audit.action }}</h2>
+				<h2 v-css.show-details :title="audit.description">{{ audit.action }}</h2>
 				<div class="property">
 					<span class="key">Created</span>
 					<span class="value">{{ formatDateTime(audit.created) }}</span>
@@ -32,15 +32,17 @@
 				</div>
 				<div class="property last">
 					<span class="key">Target</span>
-					<span class="value">{{ audit.nodeName }}<span v-show="audit.componentType" class="tag">{{ audit.componentType }}</span></span>
+					<span class="value">{{ audit.nodeName }}<span v-show="!audit.nodeName && audit.nodeId">{{ audit.nodeId }}</span><span v-show="audit.componentType" class="tag">{{ audit.componentType }}</span></span>
 				</div>
 				<n-collapsible title="Changes" :load="function() { return loadChanges(audit) }">
 					<div class="list" v-show="audit.changes">
 						<div class="entry" v-for="change in audit.changes">
-							<span class="target" v-show="change.instanceName" :title="change.tableName">{{ change.instanceName }}: </span
-							><span class="table" v-show="!change.instanceName">{{ change.tableName }}.</span
+							<span class="target" v-show="change.instanceName">{{ change.instanceName }} </span
+							><span class="detail">{{ change.instanceId }}: </span
+							><span class="table">{{ change.tableName }}.</span
 							><span class="field">{{ change.fieldName }}</span
 							><span v-show="change.newValue" class="value">= {{ change.newValue }}</span
+							><span class="detail" v-show="change.possibleValue">{{ change.possibleValue }}</span
 							><span class="tag">{{ change.changeType }}</span>
 						</div>
 					</div>

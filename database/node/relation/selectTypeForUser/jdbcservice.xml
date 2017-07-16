@@ -1,5 +1,4 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.types.model.core.NodeRelation</outputDefinition>
 	<sql>select
 	id,
 	created,
@@ -9,5 +8,7 @@
 	target_id
 from node_relations
 where source_id = :sourceId
-and relation_type_id = :relationTypeId</sql>
+and relation_type_id = :relationTypeId
+order by created desc</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.NodeRelation</outputDefinition>
 </jdbcService>

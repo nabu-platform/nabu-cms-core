@@ -1,5 +1,4 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.management.security.types.role</outputDefinition>
 	<sql>select
 	r.id,
 	r.created,
@@ -12,5 +11,7 @@ from roles r left outer join nodes owner on r.owner_id = owner.id
 left outer join users u on u.id = owner.id
 where (:name is null or r.name ilike '%' || :name || '%')
 and (:ids is null or r.id = any(:ids))
+and (:notIds is null or r.id &lt;&gt; all(:notIds))
 order by r.name</sql>
+	<outputDefinition>nabu.cms.core.management.security.types.role</outputDefinition>
 </jdbcService>

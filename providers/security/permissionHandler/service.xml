@@ -38,6 +38,10 @@
 						<from>input/context</from>
 						<to>context</to>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c36fea9a-6c0c-4f0f-bb19-6f0d80e9b3e5" optional="false" mask="false" fixedValue="false">
+						<from>input/configuration/allowDisabledNodes</from>
+						<to>allowDisabledNodes</to>
+					</steps>
 					<asynchronous>false</asynchronous>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8e8ac8ae-0d0e-4ffa-bd2e-6ec68f57de08" optional="false" mask="false" fixedValue="false">
@@ -265,6 +269,41 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Set allowed" id="aebb76ec-9a05-43ef-9468-3830995d22ad">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="344b0607-64e4-40c2-a1bc-a42bc1e44c6f" optional="false" mask="false" fixedValue="true">
 				<from>true</from>
+				<to>output/response</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" comment="If you are not allowed and there is a configured permission handler, check that one as well" id="dffca8df-007d-4905-9ba1-44a5ac3099db">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="!output/response &amp;&amp; input/configuration/implementations/permissionHandler != null" id="1d94e851-96e0-4d35-8899-f60fd6eebc3a">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d8adf3ae-48df-43c4-8a7f-e9add585ef4c" serviceId="nabu.cms.core.interfaces.permissionHandler" resultName="resultba408b839b5e4955bce77efcf58efd68" invocationOrder="0" temporaryMapping="true" y="112" x="66">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="dc7f1653-c583-4976-b2f8-ff432ead0484" optional="false" mask="false" fixedValue="false">
+					<from>input/token</from>
+					<to>token</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="44347678-f736-4004-842b-b94b8007e186" optional="false" mask="false" fixedValue="false">
+					<from>input/context</from>
+					<to>context</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="74deeb47-93cd-4a1f-9628-b55441649c51" optional="false" mask="false" fixedValue="false">
+					<from>input/action</from>
+					<to>action</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ad1cefd3-9523-453c-a4ac-599de61de261" optional="false" mask="false" fixedValue="false">
+					<from>input/configuration</from>
+					<to>configuration</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fa895610-ba9c-48ab-9d08-38632840582a" optional="false" mask="false" fixedValue="false">
+					<from>input/configuration/implementations/permissionHandler</from>
+					<to>implementationId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1e87f787-8b22-48e5-9093-70b1c7ea044f" optional="false" mask="false" fixedValue="false">
+					<from>node</from>
+					<to>node</to>
+				</steps>
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="465b58fb-4ed4-49e9-b5ba-6b4ce7362045" optional="false" mask="false" fixedValue="false">
+				<from>resultba408b839b5e4955bce77efcf58efd68/response</from>
 				<to>output/response</to>
 			</steps>
 		</steps>

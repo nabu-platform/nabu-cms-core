@@ -20,7 +20,7 @@
 				<h2 v-css.show-details><n-form-checkbox v-model="selected" :item="user" v-if="$resolve"/>{{ user.alias }}<span class="detail">{{ user.realm }}</span></h2>
 				<div class="property">
 					<span class="key">Created</span>
-					<span class="value">{{ formatDate(user.created) }}</span>
+					<span class="value">{{ formatDate(user.created) }}<a class="button info" target="_blank" v-if="$services.security.canRemoteAuthenticate(user.realm)" :href="$services.security.remoteAuthenticate(user.realm, user.alias)" title="Remote Authenticate"><span class="n-icon n-icon-user"></span></a></span>
 				</div>
 				<div class="property">
 					<span class="key">Verified</span>
@@ -40,7 +40,7 @@
 							<a href="javascript:void(0)" @click="$services.router.route('securityGroups', { ids: [group.id] })">{{ group.name }}</a>
 							<span class="tag" v-if="group.nodeId">{{ group.nodeName }}</span>
 							<button class="delete" @click="deleteGroup(role, group)"></button>
-							<div class="detail" v-if="group.ownerId">{{ group.ownerName }}</div>
+							<div class="detail" title="Owner of the group" v-if="group.ownerId">{{ group.ownerName }}</div>
 						</div>
 					</div>
 					<div class="actions">

@@ -6,7 +6,8 @@ nabu.cms.Security = function Security($services) {
 	
 	this.state = {
 		applications: [],
-		realms: []
+		realms: [],
+		remoteAuthentication: ${json.stringify(structure(remote: configuration("nabu.cms.core.management.security.securityConfiguration")/remoteAuthentication))}
 	};
 	
 	Vue.observe(this.state, true);
@@ -17,6 +18,21 @@ nabu.cms.Security = function Security($services) {
 	
 	this.realms = function() {
 		return this.state.realms;
+	}
+	
+	this.canRemoteAuthenticate = function(realm) {
+		if (this.state.remoteAuthentication instanceof Array) {
+			for (var i = 0; i < this.state.remoteAuthentication.length; i++) {
+				if (this.state.remoteAuthentication[i].realm == realm) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	this.remoteAuthenticate = function(realm, alias) {
+		return $services.swagger.parameters("nabu.management.cms.security.remoteAuthenticate", { realm: realm, alias: alias }).url;
 	}
 	
 	this.$initialize = function() {

@@ -46,8 +46,21 @@ application.views.SecurityGroups = Vue.extend({
 			}
 			return promise;
 		},
-		addGroup: function(role) {
-			
+		addRole: function(group) {
+			var self = this;
+			this.$prompt(function() {
+				return new application.views.SecurityRoles({ data: { notIds: group.roles ? group.roles.map(function(x) { return x.id }) : [] }});
+			}).then(function(roles) {
+				self.$prompt(
+					function() {
+						return new application.views.SecurityNodes();
+					}).then(function(nodes) {
+					self.$services.swagger.execute("nabu.cms.core.management.security.rest.group.role.add", { groupId: group.id, roleId: roles.map(function(x) { return x.id }), connectionId: self.connection, nodeId: nodes ? nodes.map(function(x) { return x.id }) : [] }).then(function() {
+						group.roles = null;
+						self.loadRoles(group);
+					});
+				});
+			})
 		},
 		addUser: function(group) {
 			var self = this;

@@ -5,13 +5,15 @@ application.views.SecurityRoles = Vue.extend({
 			roles: [],
 			totalPages: 1,
 			name: null,
-			ids: []
+			ids: [],
+			selected: [],
+			notIds: []
 		}
 	},
 	methods: {
 		load: function(page) {
 			var self = this;
-			return this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.list", { connectionId: this.connection, page: page ? page : 0, name: this.name, ids: this.ids }).then(function(roleList) {
+			return this.$services.swagger.execute("nabu.cms.core.management.security.rest.role.list", { connectionId: this.connection, page: page ? page : 0, name: this.name, ids: this.ids, notIds: this.notIds }).then(function(roleList) {
 				self.roles.splice(0, self.roles.length);
 				if (roleList.roles) {
 					nabu.utils.arrays.merge(self.roles, roleList.roles);
@@ -45,6 +47,14 @@ application.views.SecurityRoles = Vue.extend({
 				}, promise);
 			}
 			return promise;
+		},
+		addRole: function() {
+			var self = this;
+			this.$prompt(function() {
+				return new application.views.SecurityAddRole();
+			}).then(function() {
+				self.load();	
+			});
 		},
 		addGroup: function(role) {
 			

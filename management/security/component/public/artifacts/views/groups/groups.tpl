@@ -23,7 +23,7 @@
 					<div class="list">
 						<div class="entry" v-for="user in group.users">
 							<a href="javascript:void(0)" @click="$services.router.route('securityUsers', { ids: [user.id] })">{{ user.alias }}</a>
-							<span class="detail">{{ user.realm }}</span>
+							<span class="detail" title="The realm this user belongs to">{{ user.realm }}</span>
 							<button class="delete" @click="deleteUser(group, user)"></button>
 						</div>
 					</div>
@@ -35,9 +35,9 @@
 					<div class="list">
 						<div class="entry" v-for="role in group.roles">
 							<a href="javascript:void(0)" @click="$services.router.route('securityRoles', { ids: [role.id] })">{{ role.name }}</a>
-							<span class="tag" v-if="role.nodeId">{{ role.nodeName }}</span>
+							<span @click="$router.route('securityNodes', { ids: [role.nodeId] })" class="tag interactive" :title="role.inherit ? 'Active for this node and its children' : 'Only active for this node'" v-if="role.nodeId">{{ role.nodeName }}</span>
 							<button class="delete" @click="deleteRole(group, role)"></button>
-							<div class="detail" v-if="role.ownerId">{{ role.ownerName }}</div>
+							<div class="detail" title="Owner of the role" v-if="role.ownerId">{{ role.ownerName }}</div>
 						</div>
 					</div>
 					<div class="actions">

@@ -1,0 +1,30 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	n.id,
+	n.created,
+	n.modified,
+	n.started,
+	n.stopped,
+	n.owner_id,
+	n.verified,
+	n.enabled,
+	n.parent_id,
+	n.version,
+	n.priority,
+	n.name,
+	n.title,
+	n.description,
+	n.path,
+	n.slug,
+	n.language_id,
+	n.component_id,
+	case when u.alias is not null then u.alias else owner.name end,
+	c.name
+from nodes n join components c on n.component_id = c.id
+left outer join nodes owner on n.owner_id = owner.id
+left outer join users u on owner.id = u.id
+where (:name is null or n.name ilike '%' || :name || '%' or u.alias ilike '%' || :name || '%' or owner.name ilike '%' || :name || '%')
+and (:ids is null or n.id = any(:ids))
+order by n.name, n.created</sql>
+	<outputDefinition>nabu.cms.core.management.security.types.node</outputDefinition>
+</jdbcService>

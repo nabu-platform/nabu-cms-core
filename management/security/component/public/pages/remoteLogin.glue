@@ -1,0 +1,30 @@
+@path
+@operationId nabu.management.cms.security.remoteAuthenticate
+@title Authenticate Remotely
+@tags user
+## Allows the user to remotely authenticate with the application as someone
+
+@get
+realm ?= null
+
+@get
+alias ?= null
+
+configuration = configuration("nabu.cms.core.management.security.securityConfiguration")
+configuration = first(configuration/remoteAuthentication[realm = /realm])
+
+if (configuration == null)
+	response.code(400)
+	abort()
+
+else
+	token = nabu.web.application.jwt.Services.marshal(
+		configuration/keystoreId,
+		configuration/keyAlias,
+		date.date(),
+		validUntil: date.date() + "5min",
+		issuer: environment("webApplicationId"),
+		subject: alias,
+		realm: environment("realm"))/response
+	token = nabu.utils.Uri.encodeUriComponent(token)/component
+	redirect(configuration/endpoint + "?token=" + token)

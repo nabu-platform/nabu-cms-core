@@ -1,0 +1,5 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select name from nodes where id = :id
+union
+select name from master_data_entries where id = :id</sql>
+</jdbcService>

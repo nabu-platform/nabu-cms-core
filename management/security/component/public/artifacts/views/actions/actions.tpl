@@ -2,7 +2,7 @@
 	<section id="securityActions">
 		<div class="page-menu" v-show="!$resolve">
 			<h1 class="title">Actions</h1>
-			<button v-if="!ids.length" class="info"><span class="n-icon n-icon-plus"></span>Action</button>
+			<button v-if="!ids.length" @click="addAction" class="info"><span class="n-icon n-icon-plus"></span>Action</button>
 			<button v-if="!ids.length && $services.security.applications().length" @click="addWebApplication()" title="From Web Application"><span class="n-icon n-icon-plus"></span>Web Application</button>
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
@@ -30,7 +30,7 @@
 						<div class="entry" v-for="role in action.roles">
 							<a href="javascript:void(0)" @click="$services.router.route('securityRoles', { ids: [role.id] })">{{ role.name }}</a>
 							<button class="delete" @click="deleteRole(action, role)"></button>
-							<div class="detail" v-if="role.ownerId">{{ role.ownerName }}</div>
+							<div class="detail" title="Owner of the role" v-if="role.ownerId">{{ role.ownerName }}</div>
 						</div>
 					</div>
 					<div class="actions">

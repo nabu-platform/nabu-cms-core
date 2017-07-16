@@ -54,7 +54,12 @@ application.views.SecurityActions = Vue.extend({
 			})
 		},
 		addAction: function() {
-			
+			var self = this;
+			this.$prompt(function() {
+				return new application.views.SecurityAddAction();
+			}).then(function() {
+				self.load();	
+			});
 		},
 		addRole: function(action) {
 			

@@ -1,38 +1,40 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="024a89d0-6371-46b2-8c7a-db5862bac2e2">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="0303a204-ff23-4b59-b463-dbd020679a1b">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="15b4b0fd-2381-41ad-895d-5202d985b1bc" serviceId="nabu.cms.core.services.user.getCurrent" resultName="result527937050c6f439a9d25d3b9e289fb1b" invocationOrder="0" temporaryMapping="true" y="127" x="37">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="df93f8cb-ce57-4f27-99dd-2de65499a9d9" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="df93f8cb-ce57-4f27-99dd-2de65499a9d9" mask="false" fixedValue="false" optional="false">
 				<from>input/configuration/connectionId</from>
 				<to>connectionId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9db5d192-2ab9-4535-93f0-d6380a567865" optional="false" mask="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9db5d192-2ab9-4535-93f0-d6380a567865" mask="false" fixedValue="true" optional="false">
 				<from>true</from>
 				<to>mustExist</to>
 			</steps>
+			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1d32417a-0b85-45ff-87c7-c264783c3f48" optional="false" mask="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1d32417a-0b85-45ff-87c7-c264783c3f48" mask="false" fixedValue="false" optional="false">
 			<from>result527937050c6f439a9d25d3b9e289fb1b/user</from>
 			<to>user</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="469309b7-7d5e-4d88-9f0a-d7c13e664723">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="3f28ebb9-df04-48db-8e19-b04e55ace720" serviceId="nabu.cms.core.database.node.relation.selectById" resultName="resultb7641339582f41bcae1dbcbb0229d13d" invocationOrder="0" temporaryMapping="true" y="34" x="116">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d37ba42b-fca4-4315-bc6e-3f7258b15101" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d37ba42b-fca4-4315-bc6e-3f7258b15101" mask="false" fixedValue="false" optional="false">
 				<from>input/configuration/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0ea40576-32c1-4839-bf5d-5fd22eeeed1d" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0ea40576-32c1-4839-bf5d-5fd22eeeed1d" mask="false" fixedValue="false" optional="false">
 				<from>input/path/relationId</from>
 				<to>parameters/id</to>
 			</steps>
+			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="95e8793a-580b-43cc-95ed-6e0227dfd65c" optional="false" mask="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="95e8793a-580b-43cc-95ed-6e0227dfd65c" mask="false" fixedValue="false" optional="false">
 			<from>resultb7641339582f41bcae1dbcbb0229d13d/results[0]</from>
 			<to>relation</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Check that the relation exists and it points to the user and the node" id="a20cae78-a096-497b-9e6b-272e12a2cb0e">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0af1b44d-8639-4cdc-8cb9-ea75d92abd39" optional="false" mask="false" fixedValue="true">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0af1b44d-8639-4cdc-8cb9-ea75d92abd39" mask="false" fixedValue="true" optional="false">
 			<from>=relation != null &amp;&amp; relation/sourceId = user/id &amp;&amp; relation/targetId = input/path/nodeId</from>
 			<to>output/isAllowed</to>
 		</steps>

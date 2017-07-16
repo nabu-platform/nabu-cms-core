@@ -1,3 +1,9 @@
 <structure name="security">
     <field minOccurs="0" name="webApplicationFilter" type="java.lang.String"/>
+    <structure maxOccurs="unbounded" minOccurs="0" name="remoteAuthentication">
+        <field name="realm" type="java.lang.String"/>
+        <field name="endpoint" type="java.lang.String"/>
+        <field name="keystoreId" type="java.lang.String"/>
+        <field name="keyAlias" type="java.lang.String"/>
+    </structure>
 </structure>
