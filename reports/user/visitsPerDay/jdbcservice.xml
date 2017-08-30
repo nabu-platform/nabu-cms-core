@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select series.quarter as quarter,
+	case when access.amount is null then 0 else access.amount end as amount,
+	access.user_agent as user_agent
+from (select date_trunc('day', quarter) + date_part('hour', quarter)::int / 24 * interval '24 hours' as quarter from (select generate_series(current_timestamp - interval '90 day',current_timestamp ,interval '1 day') as quarter) as quarter) series
+left outer join (select date_trunc('day', created) + date_part('hour', created)::int / 24 * interval '24 hours' as quarter, count(id) as amount, user_agent from http_access_logs 
+	group by user_agent, quarter) access on series.quarter = access.quarter
+order by quarter
+
+</sql>
+</jdbcService>
