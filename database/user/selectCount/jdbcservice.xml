@@ -1,0 +1,6 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select count(n.id) as total from users u join nodes n on u.id = n.id
+where (:enabled is null or n.enabled = :enabled)
+and (:anonymous is null or u.anonymous = :anonymous)
+and (:verified is null or n.verified is not null)</sql>
+</jdbcService>

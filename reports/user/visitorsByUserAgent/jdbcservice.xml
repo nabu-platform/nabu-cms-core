@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select user_agent, count(id) as total
+from http_access_logs 
+	group by user_agent
+order by total
+
+</sql>
+</jdbcService>
