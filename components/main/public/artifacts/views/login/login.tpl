@@ -1,4 +1,4 @@
-<template id="nabuCmsCoreLogin">
+<template id="nabu-cms-core-login">
 	<div class="nabu nabu-cms nabu-cms-core-login">
 		<h1 class="title">{{ loginLabel }}</h1>
 		<n-form class="classic" ref="form">
@@ -9,7 +9,7 @@
 			</n-form-section>
 			<footer slot="footer">
 				<div class="actions">
-					<button :disabled="!valid || working" class="info" @click="login">{{ loginLabel }}</button>
+					<button :disabled="!valid || working" class="primary" @click="login">{{ loginLabel }}</button>
 				</div>
 				<n-messages :messages="messages"/>
 			</footer>

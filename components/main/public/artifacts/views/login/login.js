@@ -18,7 +18,7 @@ nabu.views.cms.core.Login = Vue.component("n-view-login", {
 		rememberLabel: {
 			type: String,
 			required: false,
-			default: "%{user:Remember?}"
+			default: "%{user:Stay logged in?}"
 		},
 		loginLabel: {
 			type: String,
@@ -31,7 +31,7 @@ nabu.views.cms.core.Login = Vue.component("n-view-login", {
 			default: []
 		}
 	},
-	template: "#nabuCmsCoreLogin",
+	template: "#nabu-cms-core-login",
 	data: function() {
 		return {
 			username: null,
