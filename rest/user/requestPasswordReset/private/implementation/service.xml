@@ -1,0 +1,76 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="9a91d82d-845a-43d7-aa64-ee8a379e86d9">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="8b621e45-002e-4934-a484-e7b538fec240">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8b7e11ed-dbed-4a15-a9c8-913e90c779ed" serviceId="nabu.web.application.Services.information" resultName="result9dc5fb84b3ff4717a59c1a67b0a249d7" invocationOrder="0" temporaryMapping="true" y="56" x="84">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="467e8fa9-8ca4-4a29-a2d1-e94c4d0dcf13" fixedValue="false" mask="false" optional="false">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c4cba129-c609-4087-aa72-d0f190faffed" fixedValue="false" mask="false" optional="false">
+			<from>result9dc5fb84b3ff4717a59c1a67b0a249d7/information/realm</from>
+			<to>realm</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c9d6aff9-7ad4-4e11-be52-18789e6da482">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="1851279b-f426-4385-9ba7-a591f91fb415" serviceId="nabu.cms.core.database.user.selectActiveByAlias" resultName="result913b99c8ab8c42c9b6221f09aa5e3636" invocationOrder="0" temporaryMapping="true" y="90" x="51">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="156c8dc0-6f92-455a-b6b1-92a51e7034bb" fixedValue="false" mask="false" optional="false">
+				<from>input/configuration/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5df70ed4-7ece-4c26-9aef-7a02a5d9a020" fixedValue="false" mask="false" optional="false">
+				<from>input/query/alias</from>
+				<to>parameters/alias</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="aa17fc7b-d6c5-4638-87d4-1c797cdcf311" fixedValue="true" mask="false" optional="false">
+				<from>true</from>
+				<to>parameters/caseInsensitive</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="804ce0be-5ff6-43ef-8582-9fbc59ba5efe" fixedValue="false" mask="false" optional="false">
+				<from>realm</from>
+				<to>parameters/realm</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7eb97570-62ce-4aa8-90c7-f2d4b8dc8b1a" fixedValue="false" mask="false" optional="false">
+			<from>result913b99c8ab8c42c9b6221f09aa5e3636/results[0]</from>
+			<to>user</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="1c4e9bb0-e234-445c-8870-60d113188ffa" query="user">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="9b6f64ab-e22b-4b93-8e1c-5d8b797efcf5" message="=&quot;No user '&quot; + input/query/alias + &quot;' found in realm '&quot; + input/query/realm + &quot;'&quot;" xsi:nil="true"/>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="9b8c3107-4e46-4699-aa6f-27a91813c9b8">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7e244006-e758-42e9-9a12-d6bc312f20e4" serviceId="nabu.cms.core.emails.sendPasswordForgot" resultName="resultea9d3288cad342b1bc8ca2890878119d" invocationOrder="0" temporaryMapping="true" y="77" x="170">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1442573c-5baa-4a86-8770-13a132394477" fixedValue="false" mask="false" optional="false">
+				<from>input/configuration/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6a8442c5-56d5-4c22-bdc1-5395d76fbcd8" fixedValue="false" mask="false" optional="false">
+				<from>input/configuration/emails/smtpClientId</from>
+				<to>smtpClientId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6ca9e15d-e6e0-4565-8269-94bd8f041428" fixedValue="false" mask="false" optional="false">
+				<from>input/configuration/emails/from</from>
+				<to>from</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7360080b-240e-4f25-b013-441704e22b4b" fixedValue="false" mask="false" optional="false">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d188d5ab-05da-4935-a183-b83e9ed22f20" fixedValue="false" mask="false" optional="false">
+				<from>user/id</from>
+				<to>userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f46c915c-96fd-4c1b-a6e1-81efd4bf7447" fixedValue="false" mask="false" optional="false">
+				<from>input/configuration/emails/forgot/url</from>
+				<to>url</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ff4ae9b6-f128-49ab-9dab-2ef82fa96feb" fixedValue="false" mask="false" optional="false">
+				<from>input/configuration/emails/forgot/subject</from>
+				<to>subject</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

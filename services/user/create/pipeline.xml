@@ -16,9 +16,15 @@
         <field minOccurs="0" name="name" type="java.lang.String"/>
         <field minOccurs="0" name="title" type="java.lang.String"/>
         <field minOccurs="0" name="description" type="java.lang.String"/>
+        <field minOccurs="0" name="sendEmail" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
     </structure>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.web.cms.core.types.model.core"/>
+    <structure definition="nabu.utils.types.NodeDescription" maxOccurs="unbounded" minOccurs="0" name="webApplications"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="information"/>
+    <field name="applicationFound" type="java.lang.Boolean"/>
+    <structure definition="nabu.cms.core.configuration" name="configuration"/>
+    <field minOccurs="0" name="password" type="java.lang.String"/>
 </structure>

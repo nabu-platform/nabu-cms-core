@@ -2,7 +2,7 @@
 	<section class="securityUsers">
 		<div class="page-menu" v-show="!$resolve">
 			<h1 class="title">Users</h1>
-			<button v-if="!ids.length" class="info"><span class="n-icon n-icon-plus"></span>User</button>
+			<button v-if="!ids.length" class="info" @click="addUser"><span class="n-icon n-icon-plus"></span>User</button>
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
 		<div class="filter">

@@ -25,4 +25,17 @@
         <field comment="The categories where users can create new entries" maxOccurs="unbounded" minOccurs="0" name="userDefinedCategory" type="java.lang.String"/>
         <field maxOccurs="unbounded" minOccurs="0" name="preloadedCategories" type="java.lang.String"/>
     </structure>
+    <structure minOccurs="0" name="emails">
+        <field name="smtpClientId" type="java.lang.String"/>
+        <field minOccurs="0" name="from" type="java.lang.String"/>
+        <structure minOccurs="0" name="forgot">
+            <field minOccurs="0" name="url" type="java.lang.String"/>
+            <field minOccurs="0" name="subject" type="java.lang.String"/>
+        </structure>
+        <structure minOccurs="0" name="verify">
+            <field minOccurs="0" name="url" type="java.lang.String"/>
+            <field minOccurs="0" name="subject" type="java.lang.String"/>
+            <field minOccurs="0" name="includePassword" type="java.lang.Boolean"/>
+        </structure>
+    </structure>
 </structure>

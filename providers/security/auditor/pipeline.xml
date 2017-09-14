@@ -1,0 +1,7 @@
+<structure interface="be.nabu.eai.module.auditing.api.FlatServiceTracker.track" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="reversedHierarchy" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <structure collectionName="NodeAudits" definition="nabu.cms.core.types.model.core.NodeAudit" minOccurs="0" name="parent" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="NodeAudits" definition="nabu.cms.core.types.model.core.NodeAudit" minOccurs="0" name="entry" namespace="nabu.cms.core.types.model.core"/>
+</structure>

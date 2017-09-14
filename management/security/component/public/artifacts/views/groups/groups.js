@@ -62,6 +62,14 @@ application.views.SecurityGroups = Vue.extend({
 				});
 			})
 		},
+		addGroup: function() {
+				var self = this;
+				this.$prompt(function() {
+					return new application.views.SecurityAddGroup();
+				}).then(function() {
+					self.load();	
+				});
+		},
 		addUser: function(group) {
 			var self = this;
 			this.$prompt(function() {

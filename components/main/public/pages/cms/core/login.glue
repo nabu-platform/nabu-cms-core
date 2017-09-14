@@ -3,6 +3,7 @@
 @operationId nabu.cms.core.login
 @title Log in
 @tags user
+@role $guest
 ## Allows the user to log in
 
 @content
@@ -12,7 +13,11 @@ if (!user.authenticate(login/alias, login/password, login/remember != null && lo
 	response.code(400)
 	abort()
 else
+	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
 	response.content(structure(
-			alias: user.token()/alias,
-			realm: user.token()/realm
+			alias: user.token()/name,
+			realm: user.token()/realm,
+			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
+			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
+			language: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm)/results/language))
 		))

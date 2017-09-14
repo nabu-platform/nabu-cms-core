@@ -1,0 +1,17 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Role</outputDefinition>
+	<sql>select
+	r.id,
+	r.created,
+	r.modified,
+	r.name,
+	r.pseudo,
+	r.owner_id
+from roles r join group_roles gr on gr.role_id = r.id
+	join groups g on gr.group_id = g.id
+	join user_groups ug on ug.group_id = g.id
+	join users u on u.id = ug.user_id
+where u.alias = :alias
+and gr.node_id is null
+</sql>
+</jdbcService>

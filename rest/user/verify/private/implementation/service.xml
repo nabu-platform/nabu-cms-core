@@ -1,15 +1,15 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="db541052-6c27-421e-b354-2c789077324a">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="a69aff63-cf83-4868-b23c-332bc0ede565">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="595f5f05-78ac-4742-ba4c-a4090e88085a" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.actions.user.verify" resultName="resulte509fae9bf704311a04f4ca0d26d6a38" y="26" x="85">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4b4bbed8-0189-4983-9d18-faad0fc5da6a" fixedValue="false" optional="false" mask="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="595f5f05-78ac-4742-ba4c-a4090e88085a" serviceId="nabu.cms.core.actions.user.verify" resultName="resulte509fae9bf704311a04f4ca0d26d6a38" invocationOrder="0" temporaryMapping="true" y="26" x="85">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4b4bbed8-0189-4983-9d18-faad0fc5da6a" fixedValue="false" mask="false" optional="false">
 				<from>input/configuration/connectionId</from>
 				<to>connectionId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7f933b77-15b2-4a86-b64c-250ea6b17e51" fixedValue="false" optional="false" mask="false">
-				<from>input/query/verificationCode[0]</from>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7f933b77-15b2-4a86-b64c-250ea6b17e51" fixedValue="false" mask="false" optional="false">
+				<from>input/query/verificationCode</from>
 				<to>verificationCode</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1a700f1e-d51d-45ed-9c9f-9e5276380aac" fixedValue="false" optional="false" mask="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1a700f1e-d51d-45ed-9c9f-9e5276380aac" fixedValue="false" mask="false" optional="false">
 				<from>input/path/userId</from>
 				<to>userId</to>
 			</steps>

@@ -5,48 +5,96 @@ if (!nabu.services.cms) { nabu.services.cms = {} }
 // TODO: the user language (if any)
 // only remember: get back all the redirect uris for all supported oauth2 schemes if you are not logged in
 // no additional roundtrip necessary
-nabu.services.VueService(function($services) {
+nabu.services.VueService(Vue.extend({
 	data: function() {
 		return {
-			token: null
+			alias: null,
+			realm: null,
+			language: null,
+			oauth2: {},
+			roles: ["$guest"],
+			actions: [],
+			languages: []
 		}
 	},
 	computed: {
 		loggedIn: function() {
-			return this.token != null;
+			return this.alias != null;
 		}
 	},
 	methods: {
 		login: function(username, password, remember) {
 			var self = this;
-			return this.$services.swagger.execute("nabu.cms.core.login", { 
+			var promise = this.$services.q.defer();
+			this.$services.swagger.execute("nabu.cms.core.login", { 
 				body: {
 					alias: username,
 					password: password,
 					remember: remember ? remember : false
 				}})
-				.then(
-					function(token) {
-						Vue.set(self, "token", token);
+				.then(function(result) {
+					self.alias = result.alias;
+					self.realm = result.realm;
+					self.language = result.language;
+					self.roles.splice(0, self.roles.length, "$user");
+					if (result.roles) {
+						nabu.utils.arrays.merge(self.roles, result.roles);
 					}
-				);
+					if (result.actions) {
+						nabu.utils.arrays.merge(self.actions, result.actions);
+					}
+					self.$services.$clear().then(function() {
+						promise.resolve();
+					}, promise);
+				}, promise);
+			return promise;
 		},
 		logout: function() {
 			var self = this;
-			return this.$services.swagger.execute("nabu.cms.core.logout").then(
-				function() {
-					Vue.set(self, "token", null);
-					self.$services.$clear();
-				}
-			);
+			var promise = this.$services.q.defer();
+			this.$services.swagger.execute("nabu.cms.core.logout").then(function() {
+				self.alias = null;
+				self.realm = null;
+				self.language = null;
+				self.actions.splice(0, self.actions.length);
+				self.roles.splice(0, self.roles.length, "$guest");
+				self.$services.$clear().then(function() {
+					promise.resolve();
+				}, promise);
+			}, promise);
+			return promise;
 		},
 		remember: function() {
 			var self = this;
-			return this.$services.swagger.execute("nabu.cms.core.remember").then(
-				function(token) {
-					Vue.set(self, "token", token);
+			var promise = this.$services.q.defer();
+			this.$services.swagger.execute("nabu.cms.core.remember").then(function(result) {
+				self.alias = result.alias;
+				self.realm = result.realm;
+				self.language = result.language;
+				self.roles.splice(0, self.roles.length, "$user");
+				if (result.roles) {
+					nabu.utils.arrays.merge(self.roles, result.roles);
 				}
-			);
+				if (result.actions) {
+					nabu.utils.arrays.merge(self.actions, result.actions);
+				}
+				self.$services.$clear().then(function() {
+					promise.resolve();
+				}, promise);
+			}, promise);
+			return promise;
+		},
+		requestPasswordReset: function(alias) {
+			return this.$services.swagger.execute("nabu.cms.core.rest.user.requestPasswordReset", { alias: alias });
+		},
+		resetPassword: function(userId, verificationCode, newPassword) {
+			return this.$services.swagger.execute("nabu.cms.core.rest.user.resetPassword", { userId: userId, body: {
+				verificationCode: verificationCode,
+				newPassword: newPassword
+			}});
+		},
+		verify: function(userId, verificationCode) {
+			return this.$services.swagger.execute("nabu.cms.core.rest.user.verify", { userId: userId, verificationCode: verificationCode });
 		}
 	}
-}, { name: "nabu.services.cms.User" });
+}), { name: "nabu.services.cms.User" });

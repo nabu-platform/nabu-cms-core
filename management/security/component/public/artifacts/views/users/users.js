@@ -46,6 +46,14 @@ application.views.SecurityUsers = Vue.extend({
 			}
 			return promise;
 		},
+		addUser: function() {
+			var self = this;
+			this.$prompt(function() {
+				return new application.views.SecurityAddUser();
+			}).then(function() {
+				self.load();	
+			});
+		},
 		addGroup: function(role) {
 			
 		},

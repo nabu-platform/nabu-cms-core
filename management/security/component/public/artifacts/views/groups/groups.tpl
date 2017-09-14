@@ -2,7 +2,7 @@
 	<section class="securityGroups">
 		<div class="page-menu">
 			<h1 class="title">Groups</h1>
-			<button v-if="!ids.length" class="info"><span class="n-icon n-icon-plus"></span>Group</button>
+			<button v-if="!ids.length" class="info" @click="addGroup"><span class="n-icon n-icon-plus"></span>Group</button>
 			<button v-if="ids.length" @click="ids.splice(0, ids.length)"><span class="n-icon n-icon-filter"></span>Clear Filter</button>
 		</div>
 		<div class="filter">

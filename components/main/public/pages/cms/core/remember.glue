@@ -6,10 +6,47 @@
 ## Will try to refresh the user session or remember the user identity
 
 if (!user.authenticated() && !user.refresh() && !user.remember())
+	oauth2 = structure()
+
+	# add fodged
+	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.fodged.stateful")/has)
+		oauth2 = oauth2 + structure(fodged: nabu.authentication.oauth2.server.Services.getRedirectLink(
+			"nabu.cms.core.providers.oauth2.fodged.stateful", 
+			environment("webApplicationId"), 
+			"OFFLINE")/link)
+
+	# add google
+	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.google.provider")/has)
+		oauth2 = oauth2 + structure(google: nabu.authentication.oauth2.server.Services.getRedirectLink(
+			"nabu.cms.core.providers.oauth2.google.provider", 
+			environment("webApplicationId"), 
+			"OFFLINE",
+			true)/link)
+			
+	# add facebook
+	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.facebook.provider")/has)
+		oauth2 = oauth2 + structure(facebook: nabu.authentication.oauth2.server.Services.getRedirectLink(
+			"nabu.cms.core.providers.oauth2.facebook.provider", 
+			environment("webApplicationId"), 
+			"OFFLINE")/link)
+			
+	# add linkedin
+	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.linkedin.provider")/has)
+		oauth2 = oauth2 + structure(linkedIn: nabu.authentication.oauth2.server.Services.getRedirectLink(
+			"nabu.cms.core.providers.oauth2.linkedin.provider", 
+			environment("webApplicationId"), 
+			"OFFLINE")/link)
+	
+	# set the oauth redirects as result
+	response.content(oauth2)
 	response.code(401);
 	abort();
 else
+	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
 	response.content(structure(
-			alias: user.token()/alias,
-			realm: user.token()/realm
+			alias: user.token()/name,
+			realm: user.token()/realm,
+			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
+			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
+			language: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm)/results/language))
 		))

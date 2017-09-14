@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.NodeAudit</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	actor_id,
+	description,
+	user_device_id,
+	host,
+	error_code,
+	error_log,
+	parent_id,
+	device_id,
+	audit_level_id,
+	action_id,
+	node_id
+from node_audits
+where id = any(:ids)</sql>
+</jdbcService>

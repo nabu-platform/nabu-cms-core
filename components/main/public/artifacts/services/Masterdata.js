@@ -1,4 +1,4 @@
-nabu.services.VueService(function Masterdata($services) {
+nabu.services.VueService(Vue.extend({
 	data: function() {
 		return {
 			masterdata: {
@@ -119,4 +119,4 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 			return this.masterdata.resolved[masterdataId].name;
 		}
 	}
-}, { name: "nabu.services.cms.Masterdata" });
+}), { name: "nabu.services.cms.Masterdata" });

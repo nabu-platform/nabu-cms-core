@@ -2,6 +2,7 @@
 @operationId nabu.cms.core.verify
 @title Verify
 @tags user
+@role $guest
 ## Allows the user to verify his account
 
 @get
@@ -17,6 +18,6 @@ nabu.cms.core.services.user.verify(
 	connectionId: application.configuration("nabu.cms.core.configuration")/connectionId,
 	userId: userId,
 	verificationCode: verificationCode)
-	
+			
 # on success redirect to the service root
 redirect(redirect)
