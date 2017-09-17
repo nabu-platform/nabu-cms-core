@@ -1,0 +1,40 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>insert into node_addresses (
+	id,
+	created,
+	modified,
+	x,
+	y,
+	street,
+	city,
+	post_code,
+	country,
+	province,
+	additional,
+	number,
+	district,
+	priority,
+	address_type_id,
+	sector,
+	node_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:x,
+	:y,
+	:street,
+	:city,
+	:postCode,
+	:country,
+	:province,
+	:additional,
+	:number,
+	:district,
+	:priority,
+	:addressTypeId,
+	:sector,
+	:nodeId
+)</sql>
+	<inputDefinition>nabu.cms.core.types.model.core.NodeAddress</inputDefinition>
+</jdbcService>

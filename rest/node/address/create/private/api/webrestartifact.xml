@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>POST</method>
+    <path>/node/{nodeId}/address</path>
+    <role>$user</role>
+    <permissionContext>=input/path/nodeId</permissionContext>
+    <permissionAction>address.create</permissionAction>
+    <input>nabu.cms.core.types.rest.node.addressInput</input>
+    <output>nabu.cms.core.types.rest.node.addressOutput</output>
+    <configurationType>nabu.cms.core.configuration</configurationType>
+    <lenient>false</lenient>
+    <decamelify>false</decamelify>
+    <webApplicationId>false</webApplicationId>
+</restInterface>

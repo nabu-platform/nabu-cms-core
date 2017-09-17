@@ -48,5 +48,5 @@ else
 			realm: user.token()/realm,
 			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
 			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
-			language: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm)/results/language))
+			languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
 		))

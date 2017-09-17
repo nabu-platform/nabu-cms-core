@@ -92,9 +92,16 @@ window.addEventListener("load", function() {
 			alias: "notFound",
 			module: "nabu.cms",
 			enter: function() {
-				return "#notFound";
+				return "#nabu-cms-core-not-found";
 			},
 			url: "/misc/notFound"
+		});
+		
+		// ------------------------------- SERVICES
+		$services.$register({
+			user: nabu.services.cms.User,
+			masterdata: nabu.services.cms.Masterdata,
+			language: nabu.services.cms.Language
 		});
 	});
 });

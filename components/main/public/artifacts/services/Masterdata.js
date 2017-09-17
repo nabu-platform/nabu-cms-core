@@ -11,28 +11,32 @@ nabu.services.VueService(Vue.extend({
 			}
 		}	
 	},
-	methods: {
+	computed: {
 ${{
 configuration = application.configuration("nabu.cms.core.configuration")
 
-stripper = lambda(x, structure(x, created: null, modified: null))
-preloaded = series()
-for (name : configuration/masterdata/preloadedCategories)
-	entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
-		connection: configuration/connectionId,
-		parameters: structure(name: name))/results
-	entries = derive(stripper, entries)
-	preloaded = merge(preloaded, structure(
-		name: name,
-		entries: entries))
+if (configuration/connection != null)
+	stripper = lambda(x, structure(x, created: null, modified: null))
+	preloaded = series()
+	for (name : configuration/masterdata/preloadedCategories)
+		entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
+			connection: configuration/connectionId,
+			parameters: structure(name: name))/results
+		entries = derive(stripper, entries)
+		preloaded = merge(preloaded, structure(
+			name: name,
+			entries: entries))
+	categories = nabu.cms.core.database.masterdata.category.selectAll(application.configuration("nabu.cms.core.configuration")/connectionId)/results
+	categories = derive(stripper, categories)
+else
+	preloaded = series()
+	categories = series()
+
 echo("		preloaded: function() { return " + json.stringify(structure(preloaded: preloaded)) + "; },\n")
-
-categories = nabu.cms.core.database.masterdata.category.selectAll(application.configuration("nabu.cms.core.configuration")/connectionId)/results
-categories = derive(stripper, categories)
-
 echo("		categories: function() { return " + json.stringify(structure(categories: categories)) + "; },\n")
 }}
-				
+	},	
+	methods: {
 		// we can only list preloaded categories, use suggest for other categories	
 		list: function(name) {
 			for (var i = 0; i < this.preloaded.length; i++) {

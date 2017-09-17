@@ -10,11 +10,10 @@ nabu.services.VueService(Vue.extend({
 		return {
 			alias: null,
 			realm: null,
-			language: null,
+			languageId: null,
 			oauth2: {},
 			roles: ["$guest"],
-			actions: [],
-			languages: []
+			actions: []
 		}
 	},
 	computed: {
@@ -35,7 +34,7 @@ nabu.services.VueService(Vue.extend({
 				.then(function(result) {
 					self.alias = result.alias;
 					self.realm = result.realm;
-					self.language = result.language;
+					self.languageId = result.languageId;
 					self.roles.splice(0, self.roles.length, "$user");
 					if (result.roles) {
 						nabu.utils.arrays.merge(self.roles, result.roles);
@@ -55,7 +54,7 @@ nabu.services.VueService(Vue.extend({
 			this.$services.swagger.execute("nabu.cms.core.logout").then(function() {
 				self.alias = null;
 				self.realm = null;
-				self.language = null;
+				self.languageId = null;
 				self.actions.splice(0, self.actions.length);
 				self.roles.splice(0, self.roles.length, "$guest");
 				self.$services.$clear().then(function() {
@@ -70,7 +69,7 @@ nabu.services.VueService(Vue.extend({
 			this.$services.swagger.execute("nabu.cms.core.remember").then(function(result) {
 				self.alias = result.alias;
 				self.realm = result.realm;
-				self.language = result.language;
+				self.languageId = result.languageId;
 				self.roles.splice(0, self.roles.length, "$user");
 				if (result.roles) {
 					nabu.utils.arrays.merge(self.roles, result.roles);

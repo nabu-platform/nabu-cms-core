@@ -17,7 +17,7 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="b415f2a2-f6f8-4c6e-bc33-44ead1d6eca6">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="input/query/language != null &amp;&amp; input/query/language !# languages/name" id="f79143c0-cf27-450d-a565-62e253e4e5ab" message="=&quot;Invalid language: &quot; + input/query/language" xsi:nil="true"/>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="input/query/language != null &amp;&amp; input/query/languageId !# languages/id" id="f79143c0-cf27-450d-a565-62e253e4e5ab" message="=&quot;Invalid language: &quot; + input/query/language" xsi:nil="true"/>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Update the language" id="29508111-ac48-43c6-80f6-7a4b7b3b3b4a">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="50e21243-2200-4e3f-b89e-189724f605f5" serviceId="nabu.cms.core.database.node.updateLanguage" resultName="result6e9b2ea1655844a597ce17acd52e1ae7" invocationOrder="1" temporaryMapping="true" y="311" x="316">
@@ -25,13 +25,13 @@
 				<from>input/configuration/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1393fdb4-dd2a-45e9-8147-02d18eff517d" fixedValue="false" mask="false" optional="false">
-				<from>languages[name = /input/query/language]/id</from>
-				<to>parameters[0]/languageId</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cfc99eed-7b50-4552-be65-ef40b1b5340c" fixedValue="false" mask="false" optional="false">
 				<from>result8e153ab474244bfbb688e5020ddf250f/user/id</from>
 				<to>parameters[0]/id</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="94e2f2c3-2be4-4c50-91ef-dd0b40226f4c" fixedValue="false" mask="false" optional="false">
+				<from>input/query/languageId</from>
+				<to>parameters[0]/languageId</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>

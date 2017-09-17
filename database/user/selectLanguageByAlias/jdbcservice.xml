@@ -1,5 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<sql>select me.name as language
+	<sql>select me.name as language,
+me.id as language_id
 from users u join nodes n on u.id = n.id
 join master_data_entries me on n.language_id = me.id
 where u.alias = :alias

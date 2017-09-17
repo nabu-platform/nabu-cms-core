@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>PUT</method>
+    <path>/node/{nodeId}/address/{locationId}</path>
+    <role>$user</role>
+    <permissionContext>=input/path/nodeId</permissionContext>
+    <permissionAction>address.update</permissionAction>
+    <input>nabu.cms.core.types.rest.node.addressInput</input>
+    <configurationType>nabu.cms.core.configuration</configurationType>
+    <lenient>false</lenient>
+    <decamelify>false</decamelify>
+    <webApplicationId>false</webApplicationId>
+</restInterface>
