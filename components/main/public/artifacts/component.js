@@ -62,6 +62,17 @@ window.addEventListener("load", function() {
 			url: "/user/reset"
 		});
 		$services.router.register({
+			priority: -1,
+			alias: "initialize",
+			module: "nabu.cms",
+			query: ["verificationCode", "userId"],
+			enter: function(parameters) {
+				parameters.initialize = true;
+				return new nabu.views.cms.core.Reset({ data: parameters });
+			},
+			url: "/user/initialize"
+		});
+		$services.router.register({
 			services: ["user"],
 			priority: -1,
 			alias: "verify",

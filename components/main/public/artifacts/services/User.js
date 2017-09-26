@@ -92,6 +92,12 @@ nabu.services.VueService(Vue.extend({
 				newPassword: newPassword
 			}});
 		},
+		initializePassword: function(userId, verificationCode, newPassword) {
+			return this.$services.swagger.execute("nabu.cms.core.rest.user.initializePassword", { userId: userId, body: {
+				verificationCode: verificationCode,
+				newPassword: newPassword
+			}});
+		},
 		verify: function(userId, verificationCode) {
 			return this.$services.swagger.execute("nabu.cms.core.rest.user.verify", { userId: userId, verificationCode: verificationCode });
 		}

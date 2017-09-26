@@ -17,6 +17,12 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 		userId: {
 			type: String,
 			required: true
+		},
+		// whether this also serves to initially verify the user
+		initialize: {
+			type: Boolean,
+			required: false,
+			default: false
 		}
 	},
 	data: function() {
@@ -35,7 +41,8 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 				this.messages.splice(0, this.messages.length);
 				this.working = true;
 				var self = this;
-				this.$services.user.resetPassword(this.userId, this.verificationCode, this.password1).then(
+				var func = this.initialize ? this.$services.user.initializePassword : this.$services.user.resetPassword;
+				func(this.userId, this.verificationCode, this.password1).then(
 					function(profile) {
 						if (self.route) {
 							self.$services.router.route(self.route);
@@ -47,7 +54,7 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 					},
 					function(error) {
 						self.messages.push({
-							title: "%{reset:Password reset failed}",
+							title: self.initialize ? "%{initialize:Password initialization failed}" : "%{reset:Password reset failed}",
 							severity: "error"
 						})
 						self.working = false;

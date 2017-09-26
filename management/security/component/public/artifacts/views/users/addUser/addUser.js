@@ -8,19 +8,20 @@ application.views.SecurityAddUser = Vue.extend({
 			password2: null,
 			valid: false,
 			verified: false,
-			sendEmail: false
+			sendEmail: true,
+			setPassword: false
 		}
 	},
 	methods: {
 		validate: function() {
-			this.valid = this.alias && this.realm && this.password1 && this.password2 && this.password1 == this.password2;
+			this.valid = this.alias && this.realm && (!this.setPasswordd || (this.password1 && this.password2 && this.password1 == this.password2));
 		},
 		create: function() {
 			var self = this;
 			this.$services.swagger.execute("nabu.cms.core.management.security.rest.user.create", { connectionId: this.$services.manager.connection(), body: {
 				alias: self.alias,
 				realm: self.realm,
-				password: self.password1,
+				password: self.setPassword ? self.password1 : null,
 				verified: self.verified,
 				sendEmail: self.sendEmail
 			}}).then(function() {

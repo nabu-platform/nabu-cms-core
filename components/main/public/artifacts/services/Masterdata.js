@@ -15,7 +15,7 @@ nabu.services.VueService(Vue.extend({
 ${{
 configuration = application.configuration("nabu.cms.core.configuration")
 
-if (configuration/connection != null)
+if (configuration/connectionId != null)
 	stripper = lambda(x, structure(x, created: null, modified: null))
 	preloaded = series()
 	for (name : configuration/masterdata/preloadedCategories)
