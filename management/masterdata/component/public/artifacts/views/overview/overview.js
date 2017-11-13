@@ -2,9 +2,6 @@ application.views.MasterdataOverview = Vue.extend({
 	template: "#masterdataOverview",
 	data: function() {
 		return {
-			connections: [],
-			dialects: [],
-			connection: null,
 			dialect: null,
 			categories: [],
 			entries: [],
@@ -17,21 +14,8 @@ application.views.MasterdataOverview = Vue.extend({
 			allEntries: false
 		};
 	},
-	activate: function(done) {
-		var self = this;
-		nabu.utils.ajax({
-			url: "${server.root()}api/connection",
-			success: function(response) {
-				var content = JSON.parse(response.responseText);
-				if (content.ids) {
-					nabu.utils.arrays.merge(self.connections, content.ids);
-				}
-				if (content.dialects) {
-					nabu.utils.arrays.merge(self.dialects, content.dialects);
-				}
-				done();
-			}
-		});
+	mounted: function() {
+		this.loadCategories();
 	},
 	methods: {
 		addCategory: function() {
@@ -40,7 +24,7 @@ application.views.MasterdataOverview = Vue.extend({
 			if (value) {
 				nabu.utils.ajax({
 					method: "POST",
-					url: "${server.root()}api/cms/masterdata/category?connectionId=" + self.connection,
+					url: "${server.root()}api/cms/masterdata/category?connectionId=" + this.$services.manager.connection(),
 					data: {
 						name: value
 					},
@@ -58,7 +42,7 @@ application.views.MasterdataOverview = Vue.extend({
 			if (value) {
 				nabu.utils.ajax({
 					method: "POST",
-					url: "${server.root()}api/cms/masterdata/category/" + self.currentCategory.id + "?connectionId=" + self.connection,
+					url: "${server.root()}api/cms/masterdata/category/" + self.currentCategory.id + "?connectionId=" + this.$services.manager.connection(),
 					data: {
 						name: value
 					},
@@ -74,7 +58,7 @@ application.views.MasterdataOverview = Vue.extend({
 			if (self.selectedCategories.length) {
 				nabu.utils.ajax({
 					method: "DELETE",
-					url: "${server.root()}api/cms/masterdata/category/" + self.selectedCategories[self.selectedCategories.length - 1].id + "?connectionId=" + self.connection,
+					url: "${server.root()}api/cms/masterdata/category/" + self.selectedCategories[self.selectedCategories.length - 1].id + "?connectionId=" + this.$services.manager.connection(),
 					success: function(response) {
 						var category = self.selectedCategories.pop();
 						if (self.currentCategory && self.currentCategory.id == category.id) {
@@ -98,7 +82,7 @@ application.views.MasterdataOverview = Vue.extend({
 			if (self.selectedEntries.length) {
 				nabu.utils.ajax({
 					method: "DELETE",
-					url: "${server.root()}api/cms/masterdata/entry/" + self.selectedEntries[self.selectedEntries.length - 1].id + "?connectionId=" + self.connection,
+					url: "${server.root()}api/cms/masterdata/entry/" + self.selectedEntries[self.selectedEntries.length - 1].id + "?connectionId=" + this.$services.manager.connection(),
 					success: function(response) {
 						var entry = self.selectedEntries.pop();
 						var index = self.entries.indexOf(entry);
@@ -150,7 +134,7 @@ application.views.MasterdataOverview = Vue.extend({
 			nabu.utils.ajax({
 				url: "${server.root()}api/cms/masterdata/category/" + category.id,
 				parameters: {
-					connectionId: self.connection	
+					connectionId: this.$services.manager.connection()
 				},
 				success: function(response) {
 					if (response.responseText) {
@@ -165,16 +149,16 @@ application.views.MasterdataOverview = Vue.extend({
 				}
 			});
 		},
-		loadCategories() {
+		loadCategories: function() {
 			var self = this;
 			self.categories.splice(0, self.categories.length);
 			self.entries.splice(0, self.entries.length);
 			self.message = null;
-			if (self.connection) {
+			if (this.$services.manager.connection()) {
 				nabu.utils.ajax({
 					url: "${server.root()}api/cms/masterdata/category",
 					parameters: {
-						connectionId: self.connection	
+						connectionId: this.$services.manager.connection()
 					},
 					success: function(response) {
 						var content = JSON.parse(response.responseText);
@@ -190,7 +174,7 @@ application.views.MasterdataOverview = Vue.extend({
 		}
 	},
 	watch: {
-		connection: function(newValue, oldValue) {
+		'$services.manager.state.connection': function(newValue, oldValue) {
 			this.loadCategories();
 		},
 		allCategories: function(newValue, oldValue) {

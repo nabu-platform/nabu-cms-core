@@ -1,0 +1,4 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select * from $table where (:ids is null or id = any(:ids))</sql>
+	<outputDefinition>nabu.cms.core.types.database.dynamic</outputDefinition>
+</jdbcService>

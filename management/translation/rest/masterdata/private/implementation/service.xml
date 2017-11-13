@@ -1,0 +1,32 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="5f7a3326-e1e9-41f9-a0f3-09449beb5024">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="a4fd939e-4523-4101-9fa1-8070bf7241f6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="a14f1633-8dd9-4e3b-a0c6-ece38179ce46" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.entry.selectByCategory" resultName="resultc17beb6e6fb74f9299516d9c728cbbcd" y="49" x="19">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a23de2b6-d409-4552-8424-a25fe0b8f73a" mask="false" fixedValue="false" optional="false">
+				<from>input/query/connection</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4e7abbf7-360e-4f78-9581-2324c8018e80" mask="false" fixedValue="true" optional="false">
+				<from>language</from>
+				<to>parameters/name</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9bf5e3da-8ac9-449e-a36a-c9ee13d9c573" mask="true" fixedValue="false" optional="false">
+			<from>resultc17beb6e6fb74f9299516d9c728cbbcd/results</from>
+			<to>output/content/languages</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d4667344-2f89-4e40-8255-c479b78e149f">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="947882fc-3c64-474b-ae89-8d0901d17e8c" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.reflection.Node.listByType" resultName="resultb2116c4897db478496b8e1278ab06b9f" y="90" x="68">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fcfa2917-484a-44ae-9bc0-9e24b36369d2" mask="false" fixedValue="true" optional="false">
+				<from>be.nabu.eai.module.web.application.WebApplication</from>
+				<to>type</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5b2030ef-d6df-450d-8fad-70dd1361f620" mask="false" fixedValue="false" optional="false">
+			<from>resultb2116c4897db478496b8e1278ab06b9f/nodes[/input/configuration/webApplicationFilter = null || id ~ /input/configuration/webApplicationFilter]/id</from>
+			<to>output/content/webApplications</to>
+		</steps>
+	</steps>
+</sequence>

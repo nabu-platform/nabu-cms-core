@@ -24,4 +24,6 @@
     </structure>
     <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" name="node" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" minOccurs="0" name="parent" namespace="nabu.web.cms.core.types.model.core"/>
+    <field name="stagedId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="update" type="java.lang.Boolean"/>
 </structure>

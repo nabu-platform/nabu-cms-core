@@ -1,0 +1,15 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.translation.types.rest.translation</outputDefinition>
+	<sql>select
+	t.id,
+	t.modified,
+	t.context,
+	t.name,
+	t.translation
+from master_data_entries me
+	join master_data_categories mc on me.master_data_category_id = mc.id
+	join translations t on t.context = mc.name and t.name = me.name
+	join master_data_entries mt on t.language_id = mt.id
+where mt.name = :language
+order by mc.name, me.name</sql>
+</jdbcService>

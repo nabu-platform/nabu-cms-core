@@ -29,7 +29,7 @@ window.addEventListener("load", function() {
 			component: nabu.designer.Border
 		});
 		
-		$services.$register({
+		return $services.$register({
 			designer: nabu.design.Designer
 		});
 	});

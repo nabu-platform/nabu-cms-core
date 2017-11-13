@@ -41,9 +41,16 @@ if (!user.authenticated() && !user.refresh() && !user.remember())
 	response.content(oauth2)
 	response.code(401);
 	abort();
+# if it's a system account, it is not "logged in"
+# it allows us to secure rest services for internal use (e.g. emails)
+else if (nabu.utils.Token.isSystemToken(user.token())/response)
+	response.code(401);
+	abort();
 else
 	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
+	user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
 	response.content(structure(
+			id: user/id,
 			alias: user.token()/name,
 			realm: user.token()/realm,
 			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,

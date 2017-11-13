@@ -60,17 +60,19 @@ nabu.services.VueService(Vue.extend({
 					// if the user is logged in, update his profile
 					if (this.$services.user.loggedIn) {
 						var self = this;
-						this.$services.swagger.execute("nabu.cms.core.rest.user.updateLanguage", { languageId: newValue.id }).then(function() {
+						this.$services.swagger.execute("nabu.cms.core.rest.user.updateLanguage", { userId: this.$services.user.id, languageId: newValue.id }).then(function() {
 							self.$services.user.languageId = newValue.id;
+							// force a reload to get the new language
+							window.location.reload(true);
 						});
 					}
 					// otherwise, set it in a cookie
 					else {
 						this.$services.cookies.set("language", newValue.name, newValue.name ? 365 : -1);
 						this.cookieValue = newValue ? newValue.name : null;
+						// force a reload to get the new language
+						window.location.reload(true);
 					}
-					// force a reload to get the new language
-					window.location.reload(true);
 				}
 			}
 		}

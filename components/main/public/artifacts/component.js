@@ -40,6 +40,7 @@ window.addEventListener("load", function() {
 			enter: function() {
 				return new nabu.views.cms.core.Login();
 			},
+			roles: ["$guest"],
 			url: "/user/login"
 		});
 		$services.router.register({
@@ -49,6 +50,7 @@ window.addEventListener("load", function() {
 			enter: function() {
 				return new nabu.views.cms.core.Forgot();
 			},
+			roles: ["$guest"],
 			url: "/user/forgot"
 		});
 		$services.router.register({
@@ -59,6 +61,7 @@ window.addEventListener("load", function() {
 			enter: function(parameters) {
 				return new nabu.views.cms.core.Reset({ data: parameters });
 			},
+			roles: ["$guest"],
 			url: "/user/reset"
 		});
 		$services.router.register({
@@ -70,6 +73,7 @@ window.addEventListener("load", function() {
 				parameters.initialize = true;
 				return new nabu.views.cms.core.Reset({ data: parameters });
 			},
+			roles: ["$guest"],
 			url: "/user/initialize"
 		});
 		$services.router.register({
@@ -85,7 +89,18 @@ window.addEventListener("load", function() {
 					$services.router.route("error", { message: "%{error:The account could not be verified, perhaps because it is already verified. You can try to <a v-route:login>log in</a>.}" });
 				})
 			},
+			roles: ["$guest"],
 			url: "/user/verify"
+		});
+		$services.router.register({
+			priority: -1,
+			alias: "update",
+			module: "nabu.cms",
+			enter: function(parameters) {
+				return new nabu.views.cms.core.Update({data:parameters});
+			},
+			roles: ["$user"],
+			url: "/user/update"
 		});
 		
 		// ------------------------------- DEFAULT PAGES
@@ -109,7 +124,7 @@ window.addEventListener("load", function() {
 		});
 		
 		// ------------------------------- SERVICES
-		$services.$register({
+		return $services.$register({
 			user: nabu.services.cms.User,
 			masterdata: nabu.services.cms.Masterdata,
 			language: nabu.services.cms.Language

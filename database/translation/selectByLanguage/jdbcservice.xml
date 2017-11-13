@@ -1,0 +1,14 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Translation</outputDefinition>
+	<sql>select
+	t.id,
+	t.created,
+	t.modified,
+	t.context,
+	t.name,
+	t.translation,
+	t.language_id
+from translations t join master_data_entries me on t.language_id = me.id
+where me.name = :language
+</sql>
+</jdbcService>

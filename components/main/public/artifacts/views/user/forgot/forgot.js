@@ -22,11 +22,11 @@ nabu.views.cms.core.Forgot = Vue.component("n-cms-forgot", {
 	},
 	methods: {
 		requestPassword: function() {
-			if (this.valid) {
+			if (this.validate(true)) {
 				var self = this;
 				this.messages.splice(0, this.messages.length);
 				this.working = true;
-				this.$services.user.requestPasswordReset(this.username).then(function() {
+				return this.$services.user.requestPasswordReset(this.username).then(function() {
 					if (self.route) {
 						self.$services.router.route(self.route);
 					}
@@ -41,8 +41,8 @@ nabu.views.cms.core.Forgot = Vue.component("n-cms-forgot", {
 				});
 			}
 		},
-		validate: function() {
-			var messages = this.$refs.form.validate();
+		validate: function(hard) {
+			var messages = this.$refs.form.validate(!hard);
 			this.valid = messages.length == 0;
 			return this.valid;
 		}

@@ -89,5 +89,5 @@ application.configuration.modules.push(function($services) {
 		url: "/security/nodes"
 	});
 	
-	return $services.$register(nabu.cms.Security);
+	return $services.$register({ security: nabu.cms.Security });
 });

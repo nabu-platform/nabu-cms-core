@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.Translation</inputDefinition>
+	<sql>update translations set
+	modified = :modified,
+	context = :context,
+	name = :name,
+	translation = :translation,
+	language_id = :languageId
+ where id = :id</sql>
+</jdbcService>

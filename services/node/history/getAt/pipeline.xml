@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="at" type="java.util.Date"/>
+    </structure>
+    <structure name="output">
+        <structure definition="nabu.utils.types.Property" maxOccurs="unbounded" minOccurs="0" name="properties"/>
+    </structure>
+    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" maxOccurs="unbounded" minOccurs="0" name="values" namespace="nabu.cms.core.types.model.core"/>
+    <structure definition="nabu.utils.types.Property" name="property"/>
+</structure>

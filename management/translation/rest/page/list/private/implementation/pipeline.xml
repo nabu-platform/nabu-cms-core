@@ -1,0 +1,10 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <field minOccurs="0" name="webApplicationId" type="java.lang.String"/>
+    <structure definition="be.nabu.libs.types.api.KeyValuePair" maxOccurs="unbounded" minOccurs="0" name="translationKeys"/>
+    <structure collectionName="Translations" definition="nabu.cms.core.types.model.core.Translation" maxOccurs="unbounded" minOccurs="0" name="translations" namespace="nabu.cms.core.types.model.core"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="parts" type="java.lang.String"/>
+    <structure collectionName="Translations" definition="nabu.cms.core.types.model.core.Translation" name="translation" namespace="nabu.cms.core.types.model.core"/>
+    <structure definition="nabu.cms.core.management.translation.types.rest.translation" name="newEntry"/>
+</structure>

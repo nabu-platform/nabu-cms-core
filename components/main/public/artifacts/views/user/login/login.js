@@ -20,7 +20,7 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 		return {
 			username: null,
 			password: null,
-			remember: false,
+			remember: true,
 			working: false,
 			valid: false,
 			messages: []
@@ -28,11 +28,11 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 	},
 	methods: {
 		login: function() {
-			if (this.valid) {
+			if (this.validate(true)) {
 				this.messages.splice(0, this.messages.length);
 				this.working = true;
 				var self = this;
-				this.$services.user.login(this.username, this.password, this.remember || this.alwaysRemember).then(
+				return this.$services.user.login(this.username, this.password, this.remember || this.alwaysRemember).then(
 					function(profile) {
 						self.$services.router.route(self.route);
 						self.working = false;
@@ -46,8 +46,8 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 					});
 			}
 		},
-		validate: function() {
-			var messages = this.$refs.form.validate();
+		validate: function(hard) {
+			var messages = this.$refs.form.validate(!hard);
 			this.valid = messages.length == 0;
 			return this.valid;
 		}

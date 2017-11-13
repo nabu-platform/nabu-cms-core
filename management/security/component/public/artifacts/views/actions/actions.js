@@ -1,4 +1,5 @@
 application.views.SecurityActions = Vue.extend({
+	services: ["security"],
 	template: "#securityActions",
 	data: function() {
 		return {

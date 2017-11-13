@@ -14,7 +14,9 @@ if (!user.authenticate(login/alias, login/password, login/remember != null && lo
 	abort()
 else
 	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
+	user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
 	response.content(structure(
+			id: user/id,
 			alias: user.token()/name,
 			realm: user.token()/realm,
 			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,

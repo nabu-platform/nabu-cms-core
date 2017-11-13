@@ -1,0 +1,17 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connection" type="java.lang.String"/>
+        <field name="category" type="java.lang.String"/>
+        <field maxOccurs="unbounded" minOccurs="0" name="keys" type="java.lang.String"/>
+        <field minOccurs="0" name="language" type="java.lang.String"/>
+        <field minOccurs="0" name="defaultLanguage" type="java.lang.String"/>
+        <field maxOccurs="unbounded" minOccurs="0" name="defaultValues" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field maxOccurs="unbounded" minOccurs="0" name="translations" type="java.lang.String"/>
+    </structure>
+    <field maxOccurs="unbounded" name="languages" type="java.lang.String"/>
+    <structure definition="nabu.cms.core.database.translation.selectTranslations.results" maxOccurs="unbounded" minOccurs="0" name="translations"/>
+    <structure definition="nabu.cms.core.database.translation.selectTranslations.results" minOccurs="0" name="translation"/>
+    <structure definition="nabu.cms.core.database.translation.selectTranslations.results" minOccurs="0" name="defaultTranslation"/>
+</structure>

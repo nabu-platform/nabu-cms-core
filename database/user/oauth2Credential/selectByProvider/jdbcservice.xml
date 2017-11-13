@@ -11,10 +11,12 @@
 	refresh_token,
 	account_id,
 	token_type,
+	resource,
 	user_id
 from user_oauth2_credentials
 where oauth2_provider = :provider
 and web_application = :webApplication
 and user_id = :userId
-and resource = :resource</sql>
+and ((:resource is null and resource is null) or resource = :resource)
+order by modified desc</sql>
 </jdbcService>

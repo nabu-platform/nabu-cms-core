@@ -2,20 +2,15 @@
 	<div class="masterdataOverview">
 		<h1 class="title">Masterdata</h1>
 		<div class="select">
-			<select v-model="connection">
-				<option :value="null">-- CONNECTION --</option>
-				<option v-for="connection in connections" :value="connection">{{ connection }}</option>
-			</select>
 			<select v-model="dialect">
 				<option :value="null">-- DIALECT --</option>
-				<option v-for="dialect in dialects" :value="dialect">{{ dialect }}</option>
+				<option v-for="dialect in $services.manager.dialects()" :value="dialect">{{ dialect }}</option>
 			</select>
 			<button :disabled="!dialect || (!selectedEntries.length && !selectedCategories.length)" @click="buildInserts">Build Inserts</button>
 			<button :disabled="!inserts.length" @click="clearInserts">Clear Inserts</button>
-			{{ message }}
 		</div>
 		<div class="categories">
-			<div class="selectAll item" v-show="connection && !message">
+			<div class="selectAll item" v-show="$services.manager.connection() && !message">
 				<input type="checkbox" v-model="allCategories" v-show="categories.length"/>
 				<span v-show="categories.length" @click="selectAllCategories">Select All</span>
 				<button @click="addCategory">Add</button>
@@ -27,7 +22,7 @@
 			</div>
 		</div>
 		<div class="entries">
-			<div class="selectAll item" v-show="connection && !message">
+			<div class="selectAll item" v-show="$services.manager.connection() && !message">
 				<input type="checkbox" v-model="allEntries" v-show="entries.length" @click="selectAllEntries"/>
 				<span v-show="entries.length" @click="selectAllEntries">Select All</span>
 				<span v-if="currentCategory">({{ currentCategory.name }})</span>
@@ -40,7 +35,7 @@
 			</div>
 		</div>
 		<div class="inserts" contenteditable="true">
-			<div v-for="insert in inserts" track-by="$index">{{ insert }}</div>
+			<div v-for="insert in inserts" :key="$index">{{ insert }}</div>
 		</div>
 	</div>
 </template>

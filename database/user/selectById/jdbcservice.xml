@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.User</outputDefinition>
 	<sql>select
 	id,
 	created,
@@ -14,5 +15,4 @@
 	realm
 from users
 where id=:id</sql>
-	<outputDefinition>nabu.cms.core.types.model.core.User</outputDefinition>
 </jdbcService>

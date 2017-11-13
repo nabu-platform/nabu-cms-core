@@ -1,0 +1,15 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.management.translation.types.rest.translation</outputDefinition>
+	<sql>select
+	null,
+	null,
+	mc.name,
+	me.name,
+	null
+from master_data_entries me
+	join master_data_categories mc on me.master_data_category_id = mc.id
+	left outer join (select t.* from translations t join master_data_entries mt on t.language_id = mt.id where mt.name = :language) t
+		 on t.context = mc.name and t.name = me.name
+where t.id is null
+order by mc.name, me.name</sql>
+</jdbcService>

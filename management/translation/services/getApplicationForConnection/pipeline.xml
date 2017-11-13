@@ -1,0 +1,10 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connection" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field minOccurs="0" name="webApplicationId" type="java.lang.String"/>
+    </structure>
+    <field maxOccurs="unbounded" name="applications" type="java.lang.String"/>
+    <structure definition="nabu.cms.core.configuration" name="configuration"/>
+</structure>

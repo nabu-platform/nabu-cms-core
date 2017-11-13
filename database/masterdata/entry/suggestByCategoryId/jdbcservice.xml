@@ -6,7 +6,7 @@
 	e.modified,
 	e.name,
 	e.master_data_category_id
-from master_data_entries e
+from master_data_entries e 
 where e.master_data_category_id = :masterDataCategoryId
 and lower(e.name) like lower(:suggestion) 
 order by length(e.name)</sql>

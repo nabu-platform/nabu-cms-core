@@ -22,6 +22,11 @@ if (configuration/connectionId != null)
 		entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
 			connection: configuration/connectionId,
 			parameters: structure(name: name))/results
+		entries = nabu.cms.core.services.masterdata.entry.translate(
+			connection: configuration/connectionId,
+			entries: entries,
+			language: application.language(),
+			defaultLanguage: configuration/defaultLanguage)/entries
 		entries = derive(stripper, entries)
 		preloaded = merge(preloaded, structure(
 			name: name,
@@ -33,7 +38,7 @@ else
 	categories = series()
 
 echo("		preloaded: function() { return " + json.stringify(structure(preloaded: preloaded)) + "; },\n")
-echo("		categories: function() { return " + json.stringify(structure(categories: categories)) + "; },\n")
+echo("		categories: function() { return " + json.stringify(structure(categories: categories)) + "; }\n")
 }}
 	},	
 	methods: {
@@ -48,11 +53,23 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 		},
 		
 		entry: function(category, name) {
-			for (var i = 0; i < this.preloaded.length; i++) {
-				if (this.preloaded[i].name == category || this.preloaded[i].id == category) {
+			// if we didn't get a name, we must be searching by id
+			if (!name) {
+				for (var i = 0; i < this.preloaded.length; i++) {
 					for (var j = 0; j < this.preloaded[i].entries.length; j++) {
-						if (this.preloaded[i].entries[j].name == name || this.preloaded[i].entries[j].id == name) {
+						if (this.preloaded[i].entries[j].id == category) {
 							return this.preloaded[i].entries[j];
+						}	
+					}
+				}
+			}
+			else {
+				for (var i = 0; i < this.preloaded.length; i++) {
+					if (this.preloaded[i].name == category || this.preloaded[i].id == category) {
+						for (var j = 0; j < this.preloaded[i].entries.length; j++) {
+							if (this.preloaded[i].entries[j].name == name || this.preloaded[i].entries[j].id == name) {
+								return this.preloaded[i].entries[j];
+							}
 						}
 					}
 				}
@@ -68,9 +85,11 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 		},
 		
 		resolve: function(masterdataId) {
+			var self = this;
+			
 			// check if we already have it
 			if (this.masterdata.resolved[masterdataId]) {
-				return this.masterdata.resolved[masterdataId].name;
+				return this.masterdata.resolved[masterdataId].label;
 			}
 			var result = null;
 			// check if we have preloaded masterdata
@@ -90,7 +109,7 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 				var ids = self.masterdata.idsToResolve.splice(0, self.masterdata.idsToResolve.length);
 				if (ids && ids.length) {
 					self.masterdata.timer = null;
-					this.$services.swagger.execute("nabu.cms.core.rest.masterdata.entry.resolve", { entryId: ids })
+					self.$services.swagger.execute("nabu.cms.core.rest.masterdata.entry.resolve", { entryId: ids })
 						.then(function(result) {
 							if (result.entries && result.entries.length) {
 								for (var i = 0; i < result.entries.length; i++) {
@@ -101,7 +120,7 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 				}
 			};
 			if (result != null) {
-				return result.name;
+				return result.label;
 			}
 			// if we did not find a result, ask the server
 			// add it to the idsToResolve
@@ -110,7 +129,7 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 				// set a value that can be returned and updated later
 				Vue.set(this.masterdata.resolved, masterdataId, {
 					id: "",
-					name: ""
+					label: ""
 				});
 				// if there is a timer pending, reset it
 				if (this.masterdata.timer != null) {
@@ -120,7 +139,7 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 				// set a timeout
 				this.masterdata.timer = setTimeout(resolve, 25);
 			}
-			return this.masterdata.resolved[masterdataId].name;
+			return this.masterdata.resolved[masterdataId].label;
 		}
 	}
 }), { name: "nabu.services.cms.Masterdata" });

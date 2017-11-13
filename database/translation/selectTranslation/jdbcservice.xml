@@ -10,6 +10,6 @@
 	t.language_id
 from translations t join master_data_entries me on t.language_id = me.id
 where me.name = :language
-and t.context = :context
+and (:context is null and t.context is null or t.context = :context)
 and t.name = :name</sql>
 </jdbcService>

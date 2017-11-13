@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.Translation</inputDefinition>
+	<sql>insert into translations (
+	id,
+	created,
+	modified,
+	context,
+	name,
+	translation,
+	language_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:context,
+	:name,
+	:translation,
+	:languageId
+)</sql>
+</jdbcService>

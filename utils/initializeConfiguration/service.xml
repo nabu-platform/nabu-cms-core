@@ -20,6 +20,10 @@
 			<from>20</from>
 			<to>input/configuration/masterdata/amountOfSuggestions</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7f16af85-dee0-435d-a1b4-6df746e9d11a" fixedValue="true" optional="true" mask="false">
+			<from>^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}</from>
+			<to>input/configuration/passwordRegex</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Map to output" id="c6ce305d-d2f2-45a3-b455-be9a2883f8f8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b82bfa39-082d-406a-ae24-cf4f18b1f1e4" fixedValue="false" optional="false" mask="false">

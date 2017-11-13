@@ -5,6 +5,7 @@
 				<h2>New account</h2>
 			</e-columns>
 		</e-row>
+		<e-spacer/>
 		<e-row>
 			<e-columns small="12" large="12" class="first last">
 				<p>
@@ -16,6 +17,7 @@
 				</p>
 			</e-columns>
 		</e-row>
+		<e-spacer/>
 		<e-row>
 			<e-columns small="12" large="12" class="first last">
 				<center>

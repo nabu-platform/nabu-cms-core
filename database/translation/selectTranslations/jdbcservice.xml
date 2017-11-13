@@ -1,0 +1,14 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	t.id as id,
+	t.created as created,
+	t.modified as modified,
+	t.context as context,
+	t.name as name,
+	t.translation as translation,
+	me.name as language
+from translations t join master_data_entries me on t.language_id = me.id
+where me.name = any(:languages)
+and t.context = :context
+and t.name = any(:names)</sql>
+</jdbcService>

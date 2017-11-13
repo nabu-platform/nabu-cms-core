@@ -4,7 +4,7 @@
 			v-for="language in $services.language.available"
 			:class="{'selected': $services.language.current == language }"
 			@click="$services.language.current = language">
-			<slot language="language"><span>{{ language.name }}</span></slot>
+			<slot language="language"><span>{{ language.label }}</span></slot>
 		</li>
 	</ul>
 </template>

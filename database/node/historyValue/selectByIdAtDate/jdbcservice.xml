@@ -1,0 +1,19 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.NodeHistoryValue</outputDefinition>
+	<sql>select
+	id,
+	created,
+	modified,
+	started,
+	stopped,
+	table_name,
+	field_name,
+	new_value,
+	instance_id,
+	change_type,
+	context_id
+from node_history_values
+where instance_id = :id
+and started &lt;= :at
+and (stopped is null or stopped &gt; :at)</sql>
+</jdbcService>

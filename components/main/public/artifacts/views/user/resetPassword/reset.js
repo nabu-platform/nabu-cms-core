@@ -37,12 +37,12 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 	},
 	methods: {
 		resetPassword: function() {
-			if (this.valid) {
+			if (this.validate(true)) {
 				this.messages.splice(0, this.messages.length);
 				this.working = true;
 				var self = this;
 				var func = this.initialize ? this.$services.user.initializePassword : this.$services.user.resetPassword;
-				func(this.userId, this.verificationCode, this.password1).then(
+				return func(this.userId, this.verificationCode, this.password1).then(
 					function(profile) {
 						if (self.route) {
 							self.$services.router.route(self.route);
@@ -61,8 +61,20 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 					});
 			}
 		},
-		validate: function() {
-			var messages = this.$refs.form.validate();
+		validatePassword: function(password2) {
+			var messages = [];
+			if (this.password1 != password2) {
+				messages.push({
+					soft: true,
+					code: "same",
+					severity: "error",
+					title: "%{reset:The passwords must match}"
+				})
+			}
+			return messages;
+		},
+		validate: function(hard) {
+			var messages = this.$refs.form.validate(!hard);
 			this.valid = messages.length == 0;
 			return this.valid;
 		}

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>POST</method>
-    <path>/me/language</path>
+    <path>/user/{userId}/language</path>
     <queryParameters>languageId</queryParameters>
     <role>$user</role>
     <permissionContext>=input/path/userId</permissionContext>
     <permissionAction>user.updateLanguage</permissionAction>
     <configurationType>nabu.cms.core.configuration</configurationType>
     <lenient>false</lenient>
-    <decamelify>false</decamelify>
     <webApplicationId>false</webApplicationId>
+    <language>false</language>
 </restInterface>
