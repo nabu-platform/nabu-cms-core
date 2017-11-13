@@ -104,12 +104,12 @@ nabu.services.VueService(Vue.extend({
 					if (clear) {
 						self.$services.$clear().then(function() {
 							promise.resolve();
-							this.remembering = false;
+							self.remembering = false;
 						}, promise);
 					}
 					else {
 						promise.resolve();
-						this.remembering = false;
+						self.remembering = false;
 					}
 				}, function(error) {
 					promise.reject(error);
