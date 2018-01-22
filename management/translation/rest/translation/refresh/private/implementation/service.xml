@@ -1,0 +1,37 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="9d62a5e6-4d58-41ec-b609-93bff682f5cc">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d1af92fb-5739-48ae-ac23-bbc48ba0f2f2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="c1200953-d7f2-4a70-a26e-9114a4ecc513" serviceId="nabu.cms.core.management.translation.services.getApplicationForConnection" resultName="resulte11b3ca84bd34ab39df8010ebe7ebc6d" invocationOrder="0" temporaryMapping="true" y="64" x="19">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3fa1f1f3-7887-430e-9466-f39e8ca808f9" fixedValue="false" mask="false" optional="false">
+				<from>input/query/connection</from>
+				<to>connection</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9caf55e2-202b-4874-970d-6a81f52b878d" fixedValue="false" mask="false" optional="false">
+			<from>resulte11b3ca84bd34ab39df8010ebe7ebc6d/webApplicationId</from>
+			<to>webApplicationId</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="webApplicationId != null" id="55e29201-9e0c-404d-b4a0-f729ebadf491">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="bce74d18-4390-431d-b774-9d7199d32cc1" serviceId="nabu.web.application.Services.list" resultName="result06a664d21c144bd09f0fdfd912421851" invocationOrder="0" temporaryMapping="true" y="35" x="26">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6b3dfdda-c2de-4cca-b819-0b160cf322e8" fixedValue="false" mask="false" optional="false">
+				<from>webApplicationId</from>
+				<to>id</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e8aff0ad-2eba-450a-8d87-c040ec6304dd" fixedValue="false" mask="false" optional="false">
+			<from>result06a664d21c144bd09f0fdfd912421851/applications[0]</from>
+			<to>application</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="application/scriptCacheProviderId != null" id="22c77b2e-1642-448a-b464-ca90712a8901">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="42fdcaf1-b4f6-4acd-9833-2a6e0b0b3d6f" serviceId="nabu.utils.Cache.refresh" resultName="result7e04b0fc543947b091e8551cac0b9d33" invocationOrder="0" temporaryMapping="true" y="58" x="37">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="68b0c3ac-ce72-47b2-b986-2f6d748812a2" fixedValue="false" mask="false" optional="false">
+				<from>application/scriptCacheProviderId</from>
+				<to>cacheProviderId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

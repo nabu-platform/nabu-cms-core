@@ -19,7 +19,9 @@ else
 			id: user/id,
 			alias: user.token()/name,
 			realm: user.token()/realm,
-			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
-			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name))/results/name,
+			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+			potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+			potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 			languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
 		))

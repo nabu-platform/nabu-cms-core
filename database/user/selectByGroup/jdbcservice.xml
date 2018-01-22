@@ -14,5 +14,6 @@
 	u.anonymous, 
 	u.realm 
 from users u join user_groups ug on ug.user_id = u.id 
-where ug.group_id = :groupId</sql>
+where ug.group_id = :groupId
+	and (:userIds is null or u.id = any(:userIds))</sql>
 </jdbcService>

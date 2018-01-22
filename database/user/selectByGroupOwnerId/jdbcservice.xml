@@ -1,0 +1,21 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.User</outputDefinition>
+	<sql>select distinct
+	u.id,
+	u.created,
+	u.modified,
+	u.password,
+	u.salt,
+	u.password_modified,
+	u.alias,
+	u.verification_code,
+	u.invites_left,
+	u.blocked_since,
+	u.anonymous,
+	u.realm
+from users u join user_groups ug on ug.user_id = u.id
+	join groups g on g.id = ug.group_id
+where
+	g.owner_id = :ownerId
+	and (:groups is null or g.name = any(:groups))</sql>
+</jdbcService>

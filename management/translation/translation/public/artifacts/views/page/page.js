@@ -59,7 +59,7 @@ application.views.TranslationPage = Vue.extend({
 				});
 			}
 		},
-		save: function(translation, newTranslation) {
+		save: function(translation, element) {
 			translation.working = true;
 			return this.$services.swagger.execute("nabu.cms.core.management.translation.rest.translation.merge", { connection: this.$services.manager.connection(), language: this.language, body: translation }).then(function(result) {
 				translation.id = result && result.id ? result.id : null;
@@ -67,6 +67,14 @@ application.views.TranslationPage = Vue.extend({
 			}, function() {
 				translation.working = false;
 			});
+		},
+		highlight: function(value) {
+			if (value) {
+				value = value.replace(/<([^>]+)>/g, "<span class='html'>&lt;$1&gt;</span>");
+				value = value.replace(/({{.*?}})/g, "<span class='javascript'>$1</span>");
+				value = value.replace(/({[\w]+})/g, "<span class='javascript'>$1</span>");
+			}
+			return value;
 		}
 	},
 	watch: {

@@ -1,0 +1,28 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	id,
+	created,
+	modified,
+	started,
+	stopped,
+	owner_id,
+	verified,
+	enabled,
+	parent_id,
+	version,
+	priority,
+	name,
+	title,
+	description,
+	path,
+	slug,
+	language_id,
+	component_id
+from nodes
+where component_id = :componentId
+and parent_id = :parentId
+and (:enabled is null or enabled = :enabled)
+and (:query is null or name ilike '%' || :query || '%' or title ilike '%' || :query || '%' or description ilike '%' || :query || '%')
+order by created, name, path desc</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
+</jdbcService>

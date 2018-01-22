@@ -1,5 +1,4 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.types.model.core.Action</outputDefinition>
 	<sql>select
 	a.id,
 	a.created,
@@ -14,6 +13,8 @@ from actions a join action_roles ar on a.id = ar.action_id
 	join user_groups ug on ug.group_id = g.id
 	join users u on u.id = ug.user_id
 where u.alias = :alias
+and u.realm = :realm
 and gr.node_id is null
 </sql>
+	<outputDefinition>nabu.cms.core.types.model.core.Action</outputDefinition>
 </jdbcService>

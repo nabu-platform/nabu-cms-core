@@ -1,6 +1,44 @@
 .translationPage {
-	table {
+	table.classic {
 		margin: auto;
 		margin-bottom: 2rem;
+		tbody {
+			td {
+				&.content {
+					white-space: normal;
+				}
+				&.translation {
+					position: relative;
+					.n-form-component {
+						display: inline-block;
+					}
+					.n-info {
+						margin-left: 0.3rem;
+						.n-info-content {
+							right: 0;
+						}
+					}
+					.n-icon-spinner {
+						position: absolute;
+						top: 45%;
+						right: 2rem;
+						opacity: 1;
+						&.hide {
+							transition: opacity 1s;
+							opacity: 0;
+						}
+					}
+					textarea {
+						min-width: 25rem;
+					}
+				}
+			}
+			.html {
+				color: #aaa;
+			}
+			.javascript {
+				color: #aaa;
+			}
+		}
 	}
 }

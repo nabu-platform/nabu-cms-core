@@ -1,0 +1,15 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="5b73c34b-6e92-4d01-97d4-6554aab8c57c">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="2e6720d1-bb4d-4953-9867-cfa743b9f2e0">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d52e3060-bc03-4e31-81c1-b1b89dc7e7a6" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.translation.selectAll" resultName="result070e628d609048e4ae4500a3aaef38dd" y="63" x="34">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3a616798-664e-4f3e-b607-66aad49433fc" fixedValue="false" optional="false" mask="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e3c29c1e-0fda-466d-b8a7-63aa9f23bd67" fixedValue="false" optional="false" mask="false">
+			<from>result070e628d609048e4ae4500a3aaef38dd/results</from>
+			<to>output/results</to>
+		</steps>
+	</steps>
+</sequence>

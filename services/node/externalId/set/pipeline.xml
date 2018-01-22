@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
+        <field name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="key" type="java.lang.String"/>
+        <field minOccurs="0" name="value" type="java.lang.String"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="MasterDataEntries" definition="nabu.cms.core.types.model.core.MasterDataEntry" name="key" namespace="nabu.cms.masterdata.types.model.masterdata"/>
+    <structure collectionName="NodeExternalIds" definition="nabu.cms.core.types.model.core.NodeExternalId" name="externalId" namespace="nabu.cms.core.types.model.core"/>
+</structure>

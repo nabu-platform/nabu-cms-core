@@ -16,10 +16,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="translation in translations" :key="translation.id ? translation.id : translation.context + ':' + translation.name">
+				<tr v-for="translation in translations" :key="translation.context + ':' + translation.name">
 					<td>{{ translation.context ? translation.context : "" }}</td>
-					<td>{{ translation.name }}</td>
-					<td><n-form-text :disabled="translation.working" :timeout="600" v-model="translation.translation" @input="save(translation)"/></td>
+					<td class="content" v-content="highlight(translation.name)"></td>
+					<td class="translation">
+						<n-form-text type="area" :disabled="false && translation.working" :timeout="600" v-model="translation.translation" @input="save(translation)"/>
+						<span class="n-icon n-icon-spinner" :class="{'hide': !translation.working }"></span>
+						<n-info v-if="translation.name && highlight(translation.name) != translation.name">Copy the grey parts verbatim and translate only the black text</n-info>
+					</td>
 				</tr>
 			</tbody>
 			<tfoot>

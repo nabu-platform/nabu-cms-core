@@ -1,5 +1,4 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.types.model.core.Role</outputDefinition>
 	<sql>select distinct
 	r.id,
 	r.created,
@@ -13,10 +12,11 @@ join user_groups ug on ug.group_id = g.id
 join users u on ug.user_id = u.id
 where u.alias = :alias
 and u.realm = :realm
-and ug.started is not null
+and ug.started is not null 
 and ug.started &lt; current_timestamp
 and (ug.stopped is null or ug.stopped &gt; current_timestamp)
 and gr.started is not null
 and gr.started &lt; current_timestamp
 and (gr.stopped is null or gr.stopped &gt; current_timestamp)</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.Role</outputDefinition>
 </jdbcService>

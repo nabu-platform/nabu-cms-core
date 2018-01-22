@@ -11,6 +11,11 @@ application.configuration.modules.push(function($services) {
 			handler: function() {
 				$services.router.route("translationMasterdata");
 			}
+		}, {
+			title: "Refresh",
+			handler: function() {
+				$services.router.route("translationRefresh");
+			}
 		}]
 	};
 	var menu = $services.manager.findMenu("CMS");
@@ -40,6 +45,14 @@ application.configuration.modules.push(function($services) {
 			return new application.views.TranslationPage({data: { filter: filter }});
 		},
 		url: "/cms/translation/page"
+	});
+	
+	$services.router.register({
+		alias: "translationRefresh",
+		enter: function() {
+			return new application.views.TranslationRefresh();
+		},
+		url: "/cms/translation/refresh"
 	});
 	
 	$services.router.register({

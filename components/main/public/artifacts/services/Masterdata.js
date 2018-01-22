@@ -52,6 +52,15 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 			return null;
 		},
 		
+		category: function(name) {
+			for (var i = 0; i < this.categories.length; i++) {
+				if (this.categories[i].name == name || this.categories[i].id == name) {
+					return this.categories[i];
+				}
+			};
+			return null;
+		},
+		
 		entry: function(category, name) {
 			// if we didn't get a name, we must be searching by id
 			if (!name) {

@@ -32,7 +32,7 @@ window.addEventListener("load", function() {
 			url: "/email/verify"
 		});
 		
-		// ------------------------------- USER login/forget/reset/verify
+		// ------------------------------- USER login/logout/forget/reset/verify
 		$services.router.register({
 			priority: -1,
 			alias: "login",
@@ -42,6 +42,18 @@ window.addEventListener("load", function() {
 			},
 			roles: ["$guest"],
 			url: "/user/login"
+		});
+		$services.router.register({
+			priority: -1,
+			alias: "logout",
+			module: "nabu.cms",
+			enter: function() {
+				$services.user.logout().then(function() {
+					$services.router.route("home");
+				});
+			},
+			roles: ["$guest"],
+			url: "/user/logout"
 		});
 		$services.router.register({
 			priority: -1,

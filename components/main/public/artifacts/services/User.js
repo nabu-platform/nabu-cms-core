@@ -16,6 +16,8 @@ nabu.services.VueService(Vue.extend({
 			oauth2: {},
 			roles: ["$guest"],
 			actions: [],
+			potentialRoles: [],
+			potentialActions: [],
 			remembering: false
 		}
 	},
@@ -48,11 +50,20 @@ nabu.services.VueService(Vue.extend({
 					self.realm = result.realm;
 					self.languageId = result.languageId;
 					self.roles.splice(0, self.roles.length, "$user");
+					self.potentialRoles.splice(0, self.roles.length, "$user");
+					self.actions.splice(0, self.actions.length);
+					self.potentialActions.splice(0, self.potentialActions.length);
 					if (result.roles) {
 						nabu.utils.arrays.merge(self.roles, result.roles);
 					}
+					if (result.potentialRoles) {
+						nabu.utils.arrays.merge(self.potentialRoles, result.potentialRoles);
+					}
 					if (result.actions) {
 						nabu.utils.arrays.merge(self.actions, result.actions);
+					}
+					if (result.potentialActions) {
+						nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
 					}
 					self.$services.$clear().then(function() {
 						promise.resolve();
@@ -69,7 +80,9 @@ nabu.services.VueService(Vue.extend({
 				self.realm = null;
 				self.languageId = null;
 				self.actions.splice(0, self.actions.length);
+				self.potentialActions.splice(0, self.potentialActions.length);
 				self.roles.splice(0, self.roles.length, "$guest");
+				self.potentialRoles.splice(0, self.roles.length, "$guest");
 				self.$services.$clear().then(function() {
 					promise.resolve();
 				}, promise);
@@ -95,11 +108,20 @@ nabu.services.VueService(Vue.extend({
 					self.realm = result.realm;
 					self.languageId = result.languageId;
 					self.roles.splice(0, self.roles.length, "$user");
+					self.potentialRoles.splice(0, self.roles.length, "$user");
+					self.actions.splice(0, self.actions.length);
+					self.potentialActions.splice(0, self.potentialActions.length);
 					if (result.roles) {
 						nabu.utils.arrays.merge(self.roles, result.roles);
 					}
+					if (result.potentialRoles) {
+						nabu.utils.arrays.merge(self.potentialRoles, result.potentialRoles);
+					}
 					if (result.actions) {
 						nabu.utils.arrays.merge(self.actions, result.actions);
+					}
+					if (result.potentialActions) {
+						nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
 					}
 					if (clear) {
 						self.$services.$clear().then(function() {
@@ -112,8 +134,12 @@ nabu.services.VueService(Vue.extend({
 						self.remembering = false;
 					}
 				}, function(error) {
+					var content = error.responseText ? JSON.parse(error.responseText) : error;
+					if (content) {
+						nabu.utils.objects.merge(self.oauth2, content);
+					}
 					promise.reject(error);
-					this.remembering = false;
+					self.remembering = false;
 				});
 			}
 			return promise;
@@ -144,6 +170,38 @@ nabu.services.VueService(Vue.extend({
 		},
 		verify: function(userId, verificationCode) {
 			return this.$services.swagger.execute("nabu.cms.core.rest.user.verify", { userId: userId, verificationCode: verificationCode });
+		},
+		hasRole: function() {
+			for (var i = 0; i < arguments.length; i++) {
+				if (this.roles.indexOf(arguments[i]) >= 0) {
+					return true;
+				}
+			}
+			return false;
+		},
+		hasPotentialRole: function() {
+			for (var i = 0; i < arguments.length; i++) {
+				if (this.potentialRoles.indexOf(arguments[i]) >= 0) {
+					return true;
+				}
+			}
+			return false;
+		},
+		hasAction: function() {
+			for (var i = 0; i < arguments.length; i++) {
+				if (this.actions.indexOf(arguments[i]) >= 0) {
+					return true;
+				}
+			}
+			return false;
+		},
+		hasPotentialAction: function() {
+			for (var i = 0; i < arguments.length; i++) {
+				if (this.potentialActions.indexOf(arguments[i]) >= 0) {
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }), { name: "nabu.services.cms.User" });

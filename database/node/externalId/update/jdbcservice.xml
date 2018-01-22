@@ -1,0 +1,9 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.NodeExternalId</inputDefinition>
+	<sql>update node_external_ids set
+	modified = :modified,
+	external_id = :externalId,
+	external_id_type_id = :externalIdTypeId,
+	node_id = :nodeId
+ where id = :id</sql>
+</jdbcService>
