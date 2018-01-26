@@ -9,3 +9,8 @@ create unique index alias_unique on users (lower(alias), realm);
 
 -- make sure tags can only be set once on a node
 alter table node_tags add constraint tag_unique unique(node_id, definition_id);
+
+
+
+-- make sure translations are unique
+alter table translations add constraint translation_unique unique(context, name, language_id);

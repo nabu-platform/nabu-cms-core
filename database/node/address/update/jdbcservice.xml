@@ -1,4 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.NodeAddress</inputDefinition>
+	<changeTrackerId>nabu.cms.core.providers.misc.changeTracker</changeTrackerId>
 	<sql>update node_addresses set
 	modified = :modified,
 	x = :x,
@@ -16,5 +18,4 @@
 	sector = :sector,
 	node_id = :nodeId
  where id = :id</sql>
-	<inputDefinition>nabu.cms.core.types.model.core.NodeAddress</inputDefinition>
 </jdbcService>
