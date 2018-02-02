@@ -1,21 +1,21 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="5c5d2f73-6f92-481d-9831-c303680d01c1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="8630d7e2-3d45-4da9-b6a3-b527ca2be80a">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="6d4f4ff7-ee3c-43d8-bbfe-763b069cce3e" serviceId="nabu.cms.core.database.node.address.selectByNodeIdAndId" resultName="result078347675dd842029665b0ec343dee7e" invocationOrder="0" temporaryMapping="true" y="56" x="12">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="68e6463a-2b73-40d0-a25f-21d361c03a06" fixedValue="false" mask="false" optional="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="68e6463a-2b73-40d0-a25f-21d361c03a06" optional="false" fixedValue="false" mask="false">
 				<from>input/configuration/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3817c527-4c2a-4d64-b003-dbe78b62af1f" fixedValue="false" mask="false" optional="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3817c527-4c2a-4d64-b003-dbe78b62af1f" optional="false" fixedValue="false" mask="false">
 				<from>input/path/nodeId</from>
 				<to>parameters/nodeId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1e27926e-74f6-4cff-95cc-1e6b4e7f099e" fixedValue="false" mask="false" optional="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1e27926e-74f6-4cff-95cc-1e6b4e7f099e" optional="false" fixedValue="false" mask="false">
 				<from>input/path/locationId</from>
 				<to>parameters/id</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a19c00c0-0a86-4f76-95b8-93faafabd8e5" fixedValue="false" mask="false" optional="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a19c00c0-0a86-4f76-95b8-93faafabd8e5" optional="false" fixedValue="false" mask="false">
 			<from>result078347675dd842029665b0ec343dee7e/results[0]</from>
 			<to>location</to>
 		</steps>
@@ -25,29 +25,38 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="653f427e-0616-462d-be78-ac6f149fd41e">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="f4f46450-1b55-42ee-ba92-56d8408779d4" serviceId="nabu.utils.Object.mapByKey" resultName="resulta2ddbe46c32842a5a56f3d811ab2707b" invocationOrder="0" temporaryMapping="true" y="128" x="29">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fd655463-9df9-4c03-8bfe-53d4423ba939" fixedValue="false" mask="false" optional="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fd655463-9df9-4c03-8bfe-53d4423ba939" optional="false" fixedValue="false" mask="false">
 				<from>input/content</from>
 				<to>from</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="92e0751c-996e-49ed-b266-d9ed52cdcc25" fixedValue="false" mask="false" optional="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="92e0751c-996e-49ed-b266-d9ed52cdcc25" optional="false" fixedValue="false" mask="false">
 				<from>location</from>
 				<to>into</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bd68fcf1-e5d9-431f-a84a-5c91f0836720" fixedValue="true" mask="false" optional="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bd68fcf1-e5d9-431f-a84a-5c91f0836720" optional="false" fixedValue="true" mask="false">
 				<from>true</from>
 				<to>includeNull</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="516d212d-9704-4b09-9fa4-58d1aaf2d512" fixedValue="false" mask="false" optional="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="516d212d-9704-4b09-9fa4-58d1aaf2d512" optional="false" fixedValue="false" mask="false">
 			<from>resulta2ddbe46c32842a5a56f3d811ab2707b/changed</from>
 			<to>changed</to>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="abe64589-a43d-42d0-bc7f-710a8b4b2a43" query="changed">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="true" id="9d05c47f-e97c-48f0-8351-f559f8136283">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence" disabled="false" label="changed" id="46b5b75e-5bd2-4974-8dfc-f115ebe1f876">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="b5767969-8f9f-4f2c-aa41-b4f57bd719e3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="59380881-e81f-45c5-aab7-39d4077290d1" serviceId="nabu.utils.Date.now" resultName="result32354bbcb9ae4bd6a6984ce2a3286706" invocationOrder="0" temporaryMapping="true" y="167" x="21">
+				<asynchronous>false</asynchronous>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ce669534-3ab0-42b2-b49e-e3e84204be5d" optional="false" fixedValue="false" mask="false">
+				<from>result32354bbcb9ae4bd6a6984ce2a3286706/date</from>
+				<to>location/modified</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="9d05c47f-e97c-48f0-8351-f559f8136283">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="e3e8106a-8b7a-4b65-b9e4-7718adc2e9f2" serviceId="nabu.cms.core.database.node.address.update" resultName="resultab4b48f9994c43439b400cab6f2763c6" invocationOrder="0" temporaryMapping="true" y="76" x="25">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e176ef40-521a-48b5-a10a-a7c6169660fc" fixedValue="false" mask="false" optional="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e176ef40-521a-48b5-a10a-a7c6169660fc" optional="false" fixedValue="false" mask="false">
 					<from>location</from>
 					<to>parameters[0]</to>
 				</steps>

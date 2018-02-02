@@ -76,6 +76,14 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 		validate: function(hard) {
 			var messages = this.$refs.form.validate(!hard);
 			this.valid = messages.length == 0;
+			this.messages.splice(0, this.messages.length);
+			messages = messages.filter(function(x) { return !x.soft });
+			if (messages.length) {
+				messages.sort(function(a, b) {
+					return a.priority - b.priority;
+				});
+				this.messages.push(messages[0]);
+			}
 			return this.valid;
 		}
 	}

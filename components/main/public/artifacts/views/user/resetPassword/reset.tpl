@@ -3,11 +3,30 @@
 		<n-form ref="form" v-if="!updated">
 			<slot name="form" :validate="validate" :reset="resetPassword"></slot>
 			<n-form-section>
-				<n-form-text pattern="${nabu.cms.core.utils.initializeConfiguration(application.configuration('nabu.cms.core.configuration'))/configuration/passwordRegex}" @keyup.enter="resetPassword" type="password" v-focus v-timeout:input.form="validate" label="%{reset:New password}" placeholder="%{reset:New password}" v-model="password1" :required="true"/>
-				<n-form-text :validator="validatePassword" pattern="${nabu.cms.core.utils.initializeConfiguration(application.configuration('nabu.cms.core.configuration'))/configuration/passwordRegex}" @keyup.enter="resetPassword" type="password" v-timeout:input.form="validate" label="%{reset:Confirm new password}" placeholder="%{reset:Confirm new password}" v-model="password2" :required="true"/>
+				<n-form-text 
+					v-focus 
+					pattern-comment="%{The password should be at least 8 characters long and contain a number, a lowercase and an uppercase letter}" 
+					pattern="${nabu.cms.core.utils.initializeConfiguration(application.configuration('nabu.cms.core.configuration'))/configuration/passwordRegex}" 
+					@keyup.enter="resetPassword" 
+					type="password" 
+					v-timeout:input.form="validate" 
+					label="%{reset:New password}" 
+					placeholder="%{reset:New password}" 
+					v-model="password1" 
+					:required="true"/>
+				<n-form-text :validator="validatePassword" 
+					pattern-comment="%{The password should be at least 8 characters long and contain a number, a lowercase and an uppercase letter}" 
+					pattern="${nabu.cms.core.utils.initializeConfiguration(application.configuration('nabu.cms.core.configuration'))/configuration/passwordRegex}" 
+					@keyup.enter="resetPassword" 
+					type="password" 
+					v-timeout:input.form="validate" 
+					label="%{reset:Confirm new password}" 
+					placeholder="%{reset:Confirm new password}" 
+					v-model="password2" 
+					:required="true"/>
 			</n-form-section>
 			<footer slot="footer">
-				<slot name="footer">
+				<slot name="footer" :messages="messages">
 					<div class="actions">
 						<button :disabled="working" class="primary" v-action="resetPassword">{{ initialize ? "%{initialize:Set initial password}" : "%{reset:Reset password}" }}</button>
 					</div>
