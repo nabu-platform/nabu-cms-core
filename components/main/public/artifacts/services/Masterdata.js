@@ -90,7 +90,7 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 			return this.$services.swagger.execute("nabu.cms.core.rest.masterdata.category.suggest", {
 				categoryId: category,
 				q: suggestion
-			});
+			}, function(x) { return x.entries });
 		},
 		
 		resolve: function(masterdataId) {
