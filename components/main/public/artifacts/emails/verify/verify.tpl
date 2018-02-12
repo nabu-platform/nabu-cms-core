@@ -2,7 +2,7 @@
 	<e-container class="nabu-cms-email-verify">
 		<e-row>
 			<e-columns small="12" large="12">
-				<h2>New account</h2>
+				<h2>%{email.verify:New account}</h2>
 			</e-columns>
 		</e-row>
 		<e-spacer/>

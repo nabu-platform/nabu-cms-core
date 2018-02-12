@@ -9,6 +9,7 @@
         <field name="webApplicationId" type="java.lang.String"/>
         <field minOccurs="0" name="subject" type="java.lang.String"/>
         <field minOccurs="0" name="password" type="java.lang.String"/>
+        <structure definition="be.nabu.utils.mime.api.Header" maxOccurs="unbounded" minOccurs="0" name="headers"/>
     </structure>
     <structure name="output"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.cms.core.types.model.core"/>

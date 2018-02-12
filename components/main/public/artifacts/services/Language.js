@@ -20,6 +20,11 @@ nabu.services.VueService(Vue.extend({
 				// if we have a language configured for the user in the backend, that wins
 				if (this.$services.user.languageId && this.ids.indexOf(this.$services.user.languageId) >= 0) {
 					result = this.names[this.ids.indexOf(this.$services.user.languageId)];
+					// if the cookie does not match the persisted value, update the cookie
+					if (this.cookieValue != result) {
+						this.$services.cookies.set("language", result, result ? 365 : -1);
+						this.cookieValue = result ? result : null;
+					}
 				}
 				else {
 					// otherwise we check the local value if any (comes from a cookie)
@@ -57,6 +62,10 @@ nabu.services.VueService(Vue.extend({
 			set: function(newValue) {
 				// first check that it is a valid language (or null)
 				if (newValue == null || this.available.indexOf(newValue) >= 0) {
+					// always set it as a cookie so we know your selection if you are not known to the server (yet) for example before the remember kicks in on a dead session
+					this.$services.cookies.set("language", newValue.name, newValue.name ? 365 : -1);
+					this.cookieValue = newValue ? newValue.name : null;
+					
 					// if the user is logged in, update his profile
 					if (this.$services.user.loggedIn) {
 						var self = this;
@@ -66,10 +75,7 @@ nabu.services.VueService(Vue.extend({
 							window.location.reload(true);
 						});
 					}
-					// otherwise, set it in a cookie
 					else {
-						this.$services.cookies.set("language", newValue.name, newValue.name ? 365 : -1);
-						this.cookieValue = newValue ? newValue.name : null;
 						// force a reload to get the new language
 						window.location.reload(true);
 					}
