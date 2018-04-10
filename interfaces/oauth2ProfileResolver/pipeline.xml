@@ -1,0 +1,14 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field comment="An API endpoint override" minOccurs="0" name="apiEndpoint" type="java.net.URI"/>
+        <structure definition="nabu.authentication.oauth2.server.types.OAuth2Identity" name="credentials"/>
+    </structure>
+    <structure name="output">
+        <field name="email" type="java.lang.String"/>
+        <field minOccurs="0" name="firstName" type="java.lang.String"/>
+        <field minOccurs="0" name="lastName" type="java.lang.String"/>
+        <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
+        <field comment="The id of the account in the provider system" minOccurs="0" name="accountId" type="java.lang.String"/>
+        <structure comment="Arbitrary properties that you want to give to a profile creator/updater" definition="java.lang.Object" minOccurs="0" name="properties"/>
+    </structure>
+</structure>

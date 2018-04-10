@@ -1,0 +1,35 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="6315509b-fe31-48f6-a142-fd666d39e28d">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="082c1934-c240-4bb6-8aff-7f4b8f0e88e8">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="2c9d4f79-8b43-4f51-9886-a16221fef88a" serviceId="nabu.cms.core.providers.oauth2.google.requestor" resultName="result37805b9690f64b309230339eae4221f9" invocationOrder="0" temporaryMapping="true" y="52" x="12">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="29808dc4-8c23-41d3-8ab0-79552acc5f64" optional="false" fixedValue="false" mask="false">
+				<from>input/credentials/access_token</from>
+				<to>authentication/username</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="07e7b987-fb49-4af8-bfe5-99d11104bb95" optional="false" fixedValue="false" mask="false">
+			<from>result37805b9690f64b309230339eae4221f9/content</from>
+			<to>output/properties</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e97203af-2c5e-456b-9ddf-0e5625b8c187" optional="false" fixedValue="false" mask="false">
+			<from>result37805b9690f64b309230339eae4221f9/content/id</from>
+			<to>output/accountId</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d7fdfc1e-8d5b-414b-a5b0-9fa544505b12" optional="false" fixedValue="false" mask="false">
+			<from>result37805b9690f64b309230339eae4221f9/content/verified_email</from>
+			<to>output/verified</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a557c658-e625-421e-ace5-4f509814b8ea" optional="false" fixedValue="false" mask="false">
+			<from>result37805b9690f64b309230339eae4221f9/content/given_name</from>
+			<to>output/firstName</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4f1dc244-94b6-4e9b-8664-a3fa1bcaa051" optional="false" fixedValue="false" mask="false">
+			<from>result37805b9690f64b309230339eae4221f9/content/family_name</from>
+			<to>output/lastName</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="02164b13-1780-491d-9c02-c2a02352ac5b" optional="false" fixedValue="false" mask="false">
+			<from>result37805b9690f64b309230339eae4221f9/content/email</from>
+			<to>output/email</to>
+		</steps>
+	</steps>
+</sequence>

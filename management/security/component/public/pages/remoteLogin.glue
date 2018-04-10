@@ -4,6 +4,11 @@
 @tags user
 ## Allows the user to remotely authenticate with the application as someone
 
+# normally this is already mandated by the preprocessor but still...
+if (!user.authenticated())
+	response.code(401)
+	abort()
+
 @get
 realm ?= null
 
@@ -17,6 +22,10 @@ if (configuration == null)
 	response.code(400)
 	abort()
 
+else if (configuration/role != null && !hasRole(configuration/role))
+	response.code(403)
+	abort()
+		
 else
 	token = nabu.web.application.jwt.Services.marshal(
 		configuration/keystoreId,
