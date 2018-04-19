@@ -1,14 +1,18 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.cms.core.types.model.core.Component</inputDefinition>
-	<sql>insert into components (
+	<sql>insert into ~components (
 	id,
 	created,
 	modified,
-	name
+	name,
+	owner_id,
+	description
 ) values (
 	:id,
 	:created,
 	:modified,
-	:name
+	:name,
+	:ownerId,
+	:description
 )</sql>
 </jdbcService>

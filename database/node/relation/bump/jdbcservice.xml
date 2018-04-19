@@ -1,20 +1,26 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.cms.core.types.model.core.NodeRelation</inputDefinition>
-	<sql>insert into node_relations (
+	<sql>insert into ~node_relations (
 	id,
 	created,
 	modified,
+	started,
+	stopped,
+	relation_type_id,
 	source_id,
-	target_id,
-	relation_type_id
+	target_id
 ) values (
 	:id,
 	:created,
 	:modified,
+	:started,
+	:stopped,
+	:relationTypeId,
 	:sourceId,
-	:targetId,
-	:relationTypeId
+	:targetId
 )
 on conflict(source_id, target_id, relation_type_id) do update set
-	modified = excluded.modified</sql>
+	modified = excluded.modified,
+	started = excluded.started,
+	stopped = excluded.stopped</sql>
 </jdbcService>

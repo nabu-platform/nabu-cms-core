@@ -1,6 +1,6 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="661c1e6c-3ab3-4b66-8edc-a13967eec51a">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="fcc055b6-7edd-4b22-98b9-e8572218bf8b">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="72d4add3-8105-471d-ac13-830fcb614326" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.entry.selectById" resultName="result9ae321ebb467476489e74829e206e45d" y="70" x="35">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get masterdata entry" id="fcc055b6-7edd-4b22-98b9-e8572218bf8b">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="72d4add3-8105-471d-ac13-830fcb614326" temporaryMapping="true" invocationOrder="0" serviceId="nabu.cms.core.database.masterdata.entry.selectById" resultName="result9ae321ebb467476489e74829e206e45d" y="70" x="35">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="645265b5-9f78-4dab-9323-63ec3cf8597c" optional="false" mask="false" fixedValue="false">
 				<from>input/configuration/connectionId</from>
 				<to>connection</to>
@@ -16,11 +16,9 @@
 			<to>entry</to>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="b01fa472-0d74-47e4-87a9-e8568829df9f" query="entry">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="739c1093-8891-44c2-ade7-20a9ce394fe1" message="=&quot;Could not find tag: &quot; + input/query/definitionId" xsi:nil="true"/>
-	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="04add2cc-cc87-4e2b-952f-6301a01436c9">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="1973e6ca-6864-43e4-a245-66082d13ec13" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.category.selectById" resultName="result432afb7a09be4dcfba22031e354c247f" y="75" x="41">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="!entry" id="739c1093-8891-44c2-ade7-20a9ce394fe1" message="=&quot;Could not find tag: &quot; + input/query/definitionId" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get the category" id="04add2cc-cc87-4e2b-952f-6301a01436c9">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="1973e6ca-6864-43e4-a245-66082d13ec13" temporaryMapping="true" invocationOrder="0" serviceId="nabu.cms.core.database.masterdata.category.selectById" resultName="result432afb7a09be4dcfba22031e354c247f" y="75" x="41">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1e2489fd-02cb-4cc0-8ec8-bc48603b00e4" optional="false" mask="false" fixedValue="false">
 				<from>input/configuration/connectionId</from>
 				<to>connection</to>
@@ -36,14 +34,12 @@
 			<to>category</to>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="b6f0ef32-d902-4d0d-83f2-3a1287e30974">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="category/name !# input/configuration/tag/taggableCategories" id="49315fe0-f330-48aa-97ee-00c4005465fc" message="=&quot;The category '&quot; + category/name + &quot;' is not whitelisted as a taggable category&quot;" xsi:nil="true"/>
-	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="category/name !# input/configuration/tag/taggableCategories" id="49315fe0-f330-48aa-97ee-00c4005465fc" message="=&quot;The category '&quot; + category/name + &quot;' is not whitelisted as a taggable category&quot;" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Map nodeTag" id="09c1c357-d28a-44fc-9ba0-c9cc9a85e35e">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="88a067c2-1a90-464f-8a2e-f89b6c2d3840" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.Server.uuid" resultName="resulta2a3b031353b42658a6d7823fd7ef7bf" y="131" x="48">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="88a067c2-1a90-464f-8a2e-f89b6c2d3840" temporaryMapping="true" invocationOrder="0" serviceId="nabu.utils.Server.uuid" resultName="resulta2a3b031353b42658a6d7823fd7ef7bf" y="131" x="48">
 			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="eb936397-5818-40bf-b033-7709f89b4991" invocationOrder="0" temporaryMapping="true" serviceId="nabu.utils.Date.now" resultName="result92e9b9cb1db745a7b0dc82f73bdb55b4" y="250" x="39">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="eb936397-5818-40bf-b033-7709f89b4991" temporaryMapping="true" invocationOrder="0" serviceId="nabu.utils.Date.now" resultName="result92e9b9cb1db745a7b0dc82f73bdb55b4" y="250" x="39">
 			<asynchronous>false</asynchronous>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8efba420-79ef-4672-876a-f3b0d81ae47c" optional="false" mask="false" fixedValue="false">
@@ -66,9 +62,16 @@
 			<from>entry/id</from>
 			<to>tag/definitionId</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="798fad44-967a-4da7-858e-b07b62d5bbc5" temporaryMapping="true" invocationOrder="0" serviceId="nabu.cms.core.services.user.getCurrent" resultName="result7de5581957e04b51a6e0e0ec57f19879" y="347" x="84">
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7cded441-ce6e-467f-b7ae-08bd9d63ee03" optional="false" mask="false" fixedValue="false">
+			<from>result7de5581957e04b51a6e0e0ec57f19879/user/id</from>
+			<to>tag/ownerId</to>
+		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="809a2412-937c-4f7c-a19b-50faa0ed30d1">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="f6b1be38-7cdd-4ddf-8783-4d24eba0d038" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.node.tag.insert" resultName="resultba973a4f44bb4bcfa9457b72b58704ce" y="76" x="36">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Insert the tag and map output" id="809a2412-937c-4f7c-a19b-50faa0ed30d1">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="f6b1be38-7cdd-4ddf-8783-4d24eba0d038" temporaryMapping="true" invocationOrder="0" serviceId="nabu.cms.core.database.node.tag.insert" resultName="resultba973a4f44bb4bcfa9457b72b58704ce" y="76" x="36">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1b384020-0af6-489b-a943-380969957b72" optional="false" mask="false" fixedValue="false">
 				<from>input/configuration/connectionId</from>
 				<to>connection</to>

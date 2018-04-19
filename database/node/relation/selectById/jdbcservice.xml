@@ -4,9 +4,11 @@
 	id,
 	created,
 	modified,
+	started,
+	stopped,
 	relation_type_id,
 	source_id,
 	target_id
-from node_relations
+from ~node_relations
 where id = :id</sql>
 </jdbcService>

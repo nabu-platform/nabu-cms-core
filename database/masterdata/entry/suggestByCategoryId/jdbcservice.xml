@@ -1,13 +1,16 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.types.model.core.MasterDataEntry</outputDefinition>
 	<sql>select
-	e.id,
-	e.created,
-	e.modified,
-	e.name,
-	e.master_data_category_id
-from master_data_entries e 
-where e.master_data_category_id = :masterDataCategoryId
-and lower(e.name) like lower(:suggestion) 
-order by length(e.name)</sql>
+	 mde.id,
+	 mde.created,
+	 mde.modified,
+	 mde.name,
+	 mde.owner_id,
+	 mde.description,
+	 mde.master_data_category_id
+from ~master_data_entries mde
+where mde.master_data_category_id = :masterDataCategoryId
+and lower(mde.name) like lower(:suggestion) 
+and ((:ownerId is null and mde.owner_id is null) or mde.owner_id = :ownerId)
+order by length(mde.name)</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.MasterDataEntry</outputDefinition>
 </jdbcService>

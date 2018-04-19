@@ -1,12 +1,14 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.MasterDataEntry</outputDefinition>
 	<sql>select
-	e.id,
-	e.created,
-	e.modified,
-	e.name,
-	e.master_data_category_id
-from master_data_entries e join master_data_categories c on e.master_data_category_id = c.id
-where c.name = :category
-and e.id = :id</sql>
+	 mde.id,
+	 mde.created,
+	 mde.modified,
+	 mde.name,
+	 mde.owner_id,
+	 mde.description,
+	 mde.master_data_category_id
+from ~master_data_entries mde join ~master_data_categories mdc on mde.master_data_category_id = mdc.id
+where mdc.name = :category
+and mde.id = :id</sql>
 </jdbcService>

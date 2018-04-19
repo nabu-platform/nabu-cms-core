@@ -6,7 +6,9 @@
 	a.modified,
 	a.name,
 	a.audit,
+	a.owner_id,
+	a.description,
 	a.component_id
-from actions a join action_roles ar on ar.action_id = a.id
+from ~actions a join ~action_roles ar on ar.action_id = a.id
 where ar.role_id = :roleId</sql>
 </jdbcService>
