@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.MasterDataCategory</outputDefinition>
+	<sql>select *
+from ~master_data_categories mdc
+where (:names is null or mdc.name = any(:names))
+and mdc.owner_id is null</sql>
+</jdbcService>

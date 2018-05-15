@@ -1,0 +1,26 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.MasterDataEntry</inputDefinition>
+	<sql>insert into ~master_data_entries (
+	id,
+	created,
+	modified,
+	name,
+	owner_id,
+	description,
+	master_data_category_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:name,
+	:ownerId,
+	:description,
+	:masterDataCategoryId
+)
+on conflict(id) do update set
+	modified = excluded.modified,
+	name = excluded.name,
+	owner_id = excluded.owner_id,
+	description = excluded.description,
+	master_data_category_id = excluded.master_data_category_id</sql>
+</jdbcService>

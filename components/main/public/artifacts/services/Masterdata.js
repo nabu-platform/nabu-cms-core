@@ -11,6 +11,31 @@ nabu.services.VueService(Vue.extend({
 			}
 		}	
 	},
+	created: function() {
+		var self = this;
+		if (nabu.page && nabu.page.provide) {
+			nabu.page.provide("page-bindings", function() {
+				var definition = {};
+				if (self.categories) {
+					definition.masterdata = {
+						properties: {}
+					};
+					self.categories.map(function(category) {
+						definition.masterdata.properties[category.name] = {
+							type: "string",
+							format: "uuid"
+						};
+					});
+				}
+				return {
+					definition: definition,
+					resolve: function(categoryName) {
+						return self.category(categoryName).id;
+					}
+				}
+			});
+		}	
+	},
 	computed: {
 ${{
 configuration = application.configuration("nabu.cms.core.configuration")

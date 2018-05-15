@@ -136,7 +136,15 @@ nabu.services.VueService(Vue.extend({
 				}, function(error) {
 					var content = error.responseText ? JSON.parse(error.responseText) : error;
 					if (content) {
-						nabu.utils.objects.merge(self.oauth2, content);
+						if (content.oauth2) {
+							nabu.utils.objects.merge(self.oauth2, content.oauth2);
+						}
+						if (content.roles) {
+							nabu.utils.arrays.merge(self.roles, content.roles);
+						}
+						if (content.actions) {
+							nabu.utils.arrays.merge(self.actions, content.actions);
+						}
 					}
 					promise.reject(error);
 					self.remembering = false;

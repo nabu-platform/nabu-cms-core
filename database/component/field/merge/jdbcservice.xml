@@ -1,0 +1,23 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.ComponentField</inputDefinition>
+	<sql>insert into ~component_fields (
+	id,
+	created,
+	modified,
+	name,
+	data_type,
+	component_id
+) values (
+	:id,
+	:created,
+	:modified,
+	:name,
+	:dataType,
+	:componentId
+)
+on conflict(id) do update set
+	modified = excluded.modified,
+	name = excluded.name,
+	data_type = excluded.data_type,
+	component_id = excluded.component_id</sql>
+</jdbcService>

@@ -1,0 +1,34 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="0f3d9014-7361-4a3b-ab76-005eef92c543">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="e1febabc-b662-4dc1-94f1-0bb9fc30b939">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="3294c675-356b-4431-a5f6-de0b0a7d1f42" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.deployment.component.target" resultName="result27eb0d11306049ecaa4829727c899380" y="56" x="43">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2f238e70-6c81-47ea-bd66-5f1a78aaa45c" optional="false" fixedValue="false" mask="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="365ab223-be9b-4736-8336-df055fcd9f92" optional="false" fixedValue="false" mask="false">
+				<from>input/components</from>
+				<to>components</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f628fbd5-d6ed-43c7-b75e-11522379af64" optional="false" fixedValue="false" mask="false">
+				<from>input/componentFields</from>
+				<to>componentFields</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5d3875b8-0046-41c7-b094-d964aaf174af" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.deployment.masterdata.target" resultName="result25e6eeccecc64654af360add2c2413e4" y="224" x="43">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="092bdb14-80b0-4fd0-acbe-6806fc4e83a3" optional="false" fixedValue="false" mask="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="da734d88-dd92-4c5d-abc4-4091a1d37fe9" optional="false" fixedValue="false" mask="false">
+				<from>input/categories</from>
+				<to>categories</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="260d284c-b854-4edc-85aa-8b84272e2935" optional="false" fixedValue="false" mask="false">
+				<from>input/entries</from>
+				<to>entries</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

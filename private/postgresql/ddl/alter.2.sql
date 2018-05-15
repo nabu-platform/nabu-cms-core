@@ -1,0 +1,1 @@
+alter table components add column parent_id uuid references components(id);

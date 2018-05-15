@@ -1,15 +1,17 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.types.model.core.Action</outputDefinition>
 	<sql>select
-	id,
-	created,
-	modified,
-	name,
-	audit,
-	component_id
-from actions
+	 id,
+	 created,
+	 modified,
+	 name,
+	 audit,
+	 owner_id,
+	 description,
+	 component_id
+from ~actions
 where (:ids is null or id = any(:ids))
 and (:notIds is null or id &lt;&gt; all(:notIds))
 and (:name is null or name ilike '%' || :name || '%')
 order by name</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.Action</outputDefinition>
 </jdbcService>

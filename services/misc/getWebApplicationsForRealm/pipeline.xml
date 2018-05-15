@@ -1,0 +1,10 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="realm" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure definition="nabu.web.application.types.WebApplicationInformation" maxOccurs="unbounded" minOccurs="0" name="applications"/>
+    </structure>
+    <structure definition="nabu.utils.types.NodeDescription" maxOccurs="unbounded" minOccurs="0" name="webApplications"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="information"/>
+</structure>

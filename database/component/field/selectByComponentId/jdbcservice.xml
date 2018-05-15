@@ -1,0 +1,6 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.ComponentField</outputDefinition>
+	<sql>select *
+from ~component_fields cf
+where cf.component_id = any(:componentIds)</sql>
+</jdbcService>

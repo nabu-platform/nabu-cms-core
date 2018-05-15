@@ -1,0 +1,28 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="9f855cd4-b088-4bf2-a1b3-07597bd80bfe">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Merge categories" id="46662940-adbf-49f6-a358-1b764a4d3575">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8db537fb-7124-4335-a28c-cf938896af70" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.category.merge" resultName="result6a6894e93a2441309b0d8b11ab68ef16" y="44" x="57">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="403ce1d3-a902-414a-9ecb-3ed19fd08c8d" optional="false" fixedValue="false" mask="false">
+				<from>input/categories</from>
+				<to>parameters</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f6ec9694-eea9-4dd7-a05c-f8d1897d13dd" optional="false" fixedValue="false" mask="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Merge entries" id="bc0fb417-b0cb-4460-b74b-dee5aa2f92dd">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="8cc1a7c4-9ad1-4c28-843f-d8d2e07a8299" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.masterdata.entry.merge" resultName="result49ddc5e913b345d2a3e9eff2abd4e046" y="74" x="15">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c9cd2ada-4fa8-4347-9a9d-fc5df1100e57" optional="false" fixedValue="false" mask="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ad63209d-0e6e-4613-913e-28a2785a0199" optional="false" fixedValue="false" mask="false">
+				<from>input/entries</from>
+				<to>parameters</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

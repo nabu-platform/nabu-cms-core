@@ -1,11 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Component</outputDefinition>
-	<sql>select
-	id,
-	created,
-	modified,
-	name,
-	owner_id,
-	description
-from ~components</sql>
+	<sql>select *
+from ~components
+where ((:ownerId is null and owner_id is null) or (owner_id = :ownerId))</sql>
 </jdbcService>

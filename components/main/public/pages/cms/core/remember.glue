@@ -5,6 +5,8 @@
 @tags user
 ## Will try to refresh the user session or remember the user identity
 
+connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
+
 if (!user.authenticated() && !user.refresh() && !user.remember())
 	oauth2 = structure()
 
@@ -37,6 +39,13 @@ if (!user.authenticated() && !user.refresh() && !user.remember())
 			environment("webApplicationId"), 
 			"OFFLINE")/link)
 	
+	oauth2 = structure(
+			oauth: oauth2,
+			realm: environment("realm"),
+			roles: series("$guest"),
+			actions: nabu.cms.core.database.action.selectByRoleName(connectionId, parameters: structure(roleName: "$guest"))/results/name
+		)
+	
 	# set the oauth redirects as result
 	response.content(oauth2)
 	response.code(401);
@@ -47,7 +56,6 @@ else if (nabu.utils.Token.isSystemToken(user.token())/response)
 	response.code(401);
 	abort();
 else
-	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
 	user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
 	response.content(structure(
 			id: user/id,

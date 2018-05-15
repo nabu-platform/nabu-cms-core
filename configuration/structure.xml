@@ -10,6 +10,9 @@
     <field comment="Defaults to &quot;en&quot;" minOccurs="0" name="defaultLanguage" type="java.lang.String"/>
     <field comment="A regex which is matched against the target of a request to see if an action should be logged" minOccurs="0" name="accessLogBlackList" type="java.lang.String"/>
     <field comment="The regex that the user-provided password must match" minOccurs="0" name="passwordRegex" type="java.lang.String"/>
+    <structure minOccurs="0" name="security">
+        <field comment="The algorithm used" minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
+    </structure>
     <structure minOccurs="0" name="implementations">
         <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>
         <field minOccurs="0" name="hasPseudoRole" type="java.lang.String"/>
@@ -37,6 +40,14 @@
             <field minOccurs="0" name="url" type="java.lang.String"/>
             <field minOccurs="0" name="subject" type="java.lang.String"/>
             <field minOccurs="0" name="includePassword" type="java.lang.Boolean"/>
+        </structure>
+    </structure>
+    <structure minOccurs="0" name="texts">
+        <field name="textProviderId" type="java.lang.String"/>
+        <field comment="Most providers will require some form of configuration, this is the instance" minOccurs="0" name="configurationId" type="java.lang.String"/>
+        <structure comment="Verification message in several languages" maxOccurs="unbounded" minOccurs="0" name="verification">
+            <field comment="You can use the variable &quot;${verificationCode}&quot; to indicate where it should go" name="content" type="java.lang.String"/>
+            <field minOccurs="0" name="language" type="java.lang.String"/>
         </structure>
     </structure>
 </structure>
