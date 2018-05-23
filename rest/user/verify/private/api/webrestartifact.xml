@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>GET</method>
-    <path>/user/{userId}/verify</path>
-    <queryParameters>verificationCode</queryParameters>
+    <path>/user/verify</path>
+    <queryParameters>verificationCode, userId</queryParameters>
     <role>$guest</role>
-    <permissionContext>=input/path/userId</permissionContext>
     <permissionAction>user.verify</permissionAction>
     <configurationType>nabu.cms.core.configuration</configurationType>
+    <device>true</device>
     <lenient>false</lenient>
-    <decamelify>false</decamelify>
-    <webApplicationId>false</webApplicationId>
+    <webApplicationId>true</webApplicationId>
+    <language>false</language>
+    <allowFormBinding>false</allowFormBinding>
+    <caseInsensitive>false</caseInsensitive>
+    <cache>false</cache>
 </restInterface>

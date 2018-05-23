@@ -1,0 +1,20 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="a016e30f-0b6e-4d0c-8415-7a1de47b4e5c">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="82e4cd18-6a02-4dcb-a2b4-7d21a5570ff5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="0ecf467e-96db-4365-b147-0770d005ac0f" serviceId="nabu.cms.core.database.masterdata.entry.deleteByCategoryId" resultName="result363256272e1f40d18fae93e1d63a7707" invocationOrder="0" temporaryMapping="true" y="67" x="61">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ce4a44cf-88c3-4d56-9641-fb7a42e37a4c" fixedValue="false" optional="false" mask="false">
+				<from>input/path/categoryId</from>
+				<to>parameters[0]/categoryId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="51d14d64-5ab5-441a-b7c9-f6a061a09fd6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b0eb9f19-740b-490b-92fc-5fedcd6eb97f" serviceId="nabu.cms.core.database.masterdata.category.delete" resultName="result25cfee30ecd747999069a121816dbd1d" invocationOrder="0" temporaryMapping="true" y="52" x="12">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="352afda6-f12a-42e2-9d2e-a409f3f64280" fixedValue="false" optional="false" mask="false">
+				<from>input/path/categoryId</from>
+				<to>parameters[0]/id</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

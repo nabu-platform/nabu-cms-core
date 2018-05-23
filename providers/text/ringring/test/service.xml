@@ -1,0 +1,39 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="801b9aa3-11c1-4f95-a81b-0a5536326adf">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="179276b5-eaac-4dbc-84ca-f6fcf28dba19">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="c3963bb2-c142-48a5-ba7b-f23cdf1e345c" serviceId="nabu.cms.core.providers.text.ringring.send" resultName="resulta6217fb279b1478e8a840939a779862f" invocationOrder="0" temporaryMapping="true" y="69" x="16">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2fbec440-b218-4c8b-a4ee-7171a29566fa" fixedValue="true" mask="false" optional="false">
+				<from>487028c5-bccd-47df-9f7d-04caf40553dd</from>
+				<to>content/messages[0]/APIKey</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bc5d34ea-c73d-4b4d-b702-a4d5cecb17d4" fixedValue="true" mask="false" optional="false">
+				<from>8a1d61b1-b3f7-4e85-aa0d-f0ac455ecc26</from>
+				<to>content/messages[0]/CampaignId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="3901f774-a288-4fef-9af7-e5752ddcc061" fixedValue="true" mask="false" optional="false">
+				<from>dit is een test</from>
+				<to>content/messages[0]/Message</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d6f0848f-46e8-4c29-803b-ca79219c8e33" fixedValue="true" mask="false" optional="false">
+				<from>0498682999</from>
+				<to>content/messages[0]/PhoneNumber</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="be65beb3-cc74-485e-a7b7-f6656a6251d3" fixedValue="true" mask="false" optional="false">
+				<from>8919</from>
+				<to>content/messages[0]/Shortcode</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fd5675a2-a538-4717-a4e8-863fbabd739e" fixedValue="true" mask="false" optional="false">
+				<from>true</from>
+				<to>content/messages[0]/IsRealMessage</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e76a10dd-afc7-4597-8aef-4e5fa273dbc4" fixedValue="true" mask="false" optional="false">
+				<from>24</from>
+				<to>content/messages[0]/TimeValidity</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7bcab1ad-399a-46d5-98af-dfea04fa2752" fixedValue="true" mask="false" optional="false">
+				<from>myDigipolisInternalMessageReference2</from>
+				<to>content/messages[0]/Reference</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

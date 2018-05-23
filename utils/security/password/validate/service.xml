@@ -1,0 +1,52 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="bd41ac32-6f19-4f24-a198-81dc1fd8f62b">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/algorithm = null" id="cb0e34ec-0bbe-4c99-90d4-93627fcd0c02">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="54a90e06-c92d-4a1a-a7c4-12be41856199" optional="false" fixedValue="true" mask="false">
+			<from>BCRYPT</from>
+			<to>input/algorithm</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Validate digest" id="c91a91b9-6a9d-4858-b3a9-bdc40f79848a">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="53b8e1fa-08e4-4e31-827f-8296a17aa03f" serviceId="nabu.utils.String.join" resultName="result7ba0a4e26f98497cbc6109d569a7ab4e" invocationOrder="0" temporaryMapping="true" y="37" x="102">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d1bd3886-af69-422b-b27e-5b89b1af0953" optional="false" fixedValue="false" mask="false">
+				<from>input/realm</from>
+				<to>parts[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="45e83439-44a8-4db3-b1dc-ce1368e0c058" optional="false" fixedValue="false" mask="false">
+				<from>input/name</from>
+				<to>parts[1]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2f4c8808-cd18-4d18-91d3-3587d4a831d0" optional="false" fixedValue="false" mask="false">
+				<from>input/password</from>
+				<to>parts[2]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d1cb763b-8aa2-4c5a-9b03-fa2791c494b8" optional="false" fixedValue="false" mask="false">
+				<from>input/salt</from>
+				<to>parts[3]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="34fea23d-069e-4da8-a9b9-97737640cb56" optional="false" fixedValue="true" mask="false">
+				<from>:</from>
+				<to>separator</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="385610b4-10ae-487d-a8bd-0abb22197312" serviceId="nabu.utils.Security.validateHash" resultName="result131cb65932b745b0b9525946c7bcc7dc" invocationOrder="1" temporaryMapping="true" y="190" x="220">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8e794da4-4982-44c1-acbf-41b6a13291db" optional="false" fixedValue="false" mask="false">
+				<from>result7ba0a4e26f98497cbc6109d569a7ab4e/string</from>
+				<to>string</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="26b8f1fe-adf3-4419-a0f0-3efb03dcaa30" optional="false" fixedValue="false" mask="false">
+				<from>input/hash</from>
+				<to>hash</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8cb0dccc-9723-4379-a970-f7b145c48832" optional="false" fixedValue="false" mask="false">
+				<from>input/algorithm</from>
+				<to>algorithm</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f58f26b9-91bd-43e9-b1a7-39838a610d85" optional="false" fixedValue="false" mask="false">
+			<from>result131cb65932b745b0b9525946c7bcc7dc/valid</from>
+			<to>output/valid</to>
+		</steps>
+	</steps>
+</sequence>

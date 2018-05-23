@@ -57,8 +57,8 @@
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="0aae7a0d-7513-41ea-aa98-50eee1751d06" query="input/device">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" comment="Check if anonymous devices are allowed" id="76e6297c-cf59-49e6-a634-4f9749427aa9">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="5c9ded29-9d96-4647-be7a-be31671fb6e0" optional="false" fixedValue="false" mask="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" comment="Check if anonymous devices are allowed" id="27f7043fc9b148e58961816f4a6403df">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="59802754521043fd993adef10a15eb8f" optional="false" fixedValue="false" mask="false">
 						<from>input/configuration/allowAnonymousDevices</from>
 						<to>output/isAllowed</to>
 					</steps>
@@ -121,13 +121,48 @@
 									</steps>
 								</steps>
 								<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="6cec1f0a-623e-41f0-ab94-dd1a13f24136" query="user">
-									<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="e31f5cd9-7a24-4ee9-8037-9258132448c9" message="=&quot;Invalid wrapped user: &quot; + input/token/name">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="null" id="a6aa0d29b97142fc9a5b46909d210190" message="=&quot;Invalid wrapped user: &quot; + input/token/name">
 										<code>CMS-AUTH-2</code>
 									</steps>
 								</steps>
 							</steps>
 						</steps>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get the node for the user" id="e66188b1-e332-40a1-ba16-0065c12c9745">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="eb529d8c-1ffe-4557-8cfc-5fc1b2243045" serviceId="nabu.cms.core.database.node.selectById" resultName="result05f11f577860424da84b25f4e104eb0b" invocationOrder="0" temporaryMapping="true" y="92" x="224">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="32ad0223-33d5-4d26-9814-65855b5209f3" optional="false" fixedValue="false" mask="false">
+								<from>user/id</from>
+								<to>parameters/id</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="467dc839-5683-41ed-9824-1a21f764d243" optional="false" fixedValue="false" mask="false">
+								<from>input/configuration/connectionId</from>
+								<to>connection</to>
+							</steps>
+							<asynchronous>false</asynchronous>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="da437a62-2532-4f2d-adb8-244f20642315" optional="false" fixedValue="false" mask="false">
+							<from>result05f11f577860424da84b25f4e104eb0b/results[0]</from>
+							<to>userNode</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="userNode/ownerId != null &amp;&amp; userNode/ownerId != userNode/id" comment="If the user is not his own owner, it is an alias account" id="42260c21-6970-4334-a179-4244e4d42fb7">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="77ff9e55-c383-485d-a8e4-c3da21829aa0" serviceId="nabu.cms.core.database.user.selectById" resultName="resultd3dd9ec0cba54e51b78e016b3ec12c12" invocationOrder="0" temporaryMapping="true" y="56" x="102">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d2927fa9-8142-4533-933e-38313bf0712a" optional="false" fixedValue="false" mask="false">
+								<from>input/configuration/connectionId</from>
+								<to>connection</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="241d4d6c-20da-4491-b2bc-70332abfbc87" optional="false" fixedValue="false" mask="false">
+								<from>userNode/ownerId</from>
+								<to>parameters/id</to>
+							</steps>
+							<asynchronous>false</asynchronous>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="0b9f5321-c19e-496d-a59c-4a1282d5afa6" optional="false" fixedValue="false" mask="false">
+							<from>resultd3dd9ec0cba54e51b78e016b3ec12c12/results[0]</from>
+							<to>user</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="!user" id="f143539b-0434-44bd-9727-5ebcc83ebdac" message="=&quot;Invalid owner for &quot; + input/token/name + &quot; in &quot; + input/token/realm" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c5447f23-e530-45c7-86a8-aea6c00d3752">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="54be4405-d1bc-45fa-b00b-94aac49ae654" serviceId="nabu.cms.core.services.user.device.getForUser" resultName="result12b5982f5c6a4e26b2f9ee355cce1a5c" invocationOrder="0" temporaryMapping="true" y="70" x="29">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="55f98746-530d-45bb-8a7d-6aa49fe80b6b" optional="false" fixedValue="false" mask="false">

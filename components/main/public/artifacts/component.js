@@ -71,7 +71,7 @@ window.addEventListener("load", function() {
 			module: "nabu.cms",
 			query: ["verificationCode", "userId"],
 			enter: function(parameters) {
-				return new nabu.views.cms.core.Reset({ data: parameters });
+				return new nabu.views.cms.core.Reset({ propsData: parameters });
 			},
 			roles: ["$guest"],
 			url: "/user/reset"
@@ -83,7 +83,7 @@ window.addEventListener("load", function() {
 			query: ["verificationCode", "userId"],
 			enter: function(parameters) {
 				parameters.initialize = true;
-				return new nabu.views.cms.core.Reset({ data: parameters });
+				return new nabu.views.cms.core.Reset({ propsData: parameters });
 			},
 			roles: ["$guest"],
 			url: "/user/initialize"
@@ -95,11 +95,17 @@ window.addEventListener("load", function() {
 			module: "nabu.cms",
 			query: ["verificationCode", "userId"],
 			enter: function(parameters) {
-				$services.user.verify(parameters.userId, parameters.verificationCode).then(function() {
-					$services.router.route("login");
-				}, function() {
-					$services.router.route("error", { message: "%{error:The account could not be verified, perhaps because it is already verified. You can try to <a v-route:login>log in</a>.}" });
-				})
+				if (parameters.verificationCode && parameters.userId) {
+					$services.user.verify(parameters.userId, parameters.verificationCode).then(function() {
+						$services.router.route("login");
+					}, function() {
+						$services.router.route("error", { message: "%{error:The account could not be verified, perhaps because it is already verified. You can try to <a v-route:login>log in</a>.}" });
+					});
+				}
+				// if we do not have all the parameters, request them
+				else {
+					return new nabu.views.cms.core.Verify({propsData:parameters});
+				}
 			},
 			roles: ["$guest"],
 			url: "/user/verify"

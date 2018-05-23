@@ -14,25 +14,23 @@ nabu.services.VueService(Vue.extend({
 	created: function() {
 		var self = this;
 		if (nabu.page && nabu.page.provide) {
-			nabu.page.provide("page-bindings", function() {
-				var definition = {};
-				if (self.categories) {
-					definition.masterdata = {
-						properties: {}
-					};
-					self.categories.map(function(category) {
-						definition.masterdata.properties[category.name] = {
-							type: "string",
-							format: "uuid"
-						};
-					});
-				}
-				return {
-					definition: definition,
-					resolve: function(categoryName) {
-						return self.category(categoryName).id;
-					}
-				}
+			nabu.page.provide("page-enumerate", {
+				name: "masterdata-categories",
+				enumerate: function() {
+					return self.categories;
+				},
+				label: "name",
+				value: "id"
+			});
+			this.preloaded.map(function(preloaded) {
+				nabu.page.provide("page-enumerate", {
+					name: "masterdata-category-" + preloaded.name,
+					enumerate: function() {
+						return preloaded.entries;
+					},
+					label: "label",
+					value: "id"
+				});
 			});
 		}	
 	},

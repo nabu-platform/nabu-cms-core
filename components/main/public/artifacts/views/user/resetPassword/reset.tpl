@@ -3,6 +3,7 @@
 		<n-form ref="form" v-if="!updated">
 			<slot name="form" :validate="validate" :reset="resetPassword"></slot>
 			<n-form-section>
+				<n-form-text v-model="verificationCode" v-if="provideVerification" label="%{reset:Verification code}" :required="true"/>
 				<n-form-text 
 					v-focus 
 					pattern-comment="%{The password should be at least 8 characters long and contain a number, a lowercase and an uppercase letter}" 

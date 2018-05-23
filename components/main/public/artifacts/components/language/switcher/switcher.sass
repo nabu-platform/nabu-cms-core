@@ -1,0 +1,28 @@
+.nabu-cms-core-language-switcher {
+	list-style-type: none;
+	margin: 0;
+	&.flat {
+		li {
+			cursor: pointer;
+			display: inline-block;
+			margin: 0.25rem 0.5rem;
+		}
+	}
+	&.dropdown {
+		&:after {
+			content: '>';
+		}
+		li {
+			cursor: pointer;
+			display: none;
+			&.selected {
+				display: block;
+			}
+		}
+		&:hover {
+			li {
+				display: block;
+			}
+		}
+	}
+}

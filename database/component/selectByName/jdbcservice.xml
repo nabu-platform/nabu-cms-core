@@ -1,12 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Component</outputDefinition>
-	<sql>select
-	id,
-	created,
-	modified,
-	name,
-	owner_id,
-	description
+	<sql>select *
 from ~components
 where name = :name</sql>
 </jdbcService>

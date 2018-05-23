@@ -6,18 +6,21 @@
 	modified,
 	name,
 	owner_id,
-	description
+	description,
+	parent_id
 ) values (
 	:id,
 	:created,
 	:modified,
 	:name,
 	:ownerId,
-	:description
+	:description,
+	:parentId
 )
 on conflict(id) do update set
 	modified = excluded.modified,
 	name = excluded.name,
 	owner_id = excluded.owner_id,
-	description = excluded.description</sql>
+	description = excluded.description,
+	parent_id = excluded.parent_id</sql>
 </jdbcService>

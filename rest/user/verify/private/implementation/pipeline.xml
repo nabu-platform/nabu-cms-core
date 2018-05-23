@@ -1,4 +1,6 @@
 <structure interface="$self:api" name="pipeline">
     <structure name="input" validate="true"/>
     <structure name="output"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="information"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
 </structure>

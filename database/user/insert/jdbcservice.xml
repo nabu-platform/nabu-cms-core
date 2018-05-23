@@ -1,6 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.cms.core.types.model.core.User</inputDefinition>
-	<sql>insert into users (
+	<sql>insert into ~users (
 	id,
 	created,
 	modified,
@@ -12,7 +12,9 @@
 	invites_left,
 	blocked_since,
 	anonymous,
-	realm
+	realm,
+	alias_type_id,
+	algorithm
 ) values (
 	:id,
 	:created,
@@ -25,6 +27,8 @@
 	:invitesLeft,
 	:blockedSince,
 	:anonymous,
-	:realm
+	:realm,
+	:aliasTypeId,
+	:algorithm
 )</sql>
 </jdbcService>

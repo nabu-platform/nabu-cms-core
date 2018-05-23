@@ -12,7 +12,7 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 		},
 		verificationCode: {
 			type: String,
-			required: true
+			required: false
 		},
 		userId: {
 			type: String,
@@ -32,8 +32,12 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 			working: false,
 			valid: false,
 			updated: false,
+			provideVerification: false,
 			messages: []
 		};
+	},
+	created: function() {
+		this.provideVerification = !this.verificationCode;
 	},
 	methods: {
 		resetPassword: function() {

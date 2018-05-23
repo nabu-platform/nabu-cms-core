@@ -1,0 +1,15 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="02868e03-51c5-417b-8f4c-d7185098175c">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="b10b8161-2f51-4d2e-b06f-cb81f1fc4c2b">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="e4a4b081-e5b5-4d02-ad52-236bb9af225d" serviceId="nabu.cms.core.database.masterdata.entry.selectByCategoryId" resultName="resultbf081eba8a8a4542b6349df597f8138b" invocationOrder="0" temporaryMapping="true" y="130" x="61">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="233829a8-813c-45e4-9532-fc9c78563c83" fixedValue="false" optional="false" mask="false">
+				<from>input/path/categoryId</from>
+				<to>parameters/categoryId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="547c4dad-0558-4ff3-96e9-67299b19075e" fixedValue="false" optional="false" mask="false">
+			<from>resultbf081eba8a8a4542b6349df597f8138b/results</from>
+			<to>output/content/entries</to>
+		</steps>
+	</steps>
+</sequence>

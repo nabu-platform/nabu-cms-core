@@ -1,6 +1,6 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<inputDefinition>nabu.cms.core.types.model.core.User</inputDefinition>
-	<sql>update users set
+	<sql>update ~users set
 	modified = case when :modified is null then modified else :modified end,
 	password = case when :password is null then password else :password end,
 	salt = case when :salt is null then salt else :salt end,
@@ -10,6 +10,8 @@
 	invites_left = case when :invitesLeft is null then invites_left else :invitesLeft end,
 	blocked_since = case when :blockedSince is null then blocked_since else :blockedSince end,
 	anonymous = case when :anonymous is null then anonymous else :anonymous end,
-	realm = case when :realm is null then realm else :realm end
+	realm = case when :realm is null then realm else :realm end,
+	alias_type_id = case when :aliasTypeId is null then alias_type_id else :aliasTypeId end,
+	algorithm = case when :algorithm is null then algorithm else :algorithm end
  where id = :id</sql>
 </jdbcService>
