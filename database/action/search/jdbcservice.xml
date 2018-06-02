@@ -1,0 +1,6 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Action</outputDefinition>
+	<sql>select *
+from ~actions a
+where (:q is null or name ilike '%' || :q || '%' or description ilike '%' || :q || '%')</sql>
+</jdbcService>

@@ -2,7 +2,9 @@ window.addEventListener("load", function() {
 	application.bootstrap(function($services) {
 		// ------------------------------- EMAILS
 		$services.router.register({
-			priority: -1,
+			// must be beyond the initial route that is usually "/.*"
+			// you must register an even higher priority to override this one
+			priority: 1,
 			alias: "email-skeleton",
 			module: "nabu.cms",
 			enter: function() {
@@ -52,7 +54,7 @@ window.addEventListener("load", function() {
 					$services.router.route("home");
 				});
 			},
-			roles: ["$guest"],
+			roles: ["$user"],
 			url: "/user/logout"
 		});
 		$services.router.register({

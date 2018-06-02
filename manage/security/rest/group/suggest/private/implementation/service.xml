@@ -1,0 +1,23 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="dcfeceb5-7a7b-4dab-904c-e004895c9726">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d0784449-b6f7-4383-b83a-003bf5fa0879">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="f27b7fcd-bf16-4cb6-bec9-9909af1243b7" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.group.search" resultName="result0707832c10e04a28809cc5cbe1282239" y="107" x="87">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cb689540-eda3-4f1f-b845-54ccea5f2eb3" optional="false" mask="false" fixedValue="false">
+				<from>input/query/q</from>
+				<to>parameters/q</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8232cd73-7daf-421c-8c34-b67b617aed9f" optional="false" mask="false" fixedValue="true">
+				<from>20</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ac7eee4e-0f17-4c1c-be5e-18d2a3b9b3d6" optional="false" mask="false" fixedValue="true">
+				<from>name</from>
+				<to>orderBy[0]</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4a0beaa0-0155-4b88-b33b-77ccdf5ef5c3" optional="false" mask="false" fixedValue="false">
+			<from>result0707832c10e04a28809cc5cbe1282239/results</from>
+			<to>output/content/groups</to>
+		</steps>
+	</steps>
+</sequence>

@@ -1,0 +1,15 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="69b0f1aa-0755-42bf-ac50-ee32fe22f729">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c5ccd07c-5f25-4460-916b-a7add23b72e5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="65b4c28a-bcfd-4a5c-ab41-365afb23b3f9" invocationOrder="0" temporaryMapping="true" serviceId="nabu.services.jdbc.Services.update" resultName="result1136427afd434df29279b670850b9e69" y="69" x="86">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6fb623f6-838d-460a-b852-91624d19ff19" optional="false" mask="false" fixedValue="false">
+				<from>input/content</from>
+				<to>instances[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="823e878b-2983-4a67-8a4c-fb0e5ab95311" optional="false" mask="false" fixedValue="true">
+				<from>nabu.cms.core.providers.misc.changeTracker</from>
+				<to>changeTracker</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

@@ -1,12 +1,7 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Role</outputDefinition>
-	<sql>select
-	id,
-	created,
-	modified,
-	name,
-	pseudo,
-	owner_id
+	<sql>select *
 from roles
+where :ids is null or id = any(:ids)
 order by name</sql>
 </jdbcService>

@@ -1,26 +1,30 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="f2f87ca8-9f68-457a-af2a-8338fe04bf1d">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/aliasTypeId != null" comment="Get type" id="b8c01da7-0d95-4f89-97b0-632c2aeacf70">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="7ca5aa36-b616-4102-926f-b7a482659988" serviceId="nabu.cms.core.database.masterdata.entry.selectById" resultName="resulte07c8b784b9847189c82ad34cc5fbd66" invocationOrder="0" temporaryMapping="true" y="48" x="27">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="597e3753-6650-4101-b9dc-e4559b1f6cc6" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="597e3753-6650-4101-b9dc-e4559b1f6cc6" fixedValue="false" optional="false" mask="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1b45d8bc-37bf-44f8-aa2e-0cdae4daaf84" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1b45d8bc-37bf-44f8-aa2e-0cdae4daaf84" fixedValue="false" optional="false" mask="false">
 				<from>input/aliasTypeId</from>
 				<to>parameters/id</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="006df12b-c9ed-4c0c-b201-135fd0819ef1" fixedValue="false" optional="false" mask="false">
+			<from>resulte07c8b784b9847189c82ad34cc5fbd66/results[0]</from>
+			<to>entry</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="607bef26-d52a-46ae-b8c5-57b8d3180de5" query="entry/name">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="&quot;text&quot;" comment="Has to be manually typed over, so keep it short" id="f19ddd68-bac5-4e9a-9bfd-b44405148b27">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="82830f46-71b3-4091-bbbc-63397d139b65" optional="false" mask="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="82830f46-71b3-4091-bbbc-63397d139b65" fixedValue="true" optional="false" mask="false">
 				<from>6</from>
 				<to>complexity</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Bit longer but still typable if necessary" id="723df2fc-9874-43fd-91ba-243dc089b0ab">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b4f1649d-0dd3-4509-b1a4-312a42d76e61" optional="false" mask="false" fixedValue="true">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b4f1649d-0dd3-4509-b1a4-312a42d76e61" fixedValue="true" optional="false" mask="false">
 				<from>12</from>
 				<to>complexity</to>
 			</steps>
@@ -28,13 +32,13 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="c5a2ded2-9046-45d7-b034-5c39e059acd0">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="448a8805-28cb-46fb-8623-0cd952d55f1c" serviceId="nabu.utils.Server.password" resultName="result234cc49c0bd547f2846c3812ef2c8b37" invocationOrder="0" temporaryMapping="true" y="80" x="18">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="05451544-078c-4977-98be-a91c3324e39b" optional="false" mask="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="05451544-078c-4977-98be-a91c3324e39b" fixedValue="false" optional="false" mask="false">
 				<from>complexity</from>
 				<to>length</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="32864590-1f29-4050-8f81-95b0a3cf47ba" optional="false" mask="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="32864590-1f29-4050-8f81-95b0a3cf47ba" fixedValue="false" optional="false" mask="false">
 			<from>result234cc49c0bd547f2846c3812ef2c8b37/password</from>
 			<to>output/verificationCode</to>
 		</steps>

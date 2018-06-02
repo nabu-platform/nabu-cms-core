@@ -1,11 +1,7 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Group</outputDefinition>
-	<sql>select
-	id,
-	created,
-	modified,
-	name,
-	owner_id
+	<sql>select *
 from groups
+where :ids is null or id = any(:ids)
 order by name</sql>
 </jdbcService>

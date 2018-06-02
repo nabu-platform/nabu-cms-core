@@ -1,0 +1,23 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="dcfeceb5-7a7b-4dab-904c-e004895c9726">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="d0784449-b6f7-4383-b83a-003bf5fa0879">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="db5dc83c-c97f-4944-a7e3-c407347c12f6" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.role.search" resultName="resultf9a7a4af3959474aa3002a1efe72cbb7" y="24" x="93">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4baef94f-c10c-483e-a115-9db2fe5772df" optional="false" mask="false" fixedValue="false">
+				<from>input/query/q</from>
+				<to>parameters/q</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="49dbc754-f558-4210-ad98-791a8dac5bf2" optional="false" mask="false" fixedValue="true">
+				<from>20</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b53d225a-2377-493d-bdba-fc69c3c1a62f" optional="false" mask="false" fixedValue="true">
+				<from>name</from>
+				<to>orderBy[0]</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8c460c87-e1ec-4e85-a12a-a92214f02248" optional="false" mask="false" fixedValue="false">
+			<from>resultf9a7a4af3959474aa3002a1efe72cbb7/results</from>
+			<to>output/content/roles</to>
+		</steps>
+	</steps>
+</sequence>

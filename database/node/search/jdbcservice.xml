@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
+	<sql>select *
+from ~nodes n
+where (:q is null or n.name ilike '%' || :q || '%' or n.title ilike '%' || :q || '%' or n.description ilike '%' || :q || '%')
+and enabled = true</sql>
+</jdbcService>
