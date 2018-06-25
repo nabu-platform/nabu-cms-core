@@ -13,6 +13,10 @@
 				<from>input/name</from>
 				<to>parameters/name</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4e043321-d11e-4c31-a0a1-d08947609f04" fixedValue="false" optional="false" mask="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
+			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f793ede5-1247-4923-a2df-c587fd8784ba" fixedValue="false" optional="false" mask="false">
@@ -31,6 +35,10 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="545597e4-3f90-48ed-bd3c-91a1640083ae" fixedValue="false" optional="false" mask="false">
 						<from>input/category</from>
 						<to>parameters/name</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a03a02d0-4697-4aa0-9b58-4bb4fcf5b29d" fixedValue="false" optional="false" mask="false">
+						<from>input/transactionId</from>
+						<to>transaction</to>
 					</steps>
 					<asynchronous>false</asynchronous>
 				</steps>

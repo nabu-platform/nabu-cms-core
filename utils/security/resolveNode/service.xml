@@ -153,7 +153,7 @@
 							<to>type</to>
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ea36ed51-223c-42a9-bf61-98b87c2dfa89" mask="false" fixedValue="false" optional="false">
-							<from>parts[0]</from>
+							<from>parts[1]</from>
 							<to>context</to>
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="fe4bac69-877b-4d1a-ae34-37aeb0c07229" mask="false" fixedValue="false" optional="false">
@@ -163,6 +163,10 @@
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1492847c-f22b-477b-927c-bdb5e76ebe08" mask="false" fixedValue="false" optional="false">
 							<from>input/connectionId</from>
 							<to>connectionId</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="27434194-cd78-4126-869c-ab74dc1b1bd8" mask="false" fixedValue="true" optional="false">
+							<from>true</from>
+							<to>useAsContext</to>
 						</steps>
 						<asynchronous>false</asynchronous>
 					</steps>

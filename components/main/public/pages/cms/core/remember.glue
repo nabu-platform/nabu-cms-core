@@ -57,6 +57,16 @@ else if (nabu.utils.Token.isSystemToken(user.token())/response)
 	abort();
 else
 	user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
+
+	# if you selected a different language while logged out, lets update that in the database	
+	@cookie
+	language ?= null
+	
+	if (language != null)
+		languageEntry = nabu.cms.core.services.masterdata.entry.get(connectionId, category: "language", name: language, create: false)/entry
+		if (languageEntry != null)
+			nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
+			
 	response.content(structure(
 			id: user/id,
 			alias: user.token()/name,

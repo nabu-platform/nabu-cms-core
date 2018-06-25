@@ -2,6 +2,7 @@
 	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
 	<sql>select *
 from ~nodes n
-where (:q is null or n.name ilike '%' || :q || '%' or n.title ilike '%' || :q || '%' or n.description ilike '%' || :q || '%')
-and enabled = true</sql>
+where (:q is null or lower(n.name) like '%' || lower(:q) || '%')
+and enabled = true
+and (:componentId is null or component_id = :componentId)</sql>
 </jdbcService>

@@ -1,6 +1,7 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Group</outputDefinition>
 	<sql>select *
-from groups
-where :q is null or name ilike '%' || :q || '%'</sql>
+from groups g
+where (:q is null or g.name ilike '%' || :q || '%')
+	and (:ownerId is null or g.owner_id = :ownerId)</sql>
 </jdbcService>

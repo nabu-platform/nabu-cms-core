@@ -15,6 +15,16 @@ if (!user.authenticate(login/alias, login/password, login/remember != null && lo
 else
 	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
 	user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
+
+	# if you selected a different language while logged out, lets update that in the database	
+	@cookie
+	language ?= null
+
+	if (language != null)
+		languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: language))/results)
+		if (languageEntry != null)
+			nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
+			
 	response.content(structure(
 			id: user/id,
 			alias: user.token()/name,

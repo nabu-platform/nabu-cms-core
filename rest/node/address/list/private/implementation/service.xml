@@ -1,0 +1,15 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="76b4bc78-36e9-49cb-96bd-cd8db753cd77">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="3280a4dc-20c0-4611-82fb-efe2530496f6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d8c6867f-3ff0-459b-850b-619c705d3abb" serviceId="nabu.cms.core.database.node.address.selectByNodeId" resultName="resultad49989319be47caa1350abe029575cc" invocationOrder="0" temporaryMapping="true" y="67" x="59">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="47d7bf47-9b9b-40f1-8b3a-2ff842ccb98e" fixedValue="false" optional="false" mask="false">
+				<from>input/path/nodeId</from>
+				<to>parameters/nodeId</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f0d1f8c0-c609-4809-9969-1d17f8c71d49" fixedValue="false" optional="false" mask="true">
+			<from>resultad49989319be47caa1350abe029575cc/results</from>
+			<to>output/content/addresses</to>
+		</steps>
+	</steps>
+</sequence>

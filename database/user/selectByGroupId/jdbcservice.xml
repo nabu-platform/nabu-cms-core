@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
+	<sql>select *
+from ~nodes n join ~users u on u.id = n.id
+	join ~user_groups ug on ug.user_id = u.id
+where ug.group_id = :groupId
+	and (:enabled is null or n.enabled = :enabled)</sql>
+</jdbcService>
