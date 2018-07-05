@@ -7,17 +7,28 @@ window.addEventListener("load", function() {
 			name: "component",
 			namespace: "nabu.cms",
 			enumerate: function() {
-				return components;
+				return components instanceof Array ? components : [];
 			},
 			label: "name",
 			value: "id"
 		});
 		
+		/*
 		nabu.page.provide("page-format", {
 			format: function(id) {
 				return $services.node.resolve(id).name;
 			},
-			name: "node-name",
+			name: "node",
+			namespace: "nabu.cms"
+		});
+		*/
+		
+		nabu.page.provide("page-format", {
+			format: function(id) {
+				var component = components.filter(function(x) { return x.id == id})[0];
+				return component ? component.name : null;
+			},
+			name: "component",
 			namespace: "nabu.cms"
 		});
 		

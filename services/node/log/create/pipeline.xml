@@ -1,0 +1,17 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field aggregation="composite" foreignKey="nabu.cms.core.types.model.core.Node:id" name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="message" type="java.lang.String"/>
+        <field foreignKey="nabu.cms.core.types.model.core.MasterDataEntry:id" name="logTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="description" type="java.lang.String"/>
+        <field minOccurs="0" name="code" type="java.lang.String"/>
+        <field minOccurs="0" name="correlationId" type="java.lang.String"/>
+        <field minOccurs="0" name="uri" type="java.net.URI"/>
+        <field foreignKey="nabu.cms.core.types.model.core.MasterDataEntry:id" minOccurs="0" name="logLevelId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="actorId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="started" timezone="UTC" type="java.util.Date"/>
+        <field minOccurs="0" name="stopped" timezone="UTC" type="java.util.Date"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="NodeLogs" definition="nabu.cms.core.types.model.core.NodeLog" name="log" namespace="nabu.cms.core.types.model.core"/>
+</structure>

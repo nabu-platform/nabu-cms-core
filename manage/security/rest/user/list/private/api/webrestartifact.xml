@@ -2,10 +2,10 @@
 <restInterface>
     <method>GET</method>
     <path>/user</path>
-    <queryParameters>limit, offset, q, orderBy, enabled</queryParameters>
-    <role>manager</role>
-    <permissionAction>security.read</permissionAction>
-    <output>nabu.cms.core.manage.security.types.userList</output>
+    <queryParameters>orderBy, limit, offset, id, password, salt, passwordModified, alias, verificationCode, invitesLeft, blockedSince, anonymous, realm, aliasTypeId, algorithm</queryParameters>
+    <role>$user</role>
+    <permissionAction>user.list</permissionAction>
+    <output>nabu.cms.core.manage.security.rest.user.userList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
     <language>false</language>

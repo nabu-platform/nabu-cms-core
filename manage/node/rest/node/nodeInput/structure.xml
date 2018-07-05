@@ -1,0 +1,16 @@
+<structure name="node">
+    <field comment="If null, the entity is in draft mode and not visible to others. If the start is in the future, it will become available at that time. If in the past, it is &quot;active&quot;" minOccurs="0" name="started" timezone="UTC" type="java.util.Date"/>
+    <field comment="If null, there is currently no end to the entity, it will always be active (from the started date forward). If you fill in this value, the entity will cease to be active at this point in time." minOccurs="0" name="stopped" timezone="UTC" type="java.util.Date"/>
+    <field comment="The owner of this node (if any)" foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="A node can require verification before being enabled. For example a new user or an (often) flagged node or sensitive content. If the node does not require verification, it should contain created value." minOccurs="0" name="verified" timezone="UTC" type="java.util.Date"/>
+    <field comment="Whether or not the node is disabled, for example due to soft deletion." name="enabled" type="java.lang.Boolean"/>
+    <field comment="The parent node (if any). This allows for a hierachical layout of nodes" foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="parentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="A version that should be incremented every time the node is modified" name="version" type="java.lang.Integer"/>
+    <field comment="The priority of this node (defaults to 0). This allows you to sort nodes at the same level." name="priority" type="java.lang.Integer"/>
+    <field minOccurs="0" name="name" type="java.lang.String"/>
+    <field minOccurs="0" name="title" type="java.lang.String"/>
+    <field minOccurs="0" name="description" type="java.lang.String"/>
+    <field comment="A unique readable name for this node" minOccurs="0" name="slug" type="java.lang.String" unique="true"/>
+    <field foreignKey="nabu.cms.core.types.model.core.MasterDataEntry:id" minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.model.core.Component:id" name="componentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

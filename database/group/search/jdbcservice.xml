@@ -1,7 +1,10 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Group</outputDefinition>
-	<sql>select *
-from groups g
-where (:q is null or g.name ilike '%' || :q || '%')
-	and (:ownerId is null or g.owner_id = :ownerId)</sql>
+	<sql>select distinct *
+from groups g left outer join nodes n on n.id = g.owner_id
+	left outer join user_groups ug on ug.group_id = g.id
+where (:q is null or lower(g.name) like '%' || lower(:q) || '%' or (n.id is not null and lower(n.name) like '%' || lower(:q) || '%'))
+	and (:ownerId is null or g.owner_id = :ownerId)
+	and (:userId is null or ug.user_id = :userId)
+</sql>
 </jdbcService>

@@ -1,0 +1,9 @@
+<structure name="groupRole">
+    <field comment="If null, the entity is in draft mode and not visible to others. If the start is in the future, it will become available at that time. If in the past, it is &quot;active&quot;" minOccurs="0" name="started" timezone="UTC" type="java.util.Date"/>
+    <field comment="If null, there is currently no end to the entity, it will always be active (from the started date forward). If you fill in this value, the entity will cease to be active at this point in time." minOccurs="0" name="stopped" timezone="UTC" type="java.util.Date"/>
+    <field comment="An optional service that can perform more complex checks to see if this connection is accurate" minOccurs="0" name="service" type="java.lang.String"/>
+    <field name="inherit" type="java.lang.Boolean"/>
+    <field aggregation="composite" foreignKey="nabu.cms.core.types.model.core.Group:id" name="groupId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.model.core.Role:id" name="roleId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

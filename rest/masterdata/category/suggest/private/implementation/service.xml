@@ -16,6 +16,20 @@
 			<to>input/language</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch" disabled="false" id="d7a9f2b7-79d3-4c4c-b6b9-f595dd537358" query="input/query/q">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="null" id="e58aed68-c252-41d3-9925-b9e9636a1bab">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="504b7088-21b5-4a1c-8b02-fc05b58de287" fixedValue="true" mask="false" optional="false">
+				<from>%</from>
+				<to>suggestion</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="cde3aa39-dd29-45be-9afc-4a67f33bd806">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c0428baa-78a4-45fa-a8df-c4241c10e35c" fixedValue="true" mask="false" optional="false">
+				<from>="%" + input/query/q + "%"</from>
+				<to>suggestion</to>
+			</steps>
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="54e44253-4bfc-4ad0-92a4-8577cafc2885">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="32e635c7-ef43-4cad-a080-361ad6465118" serviceId="nabu.cms.core.database.masterdata.entry.suggestByCategoryId" resultName="result840b4d0e1cb945a084e718d6583ffc7b" invocationOrder="0" temporaryMapping="true" y="76" x="35">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b8d920d9-8665-493a-b1a3-a3205b67bee8" fixedValue="false" mask="false" optional="false">
@@ -30,8 +44,8 @@
 				<from>input/configuration/masterdata/amountOfSuggestions</from>
 				<to>limit</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="194c53b1-b277-45ae-b649-53cd31a6f64f" fixedValue="true" mask="false" optional="false">
-				<from>="%" + input/query/q + "%"</from>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7231d964-cc25-4414-9b27-16b47c5e915b" fixedValue="false" mask="false" optional="false">
+				<from>suggestion</from>
 				<to>parameters/suggestion</to>
 			</steps>
 			<asynchronous>false</asynchronous>

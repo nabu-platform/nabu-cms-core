@@ -63,7 +63,7 @@ else
 	language ?= null
 	
 	if (language != null)
-		languageEntry = nabu.cms.core.services.masterdata.entry.get(connectionId, category: "language", name: language, create: false)/entry
+		languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: language))/results)
 		if (languageEntry != null)
 			nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
 			

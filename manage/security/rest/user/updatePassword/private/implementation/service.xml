@@ -1,0 +1,15 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="37ed302d-e2b5-4bbc-8247-165e2d9e9150">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="146a9479-596d-47e3-973b-559d24f13bae">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="3b1b562b-a5e0-4976-b71f-bc07855d01ac" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.services.user.updatePassword" resultName="result19c23ce3c28a460f9cb165351d937ebf" y="81" x="65">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ddb54b7b-b60e-4ca4-b7bb-e583b4b64acd" mask="false" optional="false" fixedValue="false">
+				<from>input/path/userId</from>
+				<to>userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="18b204b9-9e33-4900-83af-d5fb1b80b53f" mask="false" optional="false" fixedValue="false">
+				<from>input/query/password</from>
+				<to>newPassword</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+	</steps>
+</sequence>

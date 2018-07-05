@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>PUT</method>
+    <path>/user/{userId}</path>
+    <role>manager</role>
+    <permissionContext>=input/path/userId</permissionContext>
+    <permissionAction>security.write</permissionAction>
+    <input>nabu.cms.core.manage.security.rest.user.userInput</input>
+    <lenient>false</lenient>
+    <webApplicationId>false</webApplicationId>
+    <language>false</language>
+    <allowFormBinding>false</allowFormBinding>
+    <caseInsensitive>false</caseInsensitive>
+    <cache>false</cache>
+</restInterface>

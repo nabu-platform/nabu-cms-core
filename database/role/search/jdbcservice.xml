@@ -1,6 +1,9 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Role</outputDefinition>
-	<sql>select *
-from roles
-where :q is null or name ilike '%' || :q || '%'</sql>
+	<sql>select distinct *
+from ~roles r left outer join action_roles ar on ar.role_id = r.id
+where (:q is null or lower(name) like '%' || lower(:q) || '%')
+	and (:actionId is null or ar.action_id = :actionId)
+	and (:pseudo is null or r.pseudo = :pseudo)
+	and (:ownerId is null or r.owner_id = :ownerId)</sql>
 </jdbcService>

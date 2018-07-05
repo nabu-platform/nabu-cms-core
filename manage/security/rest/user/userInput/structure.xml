@@ -1,0 +1,12 @@
+<structure name="user">
+    <field comment="The parent node (if any). This allows for a hierachical layout of nodes" foreignKey="nabu.cms.core.types.emodel.core.Node:id" minOccurs="0" name="parentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field minOccurs="0" name="name" type="java.lang.String"/>
+    <field minOccurs="0" name="title" type="java.lang.String"/>
+    <field minOccurs="0" name="description" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field name="alias" type="java.lang.String"/>
+    <field comment="How many invitations the user has left (if any)" minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
+    <field comment="If a user is blocked (e.g. faulty login etc), this is the timestamp the block began." minOccurs="0" name="blockedSince" type="java.util.Date"/>
+    <field comment="Whether or not the user is anonymous. This can be used to create &quot;shadow&quot; profiles for anonymous users." name="anonymous" type="java.lang.Boolean"/>
+    <field comment="The type could be email (default), phone,..." foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="aliasTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

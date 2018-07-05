@@ -1,3 +1,4 @@
+/*
 window.addEventListener("load", function() {
 	application.bootstrap(function($services) {
 		nabu.page.provide("page-format", {
@@ -21,3 +22,4 @@ window.addEventListener("load", function() {
 		});
 	})
 });
+*/

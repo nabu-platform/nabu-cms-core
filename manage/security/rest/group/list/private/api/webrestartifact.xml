@@ -2,10 +2,10 @@
 <restInterface>
     <method>GET</method>
     <path>/group</path>
-    <queryParameters>limit, offset, orderBy, q, ownerId</queryParameters>
-    <role>manager</role>
-    <permissionAction>security.read</permissionAction>
-    <output>nabu.cms.core.manage.security.types.groupList</output>
+    <queryParameters>orderBy, limit, offset, id, name, ownerId</queryParameters>
+    <role>$user</role>
+    <permissionAction>group.list</permissionAction>
+    <output>nabu.cms.core.manage.security.rest.group.groupList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
     <language>false</language>

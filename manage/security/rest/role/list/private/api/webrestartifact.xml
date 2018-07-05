@@ -2,10 +2,10 @@
 <restInterface>
     <method>GET</method>
     <path>/role</path>
-    <queryParameters>limit, orderBy, offset, q</queryParameters>
-    <role>manager</role>
-    <permissionAction>security.read</permissionAction>
-    <output>nabu.cms.core.manage.security.types.roleList</output>
+    <queryParameters>orderBy, limit, offset, id, name, pseudo, ownerId</queryParameters>
+    <role>$user</role>
+    <permissionAction>role.list</permissionAction>
+    <output>nabu.cms.core.manage.security.rest.role.roleList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
     <language>false</language>
