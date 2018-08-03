@@ -1,24 +1,24 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="5861a7a8-ab30-4a5e-8fbc-09d4d13e7741">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Merge components" id="1a9977b9-372f-40dc-bfc1-4fe6093b609d">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="39d30155-078a-40e2-8861-c9f5a6283ae1" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.component.merge" resultName="result10a0fc9e6ff243359f59e038c8bcc404" y="52" x="3">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1906d63e-8e16-46a5-b905-4eb7d7e1fd22" optional="false" fixedValue="false" mask="false">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/components" comment="Merge components" id="1a9977b9-372f-40dc-bfc1-4fe6093b609d">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="39d30155-078a-40e2-8861-c9f5a6283ae1" serviceId="nabu.cms.core.database.component.merge" resultName="result10a0fc9e6ff243359f59e038c8bcc404" invocationOrder="0" temporaryMapping="true" y="52" x="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="1906d63e-8e16-46a5-b905-4eb7d7e1fd22" fixedValue="false" mask="false" optional="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="369ae7f2-74d3-427b-9c13-6582eb078802" optional="false" fixedValue="false" mask="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="369ae7f2-74d3-427b-9c13-6582eb078802" fixedValue="false" mask="false" optional="false">
 				<from>input/components</from>
 				<to>parameters</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Merge fields" id="d483849a-0304-4d7e-bec1-daca4d73fef3">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5a217dc6-8b1a-4ce3-a02d-c89ab2b52685" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.component.field.merge" resultName="result9d4cd75f2b764af2b43c22abf6268bdb" y="45" x="38">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="428050e7-ead7-4126-887d-af7e969cf68a" optional="false" fixedValue="false" mask="false">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="input/componentFields" comment="Merge fields" id="d483849a-0304-4d7e-bec1-daca4d73fef3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5a217dc6-8b1a-4ce3-a02d-c89ab2b52685" serviceId="nabu.cms.core.database.component.field.merge" resultName="result9d4cd75f2b764af2b43c22abf6268bdb" invocationOrder="0" temporaryMapping="true" y="45" x="38">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="428050e7-ead7-4126-887d-af7e969cf68a" fixedValue="false" mask="false" optional="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7d0da0f1-4513-43ee-8724-a01834e26ea7" optional="false" fixedValue="false" mask="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7d0da0f1-4513-43ee-8724-a01834e26ea7" fixedValue="false" mask="false" optional="false">
 				<from>input/componentFields</from>
 				<to>parameters</to>
 			</steps>

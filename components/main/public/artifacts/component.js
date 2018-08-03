@@ -38,9 +38,10 @@ window.addEventListener("load", function() {
 		$services.router.register({
 			priority: -1,
 			alias: "login",
+			query: ["url", "route"],
 			module: "nabu.cms",
-			enter: function() {
-				return new nabu.views.cms.core.Login();
+			enter: function(parameters) {
+				return new nabu.views.cms.core.Login({propsData:parameters});
 			},
 			roles: ["$guest"],
 			url: "/user/login"

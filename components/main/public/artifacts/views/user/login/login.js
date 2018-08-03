@@ -14,6 +14,10 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 			type: String,
 			required: false,
 			default: "home"
+		},
+		url: {
+			type: String,
+			required: false
 		}
 	},
 	data: function() {
@@ -34,7 +38,12 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 				var self = this;
 				return this.$services.user.login(this.username, this.password, this.remember || this.alwaysRemember).then(
 					function(profile) {
-						self.$services.router.route(self.route);
+						if (self.url) {
+							window.location.href = self.url;
+						}
+						else {
+							self.$services.router.route(self.route);
+						}
 						self.working = false;
 					},
 					function(error) {
