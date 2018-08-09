@@ -12,6 +12,7 @@
     <field comment="The regex that the user-provided password must match" minOccurs="0" name="passwordRegex" type="java.lang.String"/>
     <structure minOccurs="0" name="security">
         <field comment="The algorithm used" minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
+        <field comment="You can set a whitelist of roles that are allowed to log into this application" maxOccurs="unbounded" minOccurs="0" name="allowedRoles" type="java.lang.String"/>
     </structure>
     <structure minOccurs="0" name="implementations">
         <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>
