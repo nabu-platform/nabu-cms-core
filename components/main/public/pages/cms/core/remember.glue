@@ -40,7 +40,7 @@ if (!user.authenticated() && !user.refresh() && !user.remember())
 			"OFFLINE")/link)
 	
 	oauth2 = structure(
-			oauth: oauth2,
+			oauth2: oauth2,
 			realm: environment("realm"),
 			roles: series("$guest"),
 			actions: nabu.cms.core.database.action.selectByRoleName(connectionId, parameters: structure(roleName: "$guest"))/results/name

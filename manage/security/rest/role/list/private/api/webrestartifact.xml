@@ -3,7 +3,7 @@
     <method>GET</method>
     <path>/role</path>
     <queryParameters>orderBy, limit, offset, id, name, pseudo, ownerId</queryParameters>
-    <role>$user</role>
+    <role>manager</role>
     <permissionAction>role.list</permissionAction>
     <output>nabu.cms.core.manage.security.rest.role.roleList</output>
     <lenient>false</lenient>
@@ -12,4 +12,7 @@
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
 </restInterface>

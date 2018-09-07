@@ -1,0 +1,8 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input" validate="true"/>
+    <structure name="output"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.cms.core.types.model.core"/>
+    <field name="aliasType" type="java.lang.String"/>
+    <field name="link" type="java.lang.String"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="existing" namespace="nabu.cms.core.types.model.core"/>
+</structure>

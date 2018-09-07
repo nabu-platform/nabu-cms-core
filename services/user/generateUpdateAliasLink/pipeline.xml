@@ -1,0 +1,15 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="oldAlias" type="java.lang.String"/>
+        <field name="newAlias" type="java.lang.String"/>
+        <field name="realm" type="java.lang.String"/>
+        <field name="webApplicationId" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field name="link" type="java.lang.String"/>
+        <field name="code" type="java.lang.String"/>
+    </structure>
+    <field name="code" type="java.lang.String"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="information"/>
+    <structure definition="nabu.cms.core.configuration" name="configuration"/>
+</structure>

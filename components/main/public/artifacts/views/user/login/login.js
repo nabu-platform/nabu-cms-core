@@ -20,6 +20,27 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 			required: false
 		}
 	},
+	computed: {
+		oauth2: function() {
+			var login = [];
+			var self = this;
+			if (this.$services.user.oauth2) {
+				Object.keys(this.$services.user.oauth2).map(function(provider) {
+					login.push({
+						provider: provider,
+						link: self.$services.user.oauth2[provider]
+					})
+				})
+			}
+			return login;
+		},
+		disableLocalAccounts: function() {
+${{
+disabled = application.configuration("nabu.cms.core.configuration")/disableLocalAccounts
+echo("			return " + when(disabled = null || !disabled, "false", "true") + ";")
+}}
+		}
+	},
 	data: function() {
 		return {
 			username: null,

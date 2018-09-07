@@ -9,7 +9,12 @@
 @content
 nabu.cms.core.types.components.login login ?= null
 
-if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember))
+disabled = application.configuration("nabu.cms.core.configuration")/disableLocalAccounts
+
+if (disabled != null && disabled)
+	response.code(400)
+	abort()
+else if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember))
 	response.code(400)
 	abort()
 else

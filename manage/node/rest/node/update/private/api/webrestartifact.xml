@@ -2,7 +2,7 @@
 <restInterface>
     <method>PUT</method>
     <path>/node/{nodeId}</path>
-    <role>$user</role>
+    <role>manager</role>
     <permissionContext>=input/path/nodeId</permissionContext>
     <permissionAction>node.update</permissionAction>
     <input>nabu.cms.core.manage.node.rest.node.nodeInput</input>
@@ -12,4 +12,6 @@
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
 </restInterface>

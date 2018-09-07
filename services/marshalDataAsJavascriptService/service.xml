@@ -1,0 +1,28 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="c0347f5c-01f3-4666-bc55-1ec38dd8eaee">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="63bf2d83-0f46-4c2b-89c6-12afc8f6d0e7">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="9d6352a2-8273-48b4-8091-9bdad12c1d98" serviceId="nabu.data.json.Services.marshal" resultName="result4bcda00510f84a5aab7e27e99435cd43" invocationOrder="0" temporaryMapping="true" y="77" x="83">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="26937fd5-3803-4512-9eef-dd6407d5a71c" mask="false" fixedValue="false" optional="false">
+				<from>input/data</from>
+				<to>data</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6545c616-20ea-4d4f-9c9e-59adc34900b6" mask="false" fixedValue="true" optional="false">
+				<from>true</from>
+				<to>prettyPrint</to>
+			</steps>
+			<asynchronous>false</asynchronous>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="2c7a00b0-f7c0-4a62-9115-4e937b9fe9c1" mask="false" fixedValue="false" optional="false">
+			<from>result4bcda00510f84a5aab7e27e99435cd43/marshalled</from>
+			<to>json</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="The output" id="32fe3926-8ac5-465a-bc9b-51b5e5604843">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c63ba0c8-4278-435d-b3ab-9bf2eb222f3e" mask="false" fixedValue="true" optional="false">
+			<from>="window.addEventListener('load', function() {
+	application.state = " + json + ";
+});"
+</from>
+			<to>output/javascript</to>
+		</steps>
+	</steps>
+</sequence>

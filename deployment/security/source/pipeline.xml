@@ -1,0 +1,11 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connectionId" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field name="connectionId" type="java.lang.String"/>
+        <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" maxOccurs="unbounded" minOccurs="0" name="actions" namespace="nabu.cms.core.types.model.core"/>
+        <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="roles" namespace="nabu.cms.core.types.model.core"/>
+        <structure collectionName="ActionRoles" definition="nabu.cms.core.types.model.core.ActionRole" maxOccurs="unbounded" minOccurs="0" name="actionRoles" namespace="nabu.cms.core.types.model.core"/>
+    </structure>
+</structure>

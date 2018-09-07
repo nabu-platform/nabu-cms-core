@@ -11,5 +11,5 @@
 	component_id
 from ~actions
 where name = :name
-and (component_id = :componentId or component_id is null)</sql>
+and ((:componentId is null and component_id is null) or component_id = :componentId or component_id is null)</sql>
 </jdbcService>

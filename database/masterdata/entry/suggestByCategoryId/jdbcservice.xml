@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.MasterDataEntry</outputDefinition>
 	<sql>select
 	 mde.id,
 	 mde.created,
@@ -11,6 +12,6 @@ from ~master_data_entries mde
 where mde.master_data_category_id = :masterDataCategoryId
 and lower(mde.name) like lower(:suggestion) 
 and ((:ownerId is null and mde.owner_id is null) or mde.owner_id = :ownerId)
+and (:blacklistIds is null or mde.id &lt;&gt; all(:blacklistIds))
 order by length(mde.name)</sql>
-	<outputDefinition>nabu.cms.core.types.model.core.MasterDataEntry</outputDefinition>
 </jdbcService>

@@ -18,7 +18,12 @@ nabu.services.VueService(Vue.extend({
 			actions: [],
 			potentialRoles: [],
 			potentialActions: [],
-			remembering: false
+			remembering: false,
+			// to be consistent with the backend hasRole will by default also allow potential roles
+			// as it is currently impossible to validate in which context a potential role becomes active
+			// also, role checking is meant as a more coarse grained level of security, use permissions if you want to finetune
+			// or alternatively you can turn this off
+			allowPotentialRoles: true
 		}
 	},
 	computed: {
@@ -184,6 +189,9 @@ nabu.services.VueService(Vue.extend({
 				if (this.roles.indexOf(arguments[i]) >= 0) {
 					return true;
 				}
+			}
+			if (this.allowPotentialRoles) {
+				return this.hasPotentialRole.apply(this, arguments);
 			}
 			return false;
 		},

@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
+	<sql>select distinct *
+from ~nodes n join ~users u on u.id = n.id
+	join ~user_groups ug on ug.user_id = u.id
+	join ~groups g on g.id = ug.group_id
+where u.realm = :realm
+	and g.name = any(:groups)
+	and g.owner_id is null</sql>
+</jdbcService>

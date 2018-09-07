@@ -1,0 +1,16 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="from" type="java.lang.String"/>
+        <field name="smtpClientId" type="java.lang.String"/>
+        <field name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="url" type="java.lang.String"/>
+        <field name="webApplicationId" type="java.lang.String"/>
+        <field minOccurs="0" name="subject" type="java.lang.String"/>
+        <field name="newAlias" type="java.lang.String"/>
+        <field name="link" type="java.lang.String"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.cms.core.types.model.core"/>
+    <field name="content" type="java.lang.String"/>
+</structure>

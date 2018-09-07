@@ -1,0 +1,15 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="connectionId" type="java.lang.String"/>
+        <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" maxOccurs="unbounded" minOccurs="0" name="actions" namespace="nabu.cms.core.types.model.core"/>
+        <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="roles" namespace="nabu.cms.core.types.model.core"/>
+        <structure collectionName="ActionRoles" definition="nabu.cms.core.types.model.core.ActionRole" maxOccurs="unbounded" minOccurs="0" name="actionRoles" namespace="nabu.cms.core.types.model.core"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" minOccurs="0" name="existingAction" namespace="nabu.cms.core.types.model.core"/>
+    <structure definition="nabu.utils.types.Property" name="mapping"/>
+    <structure definition="nabu.utils.types.Property" maxOccurs="unbounded" minOccurs="0" name="mappings"/>
+    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" minOccurs="0" name="existingRole" namespace="nabu.cms.core.types.model.core"/>
+    <field name="actionId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field name="roleId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

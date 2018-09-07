@@ -1,0 +1,81 @@
+@path
+@operationId nabu.cms.core.updateAlias
+@title Update Alias
+@tags user
+## Allows the user to verify his account
+
+@get
+code ?= null
+
+@get
+redirect ?= server.root()
+
+configuration = application.configuration("nabu.cms.core.configuration")
+updateAlias = configuration/security/updateAlias
+
+generalError = lambda(redirect(server.root() + "#/misc/error?message=An error has occurred, please try again"))
+
+# not supported
+if (updateAlias == null || updateAlias/keystoreId == null || updateAlias/keyAlias == null)
+	generalError()
+	abort()
+
+# need to be logged in to update
+else if (!user.authenticated() && !user.remember(persist: false))
+	redirect(server.root() + "#/misc/error?message=Please <a v-route:login>log in</a> before updating your alias")
+	abort()
+
+# ok, let's check if this is valid
+else
+	try
+		token = nabu.web.application.jwt.Services.unmarshal(
+			updateAlias/keystoreId,
+			updateAlias/keyAlias,
+			code)/response
+	
+	if (token == null)
+		generalError()
+		abort()
+	
+	if ((token/exp * 1000) - date.date() < 0)
+		redirect(server.root() + "#/misc/error?message=Request timed out, please try again")
+		abort()
+		
+	oldAlias = token/iss
+	newAlias = token/sub
+	realm = token/rlm
+	
+	# must be issued by the user account you are logged in as now
+	if (oldAlias != user.token()/name)
+		generalError()
+		abort()
+		
+	# must be in the same realm
+	else if (realm != user.token()/realm)
+		generalError()
+		abort()
+	
+	nabu.cms.core.database.user.updateAlias(connection: configuration/connectionId,
+		parameters: series(structure(
+			oldAlias: oldAlias,
+			newAlias: newAlias,
+			realm: realm)))
+	
+	# we want to update the secret cookie as needed so we can automatically reconstruct a session with your new alias
+	secret = request.cookie("Realm-" + realm)
+	
+	# destroy the current session, we want to remove the token within it
+	# don't do a forget as it resets secret cookies (which we don't want)
+	session.destroy()
+	
+	# update the secret to use the new alias
+	newSecret = replace("^[^/]+(/.*)$", newAlias + "$1", secret)
+	
+	# set the new secret
+	response.cookie("Realm-" + realm, newSecret, 
+		expires: date.date() + "1 year", 
+		path: server.cookiePath(),
+		httpOnly: true)
+	
+	# redirect to the application
+	redirect(redirect)

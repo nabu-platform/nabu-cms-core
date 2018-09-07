@@ -33,6 +33,16 @@ window.addEventListener("load", function() {
 			},
 			url: "/email/verify"
 		});
+		$services.router.register({
+			priority: -1,
+			alias: "email-update-alias",
+			module: "nabu.cms",
+			query: ["link", "newAlias"],
+			enter: function(parameters) {
+				return new nabu.views.cms.emails.UpdateAlias({propsData: parameters});
+			},
+			url: "/email/update-alias"
+		});
 		
 		// ------------------------------- USER login/logout/forget/reset/verify
 		$services.router.register({
@@ -129,8 +139,9 @@ window.addEventListener("load", function() {
 			priority: -1,
 			alias: "error",
 			module: "nabu.cms",
+			query: ["message"],
 			enter: function(parameters) {
-				return new nabu.views.cms.core.Error({ data: parameters });
+				return new nabu.views.cms.core.Error({ propsData: parameters });
 			},
 			url: "/misc/error"
 		});
@@ -147,7 +158,6 @@ window.addEventListener("load", function() {
 		// ------------------------------- SERVICES
 		return $services.$register({
 			user: nabu.services.cms.User,
-			masterdata: nabu.services.cms.Masterdata,
 			language: nabu.services.cms.Language
 		});
 	});

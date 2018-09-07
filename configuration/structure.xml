@@ -5,6 +5,8 @@
     <field comment="Defaults to &quot;true&quot;" minOccurs="0" name="allowRemember" type="java.lang.Boolean"/>
     <field minOccurs="0" name="allowDisabledNodes" type="java.lang.Boolean"/>
     <field minOccurs="0" name="allowAnonymousLogin" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="disableLocalAccounts" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="inviteOnly" type="java.lang.Boolean"/>
     <field comment="Defaults to 10" minOccurs="0" name="maxAmountOfDevices" type="java.lang.Integer"/>
     <field minOccurs="0" name="maxAmountOfLocations" type="java.lang.Integer"/>
     <field comment="Defaults to &quot;en&quot;" minOccurs="0" name="defaultLanguage" type="java.lang.String"/>
@@ -13,6 +15,10 @@
     <structure minOccurs="0" name="security">
         <field comment="The algorithm used" minOccurs="0" name="algorithm" type="be.nabu.utils.security.DigestAlgorithm"/>
         <field comment="You can set a whitelist of roles that are allowed to log into this application" maxOccurs="unbounded" minOccurs="0" name="allowedRoles" type="java.lang.String"/>
+        <structure comment="The information necessary to update an alias after it has been verified" minOccurs="0" name="updateAlias">
+            <field name="keystoreId" type="java.lang.String"/>
+            <field name="keyAlias" type="java.lang.String"/>
+        </structure>
     </structure>
     <structure minOccurs="0" name="implementations">
         <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>

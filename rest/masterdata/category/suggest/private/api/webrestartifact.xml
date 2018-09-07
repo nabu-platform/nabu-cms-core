@@ -2,7 +2,7 @@
 <restInterface>
     <method>GET</method>
     <path>/masterdata/category/{categoryId}/suggest</path>
-    <queryParameters>q</queryParameters>
+    <queryParameters>q, blacklistIds</queryParameters>
     <output>nabu.cms.core.types.rest.masterdata.entryOutputList</output>
     <configurationType>nabu.cms.core.configuration</configurationType>
     <lenient>false</lenient>
@@ -11,4 +11,6 @@
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
 </restInterface>

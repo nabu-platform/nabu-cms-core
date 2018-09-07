@@ -2,7 +2,7 @@
 <restInterface>
     <method>DELETE</method>
     <path>/node/{nodeId}</path>
-    <role>$user</role>
+    <role>manager</role>
     <permissionContext>=input/path/nodeId</permissionContext>
     <permissionAction>node.delete</permissionAction>
     <lenient>false</lenient>
@@ -11,4 +11,6 @@
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
 </restInterface>

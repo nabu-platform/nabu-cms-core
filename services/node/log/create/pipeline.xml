@@ -13,6 +13,7 @@
         <field foreignKey="nabu.cms.core.types.model.core.Node:id" minOccurs="0" name="actorId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
         <field minOccurs="0" name="started" timezone="UTC" type="java.util.Date"/>
         <field minOccurs="0" name="stopped" timezone="UTC" type="java.util.Date"/>
+        <field minOccurs="0" name="created" timezone="UTC" type="java.util.Date"/>
     </structure>
     <structure name="output">
         <structure collectionName="NodeLogs" definition="nabu.cms.core.types.model.core.NodeLog" name="log" namespace="nabu.cms.core.types.model.core"/>
