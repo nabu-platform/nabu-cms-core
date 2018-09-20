@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>GET</method>
-    <path>/category</path>
-    <queryParameters>orderBy, q</queryParameters>
+    <path>/masterDataCategory</path>
+    <queryParameters>orderBy, limit, offset, id, name, ownerId, description</queryParameters>
     <role>manager</role>
     <permissionAction>masterdata.read</permissionAction>
-    <output>nabu.cms.core.manage.masterdata.types.categoryList</output>
-    <configurationType>nabu.management.core.configuration</configurationType>
+    <output>nabu.cms.core.manage.masterdata.rest.category.masterDataCategoryList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
     <language>false</language>

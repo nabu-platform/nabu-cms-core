@@ -1,13 +1,13 @@
-<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="d9898070-95a2-4b11-bb39-d51a110afd3a">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="63d98c10-94d4-4684-a50a-fd979ffd57c9">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="d7c47874-62dc-4b70-891f-477cffe5f256" serviceId="nabu.cms.core.database.masterdata.entry.delete" resultName="resultc53b509066ed43888c624c5432944997" invocationOrder="0" temporaryMapping="true" y="61" x="31">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="dc1ef856-eed5-4ac2-b5f5-f76c13c3ffda" fixedValue="false" optional="false" mask="false">
-				<from>input/query/connectionId[0]</from>
-				<to>connection</to>
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="b5653e48-9392-4aac-833f-f7709a2215a6">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="569d1d1d-8045-4e1f-88c3-295614c699d5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b4e8af7d-39ae-41a4-9535-fa54cf67e2a7" serviceId="nabu.services.jdbc.utils.delete" resultName="result7d28f3734202417aba507fc869a5f849" invocationOrder="0" temporaryMapping="true" y="62" x="62">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="6b97a4c6-f2b0-4783-ab69-ef88f50d6551" fixedValue="false" mask="false" optional="false">
+				<from>input/path/masterDataEntryId</from>
+				<to>instanceId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f7dbc206-4799-42cd-a164-ad3b737903a6" fixedValue="false" optional="false" mask="false">
-				<from>input/path/entryId</from>
-				<to>parameters[0]/id</to>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="38d49485-24e6-425f-88f5-fb3df402d272" fixedValue="true" mask="false" optional="false">
+				<from>nabu.cms.core.types.model.core.MasterDataEntry</from>
+				<to>typeId</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>

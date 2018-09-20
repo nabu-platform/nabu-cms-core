@@ -10,35 +10,16 @@ connectionId = application.configuration("nabu.cms.core.configuration")/connecti
 if (!user.authenticated() && !user.refresh() && !user.remember())
 	oauth2 = structure()
 
-	# add fodged
-	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.fodged.stateful")/has)
-		oauth2 = oauth2 + structure(fodged: nabu.authentication.oauth2.server.Services.getRedirectLink(
-			"nabu.cms.core.providers.oauth2.fodged.stateful", 
-			environment("webApplicationId"), 
-			"OFFLINE")/link)
+	for (oauth2Provider : nabu.utils.reflection.Node.listByType(type: "be.nabu.eai.module.authentication.oauth2.OAuth2Artifact")/nodes/id)
+		if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), oauth2Provider, active: true)/has)
+			# check if you have a name for it
+			oauth2Configuration = application.configuration(oauth2Provider + ".oauth2Configuration")
+			name = when(oauth2Configuration/name != null, oauth2Configuration/name, oauth2Provider)
+			oauth2 = oauth2 + structure(lambda(name): nabu.authentication.oauth2.server.Services.getRedirectLink(
+				oauth2Provider, 
+				environment("webApplicationId"), 
+				"OFFLINE")/link)
 
-	# add google
-	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.google.provider")/has)
-		oauth2 = oauth2 + structure(google: nabu.authentication.oauth2.server.Services.getRedirectLink(
-			"nabu.cms.core.providers.oauth2.google.provider", 
-			environment("webApplicationId"), 
-			"OFFLINE",
-			true)/link)
-			
-	# add facebook
-	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.facebook.provider")/has)
-		oauth2 = oauth2 + structure(facebook: nabu.authentication.oauth2.server.Services.getRedirectLink(
-			"nabu.cms.core.providers.oauth2.facebook.provider", 
-			environment("webApplicationId"), 
-			"OFFLINE")/link)
-			
-	# add linkedin
-	if (nabu.web.application.Services.hasFragment(environment("webApplicationId"), "nabu.cms.core.providers.oauth2.linkedin.provider")/has)
-		oauth2 = oauth2 + structure(linkedIn: nabu.authentication.oauth2.server.Services.getRedirectLink(
-			"nabu.cms.core.providers.oauth2.linkedin.provider", 
-			environment("webApplicationId"), 
-			"OFFLINE")/link)
-	
 	oauth2 = structure(
 			oauth2: oauth2,
 			realm: environment("realm"),

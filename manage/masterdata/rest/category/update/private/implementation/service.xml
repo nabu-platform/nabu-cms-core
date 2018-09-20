@@ -1,40 +1,17 @@
-<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="1557d818-0ea2-4b53-a4b1-150ac6e4bf6e">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="e9497250-8cb9-471b-9105-84ac0966c6cd">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="9f5d04a7-e307-4992-8839-2f5cc63b81ae" serviceId="nabu.cms.core.database.masterdata.category.selectById" resultName="result012311720fa840719117f0a74392bb60" invocationOrder="0" temporaryMapping="true" y="58" x="58">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="87a4cf17-0535-48ff-b798-ca15dac6ee3a" fixedValue="false" optional="false" mask="false">
-				<from>input/path/categoryId</from>
-				<to>parameters/id</to>
-			</steps>
-			<asynchronous>false</asynchronous>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="35910dea-9962-477e-af09-8884e78f99e9" fixedValue="false" optional="false" mask="false">
-			<from>result012311720fa840719117f0a74392bb60/results[0]</from>
-			<to>current</to>
-		</steps>
-	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Throw" disabled="false" label="!current" id="2a46da7c-ef6d-4886-82de-5d6f1650af2d" message="Could not find category" xsi:nil="true"/>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="cf71759d-9101-40d7-becd-05f189817656">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="05facecf-b7ce-47e7-ae46-6526f5d1ef9e" serviceId="nabu.utils.Object.mapByKey" resultName="result0c5aec3faf4b401894a2d14da206ef25" invocationOrder="0" temporaryMapping="true" y="108" x="109">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="26183eac-a4ef-4871-a35e-c87cc20f71f4" fixedValue="false" optional="false" mask="false">
-				<from>current</from>
-				<to>into</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b3d47e4e-b409-486c-a210-0404318c178b" fixedValue="false" optional="false" mask="false">
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="d5f31a9b-746c-42a8-99ec-a525f1c887d1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="b17ff0d1-b496-45e1-aee3-cf425d3a48dc">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="e14d1ebb-3fc7-4c6a-a0b7-1a38ae029051" serviceId="nabu.services.jdbc.utils.merge" resultName="result2fd342ccfdb24c13b5ce11904cbe0090" invocationOrder="0" temporaryMapping="true" y="72" x="98">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="46bc8716-56e5-4c1a-81bd-62cf06e1b772" fixedValue="false" mask="false" optional="false">
 				<from>input/content</from>
-				<to>from</to>
+				<to>values</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="87a2fd3a-e904-4668-8264-278660c6a4f6" fixedValue="true" optional="false" mask="false">
-				<from>id</from>
-				<to>ignoredFields[0]</to>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b53d5684-b93a-488e-a669-0fb9e963ba17" fixedValue="true" mask="false" optional="false">
+				<from>nabu.cms.core.types.model.core.MasterDataCategory</from>
+				<to>typeId</to>
 			</steps>
-			<asynchronous>false</asynchronous>
-		</steps>
-	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="51504c65-4dc6-4b62-a234-efc6484ab7fc">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="88aa831e-89e7-45af-a96e-29e31ce0ae68" serviceId="nabu.services.jdbc.Services.update" resultName="result80008d511ae84196bf87040847312e85" invocationOrder="0" temporaryMapping="true" y="124" x="131">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="313c8e2e-bdd0-42e9-9cdb-8590173764c6" fixedValue="false" optional="false" mask="false">
-				<from>current</from>
-				<to>instances[0]</to>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9d69bae4-1195-4510-bbad-fea8486abd66" fixedValue="false" mask="false" optional="false">
+				<from>input/path/masterDataCategoryId</from>
+				<to>instanceId</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>

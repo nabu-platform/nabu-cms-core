@@ -1,0 +1,6 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.MasterDataCategory</outputDefinition>
+	<sql>select *
+from ~master_data_categories mdc
+where :q is null or lower(name) like '%' || lower(:q) || '%'</sql>
+</jdbcService>

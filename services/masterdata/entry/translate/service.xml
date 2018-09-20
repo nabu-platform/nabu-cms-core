@@ -50,39 +50,6 @@
 				<to>entry/label</to>
 			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" label="entry/description != null" comment="Translate description" id="6da46d5e4c6148b6ae1cee2ba942b987">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="6abbc1af495e42c28a808aae3d14308b" serviceId="nabu.cms.core.services.translation.translate" resultName="result36138189271a4b3bae05a5b154156a3a" invocationOrder="0" temporaryMapping="true" y="101" x="40">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="f002fec9e2904f95a64f5d9d91243fc7" fixedValue="false" mask="false" optional="false">
-					<from>input/connection</from>
-					<to>connection</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="187556d4714741f88090815bd12dfa4f" fixedValue="false" mask="false" optional="false">
-					<from>input/language</from>
-					<to>language</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="bea1e0c68a47408fba278399c9e0932e" fixedValue="false" mask="false" optional="false">
-					<from>input/defaultLanguage</from>
-					<to>defaultLanguage</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="7915ec9c2421431f8dcb09a76e8ee174" fixedValue="false" mask="false" optional="false">
-					<from>categories[id = /entry/masterDataCategoryId]/name</from>
-					<to>category</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a15adbac-b222-48de-9912-346a95ceac61" fixedValue="true" mask="false" optional="false">
-					<from>=entry/name + ".description"</from>
-					<to>key</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cef17b22-b11b-40c4-a966-8e825362f1a6" fixedValue="false" mask="false" optional="false">
-					<from>entry/description</from>
-					<to>defaultValue</to>
-				</steps>
-				<asynchronous>false</asynchronous>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="34e057e1-4e21-455e-b07d-3fc46881210e" fixedValue="false" mask="false" optional="false">
-				<from>result36138189271a4b3bae05a5b154156a3a/translation</from>
-				<to>entry/description</to>
-			</steps>
-		</steps>
 		<query>output/entries</query>
 	</steps>
 </sequence>

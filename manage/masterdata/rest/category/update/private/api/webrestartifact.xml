@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>PUT</method>
-    <path>/category/{categoryId}</path>
+    <path>/masterDataCategory/{masterDataCategoryId}</path>
     <role>manager</role>
     <permissionAction>masterdata.write</permissionAction>
-    <input>nabu.cms.core.types.model.core.MasterDataCategory</input>
+    <input>nabu.cms.core.manage.masterdata.rest.category.masterDataCategoryInput</input>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
 </restInterface>

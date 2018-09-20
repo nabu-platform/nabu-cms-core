@@ -54,7 +54,7 @@ if (configuration/connectionId != null)
 		preloaded = merge(preloaded, structure(
 			name: name,
 			entries: entries))
-	categories = nabu.cms.core.database.masterdata.category.selectAll(application.configuration("nabu.cms.core.configuration")/connectionId)/results
+	categories = nabu.cms.core.database.masterdata.category.selectAll(configuration/connectionId)/results
 	categories = derive(stripper, categories)
 else
 	preloaded = series()
@@ -98,9 +98,11 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 			else {
 				for (var i = 0; i < this.preloaded.length; i++) {
 					if (this.preloaded[i].name == category || this.preloaded[i].id == category) {
-						for (var j = 0; j < this.preloaded[i].entries.length; j++) {
-							if (this.preloaded[i].entries[j].name == name || this.preloaded[i].entries[j].id == name) {
-								return this.preloaded[i].entries[j];
+						if (this.preloaded[i].entries) {
+							for (var j = 0; j < this.preloaded[i].entries.length; j++) {
+								if (this.preloaded[i].entries[j].name == name || this.preloaded[i].entries[j].id == name) {
+									return this.preloaded[i].entries[j];
+								}
 							}
 						}
 					}

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>GET</method>
-    <path>/category/{categoryId}</path>
+    <path>/masterDataEntry</path>
+    <queryParameters>orderBy, limit, offset, id, name, ownerId, description, masterDataCategoryId</queryParameters>
     <role>manager</role>
     <permissionAction>masterdata.read</permissionAction>
-    <output>nabu.cms.core.manage.masterdata.types.entryList</output>
+    <output>nabu.cms.core.manage.masterdata.rest.entry.masterDataEntryList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
 </restInterface>
