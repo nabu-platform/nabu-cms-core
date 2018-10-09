@@ -29,7 +29,8 @@ nabu.services.VueService(Vue.extend({
 						return preloaded.entries;
 					},
 					label: "label",
-					value: "id"
+					value: "id",
+					values: ["id", "name"]
 				});
 			});
 		}	
@@ -88,10 +89,12 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 			// if we didn't get a name, we must be searching by id
 			if (!name) {
 				for (var i = 0; i < this.preloaded.length; i++) {
-					for (var j = 0; j < this.preloaded[i].entries.length; j++) {
-						if (this.preloaded[i].entries[j].id == category) {
-							return this.preloaded[i].entries[j];
-						}	
+					if (this.preloaded[i].entries) {
+						for (var j = 0; j < this.preloaded[i].entries.length; j++) {
+							if (this.preloaded[i].entries[j].id == category) {
+								return this.preloaded[i].entries[j];
+							}
+						}
 					}
 				}
 			}

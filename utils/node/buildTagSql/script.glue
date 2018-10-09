@@ -1,0 +1,15 @@
+uuid [] tags ?= null
+
+from = "nodes n"
+where = ""
+@return
+be.nabu.libs.types.api.TypedKeyValuePair [] values = series()
+for (tag : tags)
+	from = from + "\n\tjoin node_tags nt" + $index + " on nt" + $index + ".node_id = n.id"
+	if (where != "")
+		where = where + "\n\tand"
+	where = where + " nt" + $index + ".definition_id = :definitionId" + $index
+	values = merge(values, structure(key: "definitionId" + $index, value: tag, type: "uuid"))
+
+@return
+string sql = "select * from " + from + "\nwhere " + where
