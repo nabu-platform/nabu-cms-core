@@ -19,6 +19,7 @@ nabu.services.VueService(Vue.extend({
 			potentialRoles: [],
 			potentialActions: [],
 			remembering: false,
+			loggingOut: false,
 			// to be consistent with the backend hasRole will by default also allow potential roles
 			// as it is currently impossible to validate in which context a potential role becomes active
 			// also, role checking is meant as a more coarse grained level of security, use permissions if you want to finetune
@@ -79,6 +80,7 @@ nabu.services.VueService(Vue.extend({
 		logout: function() {
 			var self = this;
 			var promise = this.$services.q.defer();
+			self.loggingOut = true;
 			this.$services.swagger.execute("nabu.cms.core.logout").then(function() {
 				self.id = null;
 				self.alias = null;
@@ -89,7 +91,12 @@ nabu.services.VueService(Vue.extend({
 				self.roles.splice(0, self.roles.length, "$guest");
 				self.potentialRoles.splice(0, self.roles.length, "$guest");
 				self.$services.$clear().then(function() {
-					promise.resolve();
+					var done = function() {
+						promise.resolve();
+					};
+					// when clearing, remember the new user (even if anonymous) to get the correct roles, oauth settings etc
+					self.remember().then(done, done);
+					self.loggingOut = false;
 				}, promise);
 			}, promise);
 			return promise;
@@ -128,7 +135,7 @@ nabu.services.VueService(Vue.extend({
 					if (result.potentialActions) {
 						nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
 					}
-					if (clear) {
+					if (clear && !self.loggingOut) {
 						self.$services.$clear().then(function() {
 							promise.resolve();
 							self.remembering = false;

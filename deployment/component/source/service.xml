@@ -18,13 +18,13 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" comment="Get all the fields" id="ba15d989-d24c-444e-a396-5d176e3ce38c">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="fb1b1702-57b7-4e6e-a30f-95fb9651f89a" invocationOrder="0" temporaryMapping="true" serviceId="nabu.cms.core.database.component.field.selectByComponentId" resultName="result49d956352bd840e8b8fa7322c4d334fc" y="46" x="40">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="9cd42ee7-090f-4fe1-b24e-6dc245688833" optional="false" fixedValue="false" mask="false">
-				<from>output/componentFields/id</from>
-				<to>parameters/componentIds</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="82c873aa-bcf1-4f90-9487-6dc1cb0eb7ad" optional="false" fixedValue="false" mask="false">
 				<from>input/connectionId</from>
 				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="d18bdb7e-7f25-4142-86c6-a509dc275551" optional="false" fixedValue="false" mask="false">
+				<from>output/components/id</from>
+				<to>parameters/componentIds</to>
 			</steps>
 			<asynchronous>false</asynchronous>
 		</steps>

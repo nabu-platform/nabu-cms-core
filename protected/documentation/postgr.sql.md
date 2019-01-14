@@ -348,5 +348,12 @@ alter table node_tags add constraint tag_unique unique(node_id, definition_id);
 alter table translations add constraint translation_unique unique(context, name, language_id);
 
 -- make sure categories and entries are unique
-alter table master_data_categories add constraint master_data_category_unique unique(name, owner_id);
-alter table master_data_entries add constraint master_data_entry_unique unique(name, master_data_category_id, owner_id);
+--alter table master_data_categories add constraint master_data_category_unique unique(name, owner_id);
+--alter table master_data_entries add constraint master_data_entry_unique unique(name, master_data_category_id, owner_id);
+
+-- in postgresql, null != null. to make sure there is only one entry with null, we need two indexes
+create unique index master_data_category_unique on master_data_categories (name, owner_id) where owner_id is null;
+create unique index master_data_category_unique2 on master_data_categories (name, owner_id) where owner_id is not null;
+
+create unique index master_data_entry_unique on master_data_entries (name, master_data_category_id, owner_id) where owner_id is null;
+create unique index master_data_entry_unique2 on master_data_entries (name, master_data_category_id, owner_id) where owner_id is not null;

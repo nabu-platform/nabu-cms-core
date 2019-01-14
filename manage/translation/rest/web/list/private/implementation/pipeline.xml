@@ -1,0 +1,7 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input" validate="true"/>
+    <structure name="output"/>
+    <structure definition="be.nabu.libs.types.api.KeyValuePair" maxOccurs="unbounded" minOccurs="0" name="translationKeys"/>
+    <structure definition="nabu.cms.core.manage.translation.rest.web.translation" minOccurs="0" name="translation"/>
+    <structure collectionName="Translations" definition="nabu.cms.core.types.model.core.Translation" maxOccurs="unbounded" minOccurs="0" name="translations" namespace="nabu.cms.core.types.model.core"/>
+</structure>

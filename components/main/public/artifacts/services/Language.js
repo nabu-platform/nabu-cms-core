@@ -62,15 +62,17 @@ nabu.services.VueService(Vue.extend({
 			set: function(newValue) {
 				// first check that it is a valid language (or null)
 				if (newValue == null || this.available.indexOf(newValue) >= 0) {
+					// must synchronously update this, because the get() is immediately executed again, if only done async it will re-enforce the old value
+					this.$services.user.languageId = newValue ? newValue.id : null;
 					// always set it as a cookie so we know your selection if you are not known to the server (yet) for example before the remember kicks in on a dead session
-					this.$services.cookies.set("language", newValue.name, newValue.name ? 365 : -1);
+					this.$services.cookies.set("language", newValue ? newValue.name : "none", newValue && newValue.name ? 365 : -1);
 					this.cookieValue = newValue ? newValue.name : null;
 					
 					// if the user is logged in, update his profile
 					if (this.$services.user.loggedIn) {
 						var self = this;
-						this.$services.swagger.execute("nabu.cms.core.rest.user.updateLanguage", { userId: this.$services.user.id, languageId: newValue.id }).then(function() {
-							self.$services.user.languageId = newValue.id;
+						this.$services.swagger.execute("nabu.cms.core.rest.user.updateLanguage", { userId: this.$services.user.id, languageId: newValue ? newValue.id : null }).then(function() {
+							self.$services.user.languageId = newValue ? newValue.id : null;
 							// force a reload to get the new language
 							window.location.reload(true);
 						});

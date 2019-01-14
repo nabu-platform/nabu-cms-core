@@ -23,6 +23,10 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 			type: Boolean,
 			required: false,
 			default: false
+		},
+		handler: {
+			type: Function,
+			required: false
 		}
 	},
 	data: function() {
@@ -45,7 +49,10 @@ nabu.views.cms.core.Reset = Vue.component("n-cms-reset", {
 				this.messages.splice(0, this.messages.length);
 				this.working = true;
 				var self = this;
-				var func = this.initialize ? this.$services.user.initializePassword : this.$services.user.resetPassword;
+				var func = this.handler;
+				if (func == null) {
+					func = this.initialize ? this.$services.user.initializePassword : this.$services.user.resetPassword;
+				}
 				return func(this.userId, this.verificationCode, this.password1).then(
 					function(profile) {
 						if (self.route) {

@@ -18,6 +18,10 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 		url: {
 			type: String,
 			required: false
+		},
+		useCheckbox: {
+			type: Boolean,
+			required: false
 		}
 	},
 	computed: {

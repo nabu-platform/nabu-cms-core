@@ -28,7 +28,7 @@ nabu.services.VueService(Vue.extend({
 					enumerate: function() {
 						return preloaded.entries;
 					},
-					label: "label",
+					label: "name",
 					value: "id",
 					values: ["id", "name"]
 				});
@@ -67,10 +67,12 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 	},	
 	methods: {
 		// we can only list preloaded categories, use suggest for other categories	
-		list: function(name) {
+		list: function(name, q) {
 			for (var i = 0; i < this.preloaded.length; i++) {
 				if (this.preloaded[i].name == name || this.preloaded[i].id == name) {
-					return this.preloaded[i].entries;
+					return this.preloaded[i].entries.filter(function(x) {
+						return !q || x.label.toLowerCase().indexOf(q.toLowerCase()) >= 0;
+					});
 				}
 			}
 			return null;

@@ -26,14 +26,14 @@
 					v-model="password2" 
 					:required="true"/>
 			</n-form-section>
-			<footer slot="footer">
-				<slot name="footer" :messages="messages">
+			<footer>
+				<slot name="footer" :messages="messages" :finalize="resetPassword">
 					<div class="actions">
 						<button :disabled="working" class="primary" v-action="resetPassword">{{ initialize ? "%{initialize:Set initial password}" : "%{reset:Reset password}" }}</button>
 					</div>
 					<n-messages :messages="messages"/>
+					<slot name="end"><a v-if="!initialize" class="login" v-route:login>%{reset:Still remember your password?}</a></slot>
 				</slot>
-				<slot name="end"><a v-if="!initialize" class="login" v-route:login>%{reset:Still remember your password?}</a></slot>
 			</footer>
 		</n-form>
 		<div v-if="updated" class="completed">
