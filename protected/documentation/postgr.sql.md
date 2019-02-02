@@ -357,3 +357,5 @@ create unique index master_data_category_unique2 on master_data_categories (name
 
 create unique index master_data_entry_unique on master_data_entries (name, master_data_category_id, owner_id) where owner_id is null;
 create unique index master_data_entry_unique2 on master_data_entries (name, master_data_category_id, owner_id) where owner_id is not null;
+
+create unique index user_device_unique on user_devices (user_id, device_id);

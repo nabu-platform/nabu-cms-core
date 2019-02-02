@@ -42,6 +42,7 @@ configuration = application.configuration("nabu.cms.core.configuration")
 if (configuration/connectionId != null)
 	stripper = lambda(x, structure(x, created: null, modified: null))
 	preloaded = series()
+	categories = nabu.cms.core.database.masterdata.category.selectAll(configuration/connectionId)/results
 	for (name : configuration/masterdata/preloadedCategories)
 		entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
 			connection: configuration/connectionId,
@@ -52,10 +53,11 @@ if (configuration/connectionId != null)
 			language: application.language(),
 			defaultLanguage: configuration/defaultLanguage)/entries
 		entries = derive(stripper, entries)
+		cat = first(categories[ownerId = null && name = /name])
 		preloaded = merge(preloaded, structure(
 			name: name,
+			id: cat/id,
 			entries: entries))
-	categories = nabu.cms.core.database.masterdata.category.selectAll(configuration/connectionId)/results
 	categories = derive(stripper, categories)
 else
 	preloaded = series()
@@ -70,7 +72,7 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 		list: function(name, q) {
 			for (var i = 0; i < this.preloaded.length; i++) {
 				if (this.preloaded[i].name == name || this.preloaded[i].id == name) {
-					return this.preloaded[i].entries.filter(function(x) {
+					return this.preloaded[i].entries == null ? [] : this.preloaded[i].entries.filter(function(x) {
 						return !q || x.label.toLowerCase().indexOf(q.toLowerCase()) >= 0;
 					});
 				}
