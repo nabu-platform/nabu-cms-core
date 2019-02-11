@@ -45,10 +45,6 @@ nabu.services.VueService(Vue.extend({
 								break;
 							}
 						}
-						// if we still have no result, take the first language in the dropdown
-						if (!result && this.names.length) {
-							result = this.names[0];
-						}
 					}
 				}
 				// after that we map the name to the object

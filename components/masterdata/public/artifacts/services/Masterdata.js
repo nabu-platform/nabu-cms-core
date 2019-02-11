@@ -126,6 +126,10 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 		},
 		
 		resolve: function(masterdataId) {
+			if (!masterdataId || !masterdataId.match(/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}/)) {
+				return masterdataId;
+			}
+			
 			var self = this;
 			
 			// check if we already have it
