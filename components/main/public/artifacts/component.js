@@ -56,6 +56,16 @@ window.addEventListener("load", function() {
 			roles: ["$guest"],
 			url: "/user/login"
 		});
+			// reusable in other parts
+			$services.router.register({
+				priority: -1,
+				alias: "cms-login",
+				query: ["url", "route"],
+				module: "nabu.cms",
+				enter: function(parameters) {
+					return new nabu.views.cms.core.Login({propsData:parameters});
+				}
+			});
 		$services.router.register({
 			priority: -1,
 			alias: "logout",
@@ -78,6 +88,14 @@ window.addEventListener("load", function() {
 			roles: ["$guest"],
 			url: "/user/forgot"
 		});
+			$services.router.register({
+				priority: -1,
+				alias: "cms-forgot",
+				module: "nabu.cms",
+				enter: function() {
+					return new nabu.views.cms.core.Forgot();
+				}
+			});
 		$services.router.register({
 			priority: -1,
 			alias: "reset",
@@ -89,6 +107,15 @@ window.addEventListener("load", function() {
 			roles: ["$guest"],
 			url: "/user/reset"
 		});
+			$services.router.register({
+				priority: -1,
+				alias: "cms-reset",
+				module: "nabu.cms",
+				query: ["verificationCode", "userId"],
+				enter: function(parameters) {
+					return new nabu.views.cms.core.Reset({ propsData: parameters });
+				}
+			});
 		$services.router.register({
 			priority: -1,
 			alias: "initialize",
@@ -101,6 +128,16 @@ window.addEventListener("load", function() {
 			roles: ["$guest"],
 			url: "/user/initialize"
 		});
+			$services.router.register({
+				priority: -1,
+				alias: "cms-initialize",
+				module: "nabu.cms",
+				query: ["verificationCode", "userId"],
+				enter: function(parameters) {
+					parameters.initialize = true;
+					return new nabu.views.cms.core.Reset({ propsData: parameters });
+				}
+			});
 		$services.router.register({
 			services: ["user"],
 			priority: -1,

@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select *
+from ~node_history_values nhv
+where nhv.instance_id = :nodeId
+and (:actorId is null or nhv.context_id in (select id from ~node_audits where node_id = :nodeId and actor_id = :actorId))</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.NodeHistoryValue</outputDefinition>
+</jdbcService>

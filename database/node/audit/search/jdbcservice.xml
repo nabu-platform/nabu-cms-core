@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select *
+from ~node_audits na
+where na.node_id = :nodeId
+	and (:actorId is null or na.actor_id = any(:actorId))</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.NodeAudit</outputDefinition>
+</jdbcService>

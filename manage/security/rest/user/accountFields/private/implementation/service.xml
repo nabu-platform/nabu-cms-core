@@ -1,0 +1,137 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="cc6de0bc-c500-4525-913b-155bf2085d23">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="5e89a695-45da-41dd-805c-5743e7cdd777">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="84c610c4-efa4-4837-a426-3bd2493f1559"
+				serviceId="nabu.utils.String.split"
+				resultName="result4ea37313f6274ab1ac692d8b6b00f574"
+				temporaryMapping="true"
+				x="114"
+				y="158"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a8527734-c885-4533-9a35-992a8ede55f8"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>id,created,modified</from>
+				<to>string</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b5bf055d-2ad1-48f9-b535-14158f90d59c"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>,</from>
+				<to>separator</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="7e94e206-7918-424a-88ab-33d3153323e1"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result4ea37313f6274ab1ac692d8b6b00f574/parts</from>
+			<to>predefined</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			label="input/configuration/accountTypeId != null"
+			id="f9798f52edb4430cadeba1e250c0b81f">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="b721c476-094b-463f-b97a-903630821c96"
+				serviceId="nabu.utils.reflection.Type.describe"
+				resultName="result0d998e685ccb4ed48392b7fe55e1db72"
+				temporaryMapping="true"
+				x="117"
+				y="73"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="03689407-b5cd-4685-98b9-e41a172afd3b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration/accountTypeId</from>
+				<to>typeId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="e88b27fc-27ba-4d96-b9a0-3e008f73236b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result0d998e685ccb4ed48392b7fe55e1db72/parameters[name !# /predefined]</from>
+			<to>output/content/properties</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="3c088dc8-4556-4b26-867f-0ae47fc639d3"
+			variable="property">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="f082208b-4903-4cc0-9b5d-f3da831f6e00">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="34bd68d2-c68a-4ad5-aa16-23caaf78ee21"
+					serviceId="nabu.utils.String.conventionize"
+					resultName="resultfebf22f1e2904657961a303a606d35c3"
+					temporaryMapping="true"
+					x="158"
+					y="92"
+					invocationOrder="0"
+					asynchronous="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="e1802674-29e3-41d0-b355-fb7cd5cb4aa2"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>property/name</from>
+					<to>content</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="7a825b99-cd25-44b6-b6a4-4b909242461a"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>LOWER_CAMEL_CASE</from>
+					<to>from</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="09b40718-a882-4fb2-a9ec-7465723b2ed7"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>UPPER_TEXT</from>
+					<to>to</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="071dc283-39d4-4497-ae81-a78dfe1d1285"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultfebf22f1e2904657961a303a606d35c3/conventionized</from>
+				<to>property/description</to>
+			</steps>
+		</steps>
+		<query>output/content/properties</query>
+	</steps>
+</sequence>

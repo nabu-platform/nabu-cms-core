@@ -18,13 +18,16 @@ nabu.services.VueService(Vue.extend({
 			actions: [],
 			potentialRoles: [],
 			potentialActions: [],
+			contextualRoles: {},
 			remembering: false,
 			loggingOut: false,
 			// to be consistent with the backend hasRole will by default also allow potential roles
 			// as it is currently impossible to validate in which context a potential role becomes active
 			// also, role checking is meant as a more coarse grained level of security, use permissions if you want to finetune
 			// or alternatively you can turn this off
-			allowPotentialRoles: true
+			allowPotentialRoles: true,
+			// this is mostly for GUI switching, you rarely need to distinguish between globally possible actions and contextually so (since you can't deduce for the context)
+			allowPotentialActions: true
 		}
 	},
 	computed: {
@@ -41,6 +44,20 @@ nabu.services.VueService(Vue.extend({
 		})	
 	},
 	methods: {
+		addContextualRoles: function(context, role) {
+			if (!this.contextualRoles[context]) {
+				Vue.set(this.contextualRoles, context, []);
+			}
+			var self = this;
+			if (!(role instanceof Array)) {
+				role = [role];
+			}
+			role.forEach(function(x) {
+				if (self.contextualRoles[context].indexOf(x) < 0) {
+					self.contextualRoles[context].push(x);
+				}
+			});
+		},
 		login: function(username, password, remember) {
 			var self = this;
 			var promise = this.$services.q.defer();
@@ -191,6 +208,16 @@ nabu.services.VueService(Vue.extend({
 		verify: function(userId, verificationCode) {
 			return this.$services.swagger.execute("nabu.cms.core.rest.user.verify", { userId: userId, verificationCode: verificationCode });
 		},
+		hasContextualRole: function(context) {
+			if (this.contextualRoles[context]) {
+				for (var i = 1; i < arguments.length; i++) {
+					if (this.contextualRoles[context].indexOf(arguments[i]) >= 0) {
+						return true;
+					}
+				}
+			}
+			return false;
+		},
 		hasRole: function() {
 			for (var i = 0; i < arguments.length; i++) {
 				if (this.roles.indexOf(arguments[i]) >= 0) {
@@ -215,6 +242,9 @@ nabu.services.VueService(Vue.extend({
 				if (this.actions.indexOf(arguments[i]) >= 0) {
 					return true;
 				}
+			}
+			if (this.allowPotentialActions) {
+				return this.hasPotentialAction.apply(this, arguments);
 			}
 			return false;
 		},

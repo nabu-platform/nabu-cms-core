@@ -30,7 +30,8 @@ nabu.services.VueService(Vue.extend({
 					},
 					label: "name",
 					value: "id",
-					values: ["id", "name"]
+					values: ["id", "name"],
+					labels: ["name", "label"]
 				});
 			});
 		}	

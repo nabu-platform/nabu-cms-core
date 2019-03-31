@@ -2,7 +2,7 @@
 <restInterface>
     <method>GET</method>
     <path>/node</path>
-    <queryParameters>orderBy, limit, offset, id, started, stopped, ownerId, verified, enabled, parentId, version, priority, name, title, description, slug, languageId, componentId</queryParameters>
+    <queryParameters>orderBy, limit, offset, id, ownerId, enabled, parentId, name, title, description, slug, languageId, componentId, root</queryParameters>
     <role>manager</role>
     <permissionAction>node.list</permissionAction>
     <output>nabu.cms.core.manage.node.rest.node.nodeList</output>
@@ -14,4 +14,8 @@
     <cache>false</cache>
     <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
     <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
+    <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
+    <useServerCache>false</useServerCache>
+    <source>false</source>
 </restInterface>

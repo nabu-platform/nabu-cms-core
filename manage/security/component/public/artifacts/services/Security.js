@@ -29,6 +29,11 @@ nabu.services.VueService(Vue.extend({
 			function(result) { return result.id }
 		);
 	},
+	computed: {
+		hasAccountType: function() {
+			return ${application.configuration("nabu.cms.core.manage.security.configuration")/accountTypeId != null};
+		}
+	},
 	methods: {
 		resolveGroup: function(id) {
 			if (this.resolved[id]) {

@@ -44,6 +44,11 @@ else
 	language ?= null
 	
 	if (language != null)
+		# it is possible that we get a language array if you have multiple cookies on different paths
+		# however, this fails if we send it along and we need to pick one winner anyway...
+		# we could at this point go to the database to check the preference that is stored?
+		language = first(language)
+		
 		languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: language))/results)
 		if (languageEntry != null)
 			nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))

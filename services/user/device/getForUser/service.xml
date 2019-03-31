@@ -81,7 +81,7 @@
 							mask="false"
 							optional="false"
 							fixedValue="true">
-						<from>=userId + "::" + input/device/deviceId</from>
+						<from>="" + input/userId + "::" + input/device/deviceId</from>
 						<to>name</to>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -129,6 +129,15 @@
 								fixedValue="false">
 							<from>input/userId</from>
 							<to>parameters/userId</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="050fbdea-546c-4df7-8738-4091ed780d74"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>input/auditId</from>
+							<to>transaction</to>
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -444,7 +453,7 @@
 								</steps>
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
-										id="05e8f324-257c-4524-b9d6-8f2707288b7c"
+										id="e319d7f3-35cb-4bd8-b3b0-10aeba335aef"
 										mask="false"
 										optional="false"
 										fixedValue="false">
@@ -477,7 +486,7 @@
 									mask="false"
 									optional="false"
 									fixedValue="true">
-								<from>=userId + "::" + input/device/deviceId</from>
+								<from>="" + input/userId + "::" + input/device/deviceId</from>
 								<to>name</to>
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restInterface>
+    <method>GET</method>
+    <path>/node/{nodeId}/history</path>
+    <queryParameters>limit, offset, orderBy, actorId</queryParameters>
+    <role>manager</role>
+    <permissionContext>=input/path/nodeId</permissionContext>
+    <permissionAction>node.history</permissionAction>
+    <output>nabu.cms.core.manage.node.rest.node.nodeHistoryList</output>
+    <lenient>false</lenient>
+    <webApplicationId>false</webApplicationId>
+    <language>false</language>
+    <allowFormBinding>false</allowFormBinding>
+    <caseInsensitive>false</caseInsensitive>
+    <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
+    <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
+    <useServerCache>false</useServerCache>
+    <source>false</source>
+</restInterface>

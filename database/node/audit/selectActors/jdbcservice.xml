@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select distinct *
+from ~nodes n join ~users u on u.id = n.id
+	join ~node_audits na on na.actor_id = u.id
+where na.node_id = :nodeId</sql>
+	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
+</jdbcService>

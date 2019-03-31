@@ -1,0 +1,17 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="2497b40e-296c-4d46-abde-5efc23733ea5">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="d2ea719c-2375-4f11-afea-0543a065eba6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="cf15a967-09b7-427f-ba1a-5cece9d77373"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>=input/configuration/accountTypeId != null</from>
+			<to>output/content/hasType</to>
+		</steps>
+	</steps>
+</sequence>

@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.NodeLog</outputDefinition>
+	<sql>select *
+from ~node_logs nl
+where nl.id = :logId
+	and nl.node_id = :nodeId </sql>
+</jdbcService>

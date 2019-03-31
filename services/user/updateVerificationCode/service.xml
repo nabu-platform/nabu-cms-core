@@ -1,0 +1,126 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="92b6d269-7ab3-4a11-a8d0-fa8ee64d687d">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="9e4dea97-1497-4c22-b6fc-a59f7e09af84">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f55cfc18-1e29-4f39-a2b4-a8884a35af23"
+				serviceId="nabu.cms.core.database.user.selectById"
+				resultName="resultf91cbc203b744016aadd52aaa3fe9a4b"
+				temporaryMapping="true"
+				x="107"
+				y="66"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f836e64a-085d-458e-aafd-3e20765c9f04"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="83634827-5fb6-48a3-9d61-a92ce4570ae9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/userId</from>
+				<to>parameters/id</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="ad20bd87-5e66-4bcb-b45d-1b0ef9cc89ad"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultf91cbc203b744016aadd52aaa3fe9a4b/results[0]</from>
+			<to>user</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			disabled="false"
+			label="input/ifMatches = null || input/ifMatches = user/verificationCode"
+			id="0d9a4c63-f201-4bd4-b9ad-e768f118ebf2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="2b6ee0c1-5508-4cdf-b4a4-961b27546511">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="319fb8cd-76ad-4b82-bdbc-059c487f98da"
+					serviceId="nabu.cms.core.services.user.generateVerificationCode"
+					resultName="resultf9b392ccfa52478bb7f11c48bf516171"
+					temporaryMapping="true"
+					x="221"
+					y="61"
+					invocationOrder="0"
+					asynchronous="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="45a45ae6-f1c3-4397-9661-ff8597277b5c"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="a811ded4-b9ea-4dbe-8afe-3119c3b1b539"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>user/aliasTypeId</from>
+					<to>aliasTypeId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="99f0ed9f-59bd-48fa-839e-86c6b85e1413"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultf9b392ccfa52478bb7f11c48bf516171/verificationCode</from>
+				<to>user/verificationCode</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="f88e3144-e28c-4cc0-995f-65ca33ea7f80">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="b52345cc-92bf-4f66-a0ba-2683831337af"
+					serviceId="nabu.cms.core.database.user.update"
+					resultName="result3b158c3fdcea43ea8f79d964d082f0b3"
+					temporaryMapping="true"
+					x="162"
+					y="123"
+					invocationOrder="0"
+					asynchronous="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="d0d4da9d-82ab-4be1-acc4-1ba827426cf7"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="86361de1-0821-44b6-bec2-3d07c93d8e26"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>user</from>
+					<to>parameters[0]</to>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

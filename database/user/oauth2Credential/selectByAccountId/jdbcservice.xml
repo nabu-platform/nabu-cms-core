@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	 uoc.id,
+	 uoc.created,
+	 uoc.modified,
+	 uoc.web_application,
+	 uoc.oauth2_provider,
+	 uoc.token,
+	 uoc.active_until,
+	 uoc.refresh_token,
+	 uoc.account_id,
+	 uoc.token_type,
+	 uoc.resource,
+	 uoc.user_id
+from ~user_oauth2_credentials uoc
+where uoc.account_id = :accountId
+	and uoc.oauth2_provider = :provider
+	and (:webApplication is null or uoc.web_application = :webApplication)</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.UserOauth2Credential</outputDefinition>
+</jdbcService>

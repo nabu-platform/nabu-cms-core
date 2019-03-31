@@ -1,0 +1,37 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="7bb264d6-aa5b-4028-817e-f30da45018e1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="03acab33-6a3f-445f-bed0-003103b1b801">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1765d4cf-ab6d-487b-931d-48885f49a80f"
+				serviceId="nabu.cms.core.database.node.audit.selectActors"
+				resultName="resulta73f3fda70fa4b8b8e65055c355ef89d"
+				temporaryMapping="true"
+				x="203"
+				y="88"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c71d6b26-3e1d-4953-96cb-1c874af831f7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/nodeId</from>
+				<to>parameters/nodeId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="b8e29a64-d9c8-4ce4-a1b0-4f92d7b6b9fb"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulta73f3fda70fa4b8b8e65055c355ef89d/results</from>
+			<to>output/content/users</to>
+		</steps>
+	</steps>
+</sequence>

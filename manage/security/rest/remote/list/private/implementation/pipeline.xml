@@ -1,0 +1,8 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input" validate="true"/>
+    <structure name="output"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" maxOccurs="unbounded" minOccurs="0" name="applications"/>
+    <structure definition="nabu.utils.types.NodeDescription" maxOccurs="unbounded" minOccurs="0" name="remotes"/>
+    <field name="has" type="java.lang.Boolean"/>
+</structure>

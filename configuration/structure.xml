@@ -5,6 +5,7 @@
     <field comment="Defaults to &quot;true&quot;" minOccurs="0" name="allowRemember" type="java.lang.Boolean"/>
     <field minOccurs="0" name="allowDisabledNodes" type="java.lang.Boolean"/>
     <field minOccurs="0" name="allowAnonymousLogin" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="allowExternalEmailChange" type="java.lang.Boolean"/>
     <field minOccurs="0" name="disableLocalAccounts" type="java.lang.Boolean"/>
     <field minOccurs="0" name="inviteOnly" type="java.lang.Boolean"/>
     <field comment="Defaults to 10" minOccurs="0" name="maxAmountOfDevices" type="java.lang.Integer"/>
@@ -19,6 +20,7 @@
             <field name="keystoreId" type="java.lang.String"/>
             <field name="keyAlias" type="java.lang.String"/>
         </structure>
+        <field comment="After how much time the password reset is no longer valid" minOccurs="0" name="passwordResetTimeout" type="be.nabu.libs.types.base.Duration"/>
     </structure>
     <structure minOccurs="0" name="implementations">
         <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>

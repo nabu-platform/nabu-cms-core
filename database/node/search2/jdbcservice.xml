@@ -1,0 +1,17 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select *
+from ~nodes n
+where (:name is null or lower(n.name) like '%' || lower(:name) || '%')
+and enabled = true
+and (:componentId is null or component_id = :componentId)
+and (:id is null or n.id = any(:id))
+and (:ownerId is null or n.owner_id = :ownerId)
+and (:parentId is null or n.parent_id = :parentId)
+and (:root is null or n.parent_id is null)
+and (:enabled is null or n.enabled = :enabled)
+and (:title is null or lower(n.title) like '%' || lower(:title) || '%')
+and (:description is null or lower(n.description) like '%' || lower(:description) || '%')
+and (:languageId is null or n.language_id = :languageId)
+and (:slug is null or n.slug = :slug)</sql>
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
+</jdbcService>

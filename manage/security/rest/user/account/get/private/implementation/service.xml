@@ -1,0 +1,76 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="bf70a60a-c18a-449f-b859-e66f42321a55">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			label="input/configuration/accountTypeId != null"
+			id="e6fff802-0444-4eba-9ba1-08ee7b8950f8">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="3ddfbef9-efba-4dbc-9dbc-61fc7cb9b36c"
+				serviceId="nabu.services.jdbc.Services.select"
+				resultName="result67e76297f90048f6a387f2bc7a47cc60"
+				temporaryMapping="true"
+				x="126"
+				y="84"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="165e3e39-27d5-4e55-9d41-b1ad4e560c3e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration/accountTypeId</from>
+				<to>typeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a57f1094-8952-4800-be5f-c5b746cc2c0d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/userId</from>
+				<to>instanceId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9e6c7621-40a1-4bf5-bac7-4b7be6900bb0"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>1</from>
+				<to>limit</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="fdc1173d-ec53-4638-a2ff-0af76ada5640"
+				serviceId="nabu.utils.Object.toProperties"
+				resultName="resultce3d51bb2e8e439694a174f97c63dc6b"
+				temporaryMapping="true"
+				x="534"
+				y="123"
+				invocationOrder="1"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="48a765a1-cd34-4d78-863b-98cc99a4a978"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result67e76297f90048f6a387f2bc7a47cc60/select/results[0]</from>
+				<to>object</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="327624f5-bb44-47d8-bd5e-de32222208ee"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultce3d51bb2e8e439694a174f97c63dc6b/properties[key != "id" &amp;&amp; key != "created" &amp;&amp; key != "modified"]</from>
+			<to>output/content/properties</to>
+		</steps>
+	</steps>
+</sequence>
