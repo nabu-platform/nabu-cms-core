@@ -27,7 +27,7 @@ window.addEventListener("load", function() {
 			priority: -1,
 			alias: "email-verify",
 			module: "nabu.cms",
-			query: ["verificationCode", "userId", "password"],
+			query: ["verificationCode", "userId", "password", "passwordSet", "route"],
 			enter: function(parameters) {
 				return new nabu.views.cms.emails.Verify({data: parameters});
 			},
@@ -82,8 +82,9 @@ window.addEventListener("load", function() {
 			priority: -1,
 			alias: "forgot",
 			module: "nabu.cms",
-			enter: function() {
-				return new nabu.views.cms.core.Forgot();
+			query: ["route"],
+			enter: function(parameters) {
+				return new nabu.views.cms.core.Forgot({propsData:parameters});
 			},
 			roles: ["$guest"],
 			url: "/user/forgot"
@@ -92,8 +93,9 @@ window.addEventListener("load", function() {
 				priority: -1,
 				alias: "cms-forgot",
 				module: "nabu.cms",
-				enter: function() {
-					return new nabu.views.cms.core.Forgot();
+				query: ["route"],
+				enter: function(parameters) {
+					return new nabu.views.cms.core.Forgot({propsData:parameters});
 				}
 			});
 		$services.router.register({
@@ -143,13 +145,13 @@ window.addEventListener("load", function() {
 			priority: -1,
 			alias: "verify",
 			module: "nabu.cms",
-			query: ["verificationCode", "userId"],
+			query: ["verificationCode", "userId", "route"],
 			enter: function(parameters) {
 				if (parameters.verificationCode && parameters.userId) {
 					$services.user.verify(parameters.userId, parameters.verificationCode).then(function() {
-						$services.router.route("login");
+						$services.router.route(parameters.route ? parameters.route : "login");
 					}, function() {
-						$services.router.route("error", { message: "%{error:The account could not be verified, perhaps because it is already verified. You can try to <a v-route:login>log in</a>.}" });
+						$services.router.route("error", { message: "%{error:The account could not be verified, perhaps because it is already verified. You could try to <a v-route:login>log in</a>.}" });
 					});
 				}
 				// if we do not have all the parameters, request them
@@ -160,6 +162,26 @@ window.addEventListener("load", function() {
 			roles: ["$guest"],
 			url: "/user/verify"
 		});
+			$services.router.register({
+				services: ["user"],
+				priority: -1,
+				alias: "cms-verify",
+				module: "nabu.cms",
+				query: ["verificationCode", "userId", "route"],
+				enter: function(parameters) {
+					if (parameters.verificationCode && parameters.userId) {
+						$services.user.verify(parameters.userId, parameters.verificationCode).then(function() {
+							$services.router.route(parameters.route ? parameters.route : "login");
+						}, function() {
+							$services.router.route("error", { message: "%{error:The account could not be verified, perhaps because it is already verified. You could try to <a v-route:login>log in</a>.}" });
+						});
+					}
+					// if we do not have all the parameters, request them
+					else {
+						return new nabu.views.cms.core.Verify({propsData:parameters});
+					}
+				}
+			});
 		$services.router.register({
 			priority: -1,
 			alias: "update",
@@ -170,18 +192,35 @@ window.addEventListener("load", function() {
 			roles: ["$user"],
 			url: "/user/update"
 		});
+			$services.router.register({
+				priority: -1,
+				alias: "cms-update",
+				module: "nabu.cms",
+				enter: function(parameters) {
+					return new nabu.views.cms.core.Update({data:parameters});
+				},
+				roles: ["$user"]
+			});
 		
 		// ------------------------------- DEFAULT PAGES
 		$services.router.register({
 			priority: -1,
 			alias: "error",
 			module: "nabu.cms",
-			query: ["message"],
 			enter: function(parameters) {
 				return new nabu.views.cms.core.Error({ propsData: parameters });
 			},
 			url: "/misc/error"
 		});
+			$services.router.register({
+				priority: -1,
+				alias: "cms-error",
+				module: "nabu.cms",
+				query: ["message"],
+				enter: function(parameters) {
+					return new nabu.views.cms.core.Error({ propsData: parameters });
+				}
+			});
 		$services.router.register({
 			priority: -1,
 			alias: "notFound",
@@ -191,6 +230,14 @@ window.addEventListener("load", function() {
 			},
 			url: "/misc/notFound"
 		});
+			$services.router.register({
+				priority: -1,
+				alias: "cms-notFound",
+				module: "nabu.cms",
+				enter: function() {
+					return "#nabu-cms-core-not-found";
+				}
+			});
 		
 		// ------------------------------- SERVICES
 		return $services.$register({

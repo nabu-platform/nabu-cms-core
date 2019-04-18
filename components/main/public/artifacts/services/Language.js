@@ -2,11 +2,17 @@ nabu.services.VueService(Vue.extend({
 	services: ["user", "cookies", "masterdata"],
 	data: function() {
 		return {
-			available: [],
 			cookieValue: null
 		}
 	},
 	computed: {
+		available: function() {
+${{
+entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language"))/results
+entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
+echo("\t\t\treturn " + json.stringify(structure(array:entries)) + ";")
+}}
+		},
 		names: function() {
 			return this.available.map(function(x) { return x.name });
 		},
@@ -18,8 +24,8 @@ nabu.services.VueService(Vue.extend({
 				// we first select the name of the language
 				var result = null;
 				// if we have a language configured for the user in the backend, that wins
-				if (this.$services.user.languageId && this.ids.indexOf(this.$services.user.languageId) >= 0) {
-					result = this.names[this.ids.indexOf(this.$services.user.languageId)];
+				if (this.$services.user.language && this.names.indexOf(this.$services.user.language) >= 0) {
+					result = this.names[this.names.indexOf(this.$services.user.language)];
 					// if the cookie does not match the persisted value, update the cookie
 					if (this.cookieValue != result) {
 						this.$services.cookies.set("language", result, result ? 365 : -1);
@@ -59,7 +65,7 @@ nabu.services.VueService(Vue.extend({
 				// first check that it is a valid language (or null)
 				if (newValue == null || this.available.indexOf(newValue) >= 0) {
 					// must synchronously update this, because the get() is immediately executed again, if only done async it will re-enforce the old value
-					this.$services.user.languageId = newValue ? newValue.id : null;
+					this.$services.user.language = newValue ? newValue.name : null;
 					// always set it as a cookie so we know your selection if you are not known to the server (yet) for example before the remember kicks in on a dead session
 					this.$services.cookies.set("language", newValue ? newValue.name : "none", newValue && newValue.name ? 365 : -1);
 					this.cookieValue = newValue ? newValue.name : null;
@@ -68,7 +74,7 @@ nabu.services.VueService(Vue.extend({
 					if (this.$services.user.loggedIn) {
 						var self = this;
 						this.$services.swagger.execute("nabu.cms.core.rest.user.updateLanguage", { userId: this.$services.user.id, languageId: newValue ? newValue.id : null }).then(function() {
-							self.$services.user.languageId = newValue ? newValue.id : null;
+							self.$services.user.language = newValue ? newValue.name : null;
 							// force a reload to get the new language
 							window.location.reload(true);
 						});
@@ -82,11 +88,6 @@ nabu.services.VueService(Vue.extend({
 		}
 	},
 	activate: function(done) {
-		// we inject the languages that exist in the database
-		var languages = this.$services.masterdata.list("language");
-		if (languages) {
-			nabu.utils.arrays.merge(this.available, languages);
-		}
 		this.cookieValue = this.$services.cookies.get("language");
 		done();
 	}

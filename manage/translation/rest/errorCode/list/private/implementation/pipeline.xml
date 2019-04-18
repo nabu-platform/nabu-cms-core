@@ -1,0 +1,7 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input" validate="true"/>
+    <structure name="output"/>
+    <structure collectionName="MasterDataEntries" definition="nabu.cms.core.types.model.core.MasterDataEntry" minOccurs="0" name="language" namespace="nabu.cms.core.types.model.core"/>
+    <structure definition="nabu.cms.core.manage.translation.rest.web.translation" minOccurs="0" name="translation"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="errorCodes" type="java.lang.String"/>
+</structure>

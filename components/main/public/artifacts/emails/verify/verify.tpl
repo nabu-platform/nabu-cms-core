@@ -21,9 +21,9 @@
 		<e-row>
 			<e-columns small="12" large="12" class="first last">
 				<center>
-					<a v-if="verificationCode && password" class="button float-center" align="center" v-route:verify.absolute="values">%{email.verify:Activate account}</a>
-					<a v-if="verificationCode && !password" class="button float-center" align="center" v-route:initialize.absolute="values">%{email.verify:Initialize account}</a>
-					<a v-if="!verificationCode" class="button float-center" align="center" v-route:login.absolute>%{email.verify:Log in}</a>
+					<a v-if="verificationCode && (password || passwordSet)" class="button float-center" align="center" v-route:verify.absolute="values">%{email.verify:Activate account}</a>
+					<a v-else-if="verificationCode && !password" class="button float-center" align="center" v-route:initialize.absolute="values">%{email.verify:Initialize account}</a>
+					<a v-else-if="!verificationCode" class="button float-center" align="center" v-route:login.absolute>%{email.verify:Log in}</a>
 				</center>
 			</e-columns>
 		</e-row>

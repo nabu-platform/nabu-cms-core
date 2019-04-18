@@ -1,0 +1,12 @@
+<structure interface="nabu.cms.core.interfaces.notifier" name="pipeline">
+    <structure name="input">
+        <field name="alias" type="java.lang.String"/>
+        <field name="webApplicationId" type="java.lang.String"/>
+        <field name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="passwordSet" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="password" type="java.lang.String"/>
+        <field minOccurs="0" name="domain" type="java.lang.String"/>
+        <field minOccurs="0" name="verificationCode" type="java.lang.String"/>
+    </structure>
+    <structure name="output"/>
+</structure>

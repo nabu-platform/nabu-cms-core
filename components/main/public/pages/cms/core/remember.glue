@@ -24,7 +24,8 @@ if (!user.authenticated() && !user.refresh() && !user.remember())
 			oauth2: oauth2,
 			realm: environment("realm"),
 			roles: series("$guest"),
-			actions: nabu.cms.core.database.action.selectByRoleName(connectionId, parameters: structure(roleName: "$guest"))/results/name
+			actions: nabu.cms.core.database.action.selectByRoleName(connectionId, parameters: structure(roleName: "$guest"))/results/name,
+			language: application.language()
 		)
 	
 	# set the oauth redirects as result
@@ -52,6 +53,13 @@ else
 		languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: language))/results)
 		if (languageEntry != null)
 			nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
+		# illegal choice
+		else
+			language = null
+
+	# get the language according to the application logic
+	if (language == null)
+		language = application.language()
 			
 	response.content(structure(
 			id: user/id,
@@ -61,5 +69,5 @@ else
 			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 			potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 			potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-			languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
+			language: language
 		))

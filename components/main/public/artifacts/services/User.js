@@ -2,9 +2,6 @@ if (!nabu) { var nabu = {} }
 if (!nabu.services) { nabu.services = {} }
 if (!nabu.services.cms) { nabu.services.cms = {} }
 
-// TODO: the user language (if any)
-// only remember: get back all the redirect uris for all supported oauth2 schemes if you are not logged in
-// no additional roundtrip necessary
 nabu.services.VueService(Vue.extend({
 	services: ["q", "swagger"],
 	data: function() {
@@ -12,7 +9,7 @@ nabu.services.VueService(Vue.extend({
 			id: null,
 			alias: null,
 			realm: null,
-			languageId: null,
+			language: null,
 			oauth2: {},
 			roles: ["$guest"],
 			actions: [],
@@ -71,7 +68,7 @@ nabu.services.VueService(Vue.extend({
 					self.id = result.id;
 					self.alias = result.alias;
 					self.realm = result.realm;
-					self.languageId = result.languageId;
+					self.language = result.language;
 					self.roles.splice(0, self.roles.length, "$user");
 					self.potentialRoles.splice(0, self.roles.length, "$user");
 					self.actions.splice(0, self.actions.length);
@@ -102,7 +99,7 @@ nabu.services.VueService(Vue.extend({
 				self.id = null;
 				self.alias = null;
 				self.realm = null;
-				self.languageId = null;
+				self.language = null;
 				self.actions.splice(0, self.actions.length);
 				self.potentialActions.splice(0, self.potentialActions.length);
 				self.roles.splice(0, self.roles.length, "$guest");
@@ -135,7 +132,7 @@ nabu.services.VueService(Vue.extend({
 					self.id = result.id;
 					self.alias = result.alias;
 					self.realm = result.realm;
-					self.languageId = result.languageId;
+					self.language = result.language;
 					self.roles.splice(0, self.roles.length, "$user");
 					self.potentialRoles.splice(0, self.roles.length, "$user");
 					self.actions.splice(0, self.actions.length);
@@ -173,6 +170,9 @@ nabu.services.VueService(Vue.extend({
 						}
 						if (content.actions) {
 							nabu.utils.arrays.merge(self.actions, content.actions);
+						}
+						if (content.language) {
+							self.language = content.language;
 						}
 					}
 					promise.reject(error);

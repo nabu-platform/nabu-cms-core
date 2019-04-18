@@ -3,8 +3,8 @@
 		<n-form ref="form" v-if="!disableLocalAccounts">
 			<slot name="form"></slot>
 			<n-form-section>
-				<n-form-text name="email" @keyup.enter="login" v-focus v-timeout:input.form="validate" label="%{login:Email}" placeholder="%{login:email@example.com}" v-model="username" :required="true"/>
-				<n-form-text name="password" @keyup.enter="login" type="password" v-timeout:input.form="validate" placeholder="%{login:Password}" label="%{login:Password}" v-model="password" :required="true"/>
+				<n-form-text name="email" v-focus v-timeout:input.form="validate" label="%{login:Email}" placeholder="%{login:email@example.com}" v-model="username" :required="true"/>
+				<n-form-text name="password" type="password" v-timeout:input.form="validate" placeholder="%{login:Password}" label="%{login:Password}" v-model="password" :required="true"/>
 				<n-form-switch v-if="!alwaysRemember && !useCheckbox" label="%{login:Remember me}" v-model="remember"/>
 				<n-form-checkbox v-if="!alwaysRemember && useCheckbox" label="%{login:Remember me}" v-model="remember"/>
 			</n-form-section>

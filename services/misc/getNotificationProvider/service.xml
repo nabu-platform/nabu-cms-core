@@ -1,0 +1,17 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="eb27e0e4-8ce1-4922-bfa4-3eaa1e37dd85">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="01c084ef-0900-4e12-b3f3-baa49e9eed3d">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="939d04ac-e123-4f25-a14d-022413982a81"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/configuration/notifications[notificationType = /input/notificationType &amp;&amp; aliasType = /input/aliasType]/provider</from>
+			<to>output/provider</to>
+		</steps>
+	</steps>
+</sequence>

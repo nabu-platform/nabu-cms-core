@@ -179,6 +179,11 @@ create table component_fields (
 	modified timestamp not null,
 	name text not null,
 	data_type text,
+	required boolean,
+	minimum integer,
+	maximum integer,
+	pattern text,
+	comment text,
 	component_id uuid references components(id) not null
 );
 create table node_locations (

@@ -1,0 +1,73 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="d1264df5-d484-4667-864e-99ab39777a87">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="86a94d4b-44cf-4cce-aff3-86c4ab0d9c13">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="ff0cd60b-635b-46d3-8682-51efee49f79c"
+				serviceId="nabu.utils.String.replace"
+				resultName="resultdaebbd09a535409f800004c332e72c36"
+				temporaryMapping="true"
+				x="79"
+				y="60"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6e83da90-1e1d-45c8-a4e0-e4c44786578b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/html</from>
+				<to>content</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="70be0cf3-9783-489e-90b4-c663624e7e62"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>(?s).*?&lt;title&gt;([^&lt;]+).*</from>
+				<to>match</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7c0738f3-3c30-463b-a500-005e29b442f9"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>$1</from>
+				<to>replace</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="beffebe2-81a2-42fb-b1e9-bb8d2c59bdef"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>useRegex</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4cb0788c-0a82-46a4-9fc7-28e4db9a0a39"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultdaebbd09a535409f800004c332e72c36/content</from>
+			<to>output/title</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			label="output/title == input/html"
+			id="e757f51f-b491-498c-b4bd-a21f9fdb43c1">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+				disabled="false"
+				id="97a75233-500a-4294-8fab-e82b6bca73ed"
+				path="output/title" xsi:nil="true"/>
+	</steps>
+</sequence>

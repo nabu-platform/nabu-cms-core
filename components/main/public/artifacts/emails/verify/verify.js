@@ -9,14 +9,17 @@ nabu.views.cms.emails.Verify = Vue.component("n-cms-email-verify", {
 		return {
 			userId: null,
 			verificationCode: null,
-			password: null
+			password: null,
+			passwordSet: false,
+			route: null
 		};
 	},
 	computed: {
 		values: function() {
 			return {
 				userId: this.userId,
-				verificationCode: this.verificationCode
+				verificationCode: this.verificationCode,
+				route: this.route
 			};
 		}
 	}

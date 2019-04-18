@@ -49,6 +49,7 @@
             <field minOccurs="0" name="url" type="java.lang.String"/>
             <field minOccurs="0" name="subject" type="java.lang.String"/>
             <field minOccurs="0" name="includePassword" type="java.lang.Boolean"/>
+            <field minOccurs="0" name="route" type="java.lang.String"/>
         </structure>
     </structure>
     <structure minOccurs="0" name="texts">
@@ -62,5 +63,10 @@
     <structure maxOccurs="unbounded" minOccurs="0" name="context">
         <field minOccurs="0" name="type" type="java.lang.String"/>
         <field name="contextResolver" type="java.lang.String"/>
+    </structure>
+    <structure maxOccurs="unbounded" minOccurs="0" name="notifications">
+        <field comment="Could be &quot;forgot&quot; or &quot;verify&quot;" name="notificationType" type="java.lang.String"/>
+        <field comment="Could be &quot;email&quot; or &quot;text&quot;" name="aliasType" type="java.lang.String"/>
+        <field name="provider" type="java.lang.String"/>
     </structure>
 </structure>
