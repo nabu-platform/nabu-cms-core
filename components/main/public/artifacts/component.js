@@ -239,6 +239,49 @@ window.addEventListener("load", function() {
 				}
 			});
 		
+		// ------------------------------- PAGE FUNCTIONS
+		if (nabu && nabu.page && nabu.page.provide) {
+			nabu.page.provide("page-function", {
+				id: "cms.login",
+				async: true,
+				implementation: function(input, $services, $value, resolve, reject) {
+					$services.user.login(input.username, input.password, input.remember).then(resolve, reject);
+				},
+				inputs: [{
+					"name": "username",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "password",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "remember",
+					"type": "boolean"
+				}]
+			});
+			nabu.page.provide("page-function", {
+				id: "cms.logout",
+				async: true,
+				implementation: function(input, $services, $value, resolve, reject) {
+					$services.user.logout().then(resolve, reject);
+				},
+				inputs: []
+			});
+			nabu.page.provide("page-function", {
+				id: "cms.changeLanguage",
+				async: false,
+				implementation: function(input, $services, $value) {
+					$services.language.current = input.language;
+				},
+				inputs: [{
+					"name": "language",
+					"required": true,
+					"type": "string"
+				}]
+			});
+		}
+		
 		// ------------------------------- SERVICES
 		return $services.$register({
 			user: nabu.services.cms.User,

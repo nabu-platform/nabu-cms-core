@@ -683,7 +683,7 @@
 				disabled="false"
 				label="email = null || email !~ &quot;.*@.*&quot;"
 				id="bd41b8df-fa95-4c9c-9302-c8ecf9486f7f"
-				message="=&quot;Could not resolve a valid email address for oauth2 token: &quot; + email" xsi:nil="true"/>
+				message="Could not resolve a valid email address for oauth2 token" xsi:nil="true"/>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
@@ -1145,7 +1145,10 @@
 					disabled="false"
 					label="input/configuration/allowAnonymousLogin == null || !input/configuration/allowAnonymousLogin"
 					id="102e52eb-7408-4971-83a3-852f3fe2c390"
-					message="=&quot;Can not log in with an anonymous account: &quot; + email" xsi:nil="true"/>
+					message="Can not log in with an anonymous account&quot;"
+					description="=&quot;Can not log in with an anonymous account: &quot; + email"
+					alias="=user/alias"
+					realm="=user/realm" xsi:nil="true"/>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
@@ -1542,7 +1545,10 @@
 						disabled="false"
 						label="!user"
 						id="f143539b-0434-44bd-9727-5ebcc83ebdac"
-						message="=&quot;Invalid owner for &quot; +  email + &quot; in &quot; + input/realm" xsi:nil="true"/>
+						message="Invalid owner"
+						description="=&quot;Invalid owner for &quot; +  email + &quot; in &quot; + input/realm"
+						alias="=user/alias"
+						realm="=user/realm" xsi:nil="true"/>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
@@ -1552,7 +1558,7 @@
 					disabled="false"
 					label="user == null"
 					id="e7aec416-c262-4196-a070-c60e7a998ee7"
-					message="=&quot;Could not find or create user: &quot; + email" xsi:nil="true"/>
+					message="Could not find or create user" xsi:nil="true"/>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					label="newUser"
@@ -2125,7 +2131,9 @@
 					label="false"
 					id="7c6d17f3-b369-482f-bc3b-8e97367289ce"
 					code="AUTHENTICATE-2"
-					message="Device not allowed" xsi:nil="true"/>
+					message="Device not allowed"
+					alias="=user/alias"
+					realm="=user/realm" xsi:nil="true"/>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="7b11f7f319594f6e8d56aed9547ed20a">

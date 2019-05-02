@@ -22,6 +22,10 @@ nabu.views.cms.core.Login = Vue.component("n-cms-login", {
 		useCheckbox: {
 			type: Boolean,
 			required: false
+		},
+		handler: {
+			type: Function,
+			required: false
 		}
 	},
 	computed: {
@@ -65,6 +69,9 @@ echo("			return " + when(disabled = null || !disabled, "false", "true") + ";")
 					function(profile) {
 						if (self.url) {
 							window.location.href = self.url;
+						}
+						else if (self.handler) {
+							self.handler();
 						}
 						else {
 							self.$services.router.route(self.route);

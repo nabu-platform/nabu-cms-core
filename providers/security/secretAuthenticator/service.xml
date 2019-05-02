@@ -112,7 +112,10 @@
 					disabled="false"
 					label="input/configuration/allowAnonymousLogin == null || !input/configuration/allowAnonymousLogin"
 					id="102e52eb-7408-4971-83a3-852f3fe2c390"
-					message="Can not log in with an anonymous account" xsi:nil="true"/>
+					message="Can not log in with an anonymous account"
+					description="=&quot;Can not log in with an anonymous account: &quot; + user/alias"
+					alias="=user/alias"
+					realm="=user/realm" xsi:nil="true"/>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
@@ -210,7 +213,10 @@
 				disabled="false"
 				label="!user"
 				id="f143539b-0434-44bd-9727-5ebcc83ebdac"
-				message="=&quot;Invalid owner for &quot; + input/credentials/name + &quot; in &quot; + input/realm" xsi:nil="true"/>
+				message="Invalid owner"
+				description="=&quot;Invalid owner for &quot; + input/credentials/name + &quot; in &quot; + input/realm"
+				alias="=input/credentials/name"
+				realm="=input/realm" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				label="input/configuration/security/allowedRoles != null"
@@ -487,13 +493,18 @@
 							label="false"
 							id="7c6d17f3-b369-482f-bc3b-8e97367289ce"
 							code="CMS-AUTH-3"
-							message="Device not allowed" xsi:nil="true"/>
+							message="Device not allowed"
+							alias="=user/alias"
+							realm="=user/realm" xsi:nil="true"/>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 						disabled="false"
 						label="currentDevice/secret = null"
 						id="66a1628f-29f9-42da-914d-c8093ae457d6"
-						message="No secret" xsi:nil="true"/>
+						message="No secret"
+						description="=&quot;No secret for: &quot; + user/alias"
+						alias="=user/alias"
+						realm="=user/realm" xsi:nil="true"/>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
 						comment="Check if the combination is valid"
@@ -789,7 +800,10 @@
 							disabled="false"
 							id="67e864c4-3502-45b5-92c0-7f2145fb4010"
 							code="CMS-AUTH-4"
-							message="Invalid secret" xsi:nil="true"/>
+							message="Invalid secret"
+							description="=&quot;Invalid secret for: &quot; + user/alias"
+							alias="=user/alias"
+							realm="=user/realm" xsi:nil="true"/>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
 						disabled="false"
