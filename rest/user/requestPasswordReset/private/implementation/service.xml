@@ -214,12 +214,14 @@
 						disabled="false"
 						label="null"
 						id="9b6f64ab-e22b-4b93-8e1c-5d8b797efcf5"
-						message="=&quot;No user '&quot; + input/query/alias + &quot;' found in realm '&quot; + realm + &quot;'&quot;" xsi:nil="true"/>
+						message="User not found"
+						description="=&quot;No user '&quot; + input/query/alias + &quot;' found in realm '&quot; + realm + &quot;'&quot;" xsi:nil="true"/>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 						disabled="false"
 						id="fbd5c110-8459-4c19-b6f8-f9e5a905b2d5"
 						code="RESET-1"
-						message="=&quot;The user with the alias '&quot; + input/query/alias + &quot;' is not yet verified&quot;" xsi:nil="true"/>
+						message="The user is not verified"
+						description="=&quot;The user with the alias '&quot; + input/query/alias + &quot;' is not yet verified&quot;" xsi:nil="true"/>
 			</steps>
 		</steps>
 	</steps>

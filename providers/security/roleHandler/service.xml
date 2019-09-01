@@ -74,6 +74,21 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
+					label="input/role = &quot;$owner&quot;"
+					comment="You can only be the owner if you are at least a user. Further ownership can only be established by permissions."
+					id="825b98db4fd24abc82757c9cb69e0c9e">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="d5220f398eb5479f84016c17128a11bb"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>output/response</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
 					label="input/role = &quot;$system&quot;"
 					comment="Pseudo role for a system user"
 					id="8e1c938b-e265-433e-9e24-b48780438d59">

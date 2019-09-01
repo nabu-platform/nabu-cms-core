@@ -2,12 +2,22 @@
 <restInterface>
     <method>POST</method>
     <path>/user/{userId}/password/initialize</path>
-    <role>$guest</role>
     <permissionContext>=input/path/userId</permissionContext>
     <permissionAction>user.initialize</permissionAction>
     <input>nabu.cms.core.types.rest.user.resetPasswordInput</input>
     <configurationType>nabu.cms.core.configuration</configurationType>
     <lenient>false</lenient>
-    <decamelify>false</decamelify>
     <webApplicationId>false</webApplicationId>
+    <language>false</language>
+    <allowFormBinding>false</allowFormBinding>
+    <caseInsensitive>false</caseInsensitive>
+    <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
+    <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
+    <useServerCache>false</useServerCache>
+    <source>false</source>
+    <allowRaw>false</allowRaw>
+    <domain>false</domain>
 </restInterface>

@@ -3,6 +3,40 @@
 		id="9d1e8764-7699-4e2c-b520-c79bf5b696e8">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
+			comment="Initialize configuration"
+			id="9d22aa5820cd4aadbae2865ac094b263">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a10d7c9fc1c04e19b443a6bf4d7dc32b"
+				serviceId="nabu.cms.core.utils.initializeConfiguration"
+				resultName="result6858e05795934ef9b13956418718ccdd"
+				temporaryMapping="true"
+				x="341"
+				y="151"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d46a3e9f729847babcaf7a8ac2c260c3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration</from>
+				<to>configuration</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="10e36ddb6f6a49358b9bb12de8a8a388"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result6858e05795934ef9b13956418718ccdd/configuration</from>
+			<to>input/configuration</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
 			comment="Get user by alias and realm"
 			id="98106c59-1eb3-4c28-b7ee-279c423fa756">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -51,6 +85,15 @@
 				<from>input/configuration/caseInsensitive</from>
 				<to>parameters/caseInsensitive</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4854ea9a-cf30-496d-b203-fd0efa0de1aa"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>parameters/allowUnverified</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -60,35 +103,6 @@
 				fixedValue="false">
 			<from>resultcfd7cf9945214080ad3933aa19952744/results[0]</from>
 			<to>user</to>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-				disabled="false"
-				id="673538ad-97f7-45eb-80f9-5200a34fbd0f"
-				serviceId="nabu.cms.core.utils.initializeConfiguration"
-				resultName="result6858e05795934ef9b13956418718ccdd"
-				temporaryMapping="true"
-				x="341"
-				y="151"
-				invocationOrder="0"
-				asynchronous="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="8f110395-7a86-4335-b5f1-9eeb72ac94db"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/configuration</from>
-				<to>configuration</to>
-			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="63d7ad3e-3053-441e-b74b-e6a4ca93a22f"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>result6858e05795934ef9b13956418718ccdd/configuration</from>
-			<to>input/configuration</to>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -183,6 +197,15 @@
 					<from>input/configuration/connectionId</from>
 					<to>connection</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="8063d899-8476-486a-b8e9-9b65e349efaa"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>parameters/allowUnverified</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
@@ -266,6 +289,15 @@
 				<to>userNode</to>
 			</steps>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+				disabled="false"
+				label="userNode/verified = null"
+				id="ef39ec82-9c28-4460-9dcf-bc06fa1324b3"
+				code="CMS-AUTH-10"
+				message="The user is not verified yet, can not log in"
+				description="=&quot;The user &quot; + input/credentials/name + &quot; is not verified yet&quot;"
+				alias="=user/alias"
+				realm="=user/realm" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				label="userNode/ownerId != null &amp;&amp; userNode/ownerId != userNode/id"
@@ -454,6 +486,67 @@
 					code="CMS-AUTH-5"
 					message="The user does not have one of the mandated roles"
 					description="=&quot;User &quot; + user/alias + &quot; does not have one of the following roles: &quot; + stringifiedAllowedRoles"
+					alias="=user/alias"
+					realm="=user/realm" xsi:nil="true"/>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				disabled="false"
+				label="input/configuration/security/allowedAliases != null"
+				id="1cf48f79-4f68-43ad-8a5a-71f10dd5d0ef">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					comment="Check if it matches some alias"
+					id="857cb682-8834-48ca-8f37-5d3cf018f778">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="02bae7d6-a6d9-4255-bb1c-1bbe1fb89a60"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/configuration/security/allowedAliases[/input/credentials/name ~ $this]</from>
+					<to>allowedAliases</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="1285f37c-e6de-4fff-a92f-30e94fb88442">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="a2313423-59a9-444b-9472-b53c916e6ce0"
+						serviceId="nabu.utils.List.size"
+						resultName="result21fbe5fc7629435d8a318a94cbd895ac"
+						temporaryMapping="true"
+						x="122"
+						y="93"
+						invocationOrder="0"
+						asynchronous="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="b8050755-c6fe-4c3d-a014-50fd08ab5338"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>allowedAliases</from>
+						<to>list</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="bb68b521-3af8-4e56-bc1c-0828382fc03b"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result21fbe5fc7629435d8a318a94cbd895ac/size</from>
+					<to>amountOfMatchingAliases</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+					disabled="false"
+					label="amountOfMatchingAliases == 0"
+					id="b3bc9217-46ba-43dc-8515-53315363dc45"
+					code="CMS-AUTH-9"
+					message="The user is not allowed to log in"
+					description="=&quot;User &quot; + user/alias + &quot; does not have one of the allowed aliases&quot;"
 					alias="=user/alias"
 					realm="=user/realm" xsi:nil="true"/>
 		</steps>

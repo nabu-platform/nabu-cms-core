@@ -4,6 +4,7 @@
     <path>/node/stage</path>
     <queryParameters>parentId</queryParameters>
     <role>$user</role>
+    <permissionContext>=input/query/parentId</permissionContext>
     <permissionAction>node.stage</permissionAction>
     <output>nabu.cms.core.rest.node.stagedNode</output>
     <configurationType>nabu.cms.core.configuration</configurationType>
@@ -15,4 +16,10 @@
     <cache>false</cache>
     <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
     <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
+    <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
+    <useServerCache>false</useServerCache>
+    <source>false</source>
+    <allowRaw>false</allowRaw>
+    <domain>false</domain>
 </restInterface>
