@@ -2,6 +2,6 @@
 	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
 	<sql>select *
 from ~nodes n join ~users u on u.id = n.id
-where (:q is null or u.alias ilike '%' || :q || '%')
+where (:q is null or lower(u.alias) like '%' || lower(:q) || '%')
 	and (:enabled is null or n.enabled = :enabled)</sql>
 </jdbcService>

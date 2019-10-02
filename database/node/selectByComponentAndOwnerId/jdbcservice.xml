@@ -23,6 +23,6 @@ from nodes
 where component_id = :componentId
 and owner_id = :ownerId
 and (:enabled is null or enabled = :enabled)
-and (:query is null or name ilike '%' || :query || '%' or title ilike '%' || :query || '%' or description ilike '%' || :query || '%')
+and (:query is null or lower(name) like '%' || lower(:query) || '%' or lower(title) like '%' || lower(:query) || '%' or lower(description) like '%' || lower(:query) || '%')
 order by created, name, path desc</sql>
 </jdbcService>

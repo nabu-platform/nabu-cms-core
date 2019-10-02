@@ -11,6 +11,6 @@ from master_data_entries me
 	join translations t on t.context = mc.name and t.name = me.name
 	join master_data_entries mt on t.language_id = mt.id
 where mt.name = :language
-and (:query is null or t.name ilike '%' || :query || '%' or t.translation ilike '%' || :query || '%')
+and (:query is null or lower(t.name) like '%' || lower(:query) || '%' or lower(t.translation) like '%' || lower(:query) || '%')
 order by mc.name, me.name</sql>
 </jdbcService>

@@ -10,8 +10,16 @@ nabu.services.VueService(Vue.extend({
 ${{
 entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language"))/results
 entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
-echo("\t\t\treturn " + json.stringify(structure(array:entries)) + ";")
+echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 }}
+			var self = this;
+			if (result.forEach) {
+				result.forEach(function(x) {
+					var entry = self.$services.masterdata.entry("language", x.name);
+					x.label = entry && entry.label ? entry.label : x.name;
+				});
+			}
+			return result;
 		},
 		names: function() {
 			return this.available.map(function(x) { return x.name });

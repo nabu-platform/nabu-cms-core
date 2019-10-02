@@ -55,41 +55,51 @@ nabu.services.VueService(Vue.extend({
 				}
 			});
 		},
-		login: function(username, password, remember) {
-			var self = this;
-			var promise = this.$services.q.defer();
-			this.$services.swagger.execute("nabu.cms.core.login", { 
-				body: {
-					alias: username,
-					password: password,
-					remember: remember ? remember : false
-				}})
-				.then(function(result) {
-					self.id = result.id;
-					self.alias = result.alias;
-					self.realm = result.realm;
-					self.language = result.language;
-					self.roles.splice(0, self.roles.length, "$user");
-					self.potentialRoles.splice(0, self.roles.length, "$user");
-					self.actions.splice(0, self.actions.length);
-					self.potentialActions.splice(0, self.potentialActions.length);
-					if (result.roles) {
-						nabu.utils.arrays.merge(self.roles, result.roles);
-					}
-					if (result.potentialRoles) {
-						nabu.utils.arrays.merge(self.potentialRoles, result.potentialRoles);
-					}
-					if (result.actions) {
-						nabu.utils.arrays.merge(self.actions, result.actions);
-					}
-					if (result.potentialActions) {
-						nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
-					}
-					self.$services.$clear().then(function() {
-						promise.resolve();
+		login: function(username, password, remember, force) {
+			if (this.loggedIn && !force) {
+				var promise = this.$services.q.defer();
+				var self = this;
+				this.logout().then(function() {
+					self.login(username, password, remember, true).then(promise, promise);
+				});
+				return promise;
+			}
+			else {
+				var self = this;
+				var promise = this.$services.q.defer();
+				this.$services.swagger.execute("nabu.cms.core.login", { 
+					body: {
+						alias: username,
+						password: password,
+						remember: remember ? remember : false
+					}})
+					.then(function(result) {
+						self.id = result.id;
+						self.alias = result.alias;
+						self.realm = result.realm;
+						self.language = result.language;
+						self.roles.splice(0, self.roles.length, "$user");
+						self.potentialRoles.splice(0, self.roles.length, "$user");
+						self.actions.splice(0, self.actions.length);
+						self.potentialActions.splice(0, self.potentialActions.length);
+						if (result.roles) {
+							nabu.utils.arrays.merge(self.roles, result.roles);
+						}
+						if (result.potentialRoles) {
+							nabu.utils.arrays.merge(self.potentialRoles, result.potentialRoles);
+						}
+						if (result.actions) {
+							nabu.utils.arrays.merge(self.actions, result.actions);
+						}
+						if (result.potentialActions) {
+							nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
+						}
+						self.$services.$clear().then(function() {
+							promise.resolve();
+						}, promise);
 					}, promise);
-				}, promise);
-			return promise;
+				return promise;
+			}
 		},
 		logout: function() {
 			var self = this;

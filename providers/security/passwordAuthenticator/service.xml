@@ -1322,6 +1322,15 @@
 								<to>parameters[0]</to>
 							</steps>
 						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="5b9c8d53-b9a2-49a3-9de9-a446d288fb33"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>user</from>
+							<to>output/user</to>
+						</steps>
 					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
@@ -1388,6 +1397,10 @@
 						</steps>
 					</steps>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+						disabled="false"
+						id="90af9313-d224-4a86-a518-545fb3f00211"
+						message="=exception" xsi:nil="true"/>
 			</steps>
 		</steps>
 	</steps>

@@ -53,7 +53,6 @@ window.addEventListener("load", function() {
 			enter: function(parameters) {
 				return new nabu.views.cms.core.Login({propsData:parameters});
 			},
-			roles: ["$guest"],
 			url: "/user/login"
 		});
 			// reusable in other parts
@@ -86,7 +85,6 @@ window.addEventListener("load", function() {
 			enter: function(parameters) {
 				return new nabu.views.cms.core.Forgot({propsData:parameters});
 			},
-			roles: ["$guest"],
 			url: "/user/forgot"
 		});
 			$services.router.register({
@@ -106,7 +104,6 @@ window.addEventListener("load", function() {
 			enter: function(parameters) {
 				return new nabu.views.cms.core.Reset({ propsData: parameters });
 			},
-			roles: ["$guest"],
 			url: "/user/reset"
 		});
 			$services.router.register({
@@ -127,7 +124,6 @@ window.addEventListener("load", function() {
 				parameters.initialize = true;
 				return new nabu.views.cms.core.Reset({ propsData: parameters });
 			},
-			roles: ["$guest"],
 			url: "/user/initialize"
 		});
 			$services.router.register({
@@ -159,7 +155,6 @@ window.addEventListener("load", function() {
 					return new nabu.views.cms.core.Verify({propsData:parameters});
 				}
 			},
-			roles: ["$guest"],
 			url: "/user/verify"
 		});
 			$services.router.register({

@@ -1,0 +1,56 @@
+@path
+@operationId nabu.management.cms.security.remoteAuthenticate
+@title Authenticate Remotely
+@tags user
+## Allows the user to remotely authenticate with the application as someone else
+
+if (!user.authenticated())
+	response.code(401)
+	abort()
+
+@get
+webApplication ?= null
+
+@get
+userId ?= null
+
+if (!user.hasPermission("webApplication:" + webApplication, "remote.login"))
+	response.code(403)
+	abort()
+
+user = first(nabu.cms.core.database.user.selectById(parameters: structure(id: userId))/results)
+if (user == null)
+	response.code(400)
+	abort()
+
+application = first(nabu.web.application.Services.list(webApplication)/applications)
+if (application == null)
+	response.code(400)
+	abort()
+
+remotes = nabu.utils.reflection.Node.listByType(type: "be.nabu.eai.module.authentication.remote.RemoteAuthentication")/nodes
+
+remote = null
+for (potential : remotes)
+	if (nabu.web.application.Services.hasFragment(webApplication, potential/id, true)/has)
+		remote = potential
+		break
+
+if (remote == null)
+	response.code(400)
+	abort()
+else
+	artifact = be.nabu.eai.repository.EAIResourceRepository.getInstance()/resolve(remote/id)
+	configuration = artifact/configuration
+	path = application/root + string.replace("^[/]+", "", configuration/path)
+	
+	token = nabu.web.application.jwt.Services.marshal(
+		configuration/keyStore/id,
+		configuration/keyAlias,
+		date.date(),
+		validUntil: date.date() + "5min",
+		issuer: environment("webApplicationId"),
+		subject: user/alias,
+		realm: environment("realm"))/response
+	token = nabu.utils.Uri.encodeUriComponent(token)/component
+	redirect(path + "?token=" + token)

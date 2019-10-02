@@ -1,4 +1,5 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
 	<sql>select
 	id,
 	created,
@@ -22,7 +23,6 @@ from nodes
 where component_id = :componentId
 and parent_id = :parentId
 and (:enabled is null or enabled = :enabled)
-and (:query is null or name ilike '%' || :query || '%' or title ilike '%' || :query || '%' or description ilike '%' || :query || '%')
+and (:query is null or lower(name) like '%' || lower(:query) || '%' or lower(title) like '%' || lower(:query) || '%' or lower(description) like '%' || lower(:query) || '%')
 order by created, name, path desc</sql>
-	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
 </jdbcService>
