@@ -364,3 +364,11 @@ create unique index master_data_entry_unique on master_data_entries (name, maste
 create unique index master_data_entry_unique2 on master_data_entries (name, master_data_category_id, owner_id) where owner_id is not null;
 
 create unique index user_device_unique on user_devices (user_id, device_id);
+
+create table node_connections (
+	id uuid primary key,
+	created timestamp not null,
+	modified timestamp not null,
+	source_id uuid references nodes(id) not null,
+	target_id uuid references nodes(id) not null
+);

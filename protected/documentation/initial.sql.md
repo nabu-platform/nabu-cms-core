@@ -10,6 +10,8 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA username GRANT ALL ON TABLES TO username;
 -- this is for existing tables (as admin)
 GRANT USAGE ON SCHEMA salas_dev TO salas_dev
 grant ALL on all tables in schema platform_dev to platform_dev;
+grant all on schema username to username;
+
 
 
 

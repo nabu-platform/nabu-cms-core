@@ -2,5 +2,6 @@
 	<outputDefinition>nabu.cms.core.types.model.core.Component</outputDefinition>
 	<sql>select *
 from ~components
-where name = :name</sql>
+where name = :name
+	and ((:ownerId is null and owner_id is null) or (:ownerId is not null and owner_id = :ownerId))</sql>
 </jdbcService>

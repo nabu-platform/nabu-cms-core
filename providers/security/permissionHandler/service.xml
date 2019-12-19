@@ -393,6 +393,50 @@
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 									disabled="false"
+									label="nodeIds != null"
+									comment="Get connected nodes"
+									id="ab2cf2f1-8989-414b-9e0c-ef27be9380b4">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+										disabled="false"
+										id="71223edb-059f-4646-8392-46bdbb0bb02c"
+										serviceId="nabu.cms.core.database.node.connection.selectByTargetIds"
+										resultName="result2eb67b57f03b4426826b716e885a0b7c"
+										temporaryMapping="true"
+										x="60"
+										y="86"
+										invocationOrder="0"
+										asynchronous="false">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="4181da00-7888-4896-96d4-c02587a35d71"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>nodeIds</from>
+										<to>parameters/targetIds</to>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="8385cc18-4056-4f85-b74c-8e362b12106d"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>input/configuration/connectionId</from>
+										<to>connection</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="ee91a549-4afa-48bc-a47d-fff9d0e857b2"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>result2eb67b57f03b4426826b716e885a0b7c/results/sourceId</from>
+									<to>connectedNodeIds</to>
+								</steps>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+									disabled="false"
 									comment="Retain the roles with no context or an applicable context"
 									id="09b2944e-187a-4fa7-8f10-4fb19ae6e8a6">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -401,7 +445,7 @@
 										mask="false"
 										optional="false"
 										fixedValue="false">
-									<from>groupRoles[nodeId == null || nodeId == /node/id || (nodeId # /nodeIds &amp;&amp; inherit)]</from>
+									<from>groupRoles[nodeId == null || nodeId == /node/id || (nodeId # /nodeIds &amp;&amp; inherit) || (nodeId # /connectedNodeIds)]</from>
 									<to>activeGroupRoles</to>
 								</steps>
 								<steps xsi:type="be.nabu.libs.services.vm.step.Drop"

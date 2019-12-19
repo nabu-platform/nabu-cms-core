@@ -70,6 +70,12 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 				return null;
 			},
 			set: function(newValue) {
+				// can set a string value
+				if (typeof(newValue) == "string") {
+					newValue = this.available.filter(function(x) {
+						return x.name == newValue;
+					})[0];
+				}
 				// first check that it is a valid language (or null)
 				if (newValue == null || this.available.indexOf(newValue) >= 0) {
 					// must synchronously update this, because the get() is immediately executed again, if only done async it will re-enforce the old value

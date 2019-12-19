@@ -362,3 +362,13 @@ create table user_oauth2_credentials (
 	user_id varchar2(36) not null,
 	foreign key (user_id) references users(id)
 );
+
+create table node_connections (
+	id varchar2(36) primary key,
+	created timestamp not null,
+	modified timestamp not null,
+	source_id varchar2(36) not null,
+	target_id varchar2(36) not null,
+	foreign key (source_id) references nodes(id),
+	foreign key (target_id) references nodes(id)
+);

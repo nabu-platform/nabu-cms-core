@@ -1,0 +1,5 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>delete from ~node_tags where node_id = :nodeId
+	and definition_id in (select mde.id from ~master_data_entries mde where mde.master_data_category_id = :masterDataCategoryId)
+	and (:retain is null or definition_id &lt;&gt; all(:retain))</sql>
+</jdbcService>
