@@ -1,0 +1,17 @@
+{
+	"module": "nabu-cms-core",
+	"title": "The nabu cms core",
+	"major": 1,
+	"minor": 0,
+	"patch": 0,
+	"tasks":[{
+		"target": "$any",
+		"name": "initial-install",
+		"description": "Create the initial database",
+		"service": "nabu.distribute.runDdl",
+		"properties":[{
+			"key": "file",
+			"value": "$this/create.ddl"
+		}]
+	}]
+}

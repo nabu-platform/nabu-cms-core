@@ -1,25 +1,8 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Node</outputDefinition>
-	<sql>select
-	id,
-	created,
-	modified,
-	started,
-	stopped,
-	owner_id,
-	verified,
-	enabled,
-	parent_id,
-	version,
-	priority,
-	name,
-	title,
-	description,
-	path,
-	slug,
-	language_id,
-	component_id
+	<sql>select *
 from nodes
 where component_id = :componentId
+	and enabled = true
 order by created, name, path desc</sql>
 </jdbcService>
