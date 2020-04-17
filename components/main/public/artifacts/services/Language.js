@@ -21,6 +21,21 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 			}
 			return result;
 		},
+		rtl: function() {
+${{
+entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language.rtl"))/results
+entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
+echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(structure(array:entries)) + ";"))	
+}}
+			var self = this;
+			if (result.forEach) {
+				result.forEach(function(x) {
+					var entry = self.$services.masterdata.entry("language", x.name);
+					x.label = entry && entry.label ? entry.label : x.name;
+				});
+			}
+			return result;
+		},
 		names: function() {
 			return this.available.map(function(x) { return x.name });
 		},
@@ -61,9 +76,11 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 						}
 					}
 				}
+				console.log("language is", result);
 				// after that we map the name to the object
 				for (var i = 0; i < this.available.length; i++) {
 					if (this.available[i].name == result) {
+						this.setRtl(result);
 						return this.available[i];
 					}
 				}
@@ -101,8 +118,21 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 			}
 		}
 	},
+	methods: {
+		setRtl: function(language) {
+			if (this.rtl.filter(function(x) {
+					return x.name == language;
+				}).length > 0) {
+				document.body.setAttribute("dir", "rtl");
+			}
+		}
+	},
 	activate: function(done) {
 		this.cookieValue = this.$services.cookies.get("language");
+		var current = "${language()}";
+		if (current) {
+			this.setRtl(current);
+		}
 		done();
 	}
 }), { name: "nabu.services.cms.Language" });

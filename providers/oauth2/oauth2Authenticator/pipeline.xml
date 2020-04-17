@@ -1,6 +1,6 @@
 <structure interface="be.nabu.eai.module.authentication.oauth2.api.OAuth2Authenticator.authenticate" name="pipeline">
     <structure name="input">
-        <structure definition="nabu.cms.core.configuration" name="configuration"/>
+        <structure comment="Core configuration for the Nabu CMS" definition="nabu.cms.core.configuration" name="configuration"/>
     </structure>
     <structure name="output"/>
     <field name="email" type="java.lang.String"/>
@@ -20,7 +20,7 @@
     <field name="newUser" type="java.lang.Boolean"/>
     <field name="userCreateAuditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <structure definition="nabu.cms.core.providers.oauth2ProfileResolver" maxOccurs="unbounded" minOccurs="0" name="profileResolvers"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" name="userNode" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" duplicate="id,created,modified" name="userNode" namespace="nabu.cms.core.types.model.core"/>
     <structure definition="nabu.cms.core.providers.oauth2ProfileResolver" minOccurs="0" name="profileResolver"/>
     <structure collectionName="UserOauth2Credentials" definition="nabu.cms.core.types.model.core.UserOauth2Credential" minOccurs="0" name="existingCredential" namespace="nabu.cms.core.types.model.core"/>
 </structure>

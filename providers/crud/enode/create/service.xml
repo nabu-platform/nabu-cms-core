@@ -64,7 +64,7 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
-				id="f214d9dd-6287-4c73-8cf6-6620256d3d2f">
+				id="8fb6ff48-fad5-44f1-9270-00528690263e">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Select existing node"
 					disabled="false"
@@ -86,7 +86,7 @@
 							mask="false"
 							optional="false"
 							fixedValue="true">
-						<from>nabu.cms.core.types.model.core.Node</from>
+						<from>nabu.cms.core.types.emodel.core.Node</from>
 						<to>typeId</to>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -139,25 +139,25 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Map an id"
 					disabled="false"
-					id="0f5977ca-5b91-4d05-9b29-aa30971987db">
+					id="7e7bec3d-8950-466e-bbc6-e6b24eaa29c8">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
-						id="0a36939a-ad78-416e-870d-56d8018213dd"
+						id="7272958e-e172-4d1c-8cc3-6bc86ea6d846"
 						serviceId="nabu.utils.Server.uuid"
-						resultName="result2f5abd7cd71741c4a157d54364577134"
+						resultName="result9c5139576dba43b59f779562bd566d33"
 						temporaryMapping="true"
-						x="75"
-						y="94"
+						x="5"
+						y="119"
 						invocationOrder="0"
 						asynchronous="false">
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="2fe9aaec-8ab7-4f92-8267-276db099ea5e"
+						id="05144aac-b5e9-465a-bad4-e797c790fe0e"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>result2f5abd7cd71741c4a157d54364577134/uuid</from>
+					<from>result9c5139576dba43b59f779562bd566d33/uuid</from>
 					<to>node/id</to>
 				</steps>
 			</steps>
@@ -290,7 +290,7 @@
 							mask="false"
 							optional="false"
 							fixedValue="true">
-						<from>nabu.cms.core.types.model.core.Component</from>
+						<from>nabu.cms.core.types.emodel.core.Component</from>
 						<to>typeId</to>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -520,7 +520,7 @@
 						mask="false"
 						optional="false"
 						fixedValue="true">
-					<from>nabu.cms.core.types.model.core.Node</from>
+					<from>nabu.cms.core.types.emodel.core.Node</from>
 					<to>typeId</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"

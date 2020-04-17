@@ -2,11 +2,12 @@
 <crudProvider>
     <baseType>nabu.cms.core.types.model.core.Node</baseType>
     <blacklistedFields>created</blacklistedFields>
-    <blacklistedFields>modified</blacklistedFields>
     <blacklistedFields>path</blacklistedFields>
     <blacklistedFields>version</blacklistedFields>
+    <blacklistedFields>enabled</blacklistedFields>
     <createService>nabu.cms.core.providers.crud.node.create</createService>
     <deleteService>nabu.cms.core.providers.crud.node.delete</deleteService>
     <listService>nabu.cms.core.providers.crud.node.list</listService>
+    <primaryKeySecurityContext>true</primaryKeySecurityContext>
     <updateService>nabu.cms.core.providers.crud.node.update</updateService>
 </crudProvider>

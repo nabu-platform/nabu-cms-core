@@ -2,8 +2,8 @@
 		disabled="false"
 		id="4e717181-4cdc-43ef-8b49-18f459a6d483">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Set security"
+			disabled="false"
 			id="a0d24db7-7b52-4271-a90b-581b2a5cefee">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -32,6 +32,15 @@
 					fixedValue="false">
 				<from>input/connectionId</from>
 				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="63ff3fb7-7227-40b2-a232-9efbf43564bc"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -70,6 +79,15 @@
 					fixedValue="false">
 				<from>input/connectionId</from>
 				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="eda52744-1cb7-410d-b9f4-71b3712dc1be"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -127,6 +145,15 @@
 				<from>input/connectionId</from>
 				<to>connectionId</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7ffb2e91-2770-48b4-8a37-aac788554419"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -152,8 +179,8 @@
 			id="499dfb25-610d-4074-9ed4-8c88f64493b5"
 			variable="action">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				disabled="false"
 				comment="Add the action"
+				disabled="false"
 				id="ee78b132-37a2-403f-8554-0a88152f9f0c">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
@@ -191,6 +218,15 @@
 						fixedValue="false">
 					<from>input/connectionId</from>
 					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="1a4b24f9-b349-4caa-9875-24175df9fa0f"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -239,8 +275,8 @@
 			id="bf8302ec-ee78-434d-84b6-603ac37024b9"
 			variable="userId">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				disabled="false"
 				comment="Add the member"
+				disabled="false"
 				id="42d56f28-a8dc-4a7a-a8f3-ff7987fc113f">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
@@ -278,6 +314,15 @@
 						fixedValue="false">
 					<from>input/connectionId</from>
 					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ed20d923-6a8b-4ada-8505-042a18661aa6"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
 				</steps>
 			</steps>
 		</steps>
