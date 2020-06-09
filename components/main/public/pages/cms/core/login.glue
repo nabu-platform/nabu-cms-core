@@ -1,8 +1,9 @@
 @path
 @output nabu.cms.core.types.components.user
 @operationId nabu.cms.core.login
+@on =content/alias
 @title Log in
-@tags user
+@tags Nabu CMS Core
 ## Allows the user to log in
 
 @content
@@ -13,29 +14,34 @@ disabled = application.configuration("nabu.cms.core.configuration")/disableLocal
 if (disabled != null && disabled)
 	response.code(400)
 	abort()
-else if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember))
-	response.code(400)
-	abort()
 else
-	connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
-	user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
-
-	# if you selected a different language while logged out, lets update that in the database	
-	@cookie
-	language ?= null
-
-	if (language != null)
-		languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: first(language)))/results)
-		if (languageEntry != null)
-			nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
-			
-	response.content(structure(
-			id: user/id,
-			alias: user.token()/name,
-			realm: user.token()/realm,
-			roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-			actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-			potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-			potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-			languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
-		))
+	# check throttling
+	throttled = throttle(login/alias)
+	if (throttled != null)
+		response.content(throttled)
+	else if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember))
+		response.code(400)
+		abort()
+	else
+		connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
+		user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
+	
+		# if you selected a different language while logged out, lets update that in the database	
+		@cookie
+		language ?= null
+	
+		if (language != null)
+			languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: first(language)))/results)
+			if (languageEntry != null)
+				nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
+				
+		response.content(structure(
+				id: user/id,
+				alias: user.token()/name,
+				realm: user.token()/realm,
+				roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+				actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+				potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+				potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+				languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
+			))

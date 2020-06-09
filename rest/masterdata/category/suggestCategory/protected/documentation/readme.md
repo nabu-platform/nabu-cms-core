@@ -1,5 +1,4 @@
 @title Suggest
-@tags masterdata
 
 Suggest matching masterdata entries for a category.
 
