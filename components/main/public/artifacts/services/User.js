@@ -55,12 +55,12 @@ nabu.services.VueService(Vue.extend({
 				}
 			});
 		},
-		login: function(username, password, remember, force) {
+		login: function(username, password, remember, type, force) {
 			if (this.loggedIn && !force) {
 				var promise = this.$services.q.defer();
 				var self = this;
 				this.logout().then(function() {
-					self.login(username, password, remember, true).then(promise, promise);
+					self.login(username, password, remember, type, true).then(promise, promise);
 				});
 				return promise;
 			}
@@ -71,32 +71,38 @@ nabu.services.VueService(Vue.extend({
 					body: {
 						alias: username,
 						password: password,
-						remember: remember ? remember : false
+						remember: remember ? remember : false,
+						type: type ? type : "password"
 					}})
 					.then(function(result) {
-						self.id = result.id;
-						self.alias = result.alias;
-						self.realm = result.realm;
-						self.language = result.language;
-						self.roles.splice(0, self.roles.length, "$user");
-						self.potentialRoles.splice(0, self.roles.length, "$user");
-						self.actions.splice(0, self.actions.length);
-						self.potentialActions.splice(0, self.potentialActions.length);
-						if (result.roles) {
-							nabu.utils.arrays.merge(self.roles, result.roles);
+						if (result.alias != null) {
+							self.id = result.id;
+							self.alias = result.alias;
+							self.realm = result.realm;
+							self.language = result.language;
+							self.roles.splice(0, self.roles.length, "$user");
+							self.potentialRoles.splice(0, self.roles.length, "$user");
+							self.actions.splice(0, self.actions.length);
+							self.potentialActions.splice(0, self.potentialActions.length);
+							if (result.roles) {
+								nabu.utils.arrays.merge(self.roles, result.roles);
+							}
+							if (result.potentialRoles) {
+								nabu.utils.arrays.merge(self.potentialRoles, result.potentialRoles);
+							}
+							if (result.actions) {
+								nabu.utils.arrays.merge(self.actions, result.actions);
+							}
+							if (result.potentialActions) {
+								nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
+							}
+							self.$services.$clear().then(function() {
+								promise.resolve(result);
+							}, promise);
 						}
-						if (result.potentialRoles) {
-							nabu.utils.arrays.merge(self.potentialRoles, result.potentialRoles);
+						else {
+							promise.resolve(result);
 						}
-						if (result.actions) {
-							nabu.utils.arrays.merge(self.actions, result.actions);
-						}
-						if (result.potentialActions) {
-							nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
-						}
-						self.$services.$clear().then(function() {
-							promise.resolve();
-						}, promise);
 					}, promise);
 				return promise;
 			}

@@ -2,8 +2,8 @@
 		disabled="false"
 		id="661c1e6c-3ab3-4b66-8edc-a13967eec51a">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Get masterdata entry"
+			disabled="false"
 			id="fcc055b6-7edd-4b22-98b9-e8572218bf8b">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -14,7 +14,8 @@
 				x="35"
 				y="70"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="645265b5-9f78-4dab-9323-63ec3cf8597c"
@@ -46,12 +47,12 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 			disabled="false"
-			label="!entry"
 			id="739c1093-8891-44c2-ade7-20a9ce394fe1"
+			label="!entry"
 			message="=&quot;Could not find tag: &quot; + input/query/definitionId" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Get the category"
+			disabled="false"
 			id="04add2cc-cc87-4e2b-952f-6301a01436c9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -62,7 +63,8 @@
 				x="41"
 				y="75"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="1e2489fd-02cb-4cc0-8ec8-bc48603b00e4"
@@ -94,12 +96,12 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 			disabled="false"
-			label="category/name !# input/configuration/tag/taggableCategories"
 			id="49315fe0-f330-48aa-97ee-00c4005465fc"
+			label="category/name !# input/configuration/tag/taggableCategories"
 			message="=&quot;The category '&quot; + category/name + &quot;' is not whitelisted as a taggable category&quot;" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Map nodeTag"
+			disabled="false"
 			id="09c1c357-d28a-44fc-9ba0-c9cc9a85e35e">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -110,7 +112,8 @@
 				x="48"
 				y="131"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -121,7 +124,8 @@
 				x="39"
 				y="250"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -177,7 +181,8 @@
 				x="84"
 				y="347"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -190,8 +195,8 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Insert the tag and map output"
+			disabled="false"
 			id="809a2412-937c-4f7c-a19b-50faa0ed30d1">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -202,7 +207,8 @@
 				x="36"
 				y="76"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="1b384020-0af6-489b-a943-380969957b72"
@@ -230,39 +236,6 @@
 				fixedValue="false">
 			<from>tag</from>
 			<to>output/content</to>
-		</steps>
-	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
-			id="8290066d-320c-4b37-8d3e-4e0f5c650a53">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-				disabled="false"
-				id="dd949e0f-7b31-4e96-b5fe-2d276fecbc24"
-				serviceId="nabu.utils.Server.sleep"
-				resultName="result720fbb2441004a5a9e97356c1fa47270"
-				temporaryMapping="true"
-				x="60"
-				y="96"
-				invocationOrder="0"
-				asynchronous="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="c4724f8b-e802-4864-aa32-13dd3b5d1ee1"
-					mask="false"
-					optional="false"
-					fixedValue="true">
-				<from>5</from>
-				<to>amount</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="5645b97d-0afd-4e6f-abec-6670f2290c60"
-					mask="false"
-					optional="false"
-					fixedValue="true">
-				<from>SECONDS</from>
-				<to>unit</to>
-			</steps>
 		</steps>
 	</steps>
 </sequence>

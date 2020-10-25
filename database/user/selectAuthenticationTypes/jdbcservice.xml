@@ -1,0 +1,6 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.AuthenticationType</outputDefinition>
+	<sql>select at.*
+from ~user_authentication_types uat join ~authentication_types at on uat.authentication_type_id = at.id
+where uat.user_id = :userId</sql>
+</jdbcService>

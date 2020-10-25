@@ -1,0 +1,7 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.AuthenticationType</outputDefinition>
+	<sql>select *
+from ~authentication_types at
+where (:category is null or at.category = :category)
+	and (:name is null or at.name = :name)</sql>
+</jdbcService>

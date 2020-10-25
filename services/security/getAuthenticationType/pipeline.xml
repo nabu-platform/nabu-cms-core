@@ -1,0 +1,8 @@
+<structure name="pipeline">
+    <structure name="input" validate="true">
+        <field name="name" type="java.lang.String"/>
+    </structure>
+    <structure name="output" validate="true">
+        <structure definition="nabu.cms.core.services.security.authenticationType" name="type" restrict="id,created,modified"/>
+    </structure>
+</structure>

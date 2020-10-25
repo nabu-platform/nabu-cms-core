@@ -19,29 +19,51 @@ else
 	throttled = throttle(login/alias)
 	if (throttled != null)
 		response.content(throttled)
-	else if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember))
-		response.code(400)
-		abort()
 	else
 		connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
-		user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
-	
-		# if you selected a different language while logged out, lets update that in the database	
-		@cookie
-		language ?= null
-	
-		if (language != null)
-			languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: first(language)))/results)
-			if (languageEntry != null)
-				nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
-				
-		response.content(structure(
-				id: user/id,
-				alias: user.token()/name,
-				realm: user.token()/realm,
-				roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-				actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-				potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-				potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-				languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
-			))
+		# check the authentication type that was passed in (default is password)
+		type = when(login/type = null, "password", login/type)
+		
+		# if you use password, we may "upgrade" you to a different type (like sms2fa)
+		if (type = null || type = "password")
+			types = nabu.cms.core.services.security.getAuthenticationTypes(connectionId, environment("webApplicationId"), login/alias, login/password)/types
+			
+			# get the chosen type from the list
+			chosenType = types[name = /type]
+			
+			# if the chosen type is not supported, send back a list of types that _are_ supported
+			if (chosenType = null)
+				response.content(structure(
+						currentAuthenticationType: type,
+						authenticationTypes: types/name
+					))
+				response.code(202)
+				abort()
+		else 
+			chosenType = nabu.cms.core.services.security.getAuthenticationType(type)/type
+			
+		if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember, type: when(chosenType/category != null, chosenType/category, chosenType/name)))
+			response.code(400)
+			abort()
+		else
+			user = nabu.cms.core.services.user.getCurrent(connectionId: connectionId, mustExist: true)/user
+		
+			# if you selected a different language while logged out, lets update that in the database	
+			@cookie
+			language ?= null
+		
+			if (language != null)
+				languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: first(language)))/results)
+				if (languageEntry != null)
+					nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
+					
+			response.content(structure(
+					id: user/id,
+					alias: user.token()/name,
+					realm: user.token()/realm,
+					roles: nabu.cms.core.database.user.selectGlobalRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+					actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+					potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+					potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
+					languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
+				))

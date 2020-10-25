@@ -1,0 +1,38 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="b04d267e-fd73-40a6-a8ba-77dafe691441">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="f505ded7-13d7-40f9-80ac-fc6ad19b74c0">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a8a68486-7ff1-4365-923f-7df08c3a0f41"
+				serviceId="nabu.cms.core.database.authenticationType.search"
+				resultName="resulta0096c10609a49c0bb4b5be37d32804a"
+				temporaryMapping="true"
+				x="30"
+				y="30"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ea9627bd-47b6-489d-8e10-ae4714dea980"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/name</from>
+				<to>parameters/name</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="2fa42601-2052-4c8c-a5ce-36b4d1326b8b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulta0096c10609a49c0bb4b5be37d32804a/results[0]</from>
+			<to>output/type</to>
+		</steps>
+	</steps>
+</sequence>

@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<inputDefinition>nabu.cms.core.types.model.core.NodeHistoryValue</inputDefinition>
+	<sql>update node_history_values set
+	modified = :created,
+	stopped = :started
+where table_name = :tableName
+and instance_id = :instanceId
+and started is not null
+and stopped is null</sql>
+</jdbcService>

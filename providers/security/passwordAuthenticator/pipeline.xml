@@ -10,7 +10,7 @@
     <field name="auditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field minOccurs="0" name="secret" type="java.lang.String"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.cms.core.types.model.core"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" name="userNode" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" duplicate="id,created,modified" name="userNode" namespace="nabu.cms.core.types.model.core"/>
     <field name="valid" type="java.lang.Boolean"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="originalUser" namespace="nabu.cms.core.types.model.core"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="globalRoles" namespace="nabu.cms.core.types.model.core"/>
@@ -19,4 +19,5 @@
     <field minOccurs="0" name="stringifiedAllowedRoles" type="java.lang.String"/>
     <field maxOccurs="unbounded" minOccurs="0" name="allowedAliases" type="java.lang.String"/>
     <field minOccurs="0" name="amountOfMatchingAliases" type="java.lang.Integer"/>
+    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="temporaryToken"/>
 </structure>

@@ -1,0 +1,16 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field name="webApplicationId" type="java.lang.String"/>
+        <field name="alias" type="java.lang.String"/>
+        <field name="password" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure definition="nabu.cms.core.services.security.authenticationType" maxOccurs="unbounded" minOccurs="0" name="types" restrict="id,created,modified"/>
+    </structure>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
+    <field name="valid" type="java.lang.Boolean"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="defaultOnes" type="java.lang.String"/>
+    <structure definition="nabu.cms.core.services.security.authenticationType" name="type" restrict="id,created,modified"/>
+    <field minOccurs="0" name="size" type="java.lang.Integer"/>
+</structure>

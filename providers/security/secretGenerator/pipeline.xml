@@ -1,0 +1,8 @@
+<structure interface="be.nabu.libs.authentication.api.SecretGenerator.generate" name="pipeline">
+    <structure name="input">
+        <structure comment="Core configuration for the Nabu CMS" definition="nabu.cms.core.configuration" name="configuration"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" name="user" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="UserDevices" definition="nabu.cms.core.types.model.core.UserDevice" name="currentDevice" namespace="nabu.web.cms.core.types.model.core"/>
+</structure>
