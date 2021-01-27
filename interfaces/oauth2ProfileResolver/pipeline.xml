@@ -10,5 +10,6 @@
         <field minOccurs="0" name="verified" type="java.lang.Boolean"/>
         <field comment="The id of the account in the provider system" minOccurs="0" name="accountId" type="java.lang.String"/>
         <structure comment="Arbitrary properties that you want to give to a profile creator/updater" definition="java.lang.Object" minOccurs="0" name="properties"/>
+        <field comment="If roles are filled in, the user is automatically assigned to them (through global groups)" maxOccurs="unbounded" minOccurs="0" name="roles" type="java.lang.String"/>
     </structure>
 </structure>

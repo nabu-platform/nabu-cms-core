@@ -19,6 +19,10 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 					x.label = entry && entry.label ? entry.label : x.name;
 				});
 			}
+			// we need an array and nothing is available...
+			else {
+				result = [];
+			}
 			return result;
 		},
 		rtl: function() {
@@ -33,6 +37,10 @@ echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(stru
 					var entry = self.$services.masterdata.entry("language", x.name);
 					x.label = entry && entry.label ? entry.label : x.name;
 				});
+			}
+			// we need an array and nothing is available...
+			else {
+				result = [];
 			}
 			return result;
 		},

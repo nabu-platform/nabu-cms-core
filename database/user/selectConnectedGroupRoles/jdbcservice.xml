@@ -1,0 +1,25 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.model.core.GroupRole</outputDefinition>
+	<sql>select
+	gr.id,
+	gr.created,
+	gr.modified,
+	gr.started,
+	gr.stopped,
+	gr.service,
+	gr.inherit,
+	gr.group_id,
+	gr.role_id,
+	gr.node_id
+from group_roles gr
+join groups g on gr.group_id = g.id
+join user_groups ug on ug.group_id = g.id
+join node_connections nc on ug.user_id = nc.target_id
+where nc.source_id = :userId
+and ug.started is not null
+and ug.started &lt; current_timestamp
+and (ug.stopped is null or ug.stopped &gt; current_timestamp)
+and gr.started is not null
+and gr.started &lt; current_timestamp
+and (gr.stopped is null or gr.stopped &gt; current_timestamp)</sql>
+</jdbcService>

@@ -211,7 +211,6 @@ window.addEventListener("load", function() {
 				priority: -1,
 				alias: "cms-error",
 				module: "nabu.cms",
-				query: ["message"],
 				enter: function(parameters) {
 					return new nabu.views.cms.core.Error({ propsData: parameters });
 				}
@@ -259,9 +258,31 @@ window.addEventListener("load", function() {
 				id: "cms.logout",
 				async: true,
 				implementation: function(input, $services, $value, resolve, reject) {
-					$services.user.logout().then(resolve, reject);
+					var promise = $services.user.logout();
+					if (input.route) {
+						var route = function() {
+							setTimeout(function() {
+								$services.router.route(input.route);
+							}, 1);
+						}
+						if (input.routeImmediately == true || input.routeImmediately == "true") {
+							route();
+						}
+						else {
+							promise.then(route, route);
+						}
+					}
+					promise.then(resolve, reject);
 				},
-				inputs: []
+				inputs: [{
+					"name": "route",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "routeImmediately",
+					"required": false,
+					"type": "string"
+				}]
 			});
 			nabu.page.provide("page-function", {
 				id: "cms.changeLanguage",

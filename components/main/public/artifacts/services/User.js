@@ -165,6 +165,9 @@ nabu.services.VueService(Vue.extend({
 					if (result.potentialActions) {
 						nabu.utils.arrays.merge(self.potentialActions, result.potentialActions);
 					}
+					if (result.oauth2) {
+						nabu.utils.objects.merge(self.oauth2, result.oauth2);
+					}
 					if (clear && !self.loggingOut) {
 						self.$services.$clear().then(function() {
 							promise.resolve();

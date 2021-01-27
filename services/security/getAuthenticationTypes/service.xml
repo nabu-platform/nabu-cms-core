@@ -83,13 +83,24 @@
 			<from>result3a832f5b113e4198a454667e015b96c3/results[0]</from>
 			<to>user</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="967a4470-cea2-4a49-88fb-3828c9bfed9b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result43224008dc7841008b45bc60a0cedfd6/information</from>
+			<to>information</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 			disabled="false"
 			id="e27b62c0-7c74-4c5f-93fa-bc4ca52d23f1"
 			label="!user"
 			code="CMS-AUTH-7"
-			message="User does not exist" xsi:nil="true"/>
+			message="User does not exist"
+			alias="=input/alias"
+			realm="=information/realm" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Check if the combination is valid"
 			disabled="false"

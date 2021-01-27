@@ -1,0 +1,5 @@
+For each role managed by the remote oauth2 system, we make sure the role exists (with no owner).
+We then make sure a group with the same name as the role exists (to make sure it is uniquely named) where the owner is the current oauth2 node.
+Then we make sure the user is in it.
+
+We also select all the groups that belong to this oauth2 node and remove the user from any group that is not explicitly listed.

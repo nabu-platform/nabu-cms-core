@@ -18,7 +18,7 @@
 				</slot>
 			</footer>
 		</n-form>
-		<div class="oauth2">
+		<div class="oauth2" v-if="oauth2.length">
 			<h2 v-if="oauth2.length && !disableLocalAccounts">%{Or log in with}</h2>
 			<button class="oauth2-option" v-for="provider in oauth2" @click="$window.location = provider.link"
 					:class="'oauth2-option-' + provider.provider">
