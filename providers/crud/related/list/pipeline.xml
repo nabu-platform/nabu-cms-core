@@ -1,0 +1,10 @@
+<structure interface="be.nabu.eai.module.services.crud.api.CRUDProvider.list" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <field minOccurs="0" name="columnName" type="java.lang.String"/>
+    <structure definition="nabu.services.jdbc.types.JoinStatement" minOccurs="0" name="joinSecurity"/>
+    <field minOccurs="0" name="tableName" type="java.lang.String"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
+    <structure definition="nabu.services.jdbc.types.JoinStatement" maxOccurs="unbounded" minOccurs="0" name="joins"/>
+    <structure definition="nabu.services.jdbc.types.JoinStatement" minOccurs="0" name="joinNodes"/>
+</structure>

@@ -1,5 +1,5 @@
 <structure comment="Core configuration for the Nabu CMS" name="core">
-    <field name="connectionId" type="java.lang.String"/>
+    <field minOccurs="0" name="connectionId" type="java.lang.String"/>
     <field comment="Defaults to &quot;true&quot;" minOccurs="0" name="allowNewDevices" type="java.lang.Boolean"/>
     <field minOccurs="0" name="allowAnonymousDevices" type="java.lang.Boolean"/>
     <field comment="Defaults to &quot;true&quot;" minOccurs="0" name="allowRemember" type="java.lang.Boolean"/>
@@ -22,6 +22,10 @@
             <field name="keyAlias" type="java.lang.String"/>
         </structure>
         <field comment="After how much time the password reset is no longer valid" minOccurs="0" name="passwordResetTimeout" type="be.nabu.libs.types.base.Duration"/>
+        <structure minOccurs="0" name="jwt">
+            <field comment="The keystore to use for the JWT tokens" name="keystore" type="java.lang.String"/>
+            <field comment="The alias to use in the keystore." name="keyAlias" type="java.lang.String"/>
+        </structure>
     </structure>
     <structure minOccurs="0" name="implementations">
         <field minOccurs="0" name="sendDeviceVerification" type="java.lang.String"/>

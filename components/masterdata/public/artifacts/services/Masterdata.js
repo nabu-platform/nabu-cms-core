@@ -40,29 +40,25 @@ nabu.services.VueService(Vue.extend({
 ${{
 configuration = application.configuration("nabu.cms.core.configuration")
 
-if (configuration/connectionId != null)
-	stripper = lambda(x, structure(x, created: null, modified: null))
-	preloaded = series()
-	categories = nabu.cms.core.database.masterdata.category.selectAll(configuration/connectionId)/results
-	for (name : configuration/masterdata/preloadedCategories)
-		entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
-			connection: configuration/connectionId,
-			parameters: structure(name: name))/results
-		entries = nabu.cms.core.services.masterdata.entry.translate(
-			connection: configuration/connectionId,
-			entries: entries,
-			language: application.language(),
-			defaultLanguage: configuration/defaultLanguage)/entries
-		entries = derive(stripper, entries)
-		cat = first(categories[ownerId = null && name = /name])
-		preloaded = merge(preloaded, structure(
-			name: name,
-			id: cat/id,
-			entries: entries))
-	categories = derive(stripper, categories)
-else
-	preloaded = series()
-	categories = series()
+stripper = lambda(x, structure(x, created: null, modified: null))
+preloaded = series()
+categories = nabu.cms.core.database.masterdata.category.selectAll(configuration/connectionId)/results
+for (name : configuration/masterdata/preloadedCategories)
+	entries = nabu.cms.core.database.masterdata.entry.selectByCategory(
+		connection: configuration/connectionId,
+		parameters: structure(name: name))/results
+	entries = nabu.cms.core.services.masterdata.entry.translate(
+		connection: configuration/connectionId,
+		entries: entries,
+		language: application.language(),
+		defaultLanguage: configuration/defaultLanguage)/entries
+	entries = derive(stripper, entries)
+	cat = first(categories[ownerId = null && name = /name])
+	preloaded = merge(preloaded, structure(
+		name: name,
+		id: cat/id,
+		entries: entries))
+categories = derive(stripper, categories)
 
 echo("		preloaded: function() { return " + json.stringify(structure(preloaded: preloaded)) + "; },\n")
 echo("		categories: function() { return " + json.stringify(structure(categories: categories)) + "; }\n")
@@ -138,16 +134,20 @@ echo("		categories: function() { return " + json.stringify(structure(categories:
 				return this.masterdata.resolved[masterdataId].label;
 			}
 			var result = null;
-			// check if we have preloaded masterdata
-			for (var i = 0; i < this.preloaded.length; i++) {
-				for (var j = 0; j < this.preloaded[i].entries.length; j++) {
-					if (this.preloaded[i].entries[j].id == masterdataId) {
-						result = this.preloaded[i].entries[j];
-						break;
+			if (this.preloaded) {
+				// check if we have preloaded masterdata
+				for (var i = 0; i < this.preloaded.length; i++) {
+					if (this.preloaded[i].entries) {
+						for (var j = 0; j < this.preloaded[i].entries.length; j++) {
+							if (this.preloaded[i].entries[j].id == masterdataId) {
+								result = this.preloaded[i].entries[j];
+								break;
+							}
+						}
+						if (result != null) {
+							break;
+						}
 					}
-				}
-				if (result != null) {
-					break;
 				}
 			}
 			// the resolving function

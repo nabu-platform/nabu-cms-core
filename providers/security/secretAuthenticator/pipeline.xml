@@ -1,6 +1,6 @@
 <structure interface="be.nabu.eai.authentication.api.SecretAuthenticator.authenticate" name="pipeline">
     <structure name="input">
-        <structure definition="nabu.cms.core.configuration" name="configuration"/>
+        <structure comment="Core configuration for the Nabu CMS" definition="nabu.cms.core.configuration" name="configuration"/>
     </structure>
     <structure name="output"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.web.cms.core.types.model.core"/>
@@ -8,7 +8,7 @@
     <field name="suppliedHash" type="java.lang.String"/>
     <field name="auditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="originalUser" namespace="nabu.web.cms.core.types.model.core"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" name="userNode" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" duplicate="id,created,modified" name="userNode" namespace="nabu.cms.core.types.model.core"/>
     <field name="valid" type="java.lang.Boolean"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="globalRoles" namespace="nabu.cms.core.types.model.core"/>
     <field name="amountOfMatchingRoles" type="java.lang.Integer"/>

@@ -180,6 +180,17 @@ nabu.services.VueService(Vue.extend({
 					}
 				}, function(error) {
 					var content = error.responseText ? JSON.parse(error.responseText) : error;
+					
+					// if we can't remember you, you are not correctly logged in either, let's reset it all
+					self.id = null;
+					self.alias = null;
+					self.realm = null;
+					self.language = null;
+					self.roles.splice(0, self.roles.length, "$guest");
+					self.potentialRoles.splice(0, self.roles.length, "$guest");
+					self.actions.splice(0, self.actions.length);
+					self.potentialActions.splice(0, self.potentialActions.length);
+					
 					if (content) {
 						if (content.oauth2) {
 							nabu.utils.objects.merge(self.oauth2, content.oauth2);
@@ -190,11 +201,20 @@ nabu.services.VueService(Vue.extend({
 						if (content.actions) {
 							nabu.utils.arrays.merge(self.actions, content.actions);
 						}
+						if (content.potentialActions) {
+							nabu.utils.arrays.merge(self.potentialActions, content.potentialActions);
+						}
 						if (content.language) {
 							self.language = content.language;
 						}
 					}
-					promise.reject(error);
+					
+					// always reject with original remember error, not any error triggered by clear
+					var done = function() {
+						promise.reject(error);
+					}
+					self.$services.$clear().then(done, done);
+					
 					self.remembering = false;
 				});
 			}

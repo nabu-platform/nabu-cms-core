@@ -2,8 +2,8 @@
 		disabled="false"
 		id="3c85a904-c989-4fd7-9772-88ee627feb13">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Get user by alias and realm"
+			disabled="false"
 			id="98106c59-1eb3-4c28-b7ee-279c423fa756">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -14,7 +14,8 @@
 				x="66"
 				y="23"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="4f771339-fbc1-42e5-8772-e2af65fe6849"
@@ -70,7 +71,8 @@
 				x="341"
 				y="151"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="8f110395-7a86-4335-b5f1-9eeb72ac94db"
@@ -101,30 +103,30 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
-			disabled="false"
 			comment="Check that the user is not anonymous"
+			disabled="false"
 			id="6da48c8e-b84c-4d3a-a016-640f7958175d">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
-				label="user/anonymous != null &amp;&amp; user/anonymous"
-				id="4ac1cc50-d1b4-4731-8f2a-ad3943c1143b">
+				id="4ac1cc50-d1b4-4731-8f2a-ad3943c1143b"
+				label="user/anonymous != null &amp;&amp; user/anonymous">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
-					disabled="false"
-					label="input/configuration/allowAnonymousLogin == null || !input/configuration/allowAnonymousLogin"
-					id="102e52eb-7408-4971-83a3-852f3fe2c390"
-					message="Can not log in with an anonymous account"
 					description="=&quot;Can not log in with an anonymous account: &quot; + user/alias"
+					disabled="false"
+					id="102e52eb-7408-4971-83a3-852f3fe2c390"
+					label="input/configuration/allowAnonymousLogin == null || !input/configuration/allowAnonymousLogin"
+					message="Can not log in with an anonymous account"
 					alias="=user/alias"
 					realm="=user/realm" xsi:nil="true"/>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			disabled="false"
-			label="user != null"
-			id="c5ffd6f7-8a33-4d0e-93da-ff130126f1b3">
+			id="c5ffd6f7-8a33-4d0e-93da-ff130126f1b3"
+			label="user != null">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				disabled="false"
 				comment="Get the node for the user"
+				disabled="false"
 				id="e66188b1-e332-40a1-ba16-0065c12c9745">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
@@ -135,7 +137,8 @@
 					x="224"
 					y="92"
 					invocationOrder="0"
-					asynchronous="false">
+					asynchronous="false"
+					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="32ad0223-33d5-4d26-9814-65855b5209f3"
@@ -166,10 +169,10 @@
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				disabled="false"
-				label="userNode/ownerId != null &amp;&amp; userNode/ownerId != userNode/id"
 				comment="If the user is not his own owner, it is an alias account"
-				id="42260c21-6970-4334-a179-4244e4d42fb7">
+				disabled="false"
+				id="42260c21-6970-4334-a179-4244e4d42fb7"
+				label="userNode/ownerId != null &amp;&amp; userNode/ownerId != userNode/id">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="77ff9e55-c383-485d-a8e4-c3da21829aa0"
@@ -179,7 +182,8 @@
 					x="102"
 					y="56"
 					invocationOrder="0"
-					asynchronous="false">
+					asynchronous="false"
+					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="d2927fa9-8142-4533-933e-38313bf0712a"
@@ -210,18 +214,18 @@
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
-				disabled="false"
-				label="!user"
-				id="f143539b-0434-44bd-9727-5ebcc83ebdac"
-				message="Invalid owner"
 				description="=&quot;Invalid owner for &quot; + input/credentials/name + &quot; in &quot; + input/realm"
+				disabled="false"
+				id="f143539b-0434-44bd-9727-5ebcc83ebdac"
+				label="!user"
+				message="Invalid owner"
 				alias="=input/credentials/name"
 				realm="=input/realm" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-				disabled="false"
-				label="input/configuration/security/allowedRoles != null"
 				comment="Check whitelist of roles (if any)"
-				id="829ea2f1-c594-4c4b-aad6-9b69e0ca0e4d">
+				disabled="false"
+				id="829ea2f1-c594-4c4b-aad6-9b69e0ca0e4d"
+				label="input/configuration/security/allowedRoles != null">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="ce07b8d7-4b06-4356-960c-816f2d1138a0">
@@ -234,7 +238,8 @@
 						x="33"
 						y="51"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="b49a2c7a-128f-4999-9717-50c1c1c3d309"
@@ -285,7 +290,8 @@
 						x="94"
 						y="116"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="8ad682e7-da5f-40cb-b5ad-4dbc68c0142e"
@@ -308,8 +314,8 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					label="amountOfMatchingRoles &lt;= 0"
-					id="921e5860-cbf1-4d5e-9353-3880627cd91d">
+					id="921e5860-cbf1-4d5e-9353-3880627cd91d"
+					label="amountOfMatchingRoles &lt;= 0">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
 						disabled="false"
 						id="568b763a-0cde-49f6-b6e8-e7b2401ec4cf"
@@ -322,8 +328,8 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
-				label="user"
-				id="0d5c8133-2f7e-48a6-840b-e36df8555731">
+				id="0d5c8133-2f7e-48a6-840b-e36df8555731"
+				label="user">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="438b9c40-f669-4b28-850c-b45eb4a64e35">
@@ -336,7 +342,8 @@
 						x="39"
 						y="37"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="97811928-58a0-4c78-bee3-389ec75bf0ee"
@@ -397,8 +404,8 @@
 					disabled="false"
 					id="a324c7f3-5039-4c46-b4ad-34f39b0d000b">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-						disabled="false"
 						comment="Get user devices"
+						disabled="false"
 						id="8d9f3a30-36ad-4601-a49c-8c09a3eec770">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
@@ -409,7 +416,8 @@
 							x="80"
 							y="52"
 							invocationOrder="0"
-							asynchronous="false">
+							asynchronous="false"
+							recache="false">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="8523098a-8488-4d2f-8dff-1de4af7a80cc"
@@ -490,24 +498,24 @@
 						query="currentDevice/allowed">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
-							label="false"
 							id="7c6d17f3-b369-482f-bc3b-8e97367289ce"
+							label="false"
 							code="CMS-AUTH-3"
 							message="Device not allowed"
 							alias="=user/alias"
 							realm="=user/realm" xsi:nil="true"/>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
-						disabled="false"
-						label="currentDevice/secret = null"
-						id="66a1628f-29f9-42da-914d-c8093ae457d6"
-						message="No secret"
 						description="=&quot;No secret for: &quot; + user/alias"
+						disabled="false"
+						id="66a1628f-29f9-42da-914d-c8093ae457d6"
+						label="currentDevice/secret = null"
+						message="No secret"
 						alias="=user/alias"
 						realm="=user/realm" xsi:nil="true"/>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-						disabled="false"
 						comment="Check if the combination is valid"
+						disabled="false"
 						id="1dfc61c8-60e6-48fb-b8bd-615425fb7853">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
@@ -518,7 +526,8 @@
 							x="92"
 							y="68"
 							invocationOrder="0"
-							asynchronous="false">
+							asynchronous="false"
+							recache="false">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="2705cf55-c575-4a71-9b55-958ca3bcabbc"
@@ -567,10 +576,10 @@
 					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-						disabled="false"
-						label="!valid"
 						comment="For backwards compatibility reasons, check with the username &amp; realm as well"
-						id="2d63f4308fe149acbb1e19e4b04aaf24">
+						disabled="false"
+						id="2d63f4308fe149acbb1e19e4b04aaf24"
+						label="!valid">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="59353fa479174c25b1539323057fd139"
@@ -580,7 +589,8 @@
 							x="92"
 							y="68"
 							invocationOrder="0"
-							asynchronous="false">
+							asynchronous="false"
+							recache="false">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="014eb1bb7e394f6aae7654ff0720387d"
@@ -652,11 +662,11 @@
 						query="valid">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 							disabled="false"
-							label="true"
-							id="da1abcee-1e3b-4ae3-962a-806b556e34ba">
+							id="da1abcee-1e3b-4ae3-962a-806b556e34ba"
+							label="true">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-								disabled="false"
 								comment="Map output, map updated verification code to invalidate it"
+								disabled="false"
 								id="67ca298c-0a84-410b-8b91-ab236a9aae6e">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
@@ -694,7 +704,8 @@
 									x="50"
 									y="512"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="a4e440e5-1382-436a-bbc4-c500cadd5f4b"
@@ -732,7 +743,8 @@
 									x="78"
 									y="141"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="44fd21e0-6a08-41d2-99c7-2f347498a12f"
@@ -761,6 +773,15 @@
 								<from>resulteff08759632c466fad014129cfccc71c/verificationCode</from>
 								<to>originalUser/verificationCode</to>
 							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="f16d43ba-d449-483f-8b1a-c90ab0a5dc7c"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>user/id</from>
+								<to>output/response/authenticationId</to>
+							</steps>
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								disabled="false"
@@ -774,7 +795,8 @@
 									x="244"
 									y="130"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="c3b2f04a-66cc-44c9-849d-e577d917988a"
@@ -797,11 +819,11 @@
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+							description="=&quot;Invalid secret for: &quot; + user/alias"
 							disabled="false"
 							id="67e864c4-3502-45b5-92c0-7f2145fb4010"
 							code="CMS-AUTH-4"
 							message="Invalid secret"
-							description="=&quot;Invalid secret for: &quot; + user/alias"
 							alias="=user/alias"
 							realm="=user/realm" xsi:nil="true"/>
 				</steps>
@@ -821,7 +843,8 @@
 								x="33"
 								y="78"
 								invocationOrder="0"
-								asynchronous="false">
+								asynchronous="false"
+								recache="false">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="011869f5-da36-464c-8171-6ba66434cb62"

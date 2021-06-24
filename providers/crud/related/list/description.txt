@@ -1,0 +1,4 @@
+We use the replace function in our dynamic bindings:
+
+- replace is supported (with the same spec) in all databases that we currently support with the same specification
+- in postgres (and possibly others?) we use the native UUID type, it is stringified with a "-" in it. If we then proceed to do a string LIKE with it, it will not work because we stringify without the "-"

@@ -2,6 +2,41 @@
 		disabled="false"
 		id="9d1e8764-7699-4e2c-b520-c79bf5b696e8">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="25421546-4e97-4da4-b9c9-b0394fb4b32b"
+			label="input/credentials/name != null">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="20539cde-ee9b-4508-922f-111f148dc7b4"
+				serviceId="nabu.utils.String.trim"
+				resultName="result294f09170cce4dde82d82c72c0c5a92b"
+				temporaryMapping="true"
+				x="98"
+				y="69"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="aa99e1a5-520b-4c93-bfa6-1ead0b80d747"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/credentials/name</from>
+				<to>string</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="504b2ea8-56ec-4951-8f47-a346659ac596"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result294f09170cce4dde82d82c72c0c5a92b/trimmed</from>
+			<to>input/credentials/name</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Initialize configuration"
 			disabled="false"
 			id="9d22aa5820cd4aadbae2865ac094b263">
@@ -1537,6 +1572,15 @@
 								fixedValue="false">
 							<from>result5579ff87c58b4c61b2e162bb8c1e1b31/verificationCode</from>
 							<to>originalUser/verificationCode</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="e861ba82-81cc-4a8a-87c0-668b0209f164"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>user/id</from>
+							<to>output/response/authenticationId</to>
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"

@@ -9,7 +9,10 @@
 @content
 nabu.cms.core.types.components.login login ?= null
 
-disabled = application.configuration("nabu.cms.core.configuration")/disableLocalAccounts
+configuration = application.configuration("nabu.cms.core.configuration")
+disabled = configuration/disableLocalAccounts
+
+useJWT = configuration/security/jwt/keystore != null && configuration/security/jwt/keyAlias != null
 
 if (disabled != null && disabled)
 	response.code(400)
@@ -20,7 +23,7 @@ else
 	if (throttled != null)
 		response.content(throttled)
 	else
-		connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
+		connectionId = configuration/connectionId
 		# check the authentication type that was passed in (default is password)
 		type = when(login/type = null, "password", login/type)
 		

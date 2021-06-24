@@ -14,7 +14,8 @@
 				x="386"
 				y="116"
 				invocationOrder="1"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="c4bada8a-94d0-4573-a1c5-97a5a043eea8"
@@ -70,7 +71,8 @@
 				x="16"
 				y="147"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="fbf2bfef-6229-4d4a-98bd-612fa864bbbd"
@@ -115,6 +117,71 @@
 			label="existing = null || existing/id != newNode/id"
 			message="Invalid id" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Describe the type we passed in, specifically we need to differentiate between unsetting the parentId and not being able to update it at all"
+			disabled="false"
+			id="8a1dda8a-d26b-48aa-bc60-297057a53bc5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a4f49f0d-68af-4063-ac4e-586c279e560f"
+				serviceId="nabu.utils.reflection.Type.of"
+				resultName="result49637a1b400942549deffb78fce59aab"
+				temporaryMapping="true"
+				x="81"
+				y="46"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2bd76394-6273-48fd-86a8-8bcbbf1e989c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/instance</from>
+				<to>typeInstance</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1cddcb9e-61a6-47bb-8e0b-7b8f36ca28d7"
+				serviceId="nabu.utils.reflection.Type.describe"
+				resultName="result1c86596b376b4db89109ff44e6ad540f"
+				temporaryMapping="true"
+				x="269"
+				y="188"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d8cad2cd-c17e-4423-a1d4-cc53f7b48229"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result49637a1b400942549deffb78fce59aab/typeId</from>
+				<to>typeId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1b4559ed-3760-48f9-ac40-15d23f30faef"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result1c86596b376b4db89109ff44e6ad540f/parameters</from>
+			<to>parameters</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="0b9e41de-f312-4ed7-8e0e-5bd2d28b8c83"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result1c86596b376b4db89109ff44e6ad540f/parameters[name = "parentId"]</from>
+			<to>parentIdParameter</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="We update the exposed node fields and the extension"
 			disabled="false"
 			id="231b0579-88bc-42ef-82d7-b2b8456e6fb4">
@@ -127,7 +194,8 @@
 				x="83"
 				y="20"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="58862b5f-0aa7-459d-afb7-318312aa4400"
@@ -175,43 +243,11 @@
 			</steps>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			comment="Merge new fields into existing so we have an update to date copy without doing another select"
-			disabled="false"
-			id="f2659bc5-1cbf-404a-9ee5-4f25f404a98e">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-				disabled="false"
-				id="f5efcf23-1809-4b6f-8f1a-f8895776b076"
-				serviceId="nabu.utils.Object.mapByKey"
-				resultName="result8c603f73cbf74f0bb8f1ff878cef0404"
-				temporaryMapping="true"
-				x="81"
-				y="24"
-				invocationOrder="0"
-				asynchronous="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="2193df56-eec4-4e54-b950-a06de8c1ba32"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/instance</from>
-				<to>from</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="c7a8d85b-acde-4d25-9505-9fdf2c721b13"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>existing</from>
-				<to>into</to>
-			</steps>
-		</steps>
-	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+			comment="If we have a parentId parameter, check if it has been updated"
 			disabled="false"
-			id="f58d9465-c7d5-4a96-90fc-90ebc4b98f10">
+			id="f58d9465-c7d5-4a96-90fc-90ebc4b98f10"
+			label="parentIdParameter != null">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="If we unset the parent id, path is simple"
 				disabled="false"
@@ -245,7 +281,8 @@
 						x="74"
 						y="45"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="d9f2864eb4a04fd7997f1b71d6e95764"
@@ -324,6 +361,41 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Merge new fields into existing so we have an update to date copy without doing another select"
+			disabled="false"
+			id="f2659bc5-1cbf-404a-9ee5-4f25f404a98e">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f5efcf23-1809-4b6f-8f1a-f8895776b076"
+				serviceId="nabu.utils.Object.mapByKey"
+				resultName="result8c603f73cbf74f0bb8f1ff878cef0404"
+				temporaryMapping="true"
+				x="81"
+				y="24"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2193df56-eec4-4e54-b950-a06de8c1ba32"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/instance</from>
+				<to>from</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c7a8d85b-acde-4d25-9505-9fdf2c721b13"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>existing</from>
+				<to>into</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Update version"
 			disabled="false"
 			id="0c76d3e9-f69f-4b86-a349-b239e03db8f6">
@@ -350,7 +422,8 @@
 				x="78"
 				y="48"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="df632597-2adb-4bba-a429-758d311adfe2"

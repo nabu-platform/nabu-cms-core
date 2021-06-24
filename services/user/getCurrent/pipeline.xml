@@ -3,6 +3,7 @@
         <field minOccurs="0" name="connectionId" type="java.lang.String"/>
         <field minOccurs="0" name="mustExist" type="java.lang.Boolean"/>
         <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+        <field comment="Some tokens are not CMS users, by default we will fail. If we want to allow this, toggle it." minOccurs="0" name="allowInvalidToken" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
