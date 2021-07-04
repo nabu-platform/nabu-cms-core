@@ -1,0 +1,170 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="7f8da3f7-244c-471a-9aa0-12dcafa6d7e7">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="883c08ab-0776-40e1-a377-8a1d8cbb11f3"
+			label="input/configuration/security/jwt/keystore != null &amp;&amp; input/configuration/security/jwt/keyAlias != null">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="468325f2-db65-4d1d-ae4c-df7c8fce8f76"
+				serviceId="nabu.web.application.jwt.Services.unmarshal"
+				resultName="resultc0530ea9f6b34e768d5b4efd2ec4f911"
+				temporaryMapping="true"
+				x="62"
+				y="56"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a24c21d7-d942-4b03-8062-3fa06c13d755"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/bearer</from>
+				<to>content</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="37df8448-72a5-40af-8795-170a8387dbc8"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration/security/jwt/keystore</from>
+				<to>keystore</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f3bf6e6b-2c87-41f6-a160-eabfc652f38b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration/security/jwt/keyAlias</from>
+				<to>keyAlias</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="f3f4e76d-ce81-409f-8424-9feeebae980c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc0530ea9f6b34e768d5b4efd2ec4f911/response</from>
+			<to>response</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Currently we allow cross-application _if_ they are in the same realm"
+			disabled="false"
+			id="44380722-555e-4362-806e-2b7912d02330"
+			label="response/sub != null &amp;&amp; response/rlm = input/realm">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="451c8a43-258b-4508-83c3-5f8f6eab06ff"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>response/sub</from>
+			<to>output/token/name</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="48b982a7-1725-4193-a2aa-d6a9855905f7"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/realm</from>
+			<to>output/token/realm</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="d1bc4870-5fab-43fa-b3ef-a64c82b84498"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>response/values[key = "authenticationId"]/value</from>
+			<to>output/token/authenticationId</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="d8570bfe-c661-4d3e-a5f5-e7b9ee574f40"
+				serviceId="nabu.utils.Date.fromTimestamp"
+				resultName="result3e11d66c6204475c887f7bf136b5da82"
+				temporaryMapping="true"
+				x="31"
+				y="79"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="27abd7e8-ad75-42c7-b513-a36feada6a21"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>response/exp</from>
+				<to>timestamp</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="31043a81-5fa1-4442-8deb-2f7a1d58cf83"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>asSeconds</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c6248a4c-85cb-4fda-8cde-d7b1e46663f1"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result3e11d66c6204475c887f7bf136b5da82/date</from>
+			<to>output/token/validUntil</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="If we have a valid until, check that it's not in the past. You could theoretically also do this with the default token validator."
+			disabled="false"
+			id="08eb6d05-3f83-40ec-bac9-4c65edd7f3df"
+			label="output/token/validUntil != null">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="5e0f3ff1-bdbb-4a01-9c6e-f9dd14cb71c2">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="aabcc247-f135-4bcd-a2a5-a07ccb197b15"
+					serviceId="nabu.utils.Date.now"
+					resultName="result4f752c63e1554ad2a3664031d79d8349"
+					temporaryMapping="true"
+					x="53"
+					y="5"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="592b189c-6ec8-44b1-a51e-4c06ed8a7d1b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result4f752c63e1554ad2a3664031d79d8349/date</from>
+				<to>now</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Drop the token"
+				disabled="false"
+				id="e06183f1-b35b-4872-94d1-1223c0fb229c"
+				label="output/token/validUntil &lt; now">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+					disabled="false"
+					id="d91d36ef-7a38-4f40-ad71-2299329a2f6c"
+					path="output/token" xsi:nil="true"/>
+		</steps>
+	</steps>
+</sequence>

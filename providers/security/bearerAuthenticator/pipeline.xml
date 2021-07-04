@@ -1,0 +1,8 @@
+<structure interface="be.nabu.eai.module.web.application.api.BearerAuthenticator.authenticate" name="pipeline">
+    <structure name="input">
+        <structure comment="Core configuration for the Nabu CMS" definition="nabu.cms.core.configuration" name="configuration"/>
+    </structure>
+    <structure name="output"/>
+    <structure definition="be.nabu.libs.http.jwt.JWTBody" minOccurs="0" name="response"/>
+    <field minOccurs="0" name="now" type="java.util.Date"/>
+</structure>

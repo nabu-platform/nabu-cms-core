@@ -6,7 +6,10 @@
 @ignoreOffline
 ## Will try to refresh the user session or remember the user identity
 
-connectionId = application.configuration("nabu.cms.core.configuration")/connectionId
+configuration = application.configuration("nabu.cms.core.configuration")
+connectionId = configuration/connectionId
+
+useJWT = configuration/security/jwt/keystore != null && configuration/security/jwt/keyAlias != null
 
 # we always build the oauth redirect links, even if you are logged in
 # otherwise, when you log out, we can't properly show you the oauth2 options without roundtripping
@@ -21,7 +24,7 @@ for (oauth2Provider : nabu.utils.reflection.Node.listByType(type: "be.nabu.eai.m
 			environment("webApplicationId"), 
 			"OFFLINE")/link)
 
-if (!user.authenticated() && !user.refresh() && !user.remember())
+if (!user.authenticated() && !user.refresh() && !user.remember(persist: !useJWT))
 	oauth2 = structure(
 			oauth2: oauth2,
 			realm: environment("realm"),
@@ -63,7 +66,7 @@ else
 	if (language == null)
 		language = application.language()
 			
-	response.content(structure(
+	result = structure(
 			oauth2: oauth2,
 			id: user/id,
 			alias: user.token()/name,
@@ -73,4 +76,23 @@ else
 			potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 			potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 			language: language
-		))
+		)
+
+	if (useJWT)
+		# the algorithm will be chosen based on the type of key you configure, this can be symmetric or asymetric
+		result = structure(result, jwt: nabu.web.application.jwt.Services.marshal(
+				keystore: configuration/security/jwt/keystore,
+				keyAlias: configuration/security/jwt/keyAlias,
+				issuedAt: date(),
+				notBefore: date() - "5m",
+				validUntil: date() + ("" + when(configuration/security/jwt/validityDuration == null, 3600, configuration/security/jwt/validityDuration) + "s"),
+				issuer: environment("webApplicationId"),
+				subject: user.token()/name,
+				audience: environment("webApplicationId"),
+				realm: user.token()/realm,
+				properties: series(structure(
+					key: "authenticationId",
+					value: user/id
+				))
+			)/response)
+	response.content(result)

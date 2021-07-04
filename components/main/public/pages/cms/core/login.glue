@@ -45,7 +45,7 @@ else
 		else 
 			chosenType = nabu.cms.core.services.security.getAuthenticationType(type)/type
 			
-		if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember, type: when(chosenType/category != null, chosenType/category, chosenType/name)))
+		if (!user.authenticate(login/alias, login/password, login/remember != null && login/remember, persist: !useJWT, type: when(chosenType/category != null, chosenType/category, chosenType/name)))
 			response.code(400)
 			abort()
 		else
@@ -60,7 +60,7 @@ else
 				if (languageEntry != null)
 					nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
 					
-			response.content(structure(
+			result = structure(
 					id: user/id,
 					alias: user.token()/name,
 					realm: user.token()/realm,
@@ -69,4 +69,23 @@ else
 					potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 					potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 					languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
-				))
+				)
+				
+			if (useJWT)
+				# the algorithm will be chosen based on the type of key you configure, this can be symmetric or asymetric
+				result = structure(result, jwt: nabu.web.application.jwt.Services.marshal(
+						keystore: configuration/security/jwt/keystore,
+						keyAlias: configuration/security/jwt/keyAlias,
+						issuedAt: date(),
+						notBefore: date() - "5m",
+						validUntil: date() + ("" + when(configuration/security/jwt/validityDuration == null, 3600, configuration/security/jwt/validityDuration) + "s"),
+						issuer: environment("webApplicationId"),
+						subject: user.token()/name,
+						audience: environment("webApplicationId"),
+						realm: user.token()/realm,
+						properties: series(structure(
+							key: "authenticationId",
+							value: user/id
+						))
+					)/response)
+			response.content(result)

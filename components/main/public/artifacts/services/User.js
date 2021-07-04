@@ -24,7 +24,11 @@ nabu.services.VueService(Vue.extend({
 			// or alternatively you can turn this off
 			allowPotentialRoles: true,
 			// this is mostly for GUI switching, you rarely need to distinguish between globally possible actions and contextually so (since you can't deduce for the context)
-			allowPotentialActions: true
+			allowPotentialActions: true,
+			// we keep track of the jwt token here
+			// almost all calls go through the swagger client, which already has the bearer
+			// some calls however (like loading the swagger file itself) bypass the swagger client
+			bearer: null
 		}
 	},
 	computed: {
@@ -79,6 +83,9 @@ nabu.services.VueService(Vue.extend({
 							self.id = result.id;
 							self.alias = result.alias;
 							self.realm = result.realm;
+							// set the bearer token for the swagger client if we have a jwt token
+							self.$services.swagger.bearer = result.jwt;
+							self.bearer = result.jwt;
 							self.language = result.language;
 							self.roles.splice(0, self.roles.length, "$user");
 							self.potentialRoles.splice(0, self.roles.length, "$user");
@@ -148,6 +155,9 @@ nabu.services.VueService(Vue.extend({
 					self.id = result.id;
 					self.alias = result.alias;
 					self.realm = result.realm;
+					// set the bearer token for the swagger client if we have a jwt token
+					self.$services.swagger.bearer = result.jwt;
+					self.bearer = result.jwt;
 					self.language = result.language;
 					self.roles.splice(0, self.roles.length, "$user");
 					self.potentialRoles.splice(0, self.roles.length, "$user");
