@@ -73,7 +73,8 @@
 				x="43"
 				y="151"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="9605f9b6-1852-4681-b15e-a11cf787d2fc"
@@ -119,7 +120,8 @@
 				x="138"
 				y="109"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="4846c7f2-2897-44d1-bdb7-7a634b383ce6"
@@ -200,6 +202,15 @@
 					fixedValue="true">
 				<from>=input/limit != null</from>
 				<to>totalRowCount</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="edbe72d4-fc4b-40c7-b370-cba1a48a1add"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/lazy</from>
+				<to>lazy</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
