@@ -3,10 +3,11 @@
     <method>GET</method>
     <path>/errorCode/{applicationId}</path>
     <queryParameters>languageId</queryParameters>
-    <role>manager</role>
+    <role>$user</role>
     <output>nabu.cms.core.manage.translation.rest.web.translationList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
+    <geoPosition>false</geoPosition>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
@@ -19,4 +20,8 @@
     <source>false</source>
     <allowRaw>false</allowRaw>
     <domain>false</domain>
+    <ignoreOffline>false</ignoreOffline>
+    <allowRootArrays>false</allowRootArrays>
+    <captureErrors>false</captureErrors>
+    <captureSuccessful>false</captureSuccessful>
 </restInterface>

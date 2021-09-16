@@ -87,12 +87,12 @@ else
 				notBefore: date() - "5m",
 				validUntil: date() + ("" + when(configuration/security/jwt/validityDuration == null, 3600, configuration/security/jwt/validityDuration) + "s"),
 				issuer: environment("webApplicationId"),
-				subject: user.token()/name,
+				subject: user/id,
 				audience: environment("webApplicationId"),
 				realm: user.token()/realm,
 				properties: series(structure(
-					key: "authenticationId",
-					value: user/id
+					key: "alias",
+					value: user.token()/name
 				))
 			)/response)
 	response.content(result)

@@ -26,6 +26,7 @@
             <field comment="The keystore to use for the JWT tokens" name="keystore" type="java.lang.String"/>
             <field comment="The alias to use in the keystore." name="keyAlias" type="java.lang.String"/>
             <field comment="Defaults to 1 hour. Express in seconds." minOccurs="0" name="validityDuration" type="java.lang.Long"/>
+            <field minOccurs="0" name="algorithm" type="be.nabu.libs.http.jwt.enums.JWTAlgorithm"/>
         </structure>
     </structure>
     <structure minOccurs="0" name="implementations">

@@ -5,4 +5,10 @@
     <structure name="output"/>
     <structure definition="be.nabu.libs.http.jwt.JWTBody" minOccurs="0" name="response"/>
     <field minOccurs="0" name="now" type="java.util.Date"/>
+    <structure collectionName="Users" definition="nabu.cms.core.crud.user.types.output" duplicate="id,created,modified" name="user"/>
+    <field minOccurs="0" name="nonce" type="java.lang.String"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="current"/>
+    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="globalRoles" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="matchingRoles" namespace="nabu.cms.core.types.model.core"/>
+    <field name="amountOfMatchingRoles" type="java.lang.Integer"/>
 </structure>
