@@ -2,12 +2,13 @@
 <restInterface>
     <method>POST</method>
     <path>/groupRole</path>
-    <role>manager</role>
+    <role>$user</role>
     <permissionAction>security.write</permissionAction>
     <input>nabu.cms.core.manage.security.rest.groupRole.groupRoleInput</input>
     <output>nabu.cms.core.manage.security.rest.groupRole.groupRole</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
+    <geoPosition>false</geoPosition>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
@@ -15,4 +16,13 @@
     <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
     <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
     <request>false</request>
+    <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
+    <useServerCache>false</useServerCache>
+    <source>false</source>
+    <allowRaw>false</allowRaw>
+    <domain>false</domain>
+    <ignoreOffline>false</ignoreOffline>
+    <allowRootArrays>false</allowRootArrays>
+    <captureErrors>false</captureErrors>
+    <captureSuccessful>false</captureSuccessful>
 </restInterface>

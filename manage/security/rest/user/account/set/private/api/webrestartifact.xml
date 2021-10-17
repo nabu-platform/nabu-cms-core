@@ -2,11 +2,12 @@
 <restInterface>
     <method>PUT</method>
     <path>/user/{userId}/account</path>
-    <role>manager</role>
+    <role>$user</role>
     <input>nabu.cms.core.manage.security.rest.user.account.propertyList</input>
     <configurationType>nabu.cms.core.manage.security.configuration</configurationType>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
+    <geoPosition>false</geoPosition>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
@@ -17,4 +18,10 @@
     <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
     <useServerCache>false</useServerCache>
     <source>false</source>
+    <allowRaw>false</allowRaw>
+    <domain>false</domain>
+    <ignoreOffline>false</ignoreOffline>
+    <allowRootArrays>false</allowRootArrays>
+    <captureErrors>false</captureErrors>
+    <captureSuccessful>false</captureSuccessful>
 </restInterface>

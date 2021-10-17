@@ -3,13 +3,26 @@
     <method>GET</method>
     <path>/groupRole</path>
     <queryParameters>orderBy, limit, offset, started, stopped, service, inherit, groupId, roleId, nodeId</queryParameters>
-    <role>manager</role>
+    <role>$user</role>
     <permissionAction>security.read</permissionAction>
     <output>nabu.cms.core.manage.security.rest.groupRole.groupRoleList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
+    <geoPosition>false</geoPosition>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
     <cache>false</cache>
+    <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
+    <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
+    <request>false</request>
+    <allowHeaderAsQueryParameter>false</allowHeaderAsQueryParameter>
+    <useServerCache>false</useServerCache>
+    <source>false</source>
+    <allowRaw>false</allowRaw>
+    <domain>false</domain>
+    <ignoreOffline>false</ignoreOffline>
+    <allowRootArrays>false</allowRootArrays>
+    <captureErrors>false</captureErrors>
+    <captureSuccessful>false</captureSuccessful>
 </restInterface>

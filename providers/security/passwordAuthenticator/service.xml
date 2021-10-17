@@ -430,6 +430,15 @@
 				<from>result8b6970481b1344c7b95640a4291d822f/results[0]</from>
 				<to>user</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c0e81fb1-a066-4a3e-940a-e5496fcf69e4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8b6970481b1344c7b95640a4291d822f/results[0]</from>
+				<to>originalUser</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
 				comment="We ignore exceptions thrown by the phone parser, we assume it is not a phone number"
@@ -1334,8 +1343,8 @@
 											serviceId="nabu.cms.core.database.user.device.update"
 											resultName="result7206ef39f233433fa8e594dea2ce81fa"
 											temporaryMapping="true"
-											x="609"
-											y="330"
+											x="636"
+											y="63"
 											invocationOrder="2"
 											asynchronous="false"
 											recache="false">

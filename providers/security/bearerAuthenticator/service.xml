@@ -423,106 +423,127 @@
 							path="output/token" xsi:nil="true"/>
 				</steps>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-					comment="Check whitelist of roles (if any)"
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				comment="Check whitelist of roles (if any)"
+				disabled="false"
+				id="829ea2f1-c594-4c4b-aad6-9b69e0ca0e4d"
+				label="input/configuration/security/allowedRoles != null">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 					disabled="false"
-					id="829ea2f1-c594-4c4b-aad6-9b69e0ca0e4d"
-					label="input/configuration/security/allowedRoles != null">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					id="d28872c9-e086-4804-84b5-a275a15cb943">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+						comment="You are not logged in, only allowed if $guest is one of the roles"
 						disabled="false"
-						id="ce07b8d7-4b06-4356-960c-816f2d1138a0">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						id="e89614be-9294-407b-bad7-11a6c5951942"
+						label="output/token/name == null || output/token/realm == null ">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+							description="=&quot;User &quot; + user/alias + &quot; does not have one of the following roles: &quot; + stringifiedAllowedRoles"
 							disabled="false"
-							id="b3f1628c-33bd-49eb-bc1b-5203180d0754"
-							serviceId="nabu.cms.core.database.user.selectGlobalRolesByAlias"
-							resultName="result0d8b9c976df14ff1979528bf952661b4"
-							temporaryMapping="true"
-							x="33"
-							y="51"
-							invocationOrder="0"
-							asynchronous="false"
-							recache="false">
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-								disabled="false"
-								id="b49a2c7a-128f-4999-9717-50c1c1c3d309"
-								mask="false"
-								optional="false"
-								fixedValue="false">
-							<from>user/alias</from>
-							<to>parameters/alias</to>
-						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-								disabled="false"
-								id="ec3c9b0d-8ba0-43f1-83d5-d3da0623aad0"
-								mask="false"
-								optional="false"
-								fixedValue="false">
-							<from>user/realm</from>
-							<to>parameters/realm</to>
-						</steps>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="62fc3d4d-9268-4f3b-9be2-d3440e198bad"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>result0d8b9c976df14ff1979528bf952661b4/results</from>
-						<to>globalRoles</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="49ffd507-0bf3-4f94-a519-f528469f10f4"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>result0d8b9c976df14ff1979528bf952661b4/results[name # /input/configuration/security/allowedRoles]</from>
-						<to>matchingRoles</to>
-					</steps>
+							id="0a07b534-7236-4dd7-a109-d11df327e1da"
+							label="&quot;$guest&quot; !# input/configuration/security/allowedRoles"
+							code="CMS-AUTH-5"
+							message="The anonymous user does not have one of the mandated roles" xsi:nil="true"/>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						disabled="false"
-						id="51c93eea-281b-4ade-be19-3a56b5a46c2a">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						id="3d7a5502-d5c6-476c-a8ce-b2bcc6ee2de8">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
-							id="00583539-895a-4ee6-a251-906ba3a3a1ee"
-							serviceId="nabu.utils.List.size"
-							resultName="resultc2899ae04782448ba4fe41478d02fc79"
-							temporaryMapping="true"
-							x="94"
-							y="116"
-							invocationOrder="0"
-							asynchronous="false"
-							recache="false">
+							id="ce07b8d7-4b06-4356-960c-816f2d1138a0">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="b3f1628c-33bd-49eb-bc1b-5203180d0754"
+								serviceId="nabu.cms.core.database.user.selectGlobalRolesByAlias"
+								resultName="result0d8b9c976df14ff1979528bf952661b4"
+								temporaryMapping="true"
+								x="33"
+								y="51"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="8176c94d-c851-4f78-86f9-fb64403e2a4f"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>output/token/name</from>
+								<to>parameters/alias</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="ca562a63-c086-453b-9e07-5e23b12d101b"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>output/token/realm</from>
+								<to>parameters/realm</to>
+							</steps>
+						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
-								id="8ad682e7-da5f-40cb-b5ad-4dbc68c0142e"
+								id="62fc3d4d-9268-4f3b-9be2-d3440e198bad"
 								mask="false"
 								optional="false"
 								fixedValue="false">
-							<from>matchingRoles</from>
-							<to>list</to>
+							<from>result0d8b9c976df14ff1979528bf952661b4/results</from>
+							<to>globalRoles</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="49ffd507-0bf3-4f94-a519-f528469f10f4"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>result0d8b9c976df14ff1979528bf952661b4/results[name # /input/configuration/security/allowedRoles]</from>
+							<to>matchingRoles</to>
 						</steps>
 					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
-							id="40c88ab1-1620-415e-b4b4-1edbf5b4fac3"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>resultc2899ae04782448ba4fe41478d02fc79/size</from>
-						<to>amountOfMatchingRoles</to>
+							id="51c93eea-281b-4ade-be19-3a56b5a46c2a">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="00583539-895a-4ee6-a251-906ba3a3a1ee"
+								serviceId="nabu.utils.List.size"
+								resultName="resultc2899ae04782448ba4fe41478d02fc79"
+								temporaryMapping="true"
+								x="94"
+								y="116"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="8ad682e7-da5f-40cb-b5ad-4dbc68c0142e"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>matchingRoles</from>
+								<to>list</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="40c88ab1-1620-415e-b4b4-1edbf5b4fac3"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>resultc2899ae04782448ba4fe41478d02fc79/size</from>
+							<to>amountOfMatchingRoles</to>
+						</steps>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+							description="=&quot;User &quot; + user/alias + &quot; does not have one of the following roles: &quot; + stringifiedAllowedRoles"
+							disabled="false"
+							id="a92f077ca9114572bacd259356b2c52e"
+							label="amountOfMatchingRoles &lt;= 0"
+							code="CMS-AUTH-5"
+							message="The user does not have one of the mandated roles"
+							alias="=user/alias"
+							realm="=user/realm" xsi:nil="true"/>
 				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
-						description="=&quot;User &quot; + user/alias + &quot; does not have one of the following roles: &quot; + stringifiedAllowedRoles"
-						disabled="false"
-						id="0a07b534-7236-4dd7-a109-d11df327e1da"
-						label="amountOfMatchingRoles &lt;= 0"
-						code="CMS-AUTH-5"
-						message="The user does not have one of the mandated roles"
-						alias="=user/alias"
-						realm="=user/realm" xsi:nil="true"/>
 			</steps>
 		</steps>
 	</steps>
