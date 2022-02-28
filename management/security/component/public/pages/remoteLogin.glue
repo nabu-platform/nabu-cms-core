@@ -28,9 +28,9 @@ else if (configuration/role != null && !hasRole(configuration/role))
 		
 else
 	token = nabu.web.application.jwt.Services.marshal(
-		configuration/keystoreId,
-		configuration/keyAlias,
-		date.date(),
+		keystore: configuration/keystoreId,
+		keyAlias: configuration/keyAlias,
+		issuedAt: date.date(),
 		validUntil: date.date() + "5min",
 		issuer: environment("webApplicationId"),
 		subject: alias,

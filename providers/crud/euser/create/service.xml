@@ -1,0 +1,31 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="4a17696f-c1b6-47ff-91d7-8fc70b6b5475"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b8600c7f-ba90-4c41-9015-a5fe50094015"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="ae35d843-3906-4fa3-95ea-3393e77b3f74"
+				serviceId="nabu.utils.Server.log"
+				resultName="result82738e77756c4e4c82176e33aab345d1"
+				temporaryMapping="true"
+				x="84"
+				y="138"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1725e766-1911-434d-90fd-0c3f441c486f"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>="Notify is: " + input/notify</from>
+				<to>message</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

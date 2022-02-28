@@ -65,7 +65,7 @@ nabu.services.VueService(Vue.extend({
 				var self = this;
 				this.logout().then(function() {
 					self.login(username, password, remember, type, true).then(promise, promise);
-				});
+				}, promise);
 				return promise;
 			}
 			else {
@@ -77,7 +77,9 @@ nabu.services.VueService(Vue.extend({
 						password: password,
 						remember: remember ? remember : false,
 						type: type ? type : "password"
-					}})
+					},
+					$$skipRemember: true
+					})
 					.then(function(result) {
 						if (result.alias != null) {
 							self.id = result.id;
@@ -118,7 +120,7 @@ nabu.services.VueService(Vue.extend({
 			var self = this;
 			var promise = this.$services.q.defer();
 			self.loggingOut = true;
-			this.$services.swagger.execute("nabu.cms.core.logout").then(function() {
+			this.$services.swagger.execute("nabu.cms.core.logout", {$$skipRemember: true}).then(function() {
 				self.id = null;
 				self.alias = null;
 				self.realm = null;
@@ -150,7 +152,7 @@ nabu.services.VueService(Vue.extend({
 				// initial startup, the application wants to check if the server knows who you are, but more importantly: the frontend doesn't know yet
 				// the user walks away from his desk or the server is rebooted or the user gets directed to another server in the cluster and it doesn't know who you are
 				// however, the frontend does, if the remember returns the same information we already knew, don't $clear() everything, nothing has actually changed
-				this.$services.swagger.execute("nabu.cms.core.remember").then(function(result) {
+				this.$services.swagger.execute("nabu.cms.core.remember", {$$skipRemember: true}).then(function(result) {
 					var clear = result.alias != self.alias;
 					self.id = result.id;
 					self.alias = result.alias;

@@ -29,9 +29,9 @@ else if (!user.authenticated() && !user.remember(persist: false))
 else
 	try
 		token = nabu.web.application.jwt.Services.unmarshal(
-			updateAlias/keystoreId,
-			updateAlias/keyAlias,
-			code)/response
+			keystore: updateAlias/keystoreId,
+			keyAlias: updateAlias/keyAlias,
+			content: code)/response
 	
 	if (token == null)
 		generalError()

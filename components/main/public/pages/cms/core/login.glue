@@ -56,10 +56,25 @@ else
 			language ?= null
 		
 			if (language != null)
-				languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: first(language)))/results)
+				# it is possible that we get a language array if you have multiple cookies on different paths
+				# however, this fails if we send it along and we need to pick one winner anyway...
+				# we could at this point go to the database to check the preference that is stored?
+				language = first(language)
+				
+				languageEntry = first(nabu.cms.core.database.masterdata.entry.selectByCategoryAndName(connectionId, parameters: structure(category: "language", name: language))/results)
 				if (languageEntry != null)
 					nabu.cms.core.database.node.updateLanguage(connectionId, parameters: series(structure(id: user/id, languageId: languageEntry/id)))
-					
+				# illegal choice
+				else
+					language = null
+			
+			# we now take the language from the profile
+			language = first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/language)
+				
+			# if none is set in the profile, we get the language according to the application logic
+			if (language == null)
+				language = application.language()
+			
 			result = structure(
 					id: user/id,
 					alias: user.token()/name,
@@ -68,7 +83,7 @@ else
 					actions: nabu.cms.core.database.user.selectGlobalActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 					potentialRoles: nabu.cms.core.database.user.selectPotentialRolesByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
 					potentialActions: nabu.cms.core.database.user.selectPotentialActionsByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/name,
-					languageId: first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/languageId)
+					language: language
 				)
 				
 			if (useJWT)

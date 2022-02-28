@@ -62,6 +62,9 @@ else
 		else
 			language = null
 
+	# we now take the language from the profile
+	language = first(nabu.cms.core.database.user.selectLanguageByAlias(connectionId, parameters: structure(alias: user.token()/name, realm: user.token()/realm))/results/language)
+			
 	# get the language according to the application logic
 	if (language == null)
 		language = application.language()

@@ -45,9 +45,9 @@ else
 	path = application/root + string.replace("^[/]+", "", configuration/path)
 	
 	token = nabu.web.application.jwt.Services.marshal(
-		configuration/keyStore/id,
-		configuration/keyAlias,
-		date.date(),
+		keystore: configuration/keyStore/id,
+		keyAlias: configuration/keyAlias,
+		issuedAt: date.date(),
 		validUntil: date.date() + "5min",
 		issuer: environment("webApplicationId"),
 		subject: user/alias,

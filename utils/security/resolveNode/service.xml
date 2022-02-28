@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="e1fce796-f83f-4fcc-a4dd-ba45afe71185">
+		id="e1fce796-f83f-4fcc-a4dd-ba45afe71185"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Split to check if you give a hint as to which type it is"
 			disabled="false"
-			id="f7efa3ca-50ba-4774-9082-53cb9e2e4b96">
+			id="f7efa3ca-50ba-4774-9082-53cb9e2e4b96"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="573b3a29-8d59-4050-847b-7e250bf5792a"
@@ -77,19 +79,23 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
-			id="56b3c021-be20-4893-b2d2-6cac4e7d7dd2">
+			id="56b3c021-be20-4893-b2d2-6cac4e7d7dd2"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="1c2b8806-a5a0-4512-835a-eb151cb5ae4b"
-				label="amountOfParts == 1">
+				label="amountOfParts == 1"
+				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 					comment="The user himself"
 					disabled="false"
 					id="8d8d2597-7782-4169-b968-900feb2d07bf"
-					label="input/context = &quot;$self&quot;">
+					label="input/context = &quot;$self&quot;"
+					lineNumber="5">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
-						id="113ed5bc-ddaf-4f1e-960a-8c3aa6409463">
+						id="113ed5bc-ddaf-4f1e-960a-8c3aa6409463"
+						lineNumber="6">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="8e5948d7-8683-4ca1-baea-9f2cb5eaea30"
@@ -115,17 +121,20 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 						disabled="false"
 						id="b8355a3c-3f79-454a-8370-28ddd1af2216"
+						lineNumber="7"
 						query="token">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="96d34292-631d-4372-94bb-9aabf8cfc168"
 							label="null"
+							lineNumber="8"
 							code="USER-NOT-FOUND"
 							message="No user found" xsi:nil="true"/>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
-						id="26130c80-bcb1-4717-be59-5daed73ca60c">
+						id="26130c80-bcb1-4717-be59-5daed73ca60c"
+						lineNumber="9">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="7178dae8-b498-40ab-afe8-7548aa7ccabb"
@@ -178,11 +187,13 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 						disabled="false"
 						id="5dc2533a-b03b-423b-835e-e990e53bc86a"
+						lineNumber="10"
 						query="output/node">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="be83dff3-1a84-49fa-b355-93d9a8626a17"
 							label="null"
+							lineNumber="11"
 							code="USER-NOT-FOUND"
 							message="=&quot;Invalid token: &quot; + token/name" xsi:nil="true"/>
 				</steps>
@@ -190,7 +201,8 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="ccfd6acd-3367-4889-91d5-568603d4db11"
-					label="input/context ~ &quot;[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}&quot; || input/context ~ &quot;[a-f0-9]{32}&quot;">
+					label="input/context ~ &quot;[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}&quot; || input/context ~ &quot;[a-f0-9]{32}&quot;"
+					lineNumber="12">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="6319b2b6-5f96-40cb-a55b-007aa408a4a5"
@@ -242,7 +254,8 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="48baeb20-84ce-4a1d-b106-8b9ea80d7c80">
+					id="48baeb20-84ce-4a1d-b106-8b9ea80d7c80"
+					lineNumber="13">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="2c7f76fe-ae49-4cf9-838f-db999634c1d0"
@@ -287,7 +300,8 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="8b75909a6ee14ae3b4c3ebed6b38fe68"
-				label="amountOfParts == 2 &amp;&amp; parts[0] == &quot;id&quot;">
+				label="amountOfParts == 2 &amp;&amp; parts[0] == &quot;id&quot;"
+				lineNumber="14">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="c528bed3-4366-4db4-a487-da663a2419b9"
@@ -340,7 +354,8 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="d518ed73892c4a28baa1ead3163b9c35"
-				label="amountOfParts == 2 &amp;&amp; parts[0] == &quot;slug&quot;">
+				label="amountOfParts == 2 &amp;&amp; parts[0] == &quot;slug&quot;"
+				lineNumber="15">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="a8f16f13e2e14d9e975b90966476b338"
@@ -384,14 +399,17 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				id="f1303d94-ffa3-4783-84b6-ea00d8645c2d"
-				label="amountOfParts == 2">
+				label="amountOfParts == 2"
+				lineNumber="16">
 			<steps xsi:type="be.nabu.libs.services.vm.step.For"
 					disabled="false"
 					id="2dd1f8af-9a42-4d6b-b714-fb71e4eab353"
+					lineNumber="17"
 					variable="resolver">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
-						id="0a5aa574-9d64-49b1-99d6-86d9d7c52a1f">
+						id="0a5aa574-9d64-49b1-99d6-86d9d7c52a1f"
+						lineNumber="18">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="62e6f512-c5ab-4035-bc3a-236453f06c6a"
@@ -439,15 +457,6 @@
 							<from>input/connectionId</from>
 							<to>connectionId</to>
 						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-								disabled="false"
-								id="27434194-cd78-4126-869c-ab74dc1b1bd8"
-								mask="false"
-								optional="false"
-								fixedValue="true">
-							<from>true</from>
-							<to>useAsContext</to>
-						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
@@ -462,7 +471,8 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Break"
 						disabled="false"
 						id="33e1078c-c947-4970-ac34-dceff768b248"
-						label="output/node">
+						label="output/node"
+						lineNumber="19">
 					<count>1</count>
 				</steps>
 				<query>input/configuration/context[type == null || type == /parts[0]]</query>
@@ -472,11 +482,13 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="5f36c404-22fe-4505-adb8-210d665e3545"
+			lineNumber="20"
 			query="output/node">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				disabled="false"
 				id="45eeba61-9181-4719-85c0-7bcfaf185390"
 				label="null"
+				lineNumber="21"
 				code="NODE-NOT-FOUND"
 				message="=&quot;Can not find node: &quot; + input/context" xsi:nil="true"/>
 	</steps>

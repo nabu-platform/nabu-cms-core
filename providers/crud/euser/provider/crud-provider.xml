@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<crudProvider>
+    <baseType>nabu.cms.core.types.emodel.core.User</baseType>
+    <blacklistedFields>created</blacklistedFields>
+    <blacklistedFields>path</blacklistedFields>
+    <blacklistedFields>version</blacklistedFields>
+    <blacklistedFields>enabled</blacklistedFields>
+    <createService>nabu.cms.core.providers.crud.euser.create</createService>
+    <deleteService>nabu.cms.core.providers.crud.euser.delete</deleteService>
+    <listService>nabu.cms.core.providers.crud.euser.list</listService>
+    <primaryKeySecurityContext>true</primaryKeySecurityContext>
+    <updateService>nabu.cms.core.providers.crud.euser.update</updateService>
+</crudProvider>

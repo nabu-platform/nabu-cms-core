@@ -1,1 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" lastModified="2017-06-07T20:50:41.983+02:00" leaf="false" version="14"><environmentId>hyperion</environmentId><properties/><references>java.lang.String</references><references>java.lang.Integer</references><references>java.lang.Boolean</references><references>nabu.cms.core.database.node.selectByUserIdAndAction.parameters</references><references>be.nabu.libs.types.api.KeyValuePair</references><references>nabu.cms.core.types.model.core.Node</references><references>java.lang.Long</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" lastModified="2017-06-07T20:50:41.983+02:00" leaf="false" version="14">
+    <description>This service has two modes:
+
+- only select the direct nodes set without taking inheritance into account
+- take inheritance into account, but this requires comparing the uuid to the string path
+
+Postgres will by default stringify the uuid using dashes but the path does not contain dashes, making it harder to compare.
+For this reason we need to wrap the replace method around it but...that does not support uuid which means we need to cast it.
+
+The replace method itself is pretty sql-standard but the casting is not. Naively trying to_char also doesn't work as postgres does not support this on uuid type.
+</description>
+    <environmentId>hyperion</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>java.lang.String</references>
+    <references>java.lang.Integer</references>
+    <references>java.lang.Boolean</references>
+    <references>nabu.cms.core.database.node.selectByUserIdAndAction.parameters</references>
+    <references>be.nabu.libs.types.api.KeyValuePair</references>
+    <references>nabu.cms.core.types.model.core.Node</references>
+    <references>java.lang.Long</references>
+</node>

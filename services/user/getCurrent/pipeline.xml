@@ -7,6 +7,7 @@
     </structure>
     <structure name="output">
         <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
+        <structure collectionName="Users" definition="nabu.cms.core.types.emodel.core.User" duplicate="id,created,modified" minOccurs="0" name="current" namespace="nabu.cms.core.types.emodel.core"/>
     </structure>
     <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
     <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="unwrapped"/>

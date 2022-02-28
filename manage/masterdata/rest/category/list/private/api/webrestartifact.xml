@@ -3,11 +3,12 @@
     <method>GET</method>
     <path>/masterDataCategory</path>
     <queryParameters>orderBy, limit, offset, id, name, ownerId, description</queryParameters>
-    <role>manager</role>
+    <role>$user</role>
     <permissionAction>masterdata.read</permissionAction>
     <output>nabu.cms.core.manage.masterdata.rest.category.masterDataCategoryList</output>
     <lenient>false</lenient>
     <webApplicationId>false</webApplicationId>
+    <geoPosition>false</geoPosition>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
@@ -20,4 +21,8 @@
     <source>false</source>
     <allowRaw>false</allowRaw>
     <domain>false</domain>
+    <ignoreOffline>false</ignoreOffline>
+    <allowRootArrays>false</allowRootArrays>
+    <captureErrors>false</captureErrors>
+    <captureSuccessful>false</captureSuccessful>
 </restInterface>
