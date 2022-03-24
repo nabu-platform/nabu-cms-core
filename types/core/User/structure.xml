@@ -1,0 +1,13 @@
+<structure duplicate="id, created, modified" name="User" superType="nabu.cms.core.types.core.Node">
+    <field comment="A shared secret that you can use to prove that you are this user." minOccurs="0" name="password" type="java.lang.String"/>
+    <field name="salt" type="java.lang.String"/>
+    <field comment="When the password was last modified, can be used to trigger password changes." minOccurs="0" name="passwordModified" timezone="UTC" type="java.util.Date"/>
+    <field identifiable="true" name="alias" type="java.lang.String"/>
+    <field minOccurs="0" name="verificationCode" type="java.lang.String"/>
+    <field comment="How many invitations the user has left (if any)" minOccurs="0" name="invitesLeft" type="java.lang.Integer"/>
+    <field comment="If a user is blocked (e.g. faulty login etc), this is the timestamp the block began." minOccurs="0" name="blockedSince" type="java.util.Date"/>
+    <field comment="Whether or not the user is anonymous. This can be used to create &quot;shadow&quot; profiles for anonymous users." name="anonymous" type="java.lang.Boolean"/>
+    <field name="realm" type="java.lang.String"/>
+    <field comment="The type could be email (default), phone,..." foreignKey="nabu.cms.core.types.core.MasterDataEntry:id" minOccurs="0" name="aliasTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="The algorithm used for the password.Logging it allows us to update the algorithm over time.It is some information leakage but in general a lot of hashes can be recognized on sight, especially stuff like bcrypt." name="algorithm" type="java.lang.String"/>
+</structure>

@@ -1,0 +1,13 @@
+<structure name="ComponentField">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="created" timezone="UTC" type="java.util.Date"/>
+    <field name="modified" timezone="UTC" type="java.util.Date"/>
+    <field name="name" type="java.lang.String"/>
+    <field minOccurs="0" name="dataType" type="java.lang.String"/>
+    <field minOccurs="0" name="required" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="minimum" type="java.lang.Integer"/>
+    <field minOccurs="0" name="maximum" type="java.lang.Integer"/>
+    <field minOccurs="0" name="pattern" type="java.lang.String"/>
+    <field minOccurs="0" name="comment" type="java.lang.String"/>
+    <field aggregation="composite" foreignKey="nabu.cms.core.types.core.Component:id" name="componentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

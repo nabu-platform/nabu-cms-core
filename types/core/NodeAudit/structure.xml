@@ -1,0 +1,16 @@
+<structure name="NodeAudit">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="created" timezone="UTC" type="java.util.Date"/>
+    <field name="modified" timezone="UTC" type="java.util.Date"/>
+    <field foreignKey="nabu.cms.core.types.core.Node:id" minOccurs="0" name="actorId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field minOccurs="0" name="description" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.core.types.core.UserDevice:id" minOccurs="0" name="userDeviceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field identifiable="true" minOccurs="0" name="host" type="java.lang.String"/>
+    <field minOccurs="0" name="errorCode" type="java.lang.String"/>
+    <field maxLength="1000000" minOccurs="0" name="errorLog" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.core.types.core.NodeAudit:id" minOccurs="0" name="parentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field minOccurs="0" name="deviceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.core.MasterDataEntry:id" name="auditLevelId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.core.Action:id" name="actionId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.core.Node:id" minOccurs="0" name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>
