@@ -1,9 +1,11 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="54ae3613-f791-489c-9d97-5bad2e0689cc">
+		id="54ae3613-f791-489c-9d97-5bad2e0689cc"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="e8f8b8a6-cf00-495c-97ca-1470711d201f">
+			id="e8f8b8a6-cf00-495c-97ca-1470711d201f"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="68ca593c-b0fa-4c17-89af-44c635e17300"
@@ -56,18 +58,21 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="20f316c0-6e85-4c8e-a2d3-f78a0949a2e0"
+			lineNumber="3"
 			query="output/user">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				disabled="false"
 				id="0aa8cbdb-3f85-4683-9466-29e892dadd37"
 				label="null"
+				lineNumber="4"
 				code="VERIFICATION-1"
 				message="=&quot;No user found with user id '&quot; + input/userId + &quot;' and verification code: &quot; + input/verificationCode" xsi:nil="true"/>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Generate new verification code"
 			disabled="false"
-			id="14d52183-b9f1-4e2e-a9b2-83d236062f66">
+			id="14d52183-b9f1-4e2e-a9b2-83d236062f66"
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="79b2e540-0e14-40c2-ad3b-f31b37e2f576"
@@ -111,7 +116,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Update node and update verification code to prevent double usage"
 			disabled="false"
-			id="fbd28925-c55d-41a4-b74d-f9bbd28be180">
+			id="fbd28925-c55d-41a4-b74d-f9bbd28be180"
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="498791bb-3406-428b-9a05-2fda752da0bf"
@@ -218,6 +224,77 @@
 					fixedValue="false">
 				<from>output/user</from>
 				<to>parameters[0]</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="3e29dd99-c221-4d13-81c8-a238e0af7ba3"
+			lineNumber="7">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="9427b51b-7214-427a-933e-dff5a41e73e4"
+				serviceId="nabu.cms.core.services.log.create"
+				resultName="result46a617a375c94bd0b3d32d8cbbee61ee"
+				temporaryMapping="true"
+				x="58"
+				y="44"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ff86830e-69de-4407-b180-07d0e9049ca3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5ae323d8-61af-4aa9-b806-0ccd8ffc4eda"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a06f046e-2642-4e3b-ab78-3d4862ba9b71"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/userId</from>
+				<to>nodeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="029d4ae0-afb4-41ff-9698-e1429eef12bb"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>verify</from>
+				<to>logType</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="089e3183-a611-4d0d-b672-1ed7deaeffad"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>securityLog</from>
+				<to>logCategory</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8117eb35-6edc-4404-ab9e-a18bc3751b81"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>Account verified</from>
+				<to>message</to>
 			</steps>
 		</steps>
 	</steps>

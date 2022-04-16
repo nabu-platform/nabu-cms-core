@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-06-06T12:00:32.637+02:00" lastModified="2021-11-25T09:52:43.175+01:00" leaf="true" version="25">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-06-06T12:00:32.637+02:00" lastModified="2022-03-24T14:26:51.412+01:00" leaf="true" version="46">
     <comment>Get or create masterdata entry {name|with a given name} for {category ? category $category | a category}</comment>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
-    <references>nabu.cms.core.types.model.core.MasterDataCategory</references>
-    <references>nabu.cms.core.database.masterdata.category.insert</references>
-    <references>nabu.utils.Server.uuid</references>
-    <references>nabu.utils.Date.now</references>
     <references>nabu.cms.core.types.model.core.MasterDataEntry</references>
+    <references>nabu.cms.core.crud.masterDataCategory.services.create</references>
+    <references>nabu.cms.core.crud.masterDataEntry.services.list</references>
     <references>java.lang.Boolean</references>
+    <references>nabu.cms.core.crud.masterDataCategory.services.list</references>
     <references>java.lang.String</references>
-    <references>nabu.cms.core.database.masterdata.entry.insert</references>
-    <references>nabu.cms.core.database.masterdata.entry.selectByCategoryAndName</references>
-    <references>nabu.cms.core.database.masterdata.category.selectByName</references>
+    <references>java.util.UUID</references>
+    <references>nabu.cms.core.crud.masterDataEntry.services.create</references>
 </node>

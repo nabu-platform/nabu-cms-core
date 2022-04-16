@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2021-12-13T12:06:58.534+01:00" lastModified="2021-12-14T09:52:14.246+01:00" leaf="true" version="5">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2021-12-13T12:06:58.534+01:00" lastModified="2022-04-16T13:07:02.316+02:00" leaf="true" version="28">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
     <references>be.nabu.eai.module.services.crud.provider.CRUDMeta</references>
-    <references>nabu.utils.Server.log</references>
+    <references>nabu.cms.core.utils.security.password.hash</references>
+    <references>nabu.utils.Server.uuid</references>
+    <references>nabu.utils.Date.now</references>
+    <references>nabu.utils.reflection.Node.get</references>
     <references>be.nabu.eai.module.services.crud.api.CRUDProvider.create</references>
-    <references>java.lang.Boolean</references>
+    <references>nabu.frameworks.signals.fire</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
+    <references>nabu.cms.core.services.user.generateVerificationCode</references>
+    <references>nabu.cms.core.signals.user.create</references>
+    <references>nabu.cms.core.providers.crud.enode.create</references>
+    <references>nabu.cms.core.services.masterdata.entry.get</references>
+    <references>nabu.cms.core.crud.masterDataEntry.services.get</references>
     <references>java.lang.Object</references>
     <references>java.lang.String</references>
+    <references>nabu.utils.types.NodeDescription</references>
 </node>

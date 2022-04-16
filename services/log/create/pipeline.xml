@@ -1,0 +1,22 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
+        <field name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field name="logType" type="java.lang.String"/>
+        <field minOccurs="0" name="logCategory" type="java.lang.String"/>
+        <field minOccurs="0" name="message" type="java.lang.String"/>
+        <field maxLength="1000000" minOccurs="0" name="description" type="java.lang.String"/>
+        <field minOccurs="0" name="code" type="java.lang.String"/>
+        <field minOccurs="0" name="logLevel" type="java.lang.String"/>
+        <field minOccurs="0" name="started" timezone="UTC" type="java.util.Date"/>
+        <field minOccurs="0" name="stopped" timezone="UTC" type="java.util.Date"/>
+        <field minOccurs="0" name="uri" type="java.net.URI"/>
+        <structure definition="java.lang.Exception" minOccurs="0" name="exception"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="nodeLogs" definition="nabu.cms.core.crud.nodeLog.types.createOutput" name="log" restrict="created,modified"/>
+    </structure>
+    <structure collectionName="nodeLogs" definition="nabu.cms.core.crud.nodeLog.types.createInput" name="log" restrict="id"/>
+    <structure definition="nabu.utils.types.ExceptionSummary" minOccurs="0" name="summary"/>
+</structure>

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <crud>
     <allowHeaderAsQueryParameter>true</allowHeaderAsQueryParameter>
+    <broadcastCreate>false</broadcastCreate>
+    <broadcastUpdate>false</broadcastUpdate>
     <coreType>nabu.cms.core.types.emodel.core.User</coreType>
     <createRole>$user</createRole>
     <deleteRole>$user</deleteRole>
     <listRole>$user</listRole>
-    <provider>nabu.services.crud.provider.basic.provider</provider>
+    <provider>nabu.cms.core.providers.crud.euser.provider</provider>
     <updateRole>$user</updateRole>
     <useExplicitLanguage>false</useExplicitLanguage>
     <useLanguage>false</useLanguage>
+    <useListOutputForCreate>false</useListOutputForCreate>
+    <useListOutputForUpdate>false</useListOutputForUpdate>
 </crud>

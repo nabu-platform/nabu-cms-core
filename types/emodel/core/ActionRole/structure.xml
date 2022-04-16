@@ -1,0 +1,7 @@
+<structure collectionName="actionRoles" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000A18" name="ActionRole">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="created" timezone="UTC" type="java.util.Date"/>
+    <field name="modified" timezone="UTC" type="java.util.Date"/>
+    <field aggregation="composite" foreignKey="nabu.cms.core.types.emodel.core.Action:id" name="actionId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.Role:id" name="roleId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

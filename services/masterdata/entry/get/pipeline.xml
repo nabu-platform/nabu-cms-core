@@ -8,6 +8,7 @@
     </structure>
     <structure name="output">
         <structure collectionName="MasterDataEntries" definition="nabu.cms.core.types.model.core.MasterDataEntry" name="entry" namespace="nabu.cms.masterdata.types.model.masterdata"/>
+        <field name="entryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     </structure>
-    <structure collectionName="MasterDataCategories" definition="nabu.cms.core.types.model.core.MasterDataCategory" minOccurs="0" name="category" namespace="nabu.cms.masterdata.types.model.masterdata"/>
+    <field name="categoryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
 </structure>

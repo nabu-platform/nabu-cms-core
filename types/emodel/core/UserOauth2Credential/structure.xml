@@ -1,0 +1,14 @@
+<structure collectionName="userOauth2Credentials" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000C9C" name="UserOauth2Credential">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="created" timezone="UTC" type="java.util.Date"/>
+    <field name="modified" timezone="UTC" type="java.util.Date"/>
+    <field comment="The web application can hold additional configuration for the oauth2 provider" name="webApplication" type="java.lang.String"/>
+    <field comment="The (nabu) id of the provider used" name="oauth2Provider" type="java.lang.String"/>
+    <field name="token" type="java.lang.String"/>
+    <field name="activeUntil" type="java.util.Date"/>
+    <field minOccurs="0" name="refreshToken" type="java.lang.String"/>
+    <field comment="The id of the account with the oauth2 provider" minOccurs="0" name="accountId" type="java.lang.String"/>
+    <field minOccurs="0" name="tokenType" type="java.lang.String"/>
+    <field comment="For some providers (e.g. microsoft), a token is always with regards to a specific resource." minOccurs="0" name="resource" type="java.lang.String"/>
+    <field aggregation="composite" foreignKey="nabu.cms.core.types.emodel.core.User:id" name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

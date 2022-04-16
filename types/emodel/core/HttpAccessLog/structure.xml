@@ -1,0 +1,21 @@
+<structure collectionName="HttpAccessLogs" id="127-0-1-1-5bf30328:15843b46c1c:-8000:0000000000000FD7" name="HttpAccessLog">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="created" timezone="UTC" type="java.util.Date"/>
+    <field name="modified" timezone="UTC" type="java.util.Date"/>
+    <field minOccurs="0" name="connectionCreated" timezone="UTC" type="java.util.Date"/>
+    <field identifiable="true" name="remoteIp" type="java.lang.String"/>
+    <field identifiable="true" minOccurs="0" name="remoteHost" type="java.lang.String"/>
+    <field name="remotePort" type="java.lang.Integer"/>
+    <field name="localPort" type="java.lang.Integer"/>
+    <field minOccurs="0" name="localHost" type="java.lang.String"/>
+    <field name="httpVersion" type="java.lang.Double"/>
+    <field name="method" type="java.lang.String"/>
+    <field name="target" type="java.lang.String"/>
+    <field minOccurs="0" name="acceptLanguage" type="java.lang.String"/>
+    <field minOccurs="0" name="userAgent" type="java.lang.String"/>
+    <field minOccurs="0" name="session" type="java.lang.String"/>
+    <field minOccurs="0" name="referer" type="java.lang.String"/>
+    <field name="server" type="java.lang.String"/>
+    <field minOccurs="0" name="serverGroup" type="java.lang.String"/>
+    <field minOccurs="0" name="deviceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>
