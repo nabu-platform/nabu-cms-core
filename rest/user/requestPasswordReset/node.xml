@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2018-05-18T17:16:53.627+02:00" lastModified="2019-06-13T08:55:49.774+02:00" leaf="true" version="64"><environmentId>helios</environmentId><hidden>false</hidden><properties/><references>nabu.cms.core.services.misc.getNotificationProvider</references><references>nabu.cms.core.interfaces.forgotNotifier</references><references>nabu.cms.core.services.user.updateVerificationCode</references><references>nabu.cms.core.database.user.selectUnverifiedByAlias</references><references>nabu.cms.core.configuration</references><references>nabu.cms.core.interfaces.textProvider</references><references>nabu.cms.core.database.masterdata.entry.selectById</references><references>nabu.cms.core.types.model.core.Node</references><references>nabu.web.application.Services.information</references><references>nabu.cms.core.database.node.selectById</references><references>nabu.cms.core.types.model.core.User</references><references>nabu.utils.String.replace</references><references>nabu.cms.core.services.masterdata.entry.get</references><references>nabu.cms.core.database.user.selectActiveByAlias</references><references>nabu.cms.core.types.model.core.MasterDataEntry</references><references>nabu.libs.google.phone.Services.format</references><references>nabu.web.application.Services.translate</references><references>nabu.frameworks.tasks.providers.executor</references><references>java.lang.String</references><references>nabu.cms.core.emails.sendPasswordForgot</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2018-05-18T17:16:53.627+02:00" lastModified="2022-04-29T16:20:38.348+02:00" leaf="true" version="70">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>nabu.cms.core.services.misc.getNotificationProvider</references>
+    <references>nabu.cms.core.services.user.updateVerificationCode</references>
+    <references>nabu.cms.core.configuration</references>
+    <references>nabu.cms.core.interfaces.textProvider</references>
+    <references>nabu.cms.core.database.masterdata.entry.selectById</references>
+    <references>nabu.web.application.Services.information</references>
+    <references>nabu.cms.core.services.masterdata.entry.get</references>
+    <references>nabu.cms.core.database.user.selectActiveByAlias</references>
+    <references>nabu.cms.core.types.model.core.MasterDataEntry</references>
+    <references>nabu.libs.google.phone.Services.format</references>
+    <references>java.lang.String</references>
+    <references>nabu.utils.types.NodeDescription</references>
+    <references>nabu.cms.core.signals.user.requestPasswordReset</references>
+    <references>nabu.cms.core.services.log.create</references>
+    <references>nabu.cms.core.interfaces.forgotNotifier</references>
+    <references>nabu.utils.reflection.Node.get</references>
+    <references>nabu.cms.core.database.user.selectUnverifiedByAlias</references>
+    <references>nabu.frameworks.signals.fire</references>
+    <references>nabu.cms.core.types.model.core.Node</references>
+    <references>nabu.cms.core.database.node.selectById</references>
+    <references>nabu.cms.core.types.model.core.User</references>
+    <references>nabu.utils.String.replace</references>
+    <references>nabu.web.application.Services.translate</references>
+    <references>nabu.frameworks.tasks.providers.executor</references>
+    <references>nabu.cms.core.emails.sendPasswordForgot</references>
+</node>

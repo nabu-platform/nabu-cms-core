@@ -1,7 +1,8 @@
-<structure collectionName="authenticationTypes" id="127-0-1-1--723fd799:172bd68a2f3:-8000:0000000000001244" name="AuthenticationType">
+<structure collectionName="authenticationTypes" id="127-0-1-1--723fd799:172bd68a2f3:-8000:0000000000001244" name="authenticationType">
     <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
     <field name="created" timezone="UTC" type="java.util.Date"/>
     <field name="modified" timezone="UTC" type="java.util.Date"/>
-    <field name="name" type="java.lang.String"/>
-    <field minOccurs="0" name="category" type="java.lang.String"/>
+    <field comment="The name of the authentication, e.g. &quot;password&quot; or &quot;sms2fa&quot;. This is the &quot;subType&quot; in a typed principal _if_ we have a category. Otherwise it is the type." name="name" type="java.lang.String"/>
+    <field comment="The group this belongs to if it uses a centralized mechanism. For example both sms2fa and google authenticator might use &quot;temporary&quot; authentication. If filled in, this is the &quot;type&quot; in a typedprincipal" minOccurs="0" name="category" type="java.lang.String"/>
+    <field comment="For dynamic authentication, we need to know the correct implementation to call. This service should implement the TypedAuthenticator interface." minOccurs="0" name="authenticationServiceId" type="java.lang.String"/>
 </structure>

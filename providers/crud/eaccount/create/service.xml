@@ -1,0 +1,197 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="03080ca7-a536-499f-9c24-384b13210e5c"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Map the account"
+			disabled="false"
+			id="affd798a-aa07-4073-b3b1-7d6428b4392f"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3fac96bf-db2b-4fd9-a96f-454ffc6256f2"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/instance</from>
+			<to>account</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="Check the alias type"
+			disabled="false"
+			id="60c37433-90b2-41fd-a968-5a8e94e598ba"
+			label="account/aliasTypeId != null"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Get the alias type"
+				disabled="false"
+				id="855069f2-4f76-4185-8f1b-d2323732b8c4"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="7a4c9015-fb54-40e9-9ace-bd020fd82fb3"
+					serviceId="nabu.cms.core.crud.masterDataEntry.services.get"
+					resultName="result94570372cbff4d4990e7cbd485ba72af"
+					temporaryMapping="true"
+					x="96"
+					y="48"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="072eb835-2d7e-47ba-8254-a9204d14f868"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>account/aliasTypeId</from>
+					<to>id</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c4c60d88-d5a5-4e7b-8576-1d993418a395"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result94570372cbff4d4990e7cbd485ba72af/result</from>
+				<to>aliasType</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+				disabled="false"
+				id="d73ec60f-d670-4faa-bba0-cf3ef769b8eb"
+				lineNumber="5"
+				query="aliasType/name">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="6c00ed2e-96df-483d-bc80-092e1751011c"
+					label="&quot;email&quot;"
+					lineNumber="6">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="1be3fe25-a62e-4a3d-9128-fd4add0c582f"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>account/alias</from>
+					<to>account/email</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="73f6c3a0-7ca4-4a0b-87af-4e79ff2edef2"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>=account/verified != null</from>
+					<to>account/emailVerified</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="5eceda16441a48e7995ec3500de9a84e"
+					label="&quot;phone&quot;"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="4e9b6bf2-dbd5-49cd-9ba7-bbe69fe6434c"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>account/alias</from>
+					<to>account/phoneNumber</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ce81746f-f850-4fdd-bf35-60e6ab90cb04"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>=account/verified != null</from>
+					<to>account/phoneNumberVerified</to>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="0aaa0f65-19b0-4028-a709-669d19fa1d46"
+			lineNumber="8">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2a6d0e74-0f14-45df-b823-b1aaa3028407"
+				serviceId="nabu.cms.core.providers.crud.euser.create"
+				resultName="result7e869151062548e0949fa2f2a699eede"
+				temporaryMapping="true"
+				x="115"
+				y="80"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3d504ab5-8769-4309-95d8-83025a80898e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5749b72d-0c03-48be-9452-0ae95e0b0995"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="95da178e-0bfd-4ecd-989f-0e268780d042"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/instance</from>
+				<to>instance</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="fc87b9a8-3027-4c23-b1d5-f73a08a9d3e9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/language</from>
+				<to>language</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0a0f171a-0d79-41a9-9284-e48da50af880"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/changeTracker</from>
+				<to>changeTracker</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="df9dfa65-930d-4826-8dcd-ecab193c842b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/typeId</from>
+				<to>typeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="803d3f98-73ee-43c9-bb8d-7d00bbdfeaa4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/meta</from>
+				<to>meta</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

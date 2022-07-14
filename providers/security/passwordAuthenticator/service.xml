@@ -336,7 +336,7 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			comment="Check if it is a phone number"
-			disabled="false"
+			disabled="true"
 			id="78a3f1c6-61b2-4279-aea7-41c1af0fec78"
 			label="!user &amp;&amp; input/configuration/texts/textProviderId != null"
 			lineNumber="9">
@@ -457,22 +457,181 @@
 				lineNumber="11">
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="Check if it is a phone number"
+			disabled="false"
+			id="f4f6dd35-367c-43eb-8d60-3525fd6fc0f6"
+			label="!user"
+			lineNumber="12">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="1df03537-8925-41e0-a56a-fd0b6e9a6f5d"
+				lineNumber="13">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="130b75c9-5038-4c0e-96af-ed816a79e907"
+					serviceId="nabu.utils.reflection.Node.get"
+					resultName="result2ea5aa447dbc4655a0d3d340ab941c48"
+					temporaryMapping="true"
+					x="135"
+					y="59"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="7579ab02-7cf4-4f6b-9814-3e3f6dd36c65"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>nabu.libs.google.phone.Services.format</from>
+					<to>id</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f6e8700e-3890-4712-8f04-355b5bc55b80"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result2ea5aa447dbc4655a0d3d340ab941c48/node</from>
+				<to>phoneService</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="76dfea4a48c645729a3fbfa8d0032d30"
+				label="phoneService"
+				lineNumber="14">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="bda5dee9b06c484cb2181d730ef6bceb"
+					serviceId="nabu.libs.google.phone.Services.format"
+					resultName="result56b0af0c4ff946e2b1c1ae460807b3c8"
+					temporaryMapping="true"
+					x="193"
+					y="75"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ea06b33bd3e14b5c8cad4a182141a98c"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/credentials/name</from>
+					<to>number</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="820807cb58c04b6ba2938c83ca4524cf"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>E164</from>
+					<to>format</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="904910598af14ea696b5e759778da3e3"
+					serviceId="nabu.cms.core.database.user.selectActiveByAlias"
+					resultName="result8b6970481b1344c7b95640a4291d822f"
+					temporaryMapping="true"
+					x="561"
+					y="145"
+					invocationOrder="1"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="3b77677a20834533a747f96a1cf9aaab"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result56b0af0c4ff946e2b1c1ae460807b3c8/formatted</from>
+					<to>parameters/alias</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="aaccc4725a5b4e738bef616774d611fc"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>parameters/caseInsensitive</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="21e3dbcb5eef46dbb22efbb4a1e242d9"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/realm</from>
+					<to>parameters/realm</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="f294fac8fffd44aebd2c81c45d91d7c1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/configuration/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="680ddce1f90d4394b48f5312919d0a5a"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>parameters/allowUnverified</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3f69f734369e42c79575ef407b2a4ebf"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8b6970481b1344c7b95640a4291d822f/results[0]</from>
+				<to>user</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="68a9b747e66443fc8309b5f92979a850"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8b6970481b1344c7b95640a4291d822f/results[0]</from>
+				<to>originalUser</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
+				comment="We ignore exceptions thrown by the phone parser, we assume it is not a phone number"
+				disabled="false"
+				id="07c14fcedb2846b8b55e08bbeff98599"
+				lineNumber="15">
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			comment="Check that the user is not anonymous"
 			disabled="false"
 			id="6da48c8e-b84c-4d3a-a016-640f7958175d"
-			lineNumber="12">
+			lineNumber="16">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="4ac1cc50-d1b4-4731-8f2a-ad3943c1143b"
 				label="user/anonymous != null &amp;&amp; user/anonymous"
-				lineNumber="13">
+				lineNumber="17">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 					description="=&quot;Can not log in with an anonymous account: &quot; + user/alias"
 					disabled="false"
 					id="102e52eb-7408-4971-83a3-852f3fe2c390"
 					label="input/configuration/allowAnonymousLogin == null || !input/configuration/allowAnonymousLogin"
-					lineNumber="14"
+					lineNumber="18"
 					code="CMS-AUTH-8"
 					message="Can not log in with an anonymous account"
 					alias="=user/alias"
@@ -483,12 +642,12 @@
 			disabled="false"
 			id="5dd12f91-58eb-4e2b-a786-0d0d789d28c7"
 			label="user != null"
-			lineNumber="15">
+			lineNumber="19">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Get the node for the user"
 				disabled="false"
 				id="e66188b1-e332-40a1-ba16-0065c12c9745"
-				lineNumber="16">
+				lineNumber="20">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="eb529d8c-1ffe-4557-8cfc-5fc1b2243045"
@@ -534,7 +693,7 @@
 				disabled="false"
 				id="ef39ec82-9c28-4460-9dcf-bc06fa1324b3"
 				label="userNode/verified = null"
-				lineNumber="17"
+				lineNumber="21"
 				code="CMS-AUTH-10"
 				message="The user is not verified yet, can not log in"
 				alias="=user/alias"
@@ -544,7 +703,7 @@
 				disabled="false"
 				id="42260c21-6970-4334-a179-4244e4d42fb7"
 				label="userNode/ownerId != null &amp;&amp; userNode/ownerId != userNode/id"
-				lineNumber="18">
+				lineNumber="22">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="77ff9e55-c383-485d-a8e4-c3da21829aa0"
@@ -590,7 +749,7 @@
 				disabled="false"
 				id="f143539b-0434-44bd-9727-5ebcc83ebdac"
 				label="!user"
-				lineNumber="19"
+				lineNumber="23"
 				code="CMS-AUTH-6"
 				message="Invalid owner"
 				alias="=user/alias"
@@ -600,11 +759,11 @@
 				disabled="false"
 				id="829ea2f1-c594-4c4b-aad6-9b69e0ca0e4d"
 				label="input/configuration/security/allowedRoles != null"
-				lineNumber="20">
+				lineNumber="24">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="true"
 					id="ce07b8d7-4b06-4356-960c-816f2d1138a0"
-					lineNumber="21">
+					lineNumber="25">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="b3f1628c-33bd-49eb-bc1b-5203180d0754"
@@ -657,7 +816,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="ed6774eb0f7f43d5a618ccd8a72e07cd"
-					lineNumber="22">
+					lineNumber="26">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="31cc8f56-f2c6-4f2c-a3f2-2f27264d22ed"
@@ -711,7 +870,7 @@
 					comment="Get amount of matches"
 					disabled="false"
 					id="51c93eea-281b-4ade-be19-3a56b5a46c2a"
-					lineNumber="23">
+					lineNumber="27">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="00583539-895a-4ee6-a251-906ba3a3a1ee"
@@ -787,7 +946,7 @@
 					disabled="false"
 					id="0a07b534-7236-4dd7-a109-d11df327e1da"
 					label="amountOfMatchingRoles &lt;= 0"
-					lineNumber="24"
+					lineNumber="28"
 					code="CMS-AUTH-5"
 					message="The user does not have one of the mandated roles"
 					alias="=user/alias"
@@ -797,12 +956,12 @@
 				disabled="false"
 				id="1cf48f79-4f68-43ad-8a5a-71f10dd5d0ef"
 				label="input/configuration/security/allowedAliases != null"
-				lineNumber="25">
+				lineNumber="29">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Check if it matches some alias"
 					disabled="false"
 					id="857cb682-8834-48ca-8f37-5d3cf018f778"
-					lineNumber="26">
+					lineNumber="30">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="02bae7d6-a6d9-4255-bb1c-1bbe1fb89a60"
@@ -816,7 +975,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="1285f37c-e6de-4fff-a92f-30e94fb88442"
-					lineNumber="27">
+					lineNumber="31">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="a2313423-59a9-444b-9472-b53c916e6ce0"
@@ -853,7 +1012,7 @@
 					disabled="false"
 					id="b3bc9217-46ba-43dc-8515-53315363dc45"
 					label="amountOfMatchingAliases == 0"
-					lineNumber="28"
+					lineNumber="32"
 					code="CMS-AUTH-9"
 					message="The user is not allowed to log in"
 					alias="=user/alias"
@@ -862,7 +1021,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="438b9c40-f669-4b28-850c-b45eb4a64e35"
-				lineNumber="29">
+				lineNumber="33">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="0dffb2d3-a15a-4a82-b79c-9d9716d36ab9"
@@ -933,12 +1092,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				id="f3085ae6-4f69-4c10-8ef4-7f5f2fc90e02"
-				lineNumber="30">
+				lineNumber="34">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Check if the combination is valid"
 					disabled="false"
 					id="1dfc61c8-60e6-48fb-b8bd-615425fb7853"
-					lineNumber="31">
+					lineNumber="35">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="bfa43605-414b-4f21-9dfb-f8a72146140e"
@@ -1002,7 +1161,7 @@
 					disabled="false"
 					id="2d63f4308fe149acbb1e19e4b04aaf24"
 					label="!valid"
-					lineNumber="32">
+					lineNumber="36">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="59353fa479174c25b1539323057fd139"
@@ -1082,28 +1241,28 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 					disabled="false"
 					id="a606d2c3-713e-498e-a8e4-040bc9fd109b"
-					lineNumber="33"
+					lineNumber="37"
 					query="valid">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						disabled="false"
 						id="4d0a190e-018f-4e6c-81aa-d458580bae67"
 						label="true"
-						lineNumber="34">
+						lineNumber="38">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							comment="Update the password if we updated the algorithm"
 							disabled="false"
 							id="68ea9f74-3968-498b-94c6-0cdac6ba07e8"
-							lineNumber="35">
+							lineNumber="39">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 								disabled="false"
 								id="c4d5c6a2-f732-4417-8188-81d9e88d32bb"
 								label="input/configuration/security/algorithm != null &amp;&amp; input/configuration/security/algorithm != user/algorithm"
-								lineNumber="36">
+								lineNumber="40">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 									comment="Map updated fields"
 									disabled="false"
 									id="a1e3b26f-eb94-4408-801f-178e1f87714b"
-									lineNumber="37">
+									lineNumber="41">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 										disabled="false"
 										id="aa29eff4-6e58-4193-afdc-893a87b2804f"
@@ -1186,7 +1345,7 @@
 							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 									disabled="false"
 									id="62bee92b-7fc0-49a2-a166-67a014196f93"
-									lineNumber="38">
+									lineNumber="42">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 										disabled="false"
 										id="6690d1f0-0361-40e5-9d9e-8808018748b9"
@@ -1223,19 +1382,19 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							disabled="false"
 							id="43ae0ed1-a164-401f-906a-5901df104a18"
-							lineNumber="39"
+							lineNumber="43"
 							query="input/device">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 								disabled="false"
 								id="e5c01fbc-d825-4cbd-a076-13b9cac8c314"
 								label="null"
-								lineNumber="40"
+								lineNumber="44"
 								query="input/configuration/allowAnonymousDevices">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 									disabled="false"
 									id="25cf060f-09ba-4964-8fb5-eeb384cf06c8"
 									label="false"
-									lineNumber="41"
+									lineNumber="45"
 									message="No device found and anonymous devices are not allowed"
 									alias="=user/alias"
 									realm="=user/realm" xsi:nil="true"/>
@@ -1243,12 +1402,12 @@
 						<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 								disabled="false"
 								id="dc5411b4-0ac6-46f1-8fcb-7dda7588b8db"
-								lineNumber="42">
+								lineNumber="46">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 									comment="Get user devices"
 									disabled="false"
 									id="8d9f3a30-36ad-4601-a49c-8c09a3eec770"
-									lineNumber="43">
+									lineNumber="47">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 										disabled="false"
 										id="3b707215-2a67-45b7-bf47-7e2fd7504b66"
@@ -1337,13 +1496,13 @@
 							<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 									disabled="false"
 									id="ac17d500-deed-460d-8146-253b3daa4c59"
-									lineNumber="44"
+									lineNumber="48"
 									query="currentDevice/allowed">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 										disabled="false"
 										id="7c6d17f3-b369-482f-bc3b-8e97367289ce"
 										label="false"
-										lineNumber="45"
+										lineNumber="49"
 										code="CMS-AUTH-3"
 										message="Device not allowed"
 										alias="=user/alias"
@@ -1352,14 +1511,14 @@
 							<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 									disabled="false"
 									id="5dc5b809-3448-4a89-b452-2c0a4b47d9d2"
-									lineNumber="46"
+									lineNumber="50"
 									query="input/configuration/allowRemember">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										comment="Create a new secret"
 										disabled="false"
 										id="6269502b-4424-4381-a81a-a839b10bcea6"
 										label="true"
-										lineNumber="47">
+										lineNumber="51">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="1715ceea-8a8a-4bba-9017-e7fdbac2509e"
@@ -1515,7 +1674,7 @@
 							comment="Map the rest of the token and reset the verification code to prevent further use"
 							disabled="false"
 							id="67ca298c-0a84-410b-8b91-ab236a9aae6e"
-							lineNumber="48">
+							lineNumber="52">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="fcb5f0ae-e9c2-4fb8-8b58-1aac62faf165"
@@ -1644,7 +1803,7 @@
 							comment="Update the verification code"
 							disabled="false"
 							id="b512ebf4-87d8-4f4c-be44-d265aa7881d4"
-							lineNumber="49">
+							lineNumber="53">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 								disabled="false"
 								id="bdfe2423-5002-4746-b850-6828c8627ec0"
@@ -1688,7 +1847,7 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
 							id="3e29dd99-c221-4d13-81c8-a238e0af7ba3"
-							lineNumber="50">
+							lineNumber="54">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 								disabled="false"
 								id="9427b51b-7214-427a-933e-dff5a41e73e4"
@@ -1743,7 +1902,7 @@
 						description="=&quot;Invalid password entered for: &quot; + user/alias"
 						disabled="false"
 						id="67e864c4-3502-45b5-92c0-7f2145fb4010"
-						lineNumber="51"
+						lineNumber="55"
 						code="CMS-AUTH-1"
 						message="Invalid password"
 						alias="=user/alias"
@@ -1752,12 +1911,12 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
 					disabled="false"
 					id="5a378ab8-0cef-4cfb-b97b-e0197fc449aa"
-					lineNumber="52"
+					lineNumber="56"
 					variable="exception">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
 						id="e69b3dc1-ce31-4ccd-a217-29b0bee13169"
-						lineNumber="53">
+						lineNumber="57">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="7544cff1-b2ee-4d72-b277-3b9535f04140"
@@ -1810,12 +1969,12 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						disabled="false"
 						id="2bac3660-644d-4edd-a612-8beef001221d"
-						lineNumber="54"
+						lineNumber="58"
 						transactionVariable="errorTransactionId">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
 							id="58abf295de484a78a7a7a5f64617af95"
-							lineNumber="55">
+							lineNumber="59">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 								disabled="false"
 								id="032f1613bab34039bab140fe309ac18b"
@@ -1887,7 +2046,7 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 						disabled="false"
 						id="90af9313-d224-4a86-a518-545fb3f00211"
-						lineNumber="56"
+						lineNumber="60"
 						message="=exception" xsi:nil="true"/>
 			</steps>
 		</steps>
@@ -1896,7 +2055,7 @@
 			disabled="false"
 			id="2aea3a18-b354-4250-a9b1-1d987f244f5f"
 			label="!user"
-			lineNumber="57"
+			lineNumber="61"
 			code="CMS-AUTH-7"
 			alias="=input/credentials/name"
 			realm="=input/realm" xsi:nil="true"/>

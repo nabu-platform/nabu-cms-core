@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="6ed9e29d-7ebc-4223-860e-a9d08af594f3">
+		id="6ed9e29d-7ebc-4223-860e-a9d08af594f3"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Enabled filter"
 			disabled="false"
-			id="c0a8bfc7-d929-4b06-b617-bf200956d9c9">
+			id="c0a8bfc7-d929-4b06-b617-bf200956d9c9"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="eb526dd3-37c7-408a-8179-ca97a90b2e21"
@@ -63,7 +65,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Add filter"
 			disabled="false"
-			id="ea15512a-57b0-407d-be6f-acecea3d45cd">
+			id="ea15512a-57b0-407d-be6f-acecea3d45cd"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="acd65aba-a66f-42cd-ac45-ff514219f16c"
@@ -112,10 +115,12 @@
 			comment="We add a join to limit the resultset to the user"
 			disabled="false"
 			id="39c43edf-90a9-4a4c-8be9-fdc5709d27c7"
-			label="input/limitToUser">
+			label="input/limitToUser"
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="3da189dd-4055-4c34-bd50-803241a3bd9a">
+				id="3da189dd-4055-4c34-bd50-803241a3bd9a"
+				lineNumber="5">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="6a6d1e8f-2726-4710-ab6c-561c6afe2cfa"
@@ -150,12 +155,14 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="07fc2ed3-727e-4cc8-b175-b0d2bb584224"
+				lineNumber="6"
 				query="user">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Odd workaround for '$' || 'guest' is to avoid it being seen as a variable in the sql... Should really add escaping or the like"
 					disabled="false"
 					id="bfa6677f-00b7-4101-b2ef-7c84c738adfa"
-					label="null">
+					label="null"
+					lineNumber="7">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="15b2a500-5926-4c34-a7ff-c1406dcc7598"
@@ -210,7 +217,8 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="3f1018f3c6c544f3ae808daf553571e9">
+					id="3f1018f3c6c544f3ae808daf553571e9"
+					lineNumber="8">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="26a70912bc094a468820dd2f7cb9ed68"
@@ -267,7 +275,8 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8">
+			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8"
+			lineNumber="9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="9c87566f-88b9-427e-bda3-c24779989e79"
@@ -357,7 +366,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="true">
-				<from>=input/limit != null</from>
+				<from>=input/limit != null &amp;&amp; (input/totalCount == null || input/totalCount == "EXACT")</from>
 				<to>totalRowCount</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -377,6 +386,15 @@
 					fixedValue="false">
 				<from>input/lazy</from>
 				<to>lazy</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="fe85bc54-319e-4709-9c84-9611bc417a4d"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>=input/limit != null &amp;&amp; input/totalCount == "ESTIMATE"</from>
+				<to>estimateRowCount</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

@@ -1,0 +1,88 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="4558a0f3-f1fc-4dcd-8c3c-dc894f807d66"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="6221246c-eef3-4b77-9656-398f259693e0"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2ddb5b3a-c3ac-45b0-978e-de789f007c8e"
+				serviceId="nabu.web.application.Services.temporarilyAuthenticate"
+				resultName="resultb09b78ec3a14434788391fdb23ca0b93"
+				temporaryMapping="true"
+				x="445"
+				y="94"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="820aa95f-5b84-41fb-8010-385228406bc9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/credentials/name</from>
+				<to>authentication/id</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f1fa1b24-2aba-401d-888b-d50d7977a532"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/credentials/password</from>
+				<to>authentication/secret</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9f4f31e7-1dc6-496a-bd2a-c9e5f6823933"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>authenticate</from>
+				<to>type</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cdf39a5f-c9a4-43bc-bdce-a23aff475f74"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/device</from>
+				<to>device</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e447fe66-26a7-436c-8e0d-956987b28ffe"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result11d08ec78b6243a0a75f6a6d9bca2a0e/serviceContext</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1da160f7-7e8f-40fe-af8a-89b0a8d4cf5c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultb09b78ec3a14434788391fdb23ca0b93/response</from>
+			<to>output/token</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2d9747da-6f87-471f-8d52-ee94518ac50f"
+				serviceId="nabu.utils.Runtime.getServiceContext"
+				resultName="result11d08ec78b6243a0a75f6a6d9bca2a0e"
+				temporaryMapping="true"
+				x="46"
+				y="32"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+	</steps>
+</sequence>

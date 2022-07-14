@@ -1,14 +1,17 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="6ed9e29d-7ebc-4223-860e-a9d08af594f3">
+		id="6ed9e29d-7ebc-4223-860e-a9d08af594f3"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			comment="Add a limiter"
 			disabled="false"
 			id="ad1e57cf-f49d-4c1d-b941-b809fd0acad3"
-			label="input/meta/securityField != null &amp;&amp; input/limitToUser">
+			label="input/meta/securityField != null &amp;&amp; input/limitToUser"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="cef3e673-ded3-43a6-85da-6c29a813692e">
+				id="cef3e673-ded3-43a6-85da-6c29a813692e"
+				lineNumber="3">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="94c4b87a-09e0-4e6f-922b-412798752dbc"
@@ -112,7 +115,8 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Join to the nodes table, we need the path for a full match"
 				disabled="false"
-				id="58a86178-5394-4dfe-9449-598c1a71d886">
+				id="58a86178-5394-4dfe-9449-598c1a71d886"
+				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="20ffb568-45da-4eae-9b54-6b46788e84f9"
@@ -152,7 +156,8 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="3da189dd-4055-4c34-bd50-803241a3bd9a">
+				id="3da189dd-4055-4c34-bd50-803241a3bd9a"
+				lineNumber="5">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="6a6d1e8f-2726-4710-ab6c-561c6afe2cfa"
@@ -187,12 +192,14 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="07fc2ed3-727e-4cc8-b175-b0d2bb584224"
+				lineNumber="6"
 				query="user">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Odd workaround for '$' || 'guest' is to avoid it being seen as a variable in the sql... Should really add escaping or the like"
 					disabled="false"
 					id="bfa6677f-00b7-4101-b2ef-7c84c738adfa"
-					label="null">
+					label="null"
+					lineNumber="7">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="15b2a500-5926-4c34-a7ff-c1406dcc7598"
@@ -247,7 +254,8 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="3f1018f3c6c544f3ae808daf553571e9">
+					id="3f1018f3c6c544f3ae808daf553571e9"
+					lineNumber="8">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="26a70912bc094a468820dd2f7cb9ed68"
@@ -304,7 +312,8 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Map to join list"
 				disabled="false"
-				id="ecde659e-04f2-4284-a034-4562c9b34fe7">
+				id="ecde659e-04f2-4284-a034-4562c9b34fe7"
+				lineNumber="9">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="4a5c906b-d854-47d3-aac1-c20ea4c44318"
@@ -327,7 +336,8 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8">
+			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8"
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="9c87566f-88b9-427e-bda3-c24779989e79"
@@ -417,7 +427,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="true">
-				<from>=input/limit != null</from>
+				<from>=input/limit != null &amp;&amp; (input/totalCount == null || input/totalCount == "EXACT")</from>
 				<to>totalRowCount</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -437,6 +447,15 @@
 					fixedValue="false">
 				<from>input/lazy</from>
 				<to>lazy</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="26218c90-c2fa-4be9-b931-6fc7204a2e7d"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>=input/limit != null &amp;&amp; input/totalCount == "ESTIMATE"</from>
+				<to>estimateRowCount</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

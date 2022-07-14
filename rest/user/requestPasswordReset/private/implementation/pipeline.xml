@@ -1,11 +1,14 @@
-<structure interface="$self:api" name="pipeline">
+<structure interface="nabu.cms.core.rest.user.requestPasswordReset:api" name="pipeline">
     <structure name="input" validate="true"/>
     <structure name="output"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.model.core.User" minOccurs="0" name="user" namespace="nabu.cms.core.types.model.core"/>
     <field minOccurs="0" name="realm" type="java.lang.String"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" name="userNode" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" duplicate="id,created,modified" name="userNode" namespace="nabu.cms.core.types.model.core"/>
     <structure collectionName="MasterDataEntries" definition="nabu.cms.core.types.model.core.MasterDataEntry" minOccurs="0" name="aliasType" namespace="nabu.cms.core.types.model.core"/>
     <structure collectionName="MasterDataEntries" definition="nabu.cms.core.types.model.core.MasterDataEntry" name="language" namespace="nabu.cms.core.types.model.core"/>
     <field name="textMessage" type="java.lang.String"/>
     <field name="provider" type="java.lang.String"/>
+    <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="rendererNode"/>
+    <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="signalNode"/>
+    <structure definition="nabu.cms.core.signals.user.requestPasswordReset" name="signal"/>
 </structure>

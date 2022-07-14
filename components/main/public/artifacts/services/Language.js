@@ -10,6 +10,7 @@ nabu.services.VueService(Vue.extend({
 ${{
 entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language"))/results
 entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
+entries = series.resolve(entries)
 echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 }}
 			var self = this;
@@ -29,6 +30,7 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 ${{
 entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language.rtl"))/results
 entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
+entries = series.resolve(entries)
 echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(structure(array:entries)) + ";"))	
 }}
 			var self = this;
@@ -102,7 +104,10 @@ echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(stru
 					})[0];
 				}
 				// first check that it is a valid language (or null)
-				if (newValue == null || this.available.indexOf(newValue) >= 0) {
+				// only trigger if the value was actually changed, otherwise we do reloads etc for nothing
+				if (newValue == null || this.available.indexOf(newValue) >= 0 && newValue.name != this.$services.user.language) {
+					console.log("Switching language switch from '" + this.$services.user.language + "' to '" + (newValue ? newValue.name : "none") + "'");
+					
 					// must synchronously update this, because the get() is immediately executed again, if only done async it will re-enforce the old value
 					this.$services.user.language = newValue ? newValue.name : null;
 					// always set it as a cookie so we know your selection if you are not known to the server (yet) for example before the remember kicks in on a dead session
@@ -128,10 +133,17 @@ echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(stru
 	},
 	methods: {
 		setRtl: function(language) {
-			if (this.rtl.filter(function(x) {
-					return x.name == language;
-				}).length > 0) {
-				document.body.setAttribute("dir", "rtl");
+			var configuredRtl = false;
+			if (language != null) {
+				if (this.rtl.filter(function(x) {
+						return x.name == language;
+					}).length > 0) {
+					document.body.setAttribute("dir", "rtl");
+					configuredRtl = true;
+				}
+			}
+			if (!configuredRtl) {
+				document.body.removeAttribute("dir");
 			}
 		}
 	},

@@ -1,0 +1,61 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="06b4d96d-e189-4b89-9265-322af7a89929"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="432307f0-9552-49d3-a36e-bb19c778a40e"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="cce927c2-5364-4125-bc8d-fcbeec389ad3"
+				serviceId="nabu.web.application.Services.configuration"
+				resultName="result66e85c33d4da4e849e986922c56fd174"
+				temporaryMapping="true"
+				x="310"
+				y="222"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5fee901e-4e1c-410c-adee-c221eed47ece"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>nabu.cms.core.configuration</from>
+				<to>typeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5d76b37f-d4fd-4523-a0d7-456586f97120"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result7fe47adc5da74fd4adf145c6c195ed4d/serviceContext</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="eab7334e-af27-49e9-a9bb-c8bf834ffccd"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result66e85c33d4da4e849e986922c56fd174/configuration</from>
+			<to>output/configuration</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="18671256-01ff-4d75-853b-fe69f5e69bdf"
+				serviceId="nabu.utils.Runtime.getServiceContext"
+				resultName="result7fe47adc5da74fd4adf145c6c195ed4d"
+				temporaryMapping="true"
+				x="26"
+				y="40"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+	</steps>
+</sequence>

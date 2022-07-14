@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="6ed9e29d-7ebc-4223-860e-a9d08af594f3">
+		id="6ed9e29d-7ebc-4223-860e-a9d08af594f3"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Enabled filter"
 			disabled="false"
-			id="c0a8bfc7-d929-4b06-b617-bf200956d9c9">
+			id="c0a8bfc7-d929-4b06-b617-bf200956d9c9"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="eb526dd3-37c7-408a-8179-ca97a90b2e21"
@@ -63,7 +65,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Add filter"
 			disabled="false"
-			id="ea15512a-57b0-407d-be6f-acecea3d45cd">
+			id="ea15512a-57b0-407d-be6f-acecea3d45cd"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="acd65aba-a66f-42cd-ac45-ff514219f16c"
@@ -110,7 +113,8 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8">
+			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8"
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="9c87566f-88b9-427e-bda3-c24779989e79"
@@ -200,7 +204,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="true">
-				<from>=input/limit != null</from>
+				<from>=input/limit != null &amp;&amp; (input/totalCount == null || input/totalCount == "EXACT")</from>
 				<to>totalRowCount</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -211,6 +215,15 @@
 					fixedValue="false">
 				<from>input/lazy</from>
 				<to>lazy</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="bcce4f77-954a-4d3f-b356-38d358cfb707"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>=input/limit != null &amp;&amp; input/totalCount == "ESTIMATE"</from>
+				<to>estimateRowCount</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

@@ -1,0 +1,18 @@
+<structure collectionName="accounts" duplicate="id, created, modified" label="Account" name="account" superType="nabu.cms.core.types.emodel.core.User">
+    <field minOccurs="0" name="avatar" type="java.net.URI"/>
+    <field minOccurs="0" name="givenName" type="java.lang.String"/>
+    <field minOccurs="0" name="familyName" type="java.lang.String"/>
+    <field minOccurs="0" name="middleName" type="java.lang.String"/>
+    <field minOccurs="0" name="nickname" type="java.lang.String"/>
+    <field minOccurs="0" name="profile" type="java.net.URI"/>
+    <field minOccurs="0" name="picture" type="java.net.URI"/>
+    <field minOccurs="0" name="website" type="java.net.URI"/>
+    <field comment="Primary email for this user" minOccurs="0" name="email" type="java.lang.String"/>
+    <field minOccurs="0" name="emailVerified" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="locale" type="java.lang.String"/>
+    <field minOccurs="0" name="timezone" type="java.lang.String"/>
+    <field format="date" minOccurs="0" name="birthdate" timezone="UTC" type="java.util.Date"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="genderId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="Primary phone number for this user" minOccurs="0" name="phoneNumber" type="java.lang.String"/>
+    <field minOccurs="0" name="phoneNumberVerified" type="java.lang.Boolean"/>
+</structure>
