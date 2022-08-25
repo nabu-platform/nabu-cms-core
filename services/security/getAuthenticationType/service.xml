@@ -1,9 +1,11 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="b04d267e-fd73-40a6-a8ba-77dafe691441">
+		id="b04d267e-fd73-40a6-a8ba-77dafe691441"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
-			id="f505ded7-13d7-40f9-80ac-fc6ad19b74c0">
+			disabled="true"
+			id="f505ded7-13d7-40f9-80ac-fc6ad19b74c0"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="a8a68486-7ff1-4365-923f-7df08c3a0f41"
@@ -32,6 +34,119 @@
 				optional="false"
 				fixedValue="false">
 			<from>resulta0096c10609a49c0bb4b5be37d32804a/results[0]</from>
+			<to>output/type</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="d36e91b5-a0d3-476e-9f4e-1c6e66a412ab"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c3ff66e0-629f-4a83-933e-f044c3d28c3a"
+				serviceId="nabu.cms.core.crud.authenticationType.services.list"
+				resultName="result2f2382ab787e4073abc222bff42631a2"
+				temporaryMapping="true"
+				x="100"
+				y="90"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="db54dae2-5b29-4c2b-92f2-5e8a62d1c650"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result2f2382ab787e4073abc222bff42631a2/results</from>
+			<to>authenticationTypes</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="fcfeb5c8-5a93-4945-9006-cb053da574ff"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result2f2382ab787e4073abc222bff42631a2/page/total</from>
+			<to>total</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="No configuration types configured, we don't want to specify to such a degree how it should work, just take some defaults"
+			disabled="false"
+			id="60487963-3201-4d0c-8630-e351f26f0159"
+			label="total == 0"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="323eb0da-ddee-4265-9177-ed676274c61a"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="e48c5eeb-535a-4972-98cb-d2828e0c7c62"
+					serviceId="nabu.utils.reflection.Service.listImplementations"
+					resultName="result993e179c57de4935aa13ac129d36429f"
+					temporaryMapping="true"
+					x="108"
+					y="47"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="333a7e5f-2cf9-4232-9ab6-af4aa17e0a47"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>be.nabu.eai.authentication.api.TypedAuthenticator.authenticate</from>
+					<to>interfaceId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5e7cc42b-f9d0-46de-961b-37b9d60b6463"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result993e179c57de4935aa13ac129d36429f/implementations/properties[key == "authenticationType"]/value</from>
+				<to>provided</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+				disabled="false"
+				id="a53bf5ec-756c-474d-ad6d-8e5fc040eccb"
+				lineNumber="6"
+				variable="single"
+				into="authenticationTypes">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="77d237b6-a02b-4eaa-9c6c-b171de58f626"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c4bdf8c1-0eaf-44d1-898a-294808b2de1e"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>single</from>
+					<to>authenticationTypes[0]/name</to>
+				</steps>
+			</steps>
+			<query>provided</query>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="e2c9fa6f-5acf-4a02-a3c6-42e64dd08a7a"
+			lineNumber="8">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="13ed9e77-a035-47a6-857a-0891957ce2f2"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>authenticationTypes[name == /input/name]</from>
 			<to>output/type</to>
 		</steps>
 	</steps>

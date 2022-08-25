@@ -5,4 +5,8 @@
     <structure name="output" validate="true">
         <structure definition="nabu.cms.core.services.security.authenticationType" name="type" restrict="id,created,modified"/>
     </structure>
+    <structure collectionName="authenticationTypes" definition="nabu.cms.core.crud.authenticationType.types.output" maxOccurs="unbounded" minOccurs="0" name="authenticationTypes"/>
+    <field name="total" nillable="false" type="java.lang.Integer"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="provided" type="java.lang.String"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="fixed" type="java.lang.String"/>
 </structure>

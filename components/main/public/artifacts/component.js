@@ -239,7 +239,7 @@ window.addEventListener("load", function() {
 				id: "cms.login",
 				async: true,
 				implementation: function(input, $services, $value, resolve, reject) {
-					$services.user.login(input.username, input.password, input.remember).then(resolve, reject);
+					$services.user.login(input.username, input.password, input.remember, input.type).then(resolve, reject);
 				},
 				inputs: [{
 					"name": "username",
@@ -252,6 +252,9 @@ window.addEventListener("load", function() {
 				}, {
 					"name": "remember",
 					"type": "boolean"
+				}, {
+					"name": "type",
+					"type": "string"
 				}]
 			});
 			nabu.page.provide("page-function", {

@@ -2,7 +2,9 @@
 <node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-04-22T12:59:48.036+02:00" lastModified="2022-04-22T13:06:10.221+02:00" leaf="true" version="5">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
-    <properties/>
+    <properties>
+        <property key="authenticationType">password</property>
+    </properties>
     <references>nabu.cms.core.providers.security.passwordAuthenticator</references>
     <references>be.nabu.eai.authentication.api.TypedAuthenticator.authenticate</references>
     <references>java.lang.String</references>
