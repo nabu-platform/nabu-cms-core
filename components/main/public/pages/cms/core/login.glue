@@ -28,14 +28,14 @@ else
 		type = when(login/type = null, "password", login/type)
 		
 		# if you use password, we may "upgrade" you to a different type (like sms2fa)
-		if (type = null || type = "password")
+		if (type == null || type == "password")
 			types = nabu.cms.core.services.security.getAuthenticationTypes(connectionId, environment("webApplicationId"), login/alias, login/password)/types
 			
 			# get the chosen type from the list
-			chosenType = types[name = /type]
+			chosenType = first(types[name = /type])
 			
 			# if the chosen type is not supported, send back a list of types that _are_ supported
-			if (chosenType = null)
+			if (chosenType == null)
 				response.content(structure(
 						currentAuthenticationType: type,
 						authenticationTypes: types/name

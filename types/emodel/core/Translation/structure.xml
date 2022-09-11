@@ -6,4 +6,5 @@
     <field name="name" type="java.lang.String"/>
     <field name="translation" type="java.lang.String"/>
     <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="Most translations are for static copy that is somehow available in the application (error codes, validation feedback, button labels,...). Some translations however are for operational content (e.g. faq, blog,...). We need to be able to differentiate between these." minOccurs="0" name="operational" type="java.lang.Boolean"/>
 </structure>

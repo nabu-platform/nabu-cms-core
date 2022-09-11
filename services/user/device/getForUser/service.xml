@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="effd218e-a3e2-49a1-bc45-ea9689fc9e09">
+		id="effd218e-a3e2-49a1-bc45-ea9689fc9e09"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Get user devices"
-			id="8d9f3a30-36ad-4601-a49c-8c09a3eec770">
+			disabled="false"
+			id="8d9f3a30-36ad-4601-a49c-8c09a3eec770"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="25c3701c-80d3-4e64-84a1-c990aa1a4f5d"
@@ -14,7 +16,8 @@
 				x="60"
 				y="43"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="96f1d90d-2d4b-4eff-b03b-bf2c64c2d7b3"
@@ -56,15 +59,18 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="ac17d500-deed-460d-8146-253b3daa4c59"
+			lineNumber="3"
 			query="currentDevice">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
+				id="6a0594cc-5be9-421f-af6f-ff1beaf4ab55"
 				label="null"
-				id="6a0594cc-5be9-421f-af6f-ff1beaf4ab55">
+				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					disabled="false"
 					comment="Get lock"
-					id="886d4c01-59ed-411a-9a02-6ffe88b0384b">
+					disabled="false"
+					id="886d4c01-59ed-411a-9a02-6ffe88b0384b"
+					lineNumber="5">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="7486fae4-3ffe-474b-9a9b-9d46e2c30cca"
@@ -74,7 +80,8 @@
 						x="86"
 						y="87"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="835e1ed9-f714-4d80-bf9b-5b81c840c1fe"
@@ -97,11 +104,13 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 					disabled="false"
-					id="db69f833-e835-4794-a744-2d4c60d2b13e">
+					id="db69f833-e835-4794-a744-2d4c60d2b13e"
+					lineNumber="6">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-						disabled="false"
 						comment="Get user devices"
-						id="d4243e348d78491f8f59659ed8d1b2d1">
+						disabled="false"
+						id="d4243e348d78491f8f59659ed8d1b2d1"
+						lineNumber="7">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="4f437749890d4abfac87892fc9e27b0a"
@@ -111,7 +120,8 @@
 							x="60"
 							y="43"
 							invocationOrder="0"
-							asynchronous="false">
+							asynchronous="false"
+							recache="false">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="fbbc5753b0bf4ff9bbfcc4129d9bd324"
@@ -162,14 +172,17 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 						disabled="false"
 						id="d42c76fb-127e-4574-b2ba-ac1ddef502bf"
+						lineNumber="8"
 						query="currentDevice">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 							disabled="false"
+							id="cbd4a93c-9abf-4713-bc49-b0e0d690750b"
 							label="null"
-							id="cbd4a93c-9abf-4713-bc49-b0e0d690750b">
+							lineNumber="9">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								disabled="false"
-								id="d6f5207f-faca-470e-9b2c-01d31afd67be">
+								id="d6f5207f-faca-470e-9b2c-01d31afd67be"
+								lineNumber="10">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 									disabled="false"
 									id="306d674a-a36a-4374-8cf8-7e2e778f9894"
@@ -179,7 +192,8 @@
 									x="41"
 									y="126"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="458f4f0a-61db-4244-b294-693a408a2554"
@@ -202,18 +216,21 @@
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 								disabled="false"
-								id="0e03ba49-eea1-4e99-a535-b9da2c6570b9">
+								id="0e03ba49-eea1-4e99-a535-b9da2c6570b9"
+								lineNumber="11">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 									disabled="false"
-									label="input/maxAmountOfDevices != null &amp;&amp; amountOfDevices &gt; input/maxAmountOfDevices"
 									id="7c6d17f3-b369-482f-bc3b-8e97367289ce"
+									label="input/maxAmountOfDevices != null &amp;&amp; amountOfDevices &gt; input/maxAmountOfDevices"
+									lineNumber="12"
 									code="AUTHENTICATE-1"
 									message="Too many devices" xsi:nil="true"/>
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-								disabled="false"
 								comment="Map new device"
-								id="7ddc5008-8327-4913-ba9e-91ebf501b6c7">
+								disabled="false"
+								id="7ddc5008-8327-4913-ba9e-91ebf501b6c7"
+								lineNumber="13">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 									disabled="false"
 									id="4d325ff3-e4dc-460c-82fb-08b96bbf91b8"
@@ -223,7 +240,8 @@
 									x="70"
 									y="230"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
@@ -252,7 +270,8 @@
 									x="99"
 									y="38"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="c7a1158e-db16-465f-bf0f-c54951318625"
@@ -317,7 +336,8 @@
 									x="183"
 									y="120"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
@@ -332,14 +352,17 @@
 						<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 								disabled="false"
 								id="45da43c6-a1a5-4785-a322-4c852106737d"
+								lineNumber="14"
 								query="currentDevice/allowed">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 									disabled="false"
+									id="f6dde3c2-75a4-4d0f-bb76-1b716a008b71"
 									label="false"
-									id="f6dde3c2-75a4-4d0f-bb76-1b716a008b71">
+									lineNumber="15">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										disabled="false"
-										id="21cb5894-f3f4-48ec-958a-63cd17ba220f">
+										id="21cb5894-f3f4-48ec-958a-63cd17ba220f"
+										lineNumber="16">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="44b09071-6ce6-481a-9bce-1d3ad8381da2"
@@ -349,7 +372,8 @@
 											x="90"
 											y="137"
 											invocationOrder="0"
-											asynchronous="false">
+											asynchronous="false"
+											recache="false">
 									</steps>
 									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 											disabled="false"
@@ -363,11 +387,13 @@
 								</steps>
 								<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 										disabled="false"
-										id="303cb3f4-53f8-4bf2-a530-e39d1c0a3025">
+										id="303cb3f4-53f8-4bf2-a530-e39d1c0a3025"
+										lineNumber="17">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 											disabled="false"
+											id="7ad0de0c-19e2-434a-b583-4d52a7bea71a"
 											label="input/sendDeviceVerificationService != null"
-											id="7ad0de0c-19e2-434a-b583-4d52a7bea71a">
+											lineNumber="18">
 										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 												disabled="false"
 												id="25664bd6-23bb-4247-820a-7057db259916"
@@ -377,7 +403,8 @@
 												x="121"
 												y="71"
 												invocationOrder="0"
-												asynchronous="false">
+												asynchronous="false"
+												recache="false">
 											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 													disabled="false"
 													id="6c43c95d-6673-4e70-8523-8011437b96c6"
@@ -420,9 +447,10 @@
 							</steps>
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-								disabled="false"
 								comment="Create device"
-								id="cebaf9d2-0c44-4810-af6b-ad1c405a53da">
+								disabled="false"
+								id="cebaf9d2-0c44-4810-af6b-ad1c405a53da"
+								lineNumber="19">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 									disabled="false"
 									id="962ecfe4-610e-485f-9d99-43e0cbe95a8a"
@@ -432,7 +460,8 @@
 									x="51"
 									y="74"
 									invocationOrder="0"
-									asynchronous="false">
+									asynchronous="false"
+									recache="false">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="4c7c34a1-352e-4907-86b0-036e840e4f4a"
@@ -466,10 +495,12 @@
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
 						disabled="false"
-						id="235f25cd-0d6f-467c-b048-e9fab6f40f46">
+						id="235f25cd-0d6f-467c-b048-e9fab6f40f46"
+						lineNumber="20">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
-							id="e03f16ee-1231-4c2a-afcf-82ecf4f2dc34">
+							id="e03f16ee-1231-4c2a-afcf-82ecf4f2dc34"
+							lineNumber="21">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 								disabled="false"
 								id="8cfb1c3c-6ab7-435e-aeee-ae3f6fb530f4"
@@ -479,7 +510,8 @@
 								x="20"
 								y="211"
 								invocationOrder="0"
-								asynchronous="false">
+								asynchronous="false"
+								recache="false">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="3d7dd4fc-e1c3-490f-ba00-0097f25ea006"
@@ -505,9 +537,10 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			comment="Map the output"
-			id="4e917326-3381-4746-a2e2-7ec342a72b3e">
+			disabled="false"
+			id="4e917326-3381-4746-a2e2-7ec342a72b3e"
+			lineNumber="22">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="31fd457b-9a5f-4641-8a5a-5b7509703d00"

@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="a44a4eaa-a1c8-4d35-afea-9051ea35af9d">
+		id="a44a4eaa-a1c8-4d35-afea-9051ea35af9d"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Select the user"
 			disabled="false"
-			id="adeba6e2-a60d-4cd9-bf85-7fa62ad16bd2">
+			id="adeba6e2-a60d-4cd9-bf85-7fa62ad16bd2"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="8c4c0885-88ac-49ef-abcd-38672c57666f"
@@ -97,6 +99,7 @@
 			disabled="false"
 			id="e27b62c0-7c74-4c5f-93fa-bc4ca52d23f1"
 			label="!user"
+			lineNumber="3"
 			code="CMS-AUTH-7"
 			message="User does not exist"
 			alias="=input/alias"
@@ -104,7 +107,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Check if the combination is valid"
 			disabled="false"
-			id="1dfc61c8-60e6-48fb-b8bd-615425fb7853">
+			id="1dfc61c8-60e6-48fb-b8bd-615425fb7853"
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="bfa43605-414b-4f21-9dfb-f8a72146140e"
@@ -167,7 +171,8 @@
 			comment="For backwards compatibility reasons, check with the username &amp; realm as well"
 			disabled="false"
 			id="2d63f4308fe149acbb1e19e4b04aaf24"
-			label="!valid">
+			label="!valid"
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="59353fa479174c25b1539323057fd139"
@@ -249,6 +254,7 @@
 			disabled="false"
 			id="67e864c4-3502-45b5-92c0-7f2145fb4010"
 			label="!valid"
+			lineNumber="6"
 			code="CMS-AUTH-1"
 			message="Invalid password"
 			alias="=user/alias"
@@ -256,10 +262,12 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			comment="Try and get the authentication methods (does not exist in older applications)"
 			disabled="false"
-			id="675ee85e-e7f6-45f8-b2df-457f7dc6d194">
+			id="675ee85e-e7f6-45f8-b2df-457f7dc6d194"
+			lineNumber="7">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="b9a2b4d5-ae69-4464-b81e-76b8f656c305">
+				id="b9a2b4d5-ae69-4464-b81e-76b8f656c305"
+				lineNumber="8">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="d49bc071-b051-4f19-9d7d-30e1a1162b3b"
@@ -302,17 +310,20 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
 				disabled="false"
-				id="dc5abc6f-6233-452a-81bc-3e9399334ac9">
+				id="dc5abc6f-6233-452a-81bc-3e9399334ac9"
+				lineNumber="9">
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-			comment="Backwards compatibility"
+			comment="Backwards compatibility. TODO: could get all currently supported authenticationTypes assuming you can use anything if you can use nothing"
 			disabled="false"
-			id="4014b17c-9378-4f1c-99ad-a7f31f567a8b">
+			id="4014b17c-9378-4f1c-99ad-a7f31f567a8b"
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Get amount of types"
 				disabled="false"
-				id="5a636ac6-6b4b-4212-9fb2-7f50aeb6527d">
+				id="5a636ac6-6b4b-4212-9fb2-7f50aeb6527d"
+				lineNumber="11">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="1eb32467-f58f-458c-a5e9-f99d9b5b5bfa"
@@ -348,11 +359,13 @@
 				comment="If no types are available, we allow the original ones"
 				disabled="false"
 				id="4eeac072-d78f-49a2-aefc-28203473e528"
-				label="size = 0">
+				label="size = 0"
+				lineNumber="12">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Set as default the old methods"
 					disabled="false"
-					id="de356816-54cf-4f7a-bcd4-961b32686e97">
+					id="de356816-54cf-4f7a-bcd4-961b32686e97"
+					lineNumber="13">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="a8903bc2-40d2-4c56-b73c-bc0c18fb65b3"
@@ -396,11 +409,13 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.For"
 					disabled="false"
 					id="4b6e53e4-dec8-40c3-8471-e02317814861"
+					lineNumber="14"
 					variable="defaultOne">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						comment="Map type"
 						disabled="false"
-						id="cbd029b6-843a-45d0-8ff3-5088c14d1b09">
+						id="cbd029b6-843a-45d0-8ff3-5088c14d1b09"
+						lineNumber="15">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="9e489cf8-2c76-4c3b-a97d-57236299cf96"
@@ -413,7 +428,8 @@
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
-						id="0697a804-4018-45a9-ba55-be176ed522ee">
+						id="0697a804-4018-45a9-ba55-be176ed522ee"
+						lineNumber="16">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="c21ce9e0-c167-48b1-a35a-6bfaca7c7658"

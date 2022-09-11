@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.crud.masterDataCategory.types.outputPreloaded</outputDefinition>
+	<sql>select *
+from ~master_data_categories mdc
+	join ~master_data_category_preloads mdcp on mdcp.master_data_category_id = mdc.id
+where mdcp.context_id = :contextId
+</sql>
+</jdbcService>
