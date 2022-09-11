@@ -1,5 +1,8 @@
 nabu.services.VueService(Vue.extend({
-	services: ["user", "cookies", "masterdata"],
+	services: ["user", "cookies", "masterdata", {
+		name: "environment",
+		optional: true
+	}],
 	data: function() {
 		return {
 			cookieValue: null
@@ -8,13 +11,42 @@ nabu.services.VueService(Vue.extend({
 	computed: {
 		available: function() {
 ${{
-entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language"))/results
-entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
-entries = series.resolve(entries)
-echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
+# we stopped embedding data in the new version
+# this mandates that environments are in sync for masterdata
+# instead we want to load it via environment service
+if (!environment("optimized"))
+	entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language"))/results
+	entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
+	entries = series.resolve(entries)
+	echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
+else
+	echo("\t\t\tvar result = [];")
 }}
 			var self = this;
-			if (result.forEach) {
+			if (this.$services.environment) {
+				var languages = this.$services.environment.get("languages");
+				if (languages) {
+					languages = languages.entries;
+				}
+				if (languages) {
+					// if you are combining it without optimization, we don't want language entries twice
+					if (result.length > 0) {
+						languages = languages.filter(function(x) {
+							var existing = result.filter(function(y) {
+								return y.name == x.name
+							})[0];
+							return !existing;
+						});
+					}
+					languages.forEach(function(x) {
+						if (self.$services.translator) {
+							x.label = self.$services.translator.translationFor("language", x.name);
+						}
+					});
+					nabu.utils.arrays.merge(result, languages);
+				}
+			}
+			else if (result.forEach) {
 				result.forEach(function(x) {
 					var entry = self.$services.masterdata.entry("language", x.name);
 					x.label = entry && entry.label ? entry.label : x.name;
@@ -26,12 +58,17 @@ echo("\t\t\tvar result = " + json.stringify(structure(array:entries)) + ";")
 			}
 			return result;
 		},
+		// temporarily deprecated until we get an actual usecase
+		// it was added in a hurry to support hebrew for a testcase and probably needs another approach
 		rtl: function() {
 ${{
-entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language.rtl"))/results
-entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
-entries = series.resolve(entries)
-echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(structure(array:entries)) + ";"))	
+if (!environment("optimized"))
+	entries = nabu.cms.core.database.masterdata.entry.selectByCategory(connection: application.configuration("nabu.cms.core.configuration")/connectionId, parameters:structure(name: "language.rtl"))/results
+	entries = derive(lambda(x, structure(id: x/id, name: x/name)), entries)
+	entries = series.resolve(entries)
+	echo("\t\t\tvar result = " + when(size(entries) == 0, "[];", json.stringify(structure(array:entries)) + ";"))	
+else
+	echo("\t\t\tvar result = [];")
 }}
 			var self = this;
 			if (result.forEach) {

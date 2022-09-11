@@ -76,12 +76,26 @@ nabu.services.VueService(Vue.extend({
 			}
 			return result;
 		},
+		// there are very few usecases for this listing except perhaps the suggest
+		// on the flipside, there is no configuration of which categories you want to expose and simply exposing all by default is too much information
+		// for now, in the new version, we will only populate this based on the preloaded categories
 		categories: function() {
 			var start = this.fixedCategories;
 			var result = [];
 			if (start instanceof Array) {
 				nabu.utils.arrays.merge(result, start);
 			}
+			this.preloaded.forEach(function(x) {
+				var existing = start.filter(function(y) {
+					return y.name == x.name;
+				})[0];
+				if (!existing) {
+					result.push({
+						id: x.id,
+						name: x.name
+					});
+				}
+			});
 			return result;
 		},
 ${{
@@ -106,6 +120,12 @@ for (name : configuration/masterdata/preloadedCategories)
 		id: cat/id,
 		entries: entries))
 categories = derive(stripper, categories)
+
+# in the new way of doing things we no longer send all categories to the frontend
+# this will still work if you don't optimize, and we want to remain backwards compatible so let's keep doing it then
+# we also don't really want to send preloaded categories this way anymore, but we'll leave it for now assuming you don't actually use the old school preloading
+if (environment("optimized"))
+	categories = series()
 
 echo("		fixedPreloaded: function() { return " + json.stringify(structure(preloaded: preloaded)) + "; },\n")
 echo("		fixedCategories: function() { return " + json.stringify(structure(categories: categories)) + "; }\n")
