@@ -1,5 +1,10 @@
+// this can NOT depend on the language service
+// for now, the language service is dependent on masterdata
+// and masterdata itself is dependent on translator
+// that would create a circular dependency
+// and it "should" not be necessary...
 Vue.service("translator", {
-	services: ["language"],
+	services: ["swagger"],
 	data: function() {
 		return {
 			translations: []
@@ -17,6 +22,13 @@ Vue.service("translator", {
 		});
 	},
 	methods: {
+		translationFor: function(context, name, defaultValue) {
+			var translation = this.translations.filter(function(x) {
+				return x.context == context
+					&& x.name == name;
+			})[0];
+			return translation && translation.translation ? translation.translation : (defaultValue ? defaultValue : name);
+		},
 		translate: function(value, defaultValue) {
 			if (value && value.indexOf) {
 				while (value.indexOf("%" + "{") >= 0) {

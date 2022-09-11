@@ -1,4 +1,11 @@
 nabu.services.VueService(Vue.extend({
+	services: [{
+		name: "translator",
+		optional: true
+	}, {
+		name: "environment",
+		optional: true
+	}],
 	data: function() {
 		return {
 			masterdata: {
@@ -11,7 +18,7 @@ nabu.services.VueService(Vue.extend({
 			}
 		}	
 	},
-	created: function() {
+	activate: function(done) {
 		var self = this;
 		if (nabu.page && nabu.page.provide) {
 			nabu.page.provide("page-enumerate", {
@@ -34,9 +41,49 @@ nabu.services.VueService(Vue.extend({
 					labels: ["name", "label"]
 				});
 			});
-		}	
+		}
+		done();
 	},
 	computed: {
+		preloaded: function() {
+			var start = this.fixedPreloaded;
+			var result = [];
+			if (start instanceof Array) {
+				nabu.utils.arrays.merge(result, start);
+			}
+			if (this.$services.environment && this.$services.environment.settings
+					&& this.$services.environment.settings.data
+					&& this.$services.environment.settings.data.masterdata
+					&& this.$services.environment.settings.data.masterdata.categories) {
+				nabu.utils.arrays.merge(result, this.$services.environment.settings.data.masterdata.categories);
+				
+				var self = this;
+				result.forEach(function(x) {
+					if (x.entries) {
+						x.entries.forEach(function(y) {
+							// we don't ship a label for these masterdata entries, check the translation service instead
+							if (!y.label) {
+								if (self.$services.translator) {
+									// pretty printed
+									var defaultValue = y.name.substring(0, 1).toUpperCase()
+										+ y.name.substring(1).replace(/([A-Z]+)/g, " $1").trim();
+									y.label = self.$services.translator.translationFor(x.name, y.name, defaultValue);
+								}
+							}	
+						});
+					}
+				});
+			}
+			return result;
+		},
+		categories: function() {
+			var start = this.fixedCategories;
+			var result = [];
+			if (start instanceof Array) {
+				nabu.utils.arrays.merge(result, start);
+			}
+			return result;
+		},
 ${{
 configuration = application.configuration("nabu.cms.core.configuration")
 
@@ -60,8 +107,8 @@ for (name : configuration/masterdata/preloadedCategories)
 		entries: entries))
 categories = derive(stripper, categories)
 
-echo("		preloaded: function() { return " + json.stringify(structure(preloaded: preloaded)) + "; },\n")
-echo("		categories: function() { return " + json.stringify(structure(categories: categories)) + "; }\n")
+echo("		fixedPreloaded: function() { return " + json.stringify(structure(preloaded: preloaded)) + "; },\n")
+echo("		fixedCategories: function() { return " + json.stringify(structure(categories: categories)) + "; }\n")
 }}
 	},	
 	methods: {
