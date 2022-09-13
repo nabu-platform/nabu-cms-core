@@ -1,4 +1,7 @@
 nabu.services.VueService(Vue.extend({
+	optionalServices: ["translator", "environment"],
+	/*
+	syntax works but is not backwards compatible
 	services: [{
 		name: "translator",
 		optional: true
@@ -6,6 +9,7 @@ nabu.services.VueService(Vue.extend({
 		name: "environment",
 		optional: true
 	}],
+	*/
 	data: function() {
 		return {
 			masterdata: {

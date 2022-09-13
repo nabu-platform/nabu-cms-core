@@ -1,8 +1,6 @@
 nabu.services.VueService(Vue.extend({
-	services: ["user", "cookies", "masterdata", {
-		name: "environment",
-		optional: true
-	}],
+	services: ["user", "cookies", "masterdata"],
+	optionalServices: ["environment"],
 	data: function() {
 		return {
 			cookieValue: null
