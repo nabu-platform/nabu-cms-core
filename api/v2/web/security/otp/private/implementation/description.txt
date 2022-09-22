@@ -1,0 +1,8 @@
+Generate a one-time-use password combination to run a particular service.
+The major usecase here is file downloads.
+
+Only a logged in user can request an OTP as it provides a proxy to his own identity.
+
+For security reasons, the OTP is also bound to the device.
+
+We prefix the type with "execution:" to make sure someone doesn't request an otp for the service "authentication".

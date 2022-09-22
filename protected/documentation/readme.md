@@ -1,3 +1,39 @@
+# Authentication
+
+## Typed Authentication
+
+Typed authentication allows plugging in multiple providers with different types. The basic assumption is that you have:
+
+- an identifier of who it is you are claiming to be
+- a password or more generally "secret" of some sort to prove that it is you
+- a type of authentication (e.g. password, secret, oauth2,...). this is so the typed authenticator can choose the correct implementation
+- optionally a subtype which is passed on verbatim to the implementation and allows for further distinction within that service
+
+Though the use of a password may seem outdated, it is actually broadly applicable once you broaden the definition.
+In the narrow sense a password is a bit of secret information you share with the person in question.
+
+In the broader sense, for example for oauth2, the "secret" is the code you get back from the provider. Combine this with the state (identifier) that you created when you redirected to that provider, and you have an identifier + secret.
+For sms 2fa you create a temporary 1-time use authentication with its own unique identifier and secret. The identifier is stored in the page while the sms is sent. The code in the sms is your secret.
+
+## Secret Authentication
+
+## Temporary Authentication
+
+Temporary authentication means you create a temporary credential for an existing user. For example a 2fa code sent to you via sms or mail contains a one-time-use passcode that identifies you as that user.
+It can be temporary in amount of uses or in time or both. Or none and the temporary factor is manually maintained.
+
+Temporary authentication can have multiple uses.
+For example, it might actually be used to initially authenticate, for example in sms2fa, you are only considered fully authenticated once you pass this second test (the first being username + password).
+
+Another usecase is the ability to download a document, because of how document downloading in a browser works, you need a link that contains the credentials. You want to use limited-time credentials for this.
+Of course, once you have such a link, you don't want the person to be able to abuse the credentials in that link to perform another action (like authenticate).
+
+This is why temporary authentications have a type which signifies what they can be used for. A fixed type "authenticate" is used for authentication purposes.
+
+### Opaque tokens
+
+In case of session-less authentication, we need a token in the frontend. This can be a JWT token or an opaque token.
+
 ## Security Context
 
 Security is resolved against node ids. However, in some cases you don't have a node id, especially when building reusable parts like page builder that might not even be aware of CMS.

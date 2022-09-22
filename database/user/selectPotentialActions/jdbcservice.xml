@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Action</outputDefinition>
+	<sql>select *
+from actions a join action_roles ar on a.id = ar.action_id 
+	join roles r on ar.role_id = r.id
+	join group_roles gr on gr.role_id = r.id
+	join groups g on gr.group_id = g.id
+	join user_groups ug on ug.group_id = g.id
+where ug.user_id = :userId</sql>
+</jdbcService>

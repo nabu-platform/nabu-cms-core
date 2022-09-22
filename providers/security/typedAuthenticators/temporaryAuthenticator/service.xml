@@ -41,7 +41,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="true">
-				<from>authenticate</from>
+				<from>authentication</from>
 				<to>type</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -55,11 +55,11 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="e447fe66-26a7-436c-8e0d-956987b28ffe"
+					id="2fb1a110-6063-43bc-947a-cd5e397cb1ae"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>result11d08ec78b6243a0a75f6a6d9bca2a0e/serviceContext</from>
+				<from>resultf2af51e05f404b698dc7bf4aa05ed914/current/id</from>
 				<to>webApplicationId</to>
 			</steps>
 		</steps>
@@ -74,12 +74,12 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="2d9747da-6f87-471f-8d52-ee94518ac50f"
-				serviceId="nabu.utils.Runtime.getServiceContext"
-				resultName="result11d08ec78b6243a0a75f6a6d9bca2a0e"
+				id="b3cead2e-cdb3-49a6-9653-c1cfd3ea8c48"
+				serviceId="nabu.web.application.Services.current"
+				resultName="resultf2af51e05f404b698dc7bf4aa05ed914"
 				temporaryMapping="true"
-				x="46"
-				y="32"
+				x="10"
+				y="313"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
