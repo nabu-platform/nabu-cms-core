@@ -92,4 +92,48 @@
 			<to>output/content/page</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="538f3c99-108c-4ad7-aaee-5c4b8d6a8f19"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="01f8d59a-494d-4235-b75c-fe08da88e728"
+				serviceId="nabu.web.application.Services.information"
+				resultName="result615bfd3b522f4c75a59295f62f37a75b"
+				temporaryMapping="true"
+				x="222"
+				y="156"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="170bf87c-93ef-454e-97c0-3dc5afa0130c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="a50d225a-8e81-4ade-b0b9-f1a7d53d9702"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>true</from>
+			<to>output/cache/mustRevalidate</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="90fd3e9a-7466-4d9a-ab0e-b2cf93f8a95d"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result615bfd3b522f4c75a59295f62f37a75b/information/lastCacheUpdate</from>
+			<to>output/cache/lastModified</to>
+		</steps>
+	</steps>
 </sequence>

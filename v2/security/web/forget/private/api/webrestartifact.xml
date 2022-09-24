@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
-    <method>GET</method>
-    <path>/translation</path>
+    <method>DELETE</method>
+    <path>/forget</path>
+    <cookieParameters>Remember</cookieParameters>
+    <responseHeaders>Set-Cookie</responseHeaders>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
-    <output>nabu.cms.core.crud.translation.types.outputFrontendList</output>
+    <output>nabu.cms.core.v2.security.web.forgetOutput</output>
+    <device>true</device>
     <lenient>true</lenient>
     <webApplicationId>true</webApplicationId>
     <geoPosition>false</geoPosition>
-    <language>true</language>
+    <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
-    <cache>true</cache>
+    <cache>false</cache>
     <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
     <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
     <request>false</request>

@@ -1,9 +1,0 @@
-<structure interface="nabu.cms.core.api.v2.web.security.login:api" name="pipeline">
-    <structure name="input" validate="true"/>
-    <structure name="output"/>
-    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
-    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="current"/>
-    <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
-    <field minOccurs="0" name="expires" type="java.util.Date"/>
-    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" name="node"/>
-</structure>

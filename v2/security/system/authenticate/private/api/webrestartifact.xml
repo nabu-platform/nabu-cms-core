@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
-    <method>GET</method>
-    <path>/translation</path>
+    <method>POST</method>
+    <path>/authenticate</path>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
-    <output>nabu.cms.core.crud.translation.types.outputFrontendList</output>
+    <input>nabu.cms.core.v2.security.system.authenticationInput</input>
+    <output>nabu.cms.core.v2.security.system.authenticationOutput</output>
+    <device>true</device>
     <lenient>true</lenient>
-    <webApplicationId>true</webApplicationId>
+    <webApplicationId>false</webApplicationId>
     <geoPosition>false</geoPosition>
-    <language>true</language>
+    <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
-    <cache>true</cache>
+    <cache>false</cache>
     <allowCookiesWithoutReferer>false</allowCookiesWithoutReferer>
     <allowCookiesWithExternalReferer>false</allowCookiesWithExternalReferer>
     <request>false</request>
