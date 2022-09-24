@@ -72,11 +72,9 @@ Vue.service("Language", {
 						}
 					}
 				}
-				console.log("language is", result);
 				// after that we map the name to the object
 				for (var i = 0; i < this.available.length; i++) {
 					if (this.available[i].name == result) {
-						this.setRtl(result);
 						return this.available[i];
 					}
 				}
@@ -121,4 +119,4 @@ Vue.service("Language", {
 		this.cookieValue = this.$services.cookies.get("language");
 		done();
 	}
-});
+}); 
