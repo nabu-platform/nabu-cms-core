@@ -1,5 +1,5 @@
-Vue.view("nabu-cms-core-login", {
-	priority: -1,
+Vue.view("cms-login", {
+	priority: -100,
 	alias: "login",
 	url: "/login",
 	props: {

@@ -1,0 +1,190 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="34b41df8-feea-42f8-a457-1e6bcf736aca"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Check the allowed for &quot;user.authenticate&quot;"
+			disabled="false"
+			id="25b00770-419c-45b4-a40e-484266268fb8"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="48f126ca-5bee-449c-aec5-1a609d42e7d3"
+				serviceId="nabu.cms.core.utils.user.selectAllowed"
+				resultName="resulted6f7f1247554baca057858b10b3ebaf"
+				temporaryMapping="true"
+				x="65"
+				y="59"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="fbfbb024-dab7-4a67-8f57-e9795a7704a8"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>user.authenticate</from>
+				<to>parameters/action</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4bf6005a-66f1-4630-91c4-e1249dc314c2"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ffcf94a2-1203-4f2c-a85f-1480514e49e9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8ece58a1-eca8-44b7-8418-e2204472113b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulted6f7f1247554baca057858b10b3ebaf/results</from>
+			<to>allowed</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6688f62c-3adc-460f-9022-0245c0c8601b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulted6f7f1247554baca057858b10b3ebaf/rowCount</from>
+			<to>rowCount</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="9169b62d-3980-4298-8f11-59455482430f"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulted6f7f1247554baca057858b10b3ebaf/results[groupId != null]</from>
+			<to>allowedWithGroup</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3fdb5b25-51e7-425a-8d76-f9fb1b0419fa"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>false</from>
+			<to>output/canLogin</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+			disabled="false"
+			id="bff69e90-62f2-4b14-8b8d-2ca8ed5065a0"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="For backwards compatibility: if there are no explicit rules, everyone log in that has a valid account"
+				disabled="false"
+				id="fbe49f05-0f1a-4313-a17f-b663c5de9c90"
+				label="rowCount == 0"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c5c1ee58-851f-4855-8705-a7467cad3224"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>output/canLogin</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="If we explicitly state that all $user can log in, the fact that you have a valid account is enough"
+				disabled="false"
+				id="507b81b1-1fe5-4d49-8d27-fe86e8a7c4d6"
+				label="&quot;$user&quot; # allowed/role"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f7127250-611e-445b-90ba-639a083b8e87"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>output/canLogin</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				comment="If we have any that are linked to a group, check user group memberships"
+				disabled="false"
+				id="2a1a5ae6-3287-4027-a0b3-9521948c0392"
+				label="allowedWithGroup"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="1e3b334f-dccd-47e4-93aa-f6130f15f473"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="4d3a7081-fc99-4715-a7c6-826cca9abbea"
+						serviceId="nabu.cms.core.crud.userGroup.services.list"
+						resultName="result5be4aaf9630d4e07b22881341320bac3"
+						temporaryMapping="true"
+						x="114"
+						y="46"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="4107a937-49c6-4dc9-b289-a1f81b249609"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/userId</from>
+						<to>filter/userId[0]</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="9a7e81ad-1d59-4f6d-a6dc-0bc860ea7150"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>allowed/groupId</from>
+						<to>filter/groupId</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="e65a2123-0ca2-429e-8350-21cb63c6763a"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result5be4aaf9630d4e07b22881341320bac3/results</from>
+					<to>matches</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="If we have any matches, it is ok"
+					disabled="false"
+					id="4de234bf-8990-494a-bf3c-9ed908f23537"
+					label="matches"
+					lineNumber="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="238171a7-b997-4352-91f2-f4902bed2463"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>output/canLogin</to>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

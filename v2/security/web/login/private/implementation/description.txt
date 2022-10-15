@@ -4,3 +4,8 @@ This entails that we assume device tracking is enabled and "remember me" is a vi
 We also send back additional information that can be used to optimize the user experience, for instance we send back potential roles and permissions to allow for easier toggling of frontend components.
 
 Note that the remember only works if you have a valid device id. We want to ensure a remember can only be used from a specific device, not globally.
+
+
+TODO:
+- have a toggle where login is only allowed on known devices (currently simply wiping the device cookie allows you to log in again, so it mostly protects against remembers)
+- have toggle that new devices are registered but require a separate verification

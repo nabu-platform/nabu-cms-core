@@ -1,0 +1,171 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="69e62371-aba9-466b-a298-b4a1d69b105d"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Get all open invites for this realm"
+			disabled="false"
+			id="1cad05d1-597b-4237-b4e5-57617ae5c00e"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a2f6605b-4f19-4a0b-b243-192451d9997d"
+				serviceId="nabu.cms.core.crud.userInvite.services.list"
+				resultName="resultf5afabad4dec47769139bc3d80a36274"
+				temporaryMapping="true"
+				x="122"
+				y="36"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4f6a1b02-c77e-4d06-bde3-771cad4af897"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="02e791c5-4fd8-44de-ba54-a7f1f5fc6fba"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2fa1a0ce-6d82-4b20-85bb-5c5985d50297"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/realm</from>
+				<to>filter/realm[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="793d47cd-fce5-46ed-beb5-f8894b6e8b95"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultf5afabad4dec47769139bc3d80a36274/results</from>
+			<to>allInvites</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="78192047-90de-42d6-ab89-c83ef8ada3ac"
+			lineNumber="3"
+			variable="invite"
+			into="output/invites">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+				disabled="false"
+				id="1ad92467-a813-4571-8fb0-4f3e280c7606"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="An exact match"
+					disabled="false"
+					id="60e06f08-68b2-4172-8928-4e5ab00c9baa"
+					label="invite/alias == input/alias"
+					lineNumber="5">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="e47647da-eed0-46d7-9c95-1dd55142fe58"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>invite</from>
+					<to>output/invites[0]</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+					disabled="false"
+					id="0ab6225a-ab85-4042-bb02-a2a7c11a4db8"
+					lineNumber="6">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						comment="Replace the wildcard with regex-syntax"
+						disabled="false"
+						id="b547250f-921d-44e9-bd46-6613342a4a8a"
+						lineNumber="7">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="ad7661c4-324f-407d-ae04-d51abe660086"
+							serviceId="nabu.utils.String.replace"
+							resultName="result09f47cb084eb410d954ca4fc7389aedc"
+							temporaryMapping="true"
+							x="71"
+							y="72"
+							invocationOrder="0"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="2ca3f020-aeeb-49b0-b362-b69eb66afcd4"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>invite/alias</from>
+							<to>content</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="07562895-c17f-4152-8cd1-972e2967b6ab"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>*</from>
+							<to>match</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="37b6a6a3-c620-47d4-b65c-27875bdd4145"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>.*</from>
+							<to>replace</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="48ff041d-52f0-47c9-b59a-a4b4abc5ca4a"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>false</from>
+							<to>useRegex</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="8b30303e-720c-4d5c-a49c-549997fbd713"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>result09f47cb084eb410d954ca4fc7389aedc/content</from>
+						<to>invite/alias</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="bf5634dd-ceb8-41b3-93e8-d4a52f249162"
+						label="input/alias ~ invite/alias"
+						lineNumber="8">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="69bbab37-a9ab-44ab-9cbf-0b9592ca1fa1"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>invite</from>
+						<to>output/invites[0]</to>
+					</steps>
+				</steps>
+			</steps>
+		</steps>
+		<query>allInvites</query>
+	</steps>
+</sequence>

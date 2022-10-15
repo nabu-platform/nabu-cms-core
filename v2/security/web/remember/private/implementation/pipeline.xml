@@ -5,4 +5,6 @@
     <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
     <field minOccurs="0" name="expires" type="java.util.Date"/>
     <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" name="node"/>
+    <structure collectionName="userDevices" definition="nabu.cms.core.crud.userDevice.types.output" minOccurs="0" name="currentDevice"/>
+    <field name="canLogin" type="java.lang.Boolean"/>
 </structure>

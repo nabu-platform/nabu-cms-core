@@ -54,6 +54,15 @@
 			<from>result193035c0f2294a95a9d6fb391705d4c7/parts[1]</from>
 			<to>authentication/secret</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8bb881d3-f1a1-4b98-8eee-0a26e4c46872"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>true</from>
+			<to>canLogin</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			comment="If we can't go further, we assume you are anonymous"
@@ -172,11 +181,54 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="15413479-f47e-44d0-b707-953d587b5cc1"
+			label="token/authenticationId != null"
+			lineNumber="10">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e54b15e3-8295-48b6-8417-ba261a1757c5"
+				serviceId="nabu.cms.core.services.user.canLoginAs"
+				resultName="result41dd2075ac784c24b287c1ee585f7a35"
+				temporaryMapping="true"
+				x="81"
+				y="36"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e1a4d211-e961-4b95-8ae7-7573f577c2d6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>token/authenticationId</from>
+				<to>userId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="0aa79cb4-da23-44b5-974c-9e2da58bc9b2"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result41dd2075ac784c24b287c1ee585f7a35/canLogin</from>
+			<to>canLogin</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			comment="If you are not allowed to log in, stop"
+			disabled="false"
+			id="0b6afbb5-76a9-4b75-87cd-0039f03ae17c"
+			label="!canLogin"
+			lineNumber="11"
+			code="403" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="If we successfully authenticated, create a new temporary authentication to serve as opaque token"
 			disabled="false"
 			id="23aae063-5611-441c-b8ba-81646fc2e4e9"
 			label="token"
-			lineNumber="10">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="3f76f2e0-d31f-4ef6-8cdc-96eee2c8d4e9"
@@ -288,7 +340,7 @@
 			disabled="false"
 			id="609602c6-1501-4466-b0a7-e5c8f7ea0da7"
 			label="authentication"
-			lineNumber="11">
+			lineNumber="13">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="aca3a036-8c4e-41d5-8a24-3923f586b6c3"
@@ -303,7 +355,7 @@
 			disabled="false"
 			id="9f102dc2-7664-4715-853b-af401c873e9e"
 			label="token"
-			lineNumber="12">
+			lineNumber="14">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="7bad8fb7-e370-4371-9c38-dd656d379083"
@@ -423,12 +475,12 @@
 			comment="Update remember cookie if needed"
 			disabled="false"
 			id="242c8df8-ad70-46f1-8953-bfb5f01b2404"
-			lineNumber="13">
+			lineNumber="15">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="a39cee48-849d-4ef7-a0c5-94d427a72428"
 				label="authentication"
-				lineNumber="14">
+				lineNumber="16">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="272b0892-e80f-4286-a7b0-0009bdd2e453"
@@ -492,7 +544,7 @@
 				disabled="false"
 				id="6c9490efb17b4b4387eef3215a61232d"
 				label="input/cookie/Remember != null"
-				lineNumber="15">
+				lineNumber="17">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="9026ba08a4aa4ea3827d4d59138a187e"
@@ -587,12 +639,12 @@
 			disabled="false"
 			id="d94fb19b-163c-4cc7-b998-51d3deb96aa4"
 			label="output/content/token != null &amp;&amp; token/authenticationId != null"
-			lineNumber="16">
+			lineNumber="18">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Get the node for this (presumably) user"
 				disabled="false"
 				id="64f9e8e9-b28e-445f-86dc-47a80bf3aec6"
-				lineNumber="17">
+				lineNumber="19">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ab544db2-4feb-4a95-8de8-cf5a8cd74ce0"
@@ -628,7 +680,7 @@
 				disabled="false"
 				id="53d3051e-fbb1-471f-9ac3-40b10dd90708"
 				label="node"
-				lineNumber="18">
+				lineNumber="20">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="e5691439-c441-4220-8632-2964dcf7f833"
@@ -664,7 +716,7 @@
 				disabled="false"
 				id="9a327171-dc0d-4df0-a00a-de2c9445dcb1"
 				label="node"
-				lineNumber="19">
+				lineNumber="21">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="a84331b8-cff2-4396-af09-ccc1eea237bd"
@@ -701,7 +753,7 @@
 				disabled="false"
 				id="d396098d-4046-459d-adda-fbee3933ab92"
 				label="node/languageId != null"
-				lineNumber="20">
+				lineNumber="22">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ff37d857-3443-4c7d-b5c6-e7e55d54693b"
@@ -733,18 +785,170 @@
 				<to>output/content/language</to>
 			</steps>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				comment="If we have a device, make sure it is registered to this user"
+				disabled="false"
+				id="98138971-a97d-4b78-823a-3ead1312c1bf"
+				label="input/device/deviceId != null"
+				lineNumber="23">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="5bf99cad-7583-4c24-a6fb-ce87ece19f98"
+					lineNumber="24">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="319eeb3a-256d-4f67-99d4-52cc039efd2f"
+						serviceId="nabu.cms.core.crud.userDevice.services.list"
+						resultName="result4db1c442af2d4f0e8d5ebe5a51831f84"
+						temporaryMapping="true"
+						x="186"
+						y="75"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="0be1d2db-c9ea-4e22-8128-5ead1d804432"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>token/authenticationId</from>
+						<to>filter/userId[0]</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="9a7bd176-1316-4b8b-a2f4-3f92f0d6be9e"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/device/deviceId</from>
+						<to>filter/deviceId[0]</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="85671c15-6951-43c9-86fe-79b0b2cd6509"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result4db1c442af2d4f0e8d5ebe5a51831f84/results[0]</from>
+					<to>currentDevice</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+					disabled="false"
+					id="121033ef-4c9a-4044-a327-c9e9b4fb52ca"
+					lineNumber="25">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						comment="If device is not yet known, create it"
+						disabled="false"
+						id="1c5dd030-af0c-476a-9f6c-df19bc75b711"
+						label="!currentDevice"
+						lineNumber="26">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="f15927fb-219a-4a0b-8c9f-768ffaed815b"
+							serviceId="nabu.cms.core.crud.userDevice.services.create"
+							resultName="resulte0838bc91c074007af9beff7f24faf2f"
+							temporaryMapping="true"
+							x="520"
+							y="55"
+							invocationOrder="1"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="b84c5da7-3431-4388-8d03-b7ac8de5bc32"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>true</from>
+							<to>instance/allowed</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="8b1c397d-1e86-48a4-a501-40bbfc86bd2f"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>resultab20f9a9ad83440fa4687e24886020bf/name</from>
+							<to>instance/name</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="2a1096d3-8d51-4122-a2d5-066cd25f1dcd"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>input/device/deviceDescription</from>
+							<to>instance/description</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="06e42b52-b6ad-4482-bd22-4899f9de74a6"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>input/device/deviceId</from>
+							<to>instance/deviceId</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="bd884fba-81bc-44e1-985c-01761aecfa78"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>token/authenticationId</from>
+							<to>instance/userId</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="f0e2cf79-8bd7-40bf-ad64-ecaea3c71b28"
+							serviceId="nabu.cms.core.utils.security.guessDeviceName"
+							resultName="resultab20f9a9ad83440fa4687e24886020bf"
+							temporaryMapping="true"
+							x="75"
+							y="130"
+							invocationOrder="0"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="161020a8-058c-4333-9e71-1b783a4de638"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>input/device/deviceDescription</from>
+							<to>deviceDescription</to>
+						</steps>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						comment="If this device is explicitly not allowed, drop output"
+						disabled="false"
+						id="529782a1-c7cf-40ca-8f17-73ebb70ed702"
+						label="currentDevice/allowed == false"
+						lineNumber="27">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+							disabled="false"
+							id="b2f9f3ba-d09f-44e0-b1c9-3ef3f0a2588a"
+							path="output/content" xsi:nil="true"/>
+				</steps>
+			</steps>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			comment="Set basic role"
 			disabled="false"
 			id="a909e248-136c-4e71-ba4e-d81564a52724"
-			lineNumber="21">
+			lineNumber="28">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Add $user as most basic role if the login was successful"
 				disabled="false"
 				id="58fbf90d-a971-4ea4-929a-7a4f6b5addad"
 				label="output/content/token != null"
-				lineNumber="22">
+				lineNumber="29">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="2f609b65-2988-4196-b93d-22be0c96bdbd"
@@ -849,7 +1053,7 @@
 				comment="Set $guest and any permissions that come with it"
 				disabled="false"
 				id="16043f5c-f02a-41e4-b09a-14f6a240bbb8"
-				lineNumber="23">
+				lineNumber="30">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="d8cf7fd6-52be-49ba-a68c-3f0e212c784e"

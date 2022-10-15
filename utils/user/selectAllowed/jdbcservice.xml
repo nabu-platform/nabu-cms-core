@@ -1,0 +1,12 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	r.name as role,
+	gr.group_id
+from actions a
+	join action_roles ar on a.id = ar.action_id
+	join roles r on r.id = ar.role_id
+	left outer join group_roles gr on r.id = gr.role_id
+where a.name = :action
+	
+	</sql>
+</jdbcService>

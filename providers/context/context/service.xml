@@ -112,15 +112,125 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="Try again with webApplication instead of context (backwards compatible)"
+			disabled="false"
+			id="36d7a3f809bd4a8bbefe397f05ffbf36"
+			label="!output/node"
+			lineNumber="4"
+			transactionVariable="transactionId">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Get the node"
+				disabled="false"
+				id="f8410a8769e241f4a7fedb4dcb793325"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="f094f2451753437581d3c6b2b0563f00"
+					serviceId="nabu.cms.core.database.node.selectByComponent"
+					resultName="result870e84a327364bf19cdc757017c6ab57"
+					temporaryMapping="true"
+					x="452"
+					y="266"
+					invocationOrder="1"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="26f02f40f68d42e8aa55599c637371b9"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result4b8c9b6d4b1147478b3accb71c9b9df4/component/id</from>
+					<to>parameters/componentId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9d998a25b30b40f2acd6359f476b97da"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ccf98094bea9433e91ed01a6b1f0bbaf"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>transactionId</from>
+					<to>transaction</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="ae40baaf82e7497ebf7fd150bb75278a"
+					serviceId="nabu.cms.core.services.component.get"
+					resultName="result4b8c9b6d4b1147478b3accb71c9b9df4"
+					temporaryMapping="true"
+					x="24"
+					y="41"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="eda15fb0a29c46e984a17939e17451a9"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>webApplication</from>
+					<to>name</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="42accb94458445b7bcb6ba7f718ad76b"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connection</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="567424d929f7416580752aac5f9d090c"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>transactionId</from>
+					<to>transaction</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="83c31f1f122546919831474bd4d805ce"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result870e84a327364bf19cdc757017c6ab57/results[name = /input/context]</from>
+				<to>output/node</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="12e1365ac6d8461b82b3f1f3ee8ec477"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result4b8c9b6d4b1147478b3accb71c9b9df4/component</from>
+				<to>component</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			comment="Scope node creation to another transaction"
 			disabled="false"
 			id="eb8e8c8e-5a0a-4425-9be3-7ca8637e30c5"
 			label="!output/node"
-			lineNumber="4">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="583ea583-c1eb-4875-b68b-f0565f38e6f8"
-				lineNumber="5">
+				lineNumber="7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="d0b9a17d-4311-4fea-8f39-f81b0767e677"
@@ -155,13 +265,13 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				id="65b566f3-c8a8-4db1-b060-beef26cfcb1a"
-				lineNumber="6"
+				lineNumber="8"
 				transactionVariable="transactionId">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Get the node (it could have been created by someone else with the lock)"
 					disabled="false"
 					id="6901cb15f9a3410a8ac9202b329e82d6"
-					lineNumber="7">
+					lineNumber="9">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="6b41241f4dab4c8dbc9dfb2d85f99f38"
@@ -207,7 +317,7 @@
 					disabled="true"
 					id="3e35e07b-4199-4d52-8717-9cf828222b6e"
 					label="!output/node"
-					lineNumber="8">
+					lineNumber="10">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="9e0807ea-ff25-4330-afff-bca952905999"
@@ -577,7 +687,7 @@
 					disabled="false"
 					id="e601910a2afa4e27ab0a63b43dfc24b5"
 					label="!output/node"
-					lineNumber="9">
+					lineNumber="11">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="d8fe4bdb64694a8eac9394be7321f471"
@@ -823,11 +933,11 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
 				disabled="false"
 				id="a44e0f2d-adb1-48a2-bef7-a63faa83815e"
-				lineNumber="10">
+				lineNumber="12">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="ffb4a846-18c5-4d88-aebf-49cff13a8e1e"
-					lineNumber="11">
+					lineNumber="13">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="0b1c957b-d7d1-4c8c-a1f0-9d387168e943"
@@ -864,7 +974,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="21d52774-0c4a-472c-9acd-c20fd1074760"
-			lineNumber="12">
+			lineNumber="14">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="e3426de8-121d-4539-90d2-8b1f68429db0"

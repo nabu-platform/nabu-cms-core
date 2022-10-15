@@ -1,0 +1,330 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="79d572a9-874f-4bdd-a48f-92bf71cf96b5"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Check all the allowed for &quot;user.register&quot;"
+			disabled="false"
+			id="a8037d40-9afb-4d29-b66d-526e4acbd358"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f86d1eac-1572-4ca7-9e78-9972ef7431a4"
+				serviceId="nabu.cms.core.utils.user.selectAllowed"
+				resultName="result5995f76d13b842a38f11840eccfb847a"
+				temporaryMapping="true"
+				x="70"
+				y="30"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5134ae77-d356-4c2f-9a6b-152f9bf69942"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>user.register</from>
+				<to>parameters/action</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a3f6a7a5-ae42-44c1-9730-51b666a1c1fa"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f8914df6-9d22-4bbe-abcc-267d439fc2e1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3d85f051-d972-478f-8dc1-5de5c8938a2f"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result5995f76d13b842a38f11840eccfb847a/results</from>
+			<to>allowed</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="dee3eae8-930f-4ce8-9d67-9359135d1327"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result5995f76d13b842a38f11840eccfb847a/rowCount</from>
+			<to>rowCount</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c2eb2bf9-9b33-400c-97a4-425212760a74"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>false</from>
+			<to>output/canRegister</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+			disabled="false"
+			id="7b3a507f-83c9-4010-8bc9-f5e5f7fd1900"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="For backwards compatibility: if there are no explicit rules, everyone can join"
+				disabled="false"
+				id="fbe49f05-0f1a-4313-a17f-b663c5de9c90"
+				label="rowCount == 0"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="87fa194c-7de5-45b9-a282-1095ecf7db22"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>output/canRegister</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Set to true if we have an explicit $guest role"
+				disabled="false"
+				id="507b81b1-1fe5-4d49-8d27-fe86e8a7c4d6"
+				label="&quot;$guest&quot; # allowed/role"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6af6e90d-a926-4aa9-b6d2-9309cbaf64aa"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>output/canRegister</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				comment="Otherwise, you need a standing invite to join a group that is whitelisted"
+				disabled="false"
+				id="9600a0fd-9f62-4efa-9922-3440861d3b55"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="Get all open invites for this realm"
+					disabled="false"
+					id="1cad05d1-597b-4237-b4e5-57617ae5c00e"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="a277d834-f849-4c1c-becb-6673f3d2521a"
+						serviceId="nabu.cms.core.utils.user.getInvites"
+						resultName="result693677a4b22a40ea8a52e7b55b6f7b18"
+						temporaryMapping="true"
+						x="68"
+						y="149"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="d9a1d909-a3a6-454d-94e3-58bfde7b15d2"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/connectionId</from>
+						<to>connectionId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="d73cb9f4-e226-495d-bf9e-cf13c93fe5dd"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/transactionId</from>
+						<to>transactionId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="fa3dcbe0-1516-48c7-b7b0-a035c1a54fa6"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/alias</from>
+						<to>alias</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="f135d0d9-5818-47f7-b376-380ad9e57ca9"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/realm</from>
+						<to>realm</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="dc3991cb-6567-4776-8197-2ecfb142f059"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result693677a4b22a40ea8a52e7b55b6f7b18/invites</from>
+					<to>invites</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="7ed00c37-fae9-4ad0-88ed-4f20281ec4b2"
+					lineNumber="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="15c0b676-4ef2-4de0-b19a-4e170cd162b4"
+						serviceId="nabu.utils.List.size"
+						resultName="result7a9297a8484d43c7bda2ece02c2b6310"
+						temporaryMapping="true"
+						x="56"
+						y="5"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="9cde57e3-fa9e-4e92-a7aa-a8f5f4c0a99b"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>invites</from>
+						<to>list</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="b66e890b-7c17-4f1b-a33f-05d3cbdcbb14"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result7a9297a8484d43c7bda2ece02c2b6310/size</from>
+					<to>amountOfInvites</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+					disabled="false"
+					id="0e7501f1-7bdd-4035-9f96-9ccc1bcbb216"
+					lineNumber="9">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						comment="If generic $user is allowed and you have _any_ invite, you can register"
+						disabled="false"
+						id="ea9f332f-a934-44e1-aa9f-70aeaf8b8662"
+						label="&quot;$user&quot; # allowed/role &amp;&amp; amountOfInvites &gt; 0"
+						lineNumber="10">
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+						comment="Otherwise, we need to check if you are invited to one of the relevant groups"
+						disabled="false"
+						id="49c1cab9-b5d3-4c8f-943c-1070f82852a5"
+						lineNumber="11">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							disabled="false"
+							id="9b390fb7-4ef7-4144-986a-ac36246ca1e3"
+							lineNumber="12">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="eef1ad21-6785-41c3-9b00-fe585b13f8ad"
+								serviceId="nabu.cms.core.crud.userInviteGroup.services.list"
+								resultName="result3bf9328f65974ca09201c04c5a2f0ca1"
+								temporaryMapping="true"
+								x="73"
+								y="26"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="ed37a70d-abba-466e-9bfe-1d45fb4ab2a0"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>input/connectionId</from>
+								<to>connectionId</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="5654191f-48fb-4a43-9544-09190dcf20a6"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>input/transactionId</from>
+								<to>transactionId</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="617534e2-c410-46ed-bf53-0e786a3d11f2"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>invites/id</from>
+								<to>filter/userInviteId</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="98e6e6b2-3429-41fb-8fb2-d94fe606786e"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>result3bf9328f65974ca09201c04c5a2f0ca1/results</from>
+							<to>invitedGroups</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="4976e03c-421b-485e-a2c5-e6ef6d4fbb61"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>result3bf9328f65974ca09201c04c5a2f0ca1/results/groupId</from>
+							<to>invitedGroupIds</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							comment="If you are invited to any groups, check if they match"
+							disabled="false"
+							id="b18ea905-bc08-48fb-b8cd-ee2c3317e0c7"
+							label="invitedGroups"
+							lineNumber="13">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="d6a7fc7f-a2ab-44d8-8557-c45fd61277a5"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>allowed[groupId # /invitedGroupIds]</from>
+							<to>filteredAllowed</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							comment="If we have any allowed, you can register"
+							disabled="false"
+							id="3546fd51-57a1-46a9-90a6-679cb2890e55"
+							label="filteredAllowed"
+							lineNumber="14">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="9b5a09c6-9af2-4216-94df-62f02f08e863"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>true</from>
+							<to>output/canRegister</to>
+						</steps>
+					</steps>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

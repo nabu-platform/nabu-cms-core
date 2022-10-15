@@ -1,4 +1,4 @@
-<template id="nabu-cms-core-login">
+<template id="cms-login">
 	<n-form ref="form">
 		<n-form-section>
 			<n-form-text name="username" v-focus v-timeout:input.form="validate" label="%{login:Username}" placeholder="%{login:email@example.com}" v-model="username" :required="true"/>

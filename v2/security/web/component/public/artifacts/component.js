@@ -5,7 +5,7 @@ window.addEventListener("load", function() {
 				id: "cms.login",
 				async: true,
 				implementation: function(input, $services, $value, resolve, reject) {
-					$services.user.login(input.username, input.password, input.remember, input.type).then(resolve, reject);
+					$services.user.login(input.username, input.password, input.remember, input.type, true).then(resolve, reject);
 				},
 				inputs: [{
 					"name": "username",

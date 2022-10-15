@@ -1,0 +1,11 @@
+Generate a limited-time-use password combination to run a particular service.
+The major usecase here is again file downloads, but with a slightly different take than OTP.
+We don't couple the link to the device, allowing other people to use the link as well.
+We generally don't couple the link to a correlation id, allowing broader use of the service.
+
+OTP aims at maximum security, LTP aims to provide a balance between security and usability. Some use cases that can be interesting for LTP:
+
+- generating a link with some (revokable) security that can still be shared
+- downloading multiple files in a short time, an image gallery is a prime example of this
+
+

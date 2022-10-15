@@ -11,7 +11,9 @@ Vue.service("user", {
 			// we keep track of the token here
 			// almost all calls go through the swagger client, which already has the bearer
 			// some calls however (like loading the swagger file itself) bypass the swagger client
-			bearer: null
+			bearer: null,
+			// keep track of ltp tokens
+			ltpStorage: {}
 		}
 	},
 	computed: {
@@ -71,6 +73,38 @@ Vue.service("user", {
 			}
 			return promise;
 		},
+		// get a valid ltp for an operation
+		ltp: function(operationId) {
+			var promise = this.$services.q.defer();
+			// currently hardcoded, at some point configurable
+			var maxDuration = "P1D";
+			var minDuration = "PT12H";
+			var date = new Date();
+			if (this.ltpStorage[operationId]) {
+				var useUntil = nabu.utils.dates.addDuration(minDuration, this.ltpStorage[operationId].requested);
+				if (useUntil.getTime() >= date.getTime()) {
+					this.ltpStorage[operationId].promise.then(promise);
+					return promise;
+				}
+			}
+			var self = this;
+			this.ltpStorage[operationId] = {
+				requested: date,
+				promise: this.$services.swagger.execute("nabu.cms.core.v2.security.web.ltp", {
+						serviceId: operationId,
+						duration: maxDuration
+					}).then(function(x) {
+						if (x && x.authenticationId) {
+							self.ltpStorage[operationId].authorization = x;
+							promise.resolve(x);
+						}
+						else {
+							promise.reject();
+						}
+					}, promise)
+			}
+			return promise;
+		},
 		addContextualRoles: function(context, role) {
 			if (!this.contextualRoles[context]) {
 				Vue.set(this.contextualRoles, context, []);
@@ -85,9 +119,15 @@ Vue.service("user", {
 				}
 			});
 		},
-		login: function(username, password, remember, type) {
+		login: function(username, password, remember, type, attemptRedirect) {
 			var self = this;
 			var promise = this.$services.q.defer();
+			// if we are logged in, unset the swagger bearer so we can make the call without being logged in
+			// this is more expedient than triggering a logout immediately
+			// if the new login fails however, we do want to trigger a logout to get everything set up correctly
+			if (this.loggedIn) {
+				self.$services.swagger.bearer = null;
+			}
 			this.$services.swagger.execute("nabu.cms.core.v2.security.web.login", { 
 				body: {
 					authenticationId: username,
@@ -96,28 +136,68 @@ Vue.service("user", {
 				},
 				remember: remember ? remember : false,
 				$$skipRemember: true
-				})
-				.then(function(result) {
-					self.bearer = null;
-					self.$services.swagger.bearer = null;
-					self.roles.splice(0);
-					self.permissions.splice(0);
-					if (result) {
-						self.bearer = result.token;
-						// set the bearer token for the swagger client if we have a jwt token
-						self.$services.swagger.bearer = result.token;
-						self.language = result.language;
-						if (result.roles) {
-							nabu.utils.arrays.merge(self.roles, result.roles);
+			}).then(function(result) {
+				self.bearer = null;
+				self.$services.swagger.bearer = null;
+				self.roles.splice(0);
+				self.permissions.splice(0);
+				if (result) {
+					self.bearer = result.token;
+					// set the bearer token for the swagger client if we have a jwt token
+					self.$services.swagger.bearer = result.token;
+					self.language = result.language;
+					if (result.roles) {
+						nabu.utils.arrays.merge(self.roles, result.roles);
+					}
+					if (result.permissions) {
+						nabu.utils.arrays.merge(self.permissions, result.permissions);
+					}
+				}
+				self.$services.$clear().then(function() {
+					promise.resolve(result);
+				}, promise);
+				if (attemptRedirect) {
+					var url = localStorage.getItem("redirect-to");
+					if (url) {
+						localStorage.removeItem("redirect-to");
+						var redirected = false;
+						if (self.$services.router && self.$services.router.router && self.$services.router.router.findRoute) {
+							var current = null;
+							// we want to try to do an internal redirect rather than triggering a full browser redirect
+							var parsed = new URL(url);
+							// check for actual data route
+							if (self.$services.router.router.useHash) {
+								current = self.$services.router.router.findRoute(parsed.hash && parsed.hash.length > 1 ? parsed.hash.substring(1) : "/");
+							}
+							else {
+								current = self.$services.router.router.findRoute(self.$services.router.router.localizeUrl(parsed.pathname ? parsed.pathname + parsed.search : "/"));
+							}
+							if (current && current.route && current.route.alias) {
+								// we only support parents at this point
+								if (self.$services.router.router.useParents) {
+									redirected = true;
+									self.$services.router.router.route(current.route.alias, current.parameters);
+								}
+							}
 						}
-						if (result.permissions) {
-							nabu.utils.arrays.merge(self.permissions, result.permissions);
+						if (!redirected) {
+							window.location = url;
 						}
 					}
-					self.$services.$clear().then(function() {
-						promise.resolve(result);
-					}, promise);
-				}, promise);
+					else {
+						self.$services.router.route("home");
+					}
+				}
+			}, function(error) {
+				if (self.loggedIn) {
+					self.$services.swagger.bearer = self.bearer;
+					self.logout();
+				}
+				promise.reject(error);
+				if (attemptRedirect) {
+					self.$services.router.route("error", {message: "%{Could not log in}"});
+				}
+			});
 			return promise;
 		},
 		logout: function() {

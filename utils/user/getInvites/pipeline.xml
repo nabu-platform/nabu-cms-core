@@ -1,0 +1,15 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
+        <field name="alias" type="java.lang.String"/>
+        <field name="realm" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="userInvites" definition="nabu.cms.core.crud.userInvite.types.output" maxOccurs="unbounded" minOccurs="0" name="invites"/>
+    </structure>
+    <structure collectionName="userInvites" definition="nabu.cms.core.crud.userInvite.types.output" maxOccurs="unbounded" minOccurs="0" name="allInvites"/>
+    <field minOccurs="0" name="amountOfInvites" type="java.lang.Integer"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.Group:id" maxOccurs="unbounded" minOccurs="0" name="invitedGroupIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <structure definition="nabu.cms.core.utils.user.selectAllowed.results" maxOccurs="unbounded" minOccurs="0" name="filteredAllowed"/>
+</structure>
