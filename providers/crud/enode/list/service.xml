@@ -61,11 +61,21 @@
 			<from>false</from>
 			<to>enabled/input</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="61d67d87-766e-4cbb-bceb-220c727aa908"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/configuration</from>
+			<to>configuration</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			comment="Add filter"
+			comment="Unless we specifically allow it, add the enabled filter"
 			disabled="false"
 			id="ea15512a-57b0-407d-be6f-acecea3d45cd"
+			label="configuration/allowListingDisabled != true"
 			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
