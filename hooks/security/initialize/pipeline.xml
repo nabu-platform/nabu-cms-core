@@ -1,0 +1,14 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="connectionId" type="java.lang.String"/>
+        <field minOccurs="0" name="transactionId" type="java.lang.String"/>
+        <field comment="The web application triggering this" name="webApplicationId" type="java.lang.String"/>
+        <field comment="The contextual security this is about" name="contextNodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <structure collectionName="roles" definition="nabu.cms.core.types.emodel.core.Role" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000A14" name="testerRole"/>
+        <structure collectionName="roles" definition="nabu.cms.core.types.emodel.core.Role" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000A14" name="editorRole"/>
+        <structure collectionName="roles" definition="nabu.cms.core.types.emodel.core.Role" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000A14" name="managerRole"/>
+        <structure collectionName="roles" definition="nabu.cms.core.types.emodel.core.Role" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000A14" name="guestRole"/>
+        <structure collectionName="roles" definition="nabu.cms.core.types.emodel.core.Role" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000A14" name="userRole"/>
+    </structure>
+    <structure name="output"/>
+</structure>

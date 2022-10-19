@@ -197,8 +197,8 @@
 						serviceId="nabu.utils.String.replace"
 						resultName="resultb0e2021761a342f6b97641f08d60d24d"
 						temporaryMapping="true"
-						x="77"
-						y="31"
+						x="160"
+						y="195"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
@@ -217,7 +217,7 @@
 							mask="false"
 							optional="false"
 							fixedValue="true">
-						<from>.*?\.(.*)</from>
+						<from>^[^.]+\.(.*)$</from>
 						<to>match</to>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -245,8 +245,8 @@
 						serviceId="nabu.utils.String.replace"
 						resultName="result84f5b7de16c444e8ac9c64b78fcd53a3"
 						temporaryMapping="true"
-						x="83"
-						y="216"
+						x="148"
+						y="67"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
@@ -265,7 +265,7 @@
 							mask="false"
 							optional="false"
 							fixedValue="true">
-						<from>(.*)?\..*</from>
+						<from>^([^.]+)\..*$</from>
 						<to>match</to>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"

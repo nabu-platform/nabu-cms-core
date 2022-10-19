@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>PATCH</method>
-    <path>/actionMatrix/{actionId}/{roleId}</path>
+    <path>/context/{contextId}/actionMatrix/{actionId}/{roleId}</path>
     <role>$user</role>
     <permissionAction>actionRole.create</permissionAction>
+    <permissionContext>=input/path/contextId</permissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
-    <useWebApplicationAsPermissionContext>true</useWebApplicationAsPermissionContext>
+    <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
     <lenient>true</lenient>
     <webApplicationId>false</webApplicationId>
     <geoPosition>false</geoPosition>

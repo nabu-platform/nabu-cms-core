@@ -3,9 +3,33 @@
 		id="f6e33530-3609-4f10-84a9-ce88bc4c9fc9"
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Set created to true by default"
+			disabled="false"
+			id="2df73a39-9ac4-4c71-a274-c75211081e98"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c539ac81-bcd4-4738-8437-f93409ef0c9f"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>false</from>
+			<to>output/created</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="d00337a0-38a7-4974-b842-36b17684aa3a"
+				mask="false"
+				optional="true"
+				fixedValue="true">
+			<from>true</from>
+			<to>input/create</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="1799b7fd-a2b4-4e12-bd78-0dc23505faca"
-			lineNumber="2">
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="9ea04561-338a-4013-84fd-43d3ca428c31"
@@ -44,6 +68,15 @@
 				<from>input/transactionId</from>
 				<to>transaction</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="74860873-c765-4d12-8992-8dc7fb635fd3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/ownerId</from>
+				<to>parameters/ownerId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -58,17 +91,17 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="8aae6ec3-7afd-46ae-92f9-ad1ae1c18b5b"
-			lineNumber="3">
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				id="339154be-4569-4199-9f4b-5b1ded37498c"
 				label="output/action == null &amp;&amp; (input/create == null || input/create)"
-				lineNumber="4">
+				lineNumber="5">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Map action"
 					disabled="false"
 					id="15bb79df-c624-42f8-a5bf-61ce5390d839"
-					lineNumber="5">
+					lineNumber="6">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="8e0348e3-8ed9-472a-a3cc-5ed18f05972a"
@@ -138,11 +171,20 @@
 					<from>false</from>
 					<to>output/action/audit</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="299795bb-fc86-4050-8b1c-4c34c2616409"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/ownerId</from>
+					<to>output/action/ownerId</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="ae8382f3-892c-4bd4-9d75-de915fb71bea"
-					lineNumber="6">
+					lineNumber="7">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="5a23b6c6-3f59-473a-8137-460bd4db9c9e"
@@ -182,19 +224,42 @@
 						<to>transaction</to>
 					</steps>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="13069114-f601-4cf8-bcca-472440d7ebfe"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>output/created</to>
+				</steps>
 			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="4055e39d-78e0-4a37-81cd-92f63a92c5c4"
-			lineNumber="7"
+			lineNumber="8"
 			query="output/action">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				disabled="false"
 				id="891556ff-0bc1-4d96-ae80-3ceac60889b1"
 				label="null"
-				lineNumber="8"
+				lineNumber="9"
 				message="=&quot;Could not find action: &quot; + input/name" xsi:nil="true"/>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="365b5835-ac3b-4242-80c9-e0cdcadabd9b"
+			lineNumber="10">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="e9a04ae9-ee82-4fa4-962c-d042894a3ee5"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>output/action</from>
+			<to>output/result</to>
+		</steps>
 	</steps>
 </sequence>

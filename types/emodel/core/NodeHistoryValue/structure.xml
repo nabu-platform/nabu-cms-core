@@ -9,5 +9,6 @@
     <field minOccurs="0" name="newValue" type="java.lang.String"/>
     <field name="instanceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field name="changeType" type="java.lang.String"/>
-    <field comment="The id that binds together multiple updates to a single update action. If possible it should be a node audit id, linking back to permissions and auditing. This is however not required if changes are done in a different context (e.g. a scheduled syncing process). If required you can add a database foreign key to NodeAudit.id" name="contextId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="Can point to a node audit, however this is no longer used really" minOccurs="0" name="contextId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="Links to the global correlation id" minOccurs="0" name="correlationId" type="java.lang.String"/>
 </structure>

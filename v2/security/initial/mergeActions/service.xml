@@ -1,0 +1,139 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="4c64b1cf-ef21-4649-a663-49720837bb3a"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="b8e4900d-5da0-4fed-b6ec-dd0d8c0f4002"
+			lineNumber="2"
+			variable="action"
+			into="output/actions">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="a5186ac0-4445-4ffa-9e44-95aacd25c509"
+				lineNumber="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="167a0f80-d040-42d4-9f8b-e82c43b38d86"
+					serviceId="nabu.cms.core.services.action.get"
+					resultName="result5dc931babe284e5d8f53347982cba9f9"
+					temporaryMapping="true"
+					x="174"
+					y="129"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="53d46f6f-a66b-48f3-97c5-9e17eb61a414"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="eecbd0f0-88bf-4b21-8fd5-8c426c30f1a7"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="4cf1a07b-e89a-4a12-b23d-7338ba38d937"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>action</from>
+					<to>name</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="b25d93a4-e7c4-40ec-8218-57c3743b75d1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/contextNodeId</from>
+					<to>ownerId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f989cbed-1c02-4bdb-86ef-17550635af32"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result5dc931babe284e5d8f53347982cba9f9/result</from>
+				<to>output/actions[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="025ef73d-1a51-4914-b76a-f132eb0e9162"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result5dc931babe284e5d8f53347982cba9f9/created</from>
+				<to>created</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="If we just created it, link it to the expected role"
+				disabled="false"
+				id="20a1431d-4991-4929-918a-f5f60ca3398d"
+				label="created || input/force"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="aec1ecfe-c715-4867-b6f2-3b778fa1a917"
+					serviceId="nabu.cms.core.services.action.link"
+					resultName="resultfb1cf8e31c87474bab5c8b5f0b7d54cc"
+					temporaryMapping="true"
+					x="304"
+					y="92"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="4985c108-6542-4d89-ab50-4ff53ee221a4"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="d5be1522-1990-4bfb-b58f-e08a196a5209"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="f19ff53a-efb4-4fa8-bb19-ff5953283e36"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/roleId</from>
+					<to>roleId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="3188aa7c-acd0-421f-b504-7fadd1b09b53"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>output/actions[0]/id</from>
+					<to>actionId</to>
+				</steps>
+			</steps>
+		</steps>
+		<query>input/actions</query>
+	</steps>
+</sequence>

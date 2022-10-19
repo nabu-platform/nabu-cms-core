@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<style>
+			${file.read("repository:nabu.web.core.components:/private/theme/standalone-page.css")}
+		</style>
+		<meta charset="UTF-8"> 
+		<title>Nabu - Create Administrator</title>
+	</head>
+
+	<body>
+	
+		<main>
+			
+			<div class="container">
+				
+				<h1>Nabu</h1>
+				<h2>Create Administrator</h2>
+				
+				<form method="post" id="create">
+					
+					<label for="email">
+						<input type="text" name="email" placeholder="email" autofocus>
+					</label>
+					<label for="password1">
+						<input type="password" name="password1" placeholder="password">
+					</label>
+					<label for="password2">
+						<input type="password" name="password2" placeholder="password again">
+					</label>
+
+					<button class="submit" type="submit">Create</button>
+
+				</form>
+
+			</div>
+
+		</main>
+		
+	</body>
+</html>

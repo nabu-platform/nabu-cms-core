@@ -1,0 +1,31 @@
+@nocsrf
+
+title ?= null
+
+@meta
+method ?= null
+
+if (method == "post")
+	@post
+	email ?= null
+	
+	@post
+	password1 ?= null
+	
+	@post
+	password2 ?= null
+	
+	if (password1 == password2)
+		# create the user!
+		nabu.cms.core.v2.security.initial.createAdminUser(
+			webApplication: script.environment("webApplicationId"),
+			alias: email,
+			password: password1)
+		if (request.header("Original-Target") != null)
+			redirect(request.header("Original-Target")/value)
+		else
+			redirect(server.root())
+		abort()
+
+disableLocalAccounts = false
+echo(template(resource("create.html")))

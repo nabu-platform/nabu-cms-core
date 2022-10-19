@@ -194,9 +194,10 @@ Vue.service("user", {
 					self.logout();
 				}
 				promise.reject(error);
-				if (attemptRedirect) {
-					self.$services.router.route("error", {message: "%{Could not log in}"});
-				}
+				// better to feed it back to the user in situ!
+				//if (attemptRedirect) {
+				//	self.$services.router.route("error", {message: "%{Could not log in}"});
+				//}
 			});
 			return promise;
 		},

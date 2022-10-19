@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="34424636-832e-4fa2-9922-fcdde107d948">
+		id="34424636-832e-4fa2-9922-fcdde107d948"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set created to true by default"
 			disabled="false"
-			id="2df73a39-9ac4-4c71-a274-c75211081e98">
+			id="2df73a39-9ac4-4c71-a274-c75211081e98"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="c539ac81-bcd4-4738-8437-f93409ef0c9f"
@@ -26,7 +28,8 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="278544c9-e845-4d4a-afa3-37e0787403e9">
+			id="278544c9-e845-4d4a-afa3-37e0787403e9"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="d2132059-962e-40c4-8a4e-532f28424708"
@@ -36,7 +39,8 @@
 				x="30"
 				y="90"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="6529318d-8f1e-4c96-96d8-003e616357bf"
@@ -87,16 +91,19 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="30cabaee-f098-43f6-87a7-62bb57fe0beb"
+			lineNumber="4"
 			query="output/role">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="038ea6ff-34a6-4239-9391-7d57f80532a2"
 				label="null"
+				lineNumber="5"
 				query="input/create">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="3444ab34-1bd7-4188-b19d-c92addb4fc83"
-					label="true">
+					label="true"
+					lineNumber="6">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="7f326cb5-df06-45f6-b3dc-4b3c5bbc2a1f"
@@ -106,7 +113,8 @@
 						x="21"
 						y="61"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="bdf72440-d2d1-4822-932e-95eb439951da"
@@ -175,16 +183,33 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 					disabled="false"
 					id="12fe9143-6593-47be-96ae-ca1f9b64a6f9"
+					lineNumber="7"
 					message="=&quot;The role '&quot; + input/name + &quot;' does not exist&quot;" xsi:nil="true"/>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
-			id="c0cc3c97-81b7-4601-a666-bb7e4026d13f">
+			id="c0cc3c97-81b7-4601-a666-bb7e4026d13f"
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				disabled="false"
 				id="2c217c35-868d-4eaf-b286-78bc09004ca7"
 				label="input/mustExist != null &amp;&amp; input/mustExist &amp;&amp; output/role == null"
+				lineNumber="9"
 				message="=&quot;Could not find role: &quot; + input/name" xsi:nil="true"/>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="70b8b25c-fd3c-42f2-a94a-11cb4f86379e"
+			lineNumber="10">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="77ed7046-bd23-447c-9e87-c2dfec33a00a"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>output/role</from>
+			<to>output/result</to>
+		</steps>
 	</steps>
 </sequence>

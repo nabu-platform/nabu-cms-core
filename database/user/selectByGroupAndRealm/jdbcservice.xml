@@ -6,5 +6,5 @@ from ~nodes n join ~users u on u.id = n.id
 	join ~groups g on g.id = ug.group_id
 where u.realm = :realm
 	and g.name = any(:groups)
-	and g.owner_id is null</sql>
+	and ((:ownerId is null and g.owner_id is null) or (:ownerId is not null and g.owner_id = :ownerId))</sql>
 </jdbcService>

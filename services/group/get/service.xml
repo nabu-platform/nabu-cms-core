@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="e8246996-9be7-4f0a-8d2f-e8d699634d12">
+		id="e8246996-9be7-4f0a-8d2f-e8d699634d12"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set created to false"
 			disabled="false"
-			id="2df73a39-9ac4-4c71-a274-c75211081e98">
+			id="2df73a39-9ac4-4c71-a274-c75211081e98"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="c539ac81-bcd4-4738-8437-f93409ef0c9f"
@@ -27,11 +29,13 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="3771d639-8177-4585-b1ed-cda64eeac5de"
+			lineNumber="3"
 			query="input/ownerId">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="278544c9-e845-4d4a-afa3-37e0787403e9"
-				label="null">
+				label="null"
+				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="366450de-9859-496f-b548-55e52474a30d"
@@ -41,7 +45,8 @@
 					x="30"
 					y="30"
 					invocationOrder="0"
-					asynchronous="false">
+					asynchronous="false"
+					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="c987a94f-c945-4226-84e8-85410933bcc2"
@@ -82,7 +87,8 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="298204fb-07c4-4069-bb3f-f5cd723f5bfa">
+				id="298204fb-07c4-4069-bb3f-f5cd723f5bfa"
+				lineNumber="5">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="619d76d1-3e0c-40e1-b71d-7d7cf47bb1ed"
@@ -92,7 +98,8 @@
 					x="31"
 					y="42"
 					invocationOrder="0"
-					asynchronous="false">
+					asynchronous="false"
+					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="25264b86-b1b0-4fe0-b649-950ed424d804"
@@ -144,16 +151,19 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
 			id="30cabaee-f098-43f6-87a7-62bb57fe0beb"
+			lineNumber="6"
 			query="output/group">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="038ea6ff-34a6-4239-9391-7d57f80532a2"
 				label="null"
+				lineNumber="7"
 				query="input/create">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="7e14a6c8-49e9-4d29-9617-cee4c9a5abe8"
-					label="true">
+					label="true"
+					lineNumber="8">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="1280ba2d-4886-4cb5-a9a2-2768b877427a"
@@ -163,7 +173,8 @@
 						x="23"
 						y="32"
 						invocationOrder="0"
-						asynchronous="false">
+						asynchronous="false"
+						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="0bdb7f4a-51ee-4d71-88d2-561a5520002f"
@@ -223,16 +234,34 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 					disabled="false"
 					id="12fe9143-6593-47be-96ae-ca1f9b64a6f9"
+					lineNumber="9"
 					message="=&quot;The group '&quot; + input/name + &quot;' does not exist&quot;" xsi:nil="true"/>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
-			id="c0cc3c97-81b7-4601-a666-bb7e4026d13f">
+			id="c0cc3c97-81b7-4601-a666-bb7e4026d13f"
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				disabled="false"
 				id="2c217c35-868d-4eaf-b286-78bc09004ca7"
 				label="input/mustExist != null &amp;&amp; input/mustExist &amp;&amp; output/group == null"
+				lineNumber="11"
 				message="=&quot;Could not find group: &quot; + input/name + &quot; for owner: &quot; + input/ownerId" xsi:nil="true"/>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Map output"
+			disabled="false"
+			id="5e8ba2e1-9969-4417-953f-f739634e7ab3"
+			lineNumber="12">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="a1a1e7ad-191f-4a66-8585-6da341119fb1"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>output/group</from>
+			<to>output/result</to>
+		</steps>
 	</steps>
 </sequence>

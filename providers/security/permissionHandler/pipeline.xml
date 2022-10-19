@@ -3,7 +3,6 @@
         <structure comment="Core configuration for the Nabu CMS" definition="nabu.cms.core.configuration" name="configuration"/>
     </structure>
     <structure name="output"/>
-    <structure collectionName="Actions" definition="nabu.cms.core.types.model.core.Action" minOccurs="0" name="action" namespace="nabu.web.cms.core.types.model.core"/>
     <structure collectionName="Nodes" definition="nabu.cms.core.types.model.core.Node" duplicate="id,created,modified" minOccurs="0" name="node" namespace="nabu.web.cms.core.types.model.core"/>
     <field maxOccurs="unbounded" minOccurs="0" name="nodeIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="nodeRoles" namespace="nabu.web.cms.core.types.model.core"/>
@@ -18,4 +17,7 @@
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="activeRoles" namespace="nabu.cms.core.types.model.core"/>
     <field minOccurs="0" name="amountOfActiveRoles" type="java.lang.Integer"/>
     <field foreignKey="nabu.cms.core.types.model.core.Node:id" maxOccurs="unbounded" minOccurs="0" name="connectedNodeIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <structure collectionName="actions" definition="nabu.cms.core.crud.action.types.output" maxOccurs="unbounded" minOccurs="0" name="potentialActions"/>
+    <field minOccurs="0" name="amountOfPotentialActions" type="java.lang.Integer"/>
+    <structure collectionName="actions" definition="nabu.cms.core.crud.action.types.output" minOccurs="0" name="action"/>
 </structure>

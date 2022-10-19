@@ -1,0 +1,14 @@
+# by checking the header, we can more easily combine it with other components (e.g. password protection)
+# in the password protection itself we can't do that check because the user could send in a custom header to bypass the password protection
+# in this case, if the user sends a custom header, he bypasses a screen intended to help him set up the system, his loss
+if (request.header("Original-Target") == null)
+	hasAdminUser = nabu.cms.core.v2.security.initial.hasAdminUser(
+		webApplication: script.environment("webApplicationId"))/hasAdminUser
+	
+	# if there is an admin user, remove the initial component to prevent further overhead
+	if (hasAdminUser)
+		application.stop("nabu.cms.core.v2.security.initial.component")
+	# otherwise redirect the user to force creation of an admin user
+	else
+		response.header("Original-Target", request.target())
+		response.target(server.root() + "initial-administrator")

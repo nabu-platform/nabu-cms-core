@@ -1,0 +1,10 @@
+Application Manager: can configure the application
+Application Editor: can edit the screens in page builder
+Application Tester: can test the application
+Application Administrator: can do everything. We need at least one user with this role for the setup to be considered successful.
+
+We provide a hook so other implementations can couple their own permissions as needed to these roles.
+
+By default we allow anyone with an account to log in. However, registration is by default not available to guest.
+
+System actions are the same across different applications, we _could_ create them without a context. However that makes them harder to pinpoint for management. In the future, additional features might also be added to action (like the audit already) that might differ per application.

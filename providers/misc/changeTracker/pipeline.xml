@@ -2,8 +2,9 @@
     <structure name="input"/>
     <structure name="output"/>
     <field name="auditId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
-    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" duplicate="id,created,modified" name="historyValue" namespace="nabu.cms.core.types.model.core"/>
-    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.model.core.NodeHistoryValue" duplicate="id,created,modified" maxOccurs="unbounded" minOccurs="0" name="historyValues" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.emodel.core.NodeHistoryValue" duplicate="id,created,modified" id="127-0-1-1-1d2010b9:157be19e2fe:-8000:0000000000000D20" name="historyValue" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="NodeHistoryValues" definition="nabu.cms.core.types.emodel.core.NodeHistoryValue" duplicate="id,created,modified" id="127-0-1-1-1d2010b9:157be19e2fe:-8000:0000000000000D20" maxOccurs="unbounded" minOccurs="0" name="historyValues" namespace="nabu.cms.core.types.model.core"/>
     <field minOccurs="0" name="now" type="java.util.Date"/>
     <field name="delete" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="correlationId" type="java.lang.String"/>
 </structure>

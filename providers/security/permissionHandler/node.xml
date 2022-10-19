@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-05-25T11:20:41.892+02:00" lastModified="2021-01-19T11:49:48.074+01:00" leaf="true" version="162">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-05-25T11:20:41.892+02:00" lastModified="2022-10-19T20:20:29.099+02:00" leaf="true" version="182">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
@@ -15,18 +15,19 @@
     <references>nabu.cms.core.database.user.selectConnectedGroupRoles</references>
     <references>nabu.utils.String.split</references>
     <references>nabu.cms.core.types.model.core.Role</references>
+    <references>nabu.cms.core.crud.action.types.output</references>
     <references>nabu.cms.core.types.model.core.GroupRole</references>
     <references>be.nabu.libs.authentication.api.PermissionHandler.hasPermission</references>
     <references>nabu.cms.core.interfaces.permissionHandler</references>
     <references>java.util.UUID</references>
     <references>be.nabu.libs.authentication.api.Token</references>
     <references>nabu.utils.List.addAll</references>
-    <references>nabu.cms.core.types.model.core.Action</references>
     <references>nabu.cms.core.types.model.core.Node</references>
     <references>nabu.cms.core.types.model.core.User</references>
-    <references>nabu.cms.core.database.action.selectByName</references>
     <references>nabu.utils.List.size</references>
+    <references>nabu.cms.core.database.action.selectByName</references>
     <references>nabu.cms.core.database.action.selectByNameAndComponent</references>
+    <references>nabu.cms.core.crud.action.services.list</references>
     <references>nabu.cms.core.interfaces.hasPseudoRole</references>
     <references>nabu.utils.Runtime.getDeviceFromToken</references>
     <references>nabu.cms.core.services.node.audit.create</references>

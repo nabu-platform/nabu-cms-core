@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2019-02-16T14:30:06.163+01:00" lastModified="2021-11-25T09:36:33.049+01:00" leaf="true" version="11">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2019-02-16T14:30:06.163+01:00" lastModified="2022-10-19T13:09:42.073+02:00" leaf="true" version="16">
     <comment>Get or create {action|an action}</comment>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
     <references>nabu.cms.core.types.model.core.Action</references>
     <references>nabu.cms.core.database.action.selectByName</references>
+    <references>nabu.cms.core.types.emodel.core.Action</references>
     <references>nabu.utils.Server.uuid</references>
     <references>nabu.utils.Date.now</references>
     <references>nabu.cms.core.database.action.insert</references>
     <references>java.lang.Boolean</references>
     <references>java.lang.String</references>
+    <references>java.util.UUID</references>
 </node>
