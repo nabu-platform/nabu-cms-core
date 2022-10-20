@@ -1,0 +1,58 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="d66cfe66-612d-4e90-80ca-77aa8b42406b"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="0f3bd436-fcaa-4106-8ac7-4b62a5e8e731"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="54a99696-5b4c-42c4-8d45-43102a630415"
+				serviceId="nabu.cms.core.v2.manage.security.crud.role.services.list"
+				resultName="result130b0216f3ba4d66973018bb003e5f73"
+				temporaryMapping="true"
+				x="142"
+				y="30"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3bb0d71f-ab82-406e-a7e6-59da1b3e3160"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8523622c-1119-498a-92e9-1f808fe95c77"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/q</from>
+				<to>filter/q</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="eccb79a6-5f3f-4c30-a741-457d64297bbc"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/orderBy</from>
+				<to>orderBy</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="a0d844b1-87c7-4c1e-b76d-6afaa5345e19"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result130b0216f3ba4d66973018bb003e5f73</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+</sequence>

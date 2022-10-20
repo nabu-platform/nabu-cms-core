@@ -676,50 +676,50 @@
 					lineNumber="23">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
-						id="c0bcc45a-a8f4-4b36-be30-4139bd9d945e"
-						serviceId="nabu.cms.core.providers.context.webApplication"
-						resultName="resultdfb062979e244dd3ada38369988b51dc"
+						id="d4de7436-251d-4c2a-a19b-e073d9fb0f38"
+						serviceId="nabu.cms.core.providers.context.context"
+						resultName="result7018e215367d48cda84c166a7c401442"
 						temporaryMapping="true"
-						x="228"
-						y="59"
+						x="196"
+						y="89"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
-							id="37c86716-0eee-48f7-8876-50f64741cafe"
-							mask="false"
-							optional="false"
-							fixedValue="true">
-						<from>webApplication</from>
-						<to>type</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="4032c2b5-9b34-4976-ac1d-9edde3e18d03"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>preload/webApplication</from>
-						<to>context</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="0540d284-3854-4bc5-9497-eb72f457722f"
+							id="61c36b55-4630-4a63-bb01-d704c4ac0a4c"
 							mask="false"
 							optional="false"
 							fixedValue="false">
 						<from>input/connectionId</from>
 						<to>connectionId</to>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="89d908d4-ed07-4e2c-97e5-d93f75e60249"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>context</from>
+						<to>type</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="61be6d5b-7c91-4b3c-8c56-9676693d6da7"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>preload/webApplication</from>
+						<to>context</to>
+					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="47e13cdc-c21d-493d-952e-0c6c8f2e91ae"
+						id="6bbacb16-93ad-4a6c-86b2-6dfcbb4e578a"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>resultdfb062979e244dd3ada38369988b51dc/context</from>
+					<from>result7018e215367d48cda84c166a7c401442/context</from>
 					<to>context</to>
 				</steps>
 			</steps>

@@ -2,7 +2,6 @@
 	<outputDefinition>nabu.cms.core.types.emodel.core.Action</outputDefinition>
 	<sql>select *
 from ~actions a
-	left outer join ~action_roles ar on ar.action_id = a.id
-	left outer join ~roles r on r.id = ar.role_id and r.id = :roleId
+	left outer join ~action_roles ar on ar.action_id = a.id and ar.role_id = :roleId
 where ar.id is null</sql>
 </jdbcService>

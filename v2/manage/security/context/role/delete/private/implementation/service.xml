@@ -1,0 +1,76 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="befc7472-62b5-489a-b6fb-4766686cf6dd"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="decc85b6-1d57-4ab0-80e2-20397b4114cd"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c3669ec9-3115-4953-9c2a-bf8230a4f102"
+				serviceId="nabu.cms.core.v2.manage.security.crud.role.services.list"
+				resultName="resultc7b20ec7a2484656987615b1597503fe"
+				temporaryMapping="true"
+				x="212"
+				y="81"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cb9f0892-b724-4d45-8149-f5d9e3f76ce7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>filter/id[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1fb29955-7242-4bd0-af00-577ec45ae1ca"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="b68c29e4-05e3-4a90-b1c4-7bc128286948"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc7b20ec7a2484656987615b1597503fe/results[0]</from>
+			<to>existing</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="39693061-1e41-4ccd-8bcc-1f9ecd72ecbc"
+			label="existing"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c25ed2fd-d671-44d1-8ae9-d02a7010a44d"
+				serviceId="nabu.cms.core.v2.manage.security.crud.role.services.delete"
+				resultName="result6722f30dc7cc47fea9e1e1a94f33dbf9"
+				temporaryMapping="true"
+				x="111"
+				y="65"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0832f601-2174-48d4-9651-be9a7a2b1f46"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>existing/id</from>
+				<to>id</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

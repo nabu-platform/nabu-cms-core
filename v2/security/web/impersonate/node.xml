@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-28T13:07:45.516+02:00" lastModified="2022-10-05T13:52:29.786+02:00" leaf="true" version="20">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-28T13:07:45.516+02:00" lastModified="2022-10-20T11:24:07.507+02:00" leaf="true" version="21">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
-    <references>nabu.web.application.Services.newTemporaryAuthentication</references>
-    <references>nabu.cms.core.crud.user.services.get</references>
-    <references>be.nabu.libs.authentication.api.Device</references>
-    <references>nabu.cms.core.database.user.selectPotentialActions</references>
+    <references>nabu.cms.core.services.security.getPotentialSecurity</references>
     <references>nabu.cms.core.v2.security.web.loginOutput</references>
-    <references>nabu.cms.core.database.user.selectPotentialRoles</references>
+    <references>nabu.web.application.Services.newTemporaryAuthentication</references>
     <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
+    <references>nabu.cms.core.crud.user.services.get</references>
     <references>nabu.cms.core.crud.user.types.output</references>
     <references>nabu.cms.core.crud.masterDataEntry.services.get</references>
     <references>java.lang.String</references>
+    <references>be.nabu.libs.authentication.api.Device</references>
     <references>nabu.utils.Date.incrementDuration</references>
 </node>

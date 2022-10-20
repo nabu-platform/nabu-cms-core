@@ -1,9 +1,10 @@
 <structure name="pipeline">
     <structure name="input">
-        <field name="name" type="java.lang.String"/>
-        <field minOccurs="0" name="type" type="java.lang.String"/>
+        <field minOccurs="0" name="id" type="java.lang.String"/>
     </structure>
     <structure name="output">
         <structure collectionName="Contexts" definition="nabu.cms.core.crud.context.types.output" duplicate="id, created, modified" minOccurs="0" name="context"/>
     </structure>
+    <structure definition="nabu.utils.types.ContextInformation" minOccurs="0" name="information"/>
+    <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="node"/>
 </structure>

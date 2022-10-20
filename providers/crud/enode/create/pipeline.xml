@@ -1,10 +1,12 @@
 <structure interface="be.nabu.eai.module.services.crud.api.CRUDProvider.create" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.emodel.core.Node" duplicate="id,created,modified" name="node" namespace="nabu.cms.core.types.model.core"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.emodel.core.Node" duplicate="id,created,modified" name="existingNode" namespace="nabu.cms.core.types.model.core"/>
-    <structure collectionName="Nodes" definition="nabu.cms.core.types.emodel.core.Node" duplicate="id,created,modified" name="parentNode" namespace="nabu.cms.core.types.model.core"/>
-    <structure collectionName="Components" definition="nabu.cms.core.types.emodel.core.Component" name="existingComponent" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.emodel.core.Node" duplicate="id,created,modified" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000990" name="node" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.emodel.core.Node" duplicate="id,created,modified" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000990" name="existingNode" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Nodes" definition="nabu.cms.core.types.emodel.core.Node" duplicate="id,created,modified" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000990" name="parentNode" namespace="nabu.cms.core.types.model.core"/>
+    <structure collectionName="Components" definition="nabu.cms.core.types.emodel.core.Component" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:00000000000009F9" name="existingComponent" namespace="nabu.cms.core.types.model.core"/>
     <field minOccurs="0" name="componentName" type="java.lang.String"/>
     <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+    <structure definition="nabu.cms.core.providers.crud.enode.configuration" name="configuration"/>
+    <structure definition="nabu.utils.types.ContextInformation" minOccurs="0" name="contextInformation"/>
 </structure>

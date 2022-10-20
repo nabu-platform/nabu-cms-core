@@ -1,0 +1,20 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.v2.manage.security.context.account.membership</outputDefinition>
+	<sql>select 
+	ug.id,
+	ug.started,
+	ug.stopped,
+	case when gr.node_id = :nodeId then false else true end,
+	g.id,
+	gr.role_id,
+	gr.node_id,
+	ug.user_id
+from ~group_roles gr
+	join nodes n on gr.node_id = n.id
+	join ~groups g on gr.group_id = g.id
+	join ~user_groups ug on ug.group_id = g.id
+where (:nodeId is null or gr.node_id = :nodeId
+		or (n.path like '%' || :nodeId || '%' and gr.inherit = true))
+	and (:roleId is null or gr.role_id = any(:roleId))
+	and ug.user_id = any(:userId)</sql>
+</jdbcService>

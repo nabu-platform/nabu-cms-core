@@ -1,0 +1,19 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select distinct
+	a.name,
+	n.name as context
+from ~actions a
+	left outer join ~nodes n on n.id = a.owner_id and n.component_id = (select id from ~components where name='context')
+	join ~action_roles ar on a.id = ar.action_id
+	join ~group_roles gr on gr.role_id = ar.role_id
+	join ~user_groups ug on ug.group_id = gr.group_id
+where ug.user_id = any(:userId)
+	and (:current is null or (
+		ug.started is not null
+		and ug.started &lt;= :current
+		and (ug.stopped is null or ug.stopped &gt; :current)
+		and gr.started is not null
+		and gr.started &lt;= :current
+		and (gr.stopped is null or gr.stopped &gt; :current)
+	))</sql>
+</jdbcService>

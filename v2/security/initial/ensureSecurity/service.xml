@@ -413,6 +413,45 @@
 			<from>result1dbd800df71f4551a7ffbb899b237a1b/parts</from>
 			<to>userPermissions</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="3698f9f9-42f7-4771-8edb-1d58c5f73ce2"
+				serviceId="nabu.utils.String.split"
+				resultName="result6ab599edb2cc4590886d21088452021b"
+				temporaryMapping="true"
+				x="140"
+				y="380"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="224dae0d-3dda-413b-8625-043223346ab4"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>user.impersonate,user.manage</from>
+				<to>string</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a7b2c143-a3ad-4c7a-88a6-04408f8818f9"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>,</from>
+				<to>separator</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="ebe795e0-9546-41fc-b93e-be2aba24407f"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result6ab599edb2cc4590886d21088452021b/parts</from>
+			<to>managerPermissions</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
@@ -541,10 +580,73 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="e84ba685beef4144b7d56f600d4a2b34"
+			label="managerPermissions"
+			lineNumber="10">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7a04d35624264c078c2abe77f8ff4954"
+				serviceId="nabu.cms.core.v2.security.initial.mergeActions"
+				resultName="result578b4b36a1c546edb145079ad1d71fe2"
+				temporaryMapping="true"
+				x="147"
+				y="42"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3fbb339d93004e85b71dafeaa5fe15f6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/contextNodeId</from>
+				<to>contextNodeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="95b88f67f0bc4aedb0dcd6d7ea8670ca"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9c3fa3b4e03a4331802baba7b6f596a7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e5c404c0-8957-4e2e-a6b5-9c77caa23ee9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>managerPermissions</from>
+				<to>actions</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5a9812ab-c4fc-44be-ac0d-93a2c435652f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/managerRole/id</from>
+				<to>roleId</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Allow other systems to hook into this"
 			disabled="false"
 			id="b3fdec74-c664-4c6c-863d-eb06fb62260f"
-			lineNumber="10">
+			lineNumber="11">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="c83ca9cd-bbc6-4d2b-ac3f-b247c688d833"
@@ -642,7 +744,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="36700f00-5c59-4bc0-bb10-31536f3eb7cd"
-			lineNumber="11">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="9b1ea68e-0a1d-42a9-ae03-812c58514f4b"

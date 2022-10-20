@@ -1,0 +1,63 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="a585d3aa-0990-48b5-a5d6-f5243070deb9"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="96618c20-391a-41ab-8fac-62ad5435ffb4"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="765d79cc-cd8c-4132-8e1a-7e0df2b73ad2"
+				serviceId="nabu.cms.core.v2.manage.security.account.realms"
+				resultName="resultfa36cb49ae2c4a02b25b2077551249bf"
+				temporaryMapping="true"
+				x="206"
+				y="35"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4e1a186c-d1c5-4606-be82-64ee94491533"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultfa36cb49ae2c4a02b25b2077551249bf/content/realms/name</from>
+			<to>allowedRealms</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="5dfcd309-8b27-484a-84b2-80f572159c5f"
+			label="input/content/realm !# allowedRealms"
+			lineNumber="3"
+			code="403" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="4aac1592-4f64-4126-a832-e7e956f64901"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="bd079e82-5fbf-40ec-8825-5077c80f4b03"
+				serviceId="nabu.cms.core.v2.manage.security.crud.account.services.create"
+				resultName="result4e31aab8677c419c959fc06264a6d151"
+				temporaryMapping="true"
+				x="205"
+				y="90"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="34ff6120-7c18-4625-bdf5-e2baa76a4a93"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/content</from>
+				<to>instance</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.UserGroup</outputDefinition>
+	<sql>select * 
+from ~user_groups ug
+	join ~group_roles gr on gr.group_id = ug.group_id and gr.role_id = :roleId
+where ((:contextNodeIds is null and gr.node_id is null) or gr.node_id = any(:contextNodeIds))
+	and (:userId is null or ug.user_id = any(:userId))</sql>
+</jdbcService>

@@ -1,0 +1,72 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="83f74f86-21c6-44ac-a360-08951595d303"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="cffeaf3d-82ef-4fc0-a288-a6126e484e6e"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7b5fcdd4-2b36-4431-868c-fd825d73013b"
+				serviceId="nabu.cms.core.v2.manage.security.account.realms"
+				resultName="result04340c40d8e8451a9957b033f9575274"
+				temporaryMapping="true"
+				x="235"
+				y="48"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3051004d-075c-4163-9f79-7ab52ca4e516"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result04340c40d8e8451a9957b033f9575274/content/realms/name</from>
+			<to>allowedRealms</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="5dfcd309-8b27-484a-84b2-80f572159c5f"
+			label="input/content/realm !# allowedRealms"
+			lineNumber="3"
+			code="403" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="2fc46655-463f-41c6-9e79-c061de25aaf3"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="061f1f33-bb7b-47cb-94a0-498f04b785b6"
+				serviceId="nabu.cms.core.v2.manage.security.crud.account.services.update"
+				resultName="result22242756d93749e580a172a99449dd1f"
+				temporaryMapping="true"
+				x="236"
+				y="48"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4528c673-6c95-44ab-b893-6da39808fbe6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/accountId</from>
+				<to>id</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dc3eb056-0231-4c48-81a9-37c9aed11357"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/content</from>
+				<to>instance</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

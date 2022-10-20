@@ -7,6 +7,7 @@ Vue.service("user", {
 			roles: ["$guest"],
 			permissions: [],
 			contextualRoles: {},
+			application: "${environment('webApplicationId')}",
 			remembering: false,
 			// we keep track of the token here
 			// almost all calls go through the swagger client, which already has the bearer
@@ -283,32 +284,30 @@ Vue.service("user", {
 			}
 			return false;
 		},
-		hasRole: function() {
-			for (var i = 0; i < arguments.length; i++) {
-				if (this.roles.indexOf(arguments[i]) >= 0) {
-					return true;
-				}
+		hasRole: function(role, context) {
+			if (context == "this") {
+				context = this.application;
 			}
-			return false;
+			var fullName = (context ? context + ":" : "") + role;
+			return this.roles.indexOf(fullName) >= 0;
 		},
-		hasPermission: function() {
-			for (var i = 0; i < arguments.length; i++) {
-				if (this.permissions.indexOf(arguments[i]) >= 0) {
-					return true;
-				}
+		hasPermission: function(action, context) {
+			if (context == "this") {
+				context = this.application;
 			}
-			return false;
+			var fullName = (context ? context + ":" : "") + action;
+			return this.permissions.indexOf(fullName) >= 0;
 		},
 		// backwards compatible
-		hasPotentialRole: function() {
-			return this.hasRole(arguments);
+		hasPotentialRole: function(role, context) {
+			return this.hasRole(role, context);
 		},
 		// backwards compatible
-		hasAction: function() {
-			return this.hasPermission(arguments);
+		hasAction: function(action, context) {
+			return this.hasPermission(action, context);
 		},
-		hasPotentialAction: function() {
-			return this.hasAction(arguments);
+		hasPotentialAction: function(action, context) {
+			return this.hasPermission(action, context);
 		}
 	}
 });

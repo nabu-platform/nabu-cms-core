@@ -1,0 +1,104 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="0e54b1b0-f150-4547-b0bc-987cb5665b29"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="930e7a14-4be7-461b-9f1d-418a178e15d1"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="944f4062-02d5-4cfb-959d-6a180c6f5c57"
+				serviceId="nabu.cms.core.v2.manage.security.crud.account.services.get"
+				resultName="resultd31415d22baf4cd2a2113481b89c98b5"
+				temporaryMapping="true"
+				x="119"
+				y="90"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="efc9af77-6e7b-4bce-b527-4e854f0936db"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/accountId</from>
+				<to>id</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="736dafd8-7e56-4fcc-affb-4d203f5323c0"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultd31415d22baf4cd2a2113481b89c98b5/result</from>
+			<to>account</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="7c390b8e-e673-48c3-8650-f9778d8e0137"
+			label="!account"
+			lineNumber="3"
+			code="404" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="db728f3a-90ab-42e7-b3f1-db1b9ca06780"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="d2eafea6-5b4f-4752-b2cf-ad720a85e690"
+				serviceId="nabu.cms.core.v2.manage.security.account.realms"
+				resultName="resultc83ef31436d841faa34e444e6b34fa2e"
+				temporaryMapping="true"
+				x="147"
+				y="40"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="94c4c7c1-0621-4d93-8bac-ea1b00a04dbc"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc83ef31436d841faa34e444e6b34fa2e/content/realms/name</from>
+			<to>allowedRealms</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="5dfcd309-8b27-484a-84b2-80f572159c5f"
+			label="account/realm !# allowedRealms"
+			lineNumber="5"
+			code="403" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="6c9bd2bc-1f17-4673-abb9-ef6ee45229b6"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a4633ca2-eed5-45ff-8d63-ce366d9e2cba"
+				serviceId="nabu.cms.core.v2.manage.security.crud.account.services.delete"
+				resultName="resultb7f78586b7914393a2db942ee10d09ff"
+				temporaryMapping="true"
+				x="165"
+				y="72"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="89c0024c-9a9e-43ea-bd90-0cd46a6e39cc"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/accountId</from>
+				<to>id</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

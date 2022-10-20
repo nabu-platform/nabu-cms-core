@@ -1,0 +1,122 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="9924d946-1701-4f3c-9f6f-f6d00b5b29fb"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="512741a1-f02f-4f23-9f32-58d8ca1347b2"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="54739bf8-c261-418b-aad8-5d053a58dc8c"
+				serviceId="nabu.cms.core.v2.manage.security.account.selectRealms"
+				resultName="result45d54813ffc34b5eacf0b61082d0a3a9"
+				temporaryMapping="true"
+				x="442"
+				y="38"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2170a238-54de-41ab-84b1-25170606aa59"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result67c6e2f7aaef43efbb9f4a6465f1f823/current/id</from>
+				<to>parameters/userIds[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="cb832c74-d77d-4fba-9718-186dbd5d4c32"
+				serviceId="nabu.cms.core.services.user.getCurrent"
+				resultName="result67c6e2f7aaef43efbb9f4a6465f1f823"
+				temporaryMapping="true"
+				x="30"
+				y="124"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="ed482bd9-010c-407e-8b99-1ec4f2e3905c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result45d54813ffc34b5eacf0b61082d0a3a9/results/name</from>
+			<to>manageableContextIds</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="1fad3ae1-cf50-4c4c-8ddf-10ddf2a0fc32"
+			label="manageableContextIds"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="55c39845-beec-4e5a-b944-6c528b74b6bb"
+				serviceId="nabu.web.application.Services.list"
+				resultName="result8347be5036c64c0e9617c9b1cda62e95"
+				temporaryMapping="true"
+				x="135"
+				y="41"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="76da8afd-fce0-44b3-b380-501e71a8f001"
+				serviceId="nabu.utils.List.unique"
+				resultName="result0a83c960473c4554a8afccce10f9eee3"
+				temporaryMapping="true"
+				x="406"
+				y="180"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6080844f-3541-4136-adc2-c3f75eea27df"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8347be5036c64c0e9617c9b1cda62e95/applications[id # /manageableContextIds]/realm</from>
+				<to>list</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="e99d0040-150a-40cc-af9e-d042975d8694"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result0a83c960473c4554a8afccce10f9eee3/list</from>
+			<to>realms</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="733b1ca1-9693-4413-b49b-9dc7a23d8da8"
+			lineNumber="4"
+			variable="realm"
+			into="output/content/realms">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="3b97b3e4-5b99-4bcf-b63a-659120d6c6ba"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4c0eca87-dcda-45ca-9987-032ba21b5041"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>realm</from>
+				<to>output/content/realms[0]/name</to>
+			</steps>
+		</steps>
+		<query>realms</query>
+	</steps>
+</sequence>

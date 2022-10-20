@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:19:25.667+02:00" lastModified="2022-10-11T14:08:19.054+02:00" leaf="true" version="57">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:19:25.667+02:00" lastModified="2022-10-20T11:24:51.391+02:00" leaf="true" version="59">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
-    <references>nabu.utils.List.add</references>
     <references>nabu.cms.core.crud.node.types.output</references>
+    <references>nabu.web.application.Services.newTemporaryAuthentication</references>
     <references>java.util.Date</references>
+    <references>nabu.web.application.Services.formatCookie</references>
     <references>be.nabu.libs.authentication.api.Device</references>
+    <references>be.nabu.libs.authentication.api.Token</references>
     <references>nabu.cms.core.crud.userDevice.services.create</references>
     <references>nabu.cms.core.crud.userDevice.types.output</references>
-    <references>nabu.cms.core.database.user.selectPotentialRoles</references>
+    <references>nabu.cms.core.services.security.getPotentialSecurity</references>
+    <references>nabu.cms.core.v2.security.web.loginOutput</references>
+    <references>nabu.cms.core.crud.node.services.get</references>
+    <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
     <references>nabu.cms.core.crud.masterDataEntry.services.get</references>
     <references>java.lang.Boolean</references>
     <references>java.lang.String</references>
     <references>nabu.cms.core.utils.security.guessDeviceName</references>
+    <references>nabu.cms.core.services.user.canLoginAs</references>
     <references>nabu.cms.core.crud.userDevice.services.list</references>
     <references>nabu.utils.String.split</references>
     <references>nabu.web.application.Services.temporarilyAuthenticate</references>
-    <references>nabu.web.application.Services.newTemporaryAuthentication</references>
-    <references>nabu.web.application.Services.formatCookie</references>
-    <references>be.nabu.libs.authentication.api.Token</references>
-    <references>nabu.utils.List.addAll</references>
-    <references>nabu.cms.core.database.user.selectPotentialActions</references>
-    <references>nabu.cms.core.v2.security.web.loginOutput</references>
-    <references>nabu.cms.core.crud.node.services.get</references>
-    <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
-    <references>nabu.cms.core.database.action.selectByRoleName</references>
-    <references>nabu.cms.core.services.user.canLoginAs</references>
     <references>nabu.utils.Date.incrementDuration</references>
 </node>

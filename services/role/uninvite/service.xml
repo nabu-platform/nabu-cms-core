@@ -1,0 +1,85 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="5b81381c-3400-42a3-8c28-b300038b46d3"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="63e9b9a3-fa71-4be6-b126-c6041f4b9b89"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="3bee2976-1eed-4fbf-8221-db62fcefa403"
+				serviceId="nabu.cms.core.services.user.selectUserGroupForRole"
+				resultName="resultc6300c2efb6e48ea8f46a0c76e5503fc"
+				temporaryMapping="true"
+				x="49"
+				y="77"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f284b41e-79c9-48e1-b345-9627e98a0666"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/roleId</from>
+				<to>parameters/roleId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="da9b8a10-ef8c-42f3-8584-f479a554675d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/userId</from>
+				<to>parameters/userId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8714b993-a876-4500-b373-059d4c25c53a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/contextId</from>
+				<to>parameters/contextNodeIds</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="26bde70b-2423-4239-aba3-f22edec13dea"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc6300c2efb6e48ea8f46a0c76e5503fc/results</from>
+			<to>existing</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="37fe4bed-2230-48e2-9cdf-02319b3665a3"
+			label="existing"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="85704b76-8a8e-4b34-97bf-0180f030ee39"
+				serviceId="nabu.cms.core.crud.userGroup.batch.deleteAll"
+				resultName="result60235601ffcc4f308dc8a74be767e366"
+				temporaryMapping="true"
+				x="88"
+				y="53"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="02e0f1e8-b7c3-4533-b031-a8c1a88def16"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>existing/id</from>
+				<to>id</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

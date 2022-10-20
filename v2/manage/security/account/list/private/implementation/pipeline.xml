@@ -1,0 +1,6 @@
+<structure interface="nabu.cms.core.v2.manage.security.account.list:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure comment="A digest that resembles grouprole" definition="nabu.cms.core.v2.manage.security.context.account.membership" maxOccurs="unbounded" minOccurs="0" name="allMemberships"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="allowedRealms" type="java.lang.String"/>
+</structure>

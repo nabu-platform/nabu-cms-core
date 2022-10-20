@@ -1,0 +1,189 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="bf64bee8-e674-4dc1-a8e5-f291c7a4247d"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="509c6822-daff-46b4-80e5-94ba282af482"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="4247934b-f722-434c-ab72-ce6c4ecd1cd6"
+				serviceId="nabu.cms.core.v2.manage.security.crud.role.services.list"
+				resultName="result48c9fa4353434871ab90cd97b739d293"
+				temporaryMapping="true"
+				x="66"
+				y="64"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9940c698-5158-4f32-8a7b-f053b5d27935"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>filter/id[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2d37793a-6598-4100-b692-c568c6ba8e51"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6733a8b6-976b-4906-b400-fbc2c116f408"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result48c9fa4353434871ab90cd97b739d293/results[0]</from>
+			<to>existing</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="db531422-7cfb-490c-9792-8bf6c5debbe6"
+			label="!existing"
+			lineNumber="3"
+			code="404" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Groups with the exact same name should be renamed for clarity, these are &quot;autogroups&quot;"
+			disabled="false"
+			id="6deedb6c-f191-4bae-aa3f-cbcd25ee7f34"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a9cdcc6e-e00e-432e-a46f-ee20c3d72441"
+				serviceId="nabu.cms.core.v2.manage.security.context.role.selectGroups"
+				resultName="result55575daadf1c471aa622cb7107788371"
+				temporaryMapping="true"
+				x="101"
+				y="92"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5e94ed78-ccb8-4949-8475-df65b3c025f0"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>parameters/roleId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="78c73a3c-6740-4fe6-9cbb-5da9cfe17a62"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result55575daadf1c471aa622cb7107788371/results[name == /existing/name]</from>
+			<to>groupsToRename</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Map updates"
+			disabled="false"
+			id="30709649-06a9-4ce6-8098-d5dfa8a7c01f"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4667c264-abca-43e4-a59d-73e4b69b0a1d"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/content/name</from>
+			<to>existing/name</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="242a994e-df93-4796-90e7-91912e725ebe"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="6c42355d-0a20-4aa2-bbee-9711a8d0dc97"
+				serviceId="nabu.cms.core.v2.manage.security.crud.role.services.update"
+				resultName="result34f750abd73946e392de0499e38f2b64"
+				temporaryMapping="true"
+				x="84"
+				y="110"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4a42ab90-fffe-42a8-a7db-2250f664697b"
+					mask="true"
+					optional="false"
+					fixedValue="false">
+				<from>existing</from>
+				<to>instance</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="19bed0f7-05da-4304-8096-cbbc958008d6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>existing/id</from>
+				<to>id</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="99025bf1-d709-4430-82da-44381b36fb7c"
+			lineNumber="7"
+			variable="group">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="0a1fd3d6-2d91-4c8f-9785-510f1eea4f9f"
+				lineNumber="8">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="457f550b-4fb0-4922-8242-b59c7710c64e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/content/name</from>
+				<to>group/name</to>
+			</steps>
+		</steps>
+		<query>groupsToRename</query>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="42e65c62-4aac-4140-8371-b3949f18f033"
+			label="groupsToRename"
+			lineNumber="9">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="fd71e2e6-113e-4a8e-b763-f7370fc9613a"
+				serviceId="nabu.services.jdbc.Services.update"
+				resultName="result1eab79bef9c7441696e2e19dd7159996"
+				temporaryMapping="true"
+				x="50"
+				y="60"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5bb33c22-3e51-4cd2-bb5f-8288ebf73572"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>groupsToRename</from>
+				<to>instances</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

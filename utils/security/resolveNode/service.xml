@@ -574,17 +574,39 @@
 			</steps>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="We try the context"
 			disabled="false"
-			id="5f36c404-22fe-4505-adb8-210d665e3545"
-			lineNumber="23"
-			query="output/node">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			id="70f0995d-d416-4838-bdde-881de13e23ab"
+			label="output/node == null"
+			lineNumber="23">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="45eeba61-9181-4719-85c0-7bcfaf185390"
-				label="null"
-				lineNumber="24"
-				code="NODE-NOT-FOUND"
-				message="=&quot;Can not find node: &quot; + input/context" xsi:nil="true"/>
+				id="3e3e43bd-79c7-45f3-8a99-9b24c268e9af"
+				serviceId="nabu.cms.core.services.context.get"
+				resultName="result18a1f587e5b2497297a38dc16a305c58"
+				temporaryMapping="true"
+				x="159"
+				y="162"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c94d3054-8125-41b0-b1ea-fc6762c55360"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>result18a1f587e5b2497297a38dc16a305c58/context</from>
+			<to>output/node</to>
+		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="45eeba61-9181-4719-85c0-7bcfaf185390"
+			label="output/node == null"
+			lineNumber="24"
+			code="NODE-NOT-FOUND"
+			message="=&quot;Can not find node: &quot; + input/context" xsi:nil="true"/>
 </sequence>

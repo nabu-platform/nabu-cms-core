@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select distinct
+	a.name,
+	n.name as context
+from ~actions a
+	left outer join ~nodes n on n.id = a.owner_id and n.component_id = (select id from ~components where name='context')
+	join ~action_roles ar on a.id = ar.action_id
+	-- guest roles in any context are allowed
+	join ~roles r on ar.role_id = r.id and r.name = '$' || 'guest'</sql>
+</jdbcService>

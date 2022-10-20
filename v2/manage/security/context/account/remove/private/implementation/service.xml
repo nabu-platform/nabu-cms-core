@@ -1,0 +1,49 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="46f5c68c-6c10-487e-8cdc-916eabd8bd05"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="be80d381-e6b0-4a2f-adc3-9449a55bca9f"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f91a19ee-6626-491c-882e-1bee95a29383"
+				serviceId="nabu.cms.core.services.role.uninvite"
+				resultName="result54cc535c0bfb4143a3a7ba96b9754225"
+				temporaryMapping="true"
+				x="86"
+				y="85"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7f84b89b-57ed-4526-bbbf-39f2ca008530"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>roleId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5ae64aae-da86-4552-a784-d2774ff9a90b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>contextId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ac7aa707-b81e-49d3-8e2b-dacab3a50d31"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/accountId</from>
+				<to>userId</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>
