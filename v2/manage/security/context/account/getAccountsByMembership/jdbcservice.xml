@@ -1,0 +1,15 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select u.user_id from
+	(select 
+		ug.user_id,
+		count(gr.role_id) as amount
+	from ~group_roles gr
+		join ~nodes n on gr.node_id = n.id and (:nodeId is null or n.id = :nodeId)
+		join ~groups g on gr.group_id = g.id
+		join ~user_groups ug on ug.group_id = g.id
+	where (:nodeId is null or gr.node_id = :nodeId
+			or (n.path like '%' || :nodeId || '%' and gr.inherit = true))
+		and (:roleId is null or gr.role_id = any(:roleId))
+	group by ug.user_id) u
+where u.amount &gt;= :amountOfRolesToMatch</sql>
+</jdbcService>

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-10-19T21:06:12.572+02:00" lastModified="2022-10-20T16:08:01.742+02:00" leaf="true" version="10">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-10-19T21:06:12.572+02:00" lastModified="2022-10-21T13:16:51.285+02:00" leaf="true" version="14">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
-    <references>nabu.cms.core.services.masterdata.entry.get</references>
+    <references>nabu.cms.core.services.context.ensureSecurity</references>
     <references>nabu.utils.reflection.Node.get</references>
     <references>nabu.cms.core.crud.context.services.list</references>
+    <references>nabu.utils.Runtime.getServiceContext</references>
+    <references>nabu.cms.core.crud.context.services.get</references>
+    <references>nabu.cms.core.services.masterdata.entry.get</references>
     <references>nabu.utils.Runtime.getContextInformation</references>
     <references>java.lang.String</references>
-    <references>nabu.utils.Runtime.getServiceContext</references>
     <references>nabu.cms.core.crud.context.services.create</references>
     <references>nabu.utils.types.NodeDescription</references>
+    <references>nabu.cms.core.services.context.ensureAdminPrivileges</references>
     <references>nabu.utils.types.ContextInformation</references>
-    <references>nabu.cms.core.crud.context.services.get</references>
     <references>nabu.cms.core.crud.context.types.output</references>
 </node>

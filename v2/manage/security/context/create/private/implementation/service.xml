@@ -1,0 +1,40 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="9d4b4a25-e8e1-474a-ab58-8ea17c72b25e"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="8a440a50-d941-4b0d-9c42-08b92e7f21c4"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e068d592-8263-461d-8335-9e53dd1c7778"
+				serviceId="nabu.cms.core.v2.manage.security.crud.context.services.create"
+				resultName="result0c872ab77d99461eab073d1a293a1031"
+				temporaryMapping="true"
+				x="186"
+				y="29"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2dbf354e-a98b-4d96-bccc-404cd02c711d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/content</from>
+				<to>instance</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="20376b2c-15b7-4a39-8c16-de1bcb96e227"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result0c872ab77d99461eab073d1a293a1031/created</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+</sequence>

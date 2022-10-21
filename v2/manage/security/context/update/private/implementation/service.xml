@@ -1,0 +1,40 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="82735bb9-d2df-440e-88fc-641d6d3bae01"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="d71255a0-3c41-4639-83eb-b8b673f7bb59"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="fc812591-1d54-4528-b6e8-f7702a2c95a8"
+				serviceId="nabu.cms.core.v2.manage.security.crud.context.services.update"
+				resultName="result2c451e74e85a43d1989d79bdc477b731"
+				temporaryMapping="true"
+				x="99"
+				y="77"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="00c03e9c-ea04-4289-b0bf-a9d73384f66f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>id</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c048f74e-8fdc-4e28-bb26-0eaad9be8c31"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/content</from>
+				<to>instance</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

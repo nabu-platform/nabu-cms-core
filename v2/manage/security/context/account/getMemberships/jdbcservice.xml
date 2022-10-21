@@ -10,7 +10,7 @@
 	gr.node_id,
 	ug.user_id
 from ~group_roles gr
-	join nodes n on gr.node_id = n.id
+	join ~nodes n on gr.node_id = n.id
 	join ~groups g on gr.group_id = g.id
 	join ~user_groups ug on ug.group_id = g.id
 where (:nodeId is null or gr.node_id = :nodeId

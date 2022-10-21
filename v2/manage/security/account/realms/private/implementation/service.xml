@@ -8,27 +8,6 @@
 			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="54739bf8-c261-418b-aad8-5d053a58dc8c"
-				serviceId="nabu.cms.core.v2.manage.security.account.selectRealms"
-				resultName="result45d54813ffc34b5eacf0b61082d0a3a9"
-				temporaryMapping="true"
-				x="442"
-				y="38"
-				invocationOrder="1"
-				asynchronous="false"
-				recache="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="2170a238-54de-41ab-84b1-25170606aa59"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>result67c6e2f7aaef43efbb9f4a6465f1f823/current/id</from>
-				<to>parameters/userIds[0]</to>
-			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-				disabled="false"
 				id="cb832c74-d77d-4fba-9718-186dbd5d4c32"
 				serviceId="nabu.cms.core.services.user.getCurrent"
 				resultName="result67c6e2f7aaef43efbb9f4a6465f1f823"
@@ -39,13 +18,34 @@
 				asynchronous="false"
 				recache="false">
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7683a124-a21a-4452-919d-5542100c5049"
+				serviceId="nabu.cms.core.v2.manage.security.account.selectUserManageableContexts"
+				resultName="result26d794bf4c2c4506929fed7246ac1f37"
+				temporaryMapping="true"
+				x="413"
+				y="76"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4c706049-e6d7-4868-953c-225a77cf25f8"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result67c6e2f7aaef43efbb9f4a6465f1f823/current/id</from>
+				<to>parameters/userIds[0]</to>
+			</steps>
+		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
-				id="ed482bd9-010c-407e-8b99-1ec4f2e3905c"
+				id="f16eb357-3f41-463d-855e-8a6c758acbb9"
 				mask="false"
 				optional="false"
 				fixedValue="false">
-			<from>result45d54813ffc34b5eacf0b61082d0a3a9/results/name</from>
+			<from>result26d794bf4c2c4506929fed7246ac1f37/results/name</from>
 			<to>manageableContextIds</to>
 		</steps>
 	</steps>
