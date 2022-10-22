@@ -4,8 +4,43 @@
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="0f3bd436-fcaa-4106-8ac7-4b62a5e8e731"
+			id="c87e4f3b-e77e-4c18-8484-ccf81445fa9f"
 			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="34e092fb-40f6-424d-8bb6-1c487704d253"
+				serviceId="nabu.cms.core.v2.manage.security.context.getPath"
+				resultName="result8635f1c3712f42429b36cd467c3d2c7f"
+				temporaryMapping="true"
+				x="174"
+				y="44"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1ae88ae5-591d-4181-bb25-017b0277973b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>contextId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="55702dbf-bdf9-429a-857e-19009151ddfa"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result8635f1c3712f42429b36cd467c3d2c7f/pathIds</from>
+			<to>pathIds</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="0f3bd436-fcaa-4106-8ac7-4b62a5e8e731"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="54a99696-5b4c-42c4-8d45-43102a630415"
@@ -17,15 +52,6 @@
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="3bb0d71f-ab82-406e-a7e6-59da1b3e3160"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/path/contextId</from>
-				<to>filter/ownerId[0]</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="8523622c-1119-498a-92e9-1f808fe95c77"
@@ -43,6 +69,15 @@
 					fixedValue="false">
 				<from>input/query/orderBy</from>
 				<to>orderBy</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e38eec7e-af64-4f32-bd9f-2896510cb6e1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>pathIds</from>
+				<to>filter/ownerId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

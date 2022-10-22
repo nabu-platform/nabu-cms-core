@@ -1,0 +1,84 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="25d84ac7-c206-4c62-898f-629ea69bfb11"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b3745ecd-5cbd-4568-a174-9f2837feb5c7"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="9339a116-fb97-421b-9d96-0892f93c3b74"
+				serviceId="nabu.cms.core.crud.node.services.get"
+				resultName="resultc6b80f87eeb24a41a8cf2819193c5127"
+				temporaryMapping="true"
+				x="63"
+				y="31"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e2a6eb4d-f353-4e42-9da8-727981227036"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/contextId</from>
+				<to>id</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="97f63b5f-fcaa-4750-ab15-70c81a71f604"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc6b80f87eeb24a41a8cf2819193c5127/result</from>
+			<to>node</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="21226178-3e60-40b5-af6a-7bbb17b4c7a7"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="654a85e4-3ac4-46eb-ad33-77ade33c9a4c"
+				serviceId="nabu.utils.String.split"
+				resultName="resultc8afa3a4b2aa49c5ab37e4946476451f"
+				temporaryMapping="true"
+				x="59"
+				y="20"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b2001371-7dd9-4326-b740-596b9c7c5172"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>node/path</from>
+				<to>string</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c9ff1c2c-7e1f-4aca-b72e-d4d6b7a35862"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>/</from>
+				<to>separator</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="326689c7-54dc-471d-aafe-85e0517be03f"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc8afa3a4b2aa49c5ab37e4946476451f/parts</from>
+			<to>output/pathIds</to>
+		</steps>
+	</steps>
+</sequence>

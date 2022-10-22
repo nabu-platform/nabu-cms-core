@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T10:02:49.199+02:00" lastModified="2022-10-20T10:36:43.007+02:00" leaf="false" version="13">
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T10:02:49.199+02:00" lastModified="2022-10-22T10:08:08.457+02:00" leaf="false" version="15">
+    <description>We want to select all the actions a particular potentially has. Note however that we do not know in which contexts he has these.
+For example we might know he has "company.update" and can (as such) update the company information.
+However we don't know for which companies.
+The context that is returned here is the business context it is used in. This could be for example "CRM".
+It "should" be defined on a root node of type context but that is not always guaranteed</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
@@ -13,4 +18,5 @@
     <references>nabu.cms.core.services.security.selectPotentialUserActions.results</references>
     <references>java.lang.Long</references>
     <references>java.lang.Boolean</references>
+    <summary>Select all the actions a user has anywhere in the system</summary>
 </node>

@@ -5,7 +5,7 @@
 from ~roles r 
 	join ~group_roles gr on r.id = gr.role_id
 	join ~user_groups ug on ug.group_id = gr.group_id
-	left outer join ~nodes n on n.id = r.owner_id and n.component_id = (select id from ~components where name='context')
+	left outer join ~nodes n on n.id = r.owner_id
 where ug.user_id = any(:userId)
 	and (:current is null or (
 		ug.started is not null

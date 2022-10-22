@@ -4,16 +4,51 @@
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="ea2cb54f-da10-4f8c-a1a8-092f50e5f589"
+			id="8b7cd4c8-4a69-4300-acb4-138f777db73b"
 			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="337f8f7f-2e0f-4ff3-bb0a-0b6a8d55d580"
+				serviceId="nabu.cms.core.v2.manage.security.context.getPath"
+				resultName="result9642e65dda37488b8911ea1ef7245c00"
+				temporaryMapping="true"
+				x="65"
+				y="48"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8e2726c0-37cf-473e-9f78-a4882ea4e03f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>contextId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="90ff3cd3-8796-459f-9225-78809c7d281c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result9642e65dda37488b8911ea1ef7245c00/pathIds</from>
+			<to>pathIds</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="ea2cb54f-da10-4f8c-a1a8-092f50e5f589"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="0315ee49-8e11-44fe-baae-e85842017df4"
 				serviceId="nabu.cms.core.v2.manage.security.crud.actionRole.services.list"
 				resultName="result8708efd319054dd59ef926639c1f340e"
 				temporaryMapping="true"
-				x="173"
-				y="100"
+				x="110"
+				y="22"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
@@ -37,12 +72,12 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="53427421-c6b3-4c44-8767-ecd733cb44b9"
+					id="a0a7b3a5-fd9e-4b99-88cf-024d3fbda134"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/path/contextId</from>
-				<to>filter/actionOwnerId[0]</to>
+				<from>pathIds</from>
+				<to>filter/actionOwnerId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -60,27 +95,18 @@
 			disabled="false"
 			id="e4951b6f-4308-48f0-af85-14571cd1caaf"
 			label="!existing"
-			lineNumber="3">
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="1544d6b7-3a24-4fa0-a499-0c1a3b54bf64"
 				serviceId="nabu.cms.core.v2.manage.security.crud.action.services.list"
 				resultName="resultcfe0792ff78a473d97bd04a3f26f84a9"
 				temporaryMapping="true"
-				x="339"
-				y="49"
+				x="47"
+				y="32"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="098a5191-3a03-45e3-b060-33c003ff5028"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/path/contextId</from>
-				<to>filter/ownerId[0]</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="5cf31ba4-ba9f-442c-b4dd-b63af05a2d94"
@@ -89,6 +115,15 @@
 					fixedValue="false">
 				<from>input/path/actionId</from>
 				<to>filter/id[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b2e47e00-05e5-45fb-81af-489fd0785847"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>pathIds</from>
+				<to>filter/ownerId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -106,15 +141,15 @@
 			disabled="false"
 			id="e106dfd1-b8cd-407c-8055-f7b154cd8481"
 			label="action"
-			lineNumber="4">
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="824b8349-ed12-432d-8e15-5f329fd88886"
 				serviceId="nabu.cms.core.v2.manage.security.crud.actionRole.services.create"
 				resultName="resultc2a9d8ff6966465f8b8175314337e34f"
 				temporaryMapping="true"
-				x="143"
-				y="42"
+				x="37"
+				y="46"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">

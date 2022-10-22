@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-22T09:33:31.067+02:00" lastModified="2022-10-22T15:55:39.745+02:00" leaf="false" version="38">
+    <description>We assume the user can view accounts in this context because he has the "user.list" permission.
+We tried a few versions where you could search multiple contexts, but getting the like to work with something like any() wouldn't work consistently cross database.
+The usecases also seems small that you want to suggest a user from a completely different context in the current one.</description>
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>java.lang.String</references>
+    <references>java.lang.Long</references>
+    <references>java.lang.Integer</references>
+    <references>java.lang.Boolean</references>
+    <references>be.nabu.libs.services.jdbc.AffixInput</references>
+    <references>nabu.cms.core.services.account.selectLinkedToContext.parameters</references>
+    <references>be.nabu.libs.types.api.KeyValuePair</references>
+    <references>nabu.cms.core.types.emodel.core.Account</references>
+    <references>java.lang.Long</references>
+    <references>java.lang.Boolean</references>
+    <summary>Get all the accounts that are linked to a context</summary>
+</node>

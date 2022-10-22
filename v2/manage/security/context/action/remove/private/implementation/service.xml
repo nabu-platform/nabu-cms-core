@@ -4,8 +4,43 @@
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="94e39e08-67fe-4124-9f08-c9def9445db4"
+			id="ce86a612-35fd-4052-9290-e8b8dc94598b"
 			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7ee709c6-f2d8-4ee5-8c4b-b38418c0730d"
+				serviceId="nabu.cms.core.v2.manage.security.context.getPath"
+				resultName="result9308094918994daaaa0db3cc8a6e1f0e"
+				temporaryMapping="true"
+				x="59"
+				y="24"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b62f83c3-8be1-4945-9307-a94c6f4f22b5"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>contextId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="7e88e3fe-b504-4bfc-a8dd-b53da662ac62"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result9308094918994daaaa0db3cc8a6e1f0e/pathIds</from>
+			<to>pathIds</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="94e39e08-67fe-4124-9f08-c9def9445db4"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="f84775bb-df0e-4dd3-a596-76c353cd734b"
@@ -37,12 +72,12 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="77aae224-703d-4234-bf08-ce032ab0f3d0"
+					id="8d533355-0475-47f0-b76b-f4cd7e42f5fc"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/path/contextId</from>
-				<to>filter/actionOwnerId[0]</to>
+				<from>pathIds</from>
+				<to>filter/actionOwnerId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -59,15 +94,15 @@
 			disabled="false"
 			id="37417dce-fbeb-4303-bcdb-504e85e17b8e"
 			label="existing"
-			lineNumber="3">
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="43540d28-3973-4e66-bae7-d83c8f39cb3e"
 				serviceId="nabu.cms.core.v2.manage.security.crud.actionRole.batch.deleteAll"
 				resultName="result4eedd56f819d44818f9665dd0ec4953e"
 				temporaryMapping="true"
-				x="207"
-				y="73"
+				x="94"
+				y="43"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">

@@ -4,8 +4,43 @@
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="ac298de7-b7d0-4380-8e21-f6838c395b69"
+			id="8e7249fc-4d3d-42e0-a945-7b59a3239491"
 			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7a4417c1-161e-40f2-8211-7a414f7b3c13"
+				serviceId="nabu.cms.core.v2.manage.security.context.getPath"
+				resultName="resultb30f039afd944ef69e607b540709de91"
+				temporaryMapping="true"
+				x="62"
+				y="31"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8504dc2c-1dda-4527-8392-14388259d202"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>contextId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c52a526d-7202-4903-be88-b6c471fbd9a5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultb30f039afd944ef69e607b540709de91/pathIds</from>
+			<to>pathIds</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="ac298de7-b7d0-4380-8e21-f6838c395b69"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="84f6b091-6ed0-43d0-bc03-7b04646bbd72"
@@ -46,12 +81,12 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="186f7d83-089a-4b6c-bb4e-7871cd420aa0"
+					id="bf78ee5b-c407-4957-9c04-2e79991cd3f6"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/path/contextId</from>
-				<to>filter/ownerId[0]</to>
+				<from>pathIds</from>
+				<to>filter/ownerId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -68,7 +103,7 @@
 			disabled="false"
 			id="c28562ee-0d5b-4376-ab62-e9a20aaa5ad0"
 			label="foundActions"
-			lineNumber="3">
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="47ea4339-07d7-482c-bfae-68b39344f896"
@@ -112,14 +147,14 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.For"
 			disabled="false"
 			id="c62df582-d783-4559-986b-a759ed0826f3"
-			lineNumber="4"
+			lineNumber="5"
 			variable="foundAction"
 			into="output/content/actions">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Map initial"
 				disabled="false"
 				id="8e2ac0e2-3839-4ae5-8e52-eeccd4cb4488"
-				lineNumber="5">
+				lineNumber="6">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="44c92fa4-a1a0-4b8c-80fb-9c904f81a565"
@@ -178,19 +213,19 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="79dd1893-f906-46cb-8c31-95d3060088cc"
-				lineNumber="6">
+				lineNumber="7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="If we do not have a group, just use misc"
 					disabled="false"
 					id="c7baa58c-71b5-440e-8b52-9010dfe739c5"
 					label="foundAction/name !~ &quot;.*\..*&quot;"
-					lineNumber="7">
+					lineNumber="8">
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Otherwise, split off the root name"
 					disabled="false"
 					id="562a0789-c8ac-4152-a3da-8e1c09a65955"
-					lineNumber="8">
+					lineNumber="9">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="34dc04c8-a29c-4023-8150-8b2747576952"
@@ -312,7 +347,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="02c37e4c-b5c5-4da3-959f-57837b5b12e4"
-			lineNumber="9">
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="3190cabc-5f1b-4989-9961-943694e798fa"

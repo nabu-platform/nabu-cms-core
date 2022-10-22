@@ -1,12 +1,12 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<outputDefinition>nabu.cms.core.types.emodel.core.Context</outputDefinition>
+	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
 	<sql>select *
-from ~actions a
+from ~nodes n 
+	join ~group_roles gr on gr.node_id = n.id
+	join ~actions a on gr.role_id = ar.role_id
 	join ~action_roles ar on ar.action_id = a.id
-	join ~nodes n on n.id = a.owner_id
-	join ~contexts c on n.id = c.id
-	join ~group_roles gr on gr.role_id = ar.role_id and (gr.node_id is null or gr.node_id = a.owner_id)
 	join ~user_groups ug on ug.group_id = gr.group_id
-where a.name = 'context.manage'
-	and ug.user_id = any(:userIds)</sql>
+where a.name = 'user.manage'
+	and ug.user_id = any(:userIds)
+	and (:componentId is null or n.component_id = any(:componentId))</sql>
 </jdbcService>

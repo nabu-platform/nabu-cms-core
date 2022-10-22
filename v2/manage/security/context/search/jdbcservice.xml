@@ -1,0 +1,14 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
+	<sql>select distinct *
+from ~nodes n
+	left outer join ~node_external_ids nei on nei.node_id = n.id
+where n.path like '%' || :parentId || '%'
+	and (:q is null 
+		or lower(nei.external_id) like '%' || lower(:q) || '%'
+		or lower(n.name) like '%' || lower(:q) || '%'
+		or lower(n.title) like '%' || lower(:q) || '%'
+		or lower(n.description) like '%' || lower(:q) || '%'
+	)
+	and (:componentId is null or n.component_id = any(:componentId))</sql>
+</jdbcService>

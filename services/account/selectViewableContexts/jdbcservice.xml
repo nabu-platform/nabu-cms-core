@@ -1,0 +1,10 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
+	<sql>select *
+from ~nodes n 
+	join ~group_roles gr on gr.node_id = n.id
+	join ~action_roles ar on ar.role_id = gr.role_id
+	-- we only want actions owned by a legitimate context
+	join ~actions a on a.id = ar.action_id and a.name = 'user.list' and a.owner_id in (select id from contexts)
+	join ~user_groups ug on ug.group_id = gr.group_id and ug.user_id = :userId</sql>
+</jdbcService>
