@@ -15,5 +15,6 @@ where context.path like :contextId || '%'
 		or lower(a.family_name) like '%' || lower(:q) || '%'
 		or lower(a.phone_number) like '%' || lower(:q) || '%'
 		or lower(a.email) like '%' || lower(:q) || '%'
-	)</sql>
+	)
+	and (:realm is null or u.realm = any(:realm))</sql>
 </jdbcService>

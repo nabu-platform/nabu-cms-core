@@ -1,6 +1,10 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<sql>select u.user_id from
-	(select 
+	<outputDefinition>nabu.cms.core.types.emodel.core.Account</outputDefinition>
+	<sql>select * 
+from ~accounts a
+	join ~users u on a.id = u.id
+	join ~nodes n on u.id = n.id
+	join (select 
 		ug.user_id,
 		count(gr.role_id) as amount
 	from ~group_roles gr
@@ -10,6 +14,14 @@
 	where (:nodeId is null or gr.node_id = :nodeId
 			or (n.path like '%' || :nodeId || '%' and gr.inherit = true))
 		and (:roleId is null or gr.role_id = any(:roleId))
-	group by ug.user_id) u
-where u.amount &gt;= :amountOfRolesToMatch</sql>
+	group by ug.user_id) m on m.id = u.id
+where m.amount &gt;= :amountOfRolesToMatch
+	and (:q is null
+		or lower(u.alias) like '%' || lower(:q) || '%'
+		or lower(a.given_name) like '%' || lower(:q) || '%'
+		or lower(a.family_name) like '%' || lower(:q) || '%'
+		or lower(a.phone_number) like '%' || lower(:q) || '%'
+		or lower(a.email) like '%' || lower(:q) || '%'
+	)
+	and (:realm is null or u.realm = any(:realm))</sql>
 </jdbcService>
