@@ -3,9 +3,63 @@
 		id="8eb43334-3762-40ad-87d6-a076af707e28"
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Create the action &quot;administrator.manage&quot;. A global permission to change administrators"
+			disabled="false"
+			id="20b208ad-c963-4337-a3f8-fda52b1ac8e0"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="933ae668-6d75-4a42-95ba-555a92a4c972"
+				serviceId="nabu.cms.core.services.action.get"
+				resultName="result730b923ee5ca4237841063456df330d0"
+				temporaryMapping="true"
+				x="269"
+				y="78"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="bf5ff1af-9ae3-455c-824f-264c179ed508"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0fd79fa4-3cc8-481e-9990-37984c3652b4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2b44a15e-e3f8-4990-897b-bf0a06247a4e"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>context.create</from>
+				<to>name</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="52d9bb3b-7f6d-4c20-9b2b-7e84ec454a45"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>create</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="5fed6323-7285-4c23-9278-15f1ceabac7a"
-			lineNumber="2">
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="b16d9d22-8cca-48b0-bb15-5178f40db5bc"
@@ -125,7 +179,7 @@
 			comment="Globally link this role to this group"
 			disabled="false"
 			id="008c1e9a-5c92-4c2b-b0c2-8ca76c339178"
-			lineNumber="3">
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="4262de33-d938-4dab-a8aa-37e1984fc9ee"
@@ -179,7 +233,7 @@
 			comment="Get all actions that are currently not coupled to the administrator role"
 			disabled="false"
 			id="35301ab6-e17e-4271-b98b-2e6435ffa79a"
-			lineNumber="4">
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="e7a4bd52-1db6-470a-bf9d-aa93b555f6b9"
@@ -232,13 +286,13 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.For"
 			disabled="false"
 			id="3e0907e0-54af-4ae3-b94f-0cea5d806031"
-			lineNumber="5"
+			lineNumber="6"
 			variable="action">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="And ensure they are linked"
 				disabled="false"
 				id="3c60475b-ef66-4ecc-95f2-757b2a2ded65"
-				lineNumber="6">
+				lineNumber="7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="fbcc68ff-78c2-4a24-a667-265c136b2978"

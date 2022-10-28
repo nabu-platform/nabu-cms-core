@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-23T08:09:00.756+02:00" lastModified="2022-10-23T08:44:03.974+02:00" leaf="true" version="11">
+    <description>The users we list need to part (hierarchically) of this context. In most cases this concerns a realm context.</description>
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>nabu.cms.core.v2.manage.security.account.read.selectUserListableContexts</references>
+    <references>nabu.cms.core.services.user.getCurrent</references>
+    <references>nabu.cms.core.v2.manage.basic.crud.node.types.outputList</references>
+    <summary>Get all the contexts where you have permission to list the users</summary>
+</node>

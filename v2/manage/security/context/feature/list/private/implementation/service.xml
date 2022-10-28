@@ -1,0 +1,79 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="9d2969a1-48dd-4d2f-897c-544072be4da1"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="5602e5ef-bb3e-4dd8-8ea1-58749af2f37a"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="b06c0337-52e5-4284-947b-ba35081870d0"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntry.services.list"
+				resultName="result4d29a7945076407cb761e717c466fdd7"
+				temporaryMapping="true"
+				x="441"
+				y="64"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7e35bd78-eb44-4a35-92e5-2e5f643a44fe"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>features</from>
+				<to>filter/masterDataCategoryName[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8f7070e4-58b1-4de6-8676-e9cf351e7ff1"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>name</from>
+				<to>orderBy[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4ce17ea5-daef-4487-a9ae-56a2fbe228b3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultd4daa8131ab64bd7bafdae389eba1db5/pathIds</from>
+				<to>filter/ownerId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="f36a07cb-9ab7-4bbb-a3a2-2f3071731597"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result4d29a7945076407cb761e717c466fdd7</from>
+			<to>output/content</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="cf296e0b-f23d-406f-9da2-325e5a00ab16"
+				serviceId="nabu.cms.core.v2.manage.security.context.getPath"
+				resultName="resultd4daa8131ab64bd7bafdae389eba1db5"
+				temporaryMapping="true"
+				x="54"
+				y="241"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1251c4d8-8370-430d-872a-41655ac82361"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>contextId</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

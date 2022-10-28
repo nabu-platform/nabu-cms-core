@@ -1,13 +1,7 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.model.core.Role</outputDefinition>
-	<sql>select
-	r.id,
-	r.created,
-	r.modified,
-	r.name,
-	r.pseudo,
-	r.owner_id
+	<sql>select *
 from roles r join action_roles ar on ar.role_id = r.id
 join actions a on a.id = ar.action_id
-where a.id = :actionId</sql>
+where a.id = any(:actionId)</sql>
 </jdbcService>

@@ -430,7 +430,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="true">
-				<from>user.impersonate</from>
+				<from>user.impersonate,component.list</from>
 				<to>string</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -748,18 +748,27 @@
 			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="1d896b34-d9a8-4e00-ab17-d7bdc173f479"
-				serviceId="nabu.cms.core.crud.context.services.list"
-				resultName="resultb361968160a84ebf9595fd2b1985f3c3"
+				id="02cde0fb-9dcf-4d0d-b295-142697a65c8e"
+				serviceId="nabu.cms.core.crud.node.services.list"
+				resultName="result6c7dd5f1a36a4c91b3ef921185591a5f"
 				temporaryMapping="true"
-				x="151"
-				y="53"
+				x="80"
+				y="43"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="02c20ee5-54a1-4d02-91b9-cd477191d17e"
+					id="92ac1072-0aea-4278-9261-e0458b4146e6"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>filter/isRoot</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5d35a1b5-478f-4a9b-8cc0-7de6b896870c"
 					mask="false"
 					optional="false"
 					fixedValue="false">
@@ -768,7 +777,7 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="a7f68592-eff6-48cc-aa1b-151c78724e2c"
+					id="d319e526-94a2-48dc-8c67-184c9e8faa28"
 					mask="false"
 					optional="false"
 					fixedValue="false">
@@ -778,11 +787,11 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
-				id="312b57d3-bf42-4d79-b446-27cd07fe6b47"
+				id="97869159-17c2-4b1f-b7f7-035aae316d73"
 				mask="false"
 				optional="false"
 				fixedValue="false">
-			<from>resultb361968160a84ebf9595fd2b1985f3c3/results</from>
+			<from>result6c7dd5f1a36a4c91b3ef921185591a5f/results</from>
 			<to>existingContexts</to>
 		</steps>
 	</steps>
@@ -802,8 +811,8 @@
 					serviceId="nabu.cms.core.services.context.ensureSecurity"
 					resultName="resultf955c3398f074a5080cffc3e29c3313a"
 					temporaryMapping="true"
-					x="276"
-					y="120"
+					x="88"
+					y="82"
 					invocationOrder="0"
 					asynchronous="false"
 					recache="false">

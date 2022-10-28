@@ -3,8 +3,9 @@
         <field minOccurs="0" name="id" type="java.lang.String"/>
     </structure>
     <structure name="output">
-        <structure collectionName="Contexts" definition="nabu.cms.core.crud.context.types.output" duplicate="id, created, modified" minOccurs="0" name="context"/>
+        <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" minOccurs="0" name="context"/>
     </structure>
     <structure definition="nabu.utils.types.ContextInformation" minOccurs="0" name="information"/>
     <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="node"/>
+    <field name="componentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>

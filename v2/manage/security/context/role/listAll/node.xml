@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-23T09:17:12.215+02:00" deprecated="2022-10-23T09:22:39.051+02:00" lastModified="2022-10-23T09:21:00.116+02:00" leaf="true" version="7">
+    <description>This can be useful when looking from a user perspective and you want to see all the roles he might have and the contexts he might have them in.
+In retrospect, the overlap of roles is too great across contexts (e.g. manager) which makes it hard to read, always look from within a context!</description>
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>nabu.cms.core.v2.manage.security.crud.role.types.outputList</references>
+    <references>nabu.cms.core.v2.manage.security.context.selectManageableContexts</references>
+    <references>java.lang.Long</references>
+    <references>nabu.cms.core.types.emodel.core.Node</references>
+    <references>nabu.cms.core.services.user.getCurrent</references>
+    <references>nabu.cms.core.v2.manage.basic.crud.node.services.list</references>
+    <references>nabu.cms.core.v2.manage.security.crud.role.services.list</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
+    <references>java.util.UUID</references>
+    <references>nabu.utils.String.split</references>
+    <references>nabu.cms.core.v2.manage.security.context.selectGlobalManageable</references>
+    <summary>List all the roles you have access to</summary>
+</node>

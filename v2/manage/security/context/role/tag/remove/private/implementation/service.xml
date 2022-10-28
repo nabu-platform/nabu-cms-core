@@ -1,0 +1,76 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="2174a832-0439-423a-98ab-0f7510dfd8c8"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="84f34f00-2a80-4536-af00-8c2cf34a4d14"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2506a582-8526-41fa-8665-9f15614cdc9e"
+				serviceId="nabu.cms.core.v2.manage.security.crud.roleTag.services.list"
+				resultName="resulte38fa4ad792f4cf7909a6378b4215579"
+				temporaryMapping="true"
+				x="72"
+				y="54"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b2e638b0-167f-46ad-8ee2-79b0b835565e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>filter/roleId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5032eae7-4328-4da4-8682-1683ea1b7a14"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/definitionId</from>
+				<to>filter/definitionId[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="356e8db4-985c-47d7-ba74-6b359d0bfe49"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte38fa4ad792f4cf7909a6378b4215579/results</from>
+			<to>roleTags</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="e6176e32-9740-4508-b523-baf540b1dd70"
+			label="roleTags"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e80ada9d-07f7-4227-9423-4fb53f388715"
+				serviceId="nabu.cms.core.v2.manage.security.crud.roleTag.batch.deleteAll"
+				resultName="resultb192d1e3490b40188212c9a6982f28d9"
+				temporaryMapping="true"
+				x="184"
+				y="33"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b0c9d843-1d3e-43e1-bbf1-3bd809207b86"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>roleTags/id</from>
+				<to>id</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

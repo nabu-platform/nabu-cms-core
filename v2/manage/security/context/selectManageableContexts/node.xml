@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T16:13:16.647+02:00" lastModified="2022-10-22T16:47:51.805+02:00" leaf="false" version="18">
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T16:13:16.647+02:00" lastModified="2022-10-26T14:16:14.904+02:00" leaf="false" version="22">
     <description>A manageable context is a node where you have (directly on it) the user.manage permission.
 Any node that inherits it, is not listed, you can drill down to those nodes however.
 Note that if you have the user.manage permission without context, you need a different call to select all root nodes</description>
@@ -11,6 +11,7 @@ Note that if you have the user.manage permission without context, you need a dif
     <references>java.lang.Integer</references>
     <references>java.lang.Boolean</references>
     <references>be.nabu.libs.services.jdbc.AffixInput</references>
+    <references>nabu.cms.core.v2.manage.security.context.selectManageableContexts.parameters</references>
     <references>be.nabu.libs.types.api.KeyValuePair</references>
     <references>nabu.cms.core.types.emodel.core.Node</references>
     <references>java.lang.Long</references>

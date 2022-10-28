@@ -1,0 +1,2 @@
+You can use these services when you want to add accounts for security configuration to a context you manage.
+You only need user.list permission (not user.manage permission) to be able to list these users

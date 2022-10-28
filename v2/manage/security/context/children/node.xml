@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-22T16:35:42.783+02:00" lastModified="2022-10-22T17:01:55.779+02:00" leaf="true" version="10">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-22T16:35:42.783+02:00" lastModified="2022-10-28T09:22:11.529+02:00" leaf="true" version="14">
+    <description>When you search, it is recursive, when you simply list it is not recursive.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <properties/>
     <references>nabu.services.jdbc.Services.paging</references>
     <references>nabu.cms.core.v2.manage.security.context.search</references>
+    <references>nabu.cms.core.v2.manage.security.context.nodeTagsList</references>
     <references>nabu.cms.core.v2.manage.basic.crud.node.services.list</references>
     <references>nabu.services.jdbc.Services.page</references>
-    <references>nabu.cms.core.v2.manage.basic.crud.node.types.outputList</references>
+    <references>nabu.cms.core.v2.manage.basic.crud.nodeTag.types.output</references>
+    <references>nabu.cms.core.v2.manage.basic.crud.nodeTag.services.list</references>
+    <summary>List all the children of a particular context</summary>
 </node>

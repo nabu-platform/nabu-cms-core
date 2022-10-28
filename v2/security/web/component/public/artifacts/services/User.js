@@ -296,7 +296,16 @@ Vue.service("user", {
 				context = this.application;
 			}
 			var fullName = (context ? context + ":" : "") + action;
-			return this.permissions.indexOf(fullName) >= 0;
+			if (this.permissions.indexOf(fullName) >= 0) {
+				return true;
+			}
+			// if we don't have an explicit context, check if there is a permission by that name in any context
+			else if (!context) {
+				return this.permissions.filter(function(x) {
+					return x.indexOf(":") > 0 && x.split(":")[1] == action;
+				}).length > 0;
+			}
+			return false;
 		},
 		// backwards compatible
 		hasPotentialRole: function(role, context) {

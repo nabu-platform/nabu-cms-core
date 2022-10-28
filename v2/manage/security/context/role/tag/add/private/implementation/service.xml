@@ -1,0 +1,85 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="16a9c33b-e93e-4418-8497-ea10f1f6d05d"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="84f34f00-2a80-4536-af00-8c2cf34a4d14"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2506a582-8526-41fa-8665-9f15614cdc9e"
+				serviceId="nabu.cms.core.v2.manage.security.crud.roleTag.services.list"
+				resultName="resulte38fa4ad792f4cf7909a6378b4215579"
+				temporaryMapping="true"
+				x="72"
+				y="54"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b2e638b0-167f-46ad-8ee2-79b0b835565e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>filter/roleId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5032eae7-4328-4da4-8682-1683ea1b7a14"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/definitionId</from>
+				<to>filter/definitionId[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c3207d2b-097f-4caa-9ab2-0cfc59dd5b30"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte38fa4ad792f4cf7909a6378b4215579/results</from>
+			<to>roleTags</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="66be8915-af87-4731-bd69-f91ce3e569a7"
+			label="!roleTags"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7aa1df01-2b16-49bb-b70d-6b091d8666fa"
+				serviceId="nabu.cms.core.v2.manage.security.crud.roleTag.services.create"
+				resultName="result52300f8bb767490ebfcfa6960289583c"
+				temporaryMapping="true"
+				x="179"
+				y="96"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="545deb37-a2d9-4677-b3f6-0b92850ad83b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>instance/roleId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4bd74e36-99f2-4b83-95bc-e85d0d68fd86"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/definitionId</from>
+				<to>instance/definitionId</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

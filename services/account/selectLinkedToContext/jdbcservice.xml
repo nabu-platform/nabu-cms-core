@@ -1,14 +1,15 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.emodel.core.Account</outputDefinition>
-	<sql>select *
+	<sql>select distinct *
 from ~accounts a
 	join ~users u on a.id = u.id
 	join ~nodes n on u.id = n.id
-	join ~user_groups ug on ug.user_id = u.id
-	join ~group_roles gr on gr.group_id = ug.group_id
+	left outer join ~user_groups ug on ug.user_id = u.id
+	left outer join ~group_roles gr on gr.group_id = ug.group_id
 	-- if the user is coupled without a context, it definitely does not fall within your domain unless you have global access and then this service is useless
-	join ~nodes context on context.id = gr.node_id
-where context.path like :contextId || '%'
+	left outer join ~nodes context on context.id = gr.node_id
+	-- either the user is coupled through security context (regular hierarchies) OR the user is owned by the context (usually a realm context)
+where (context.path like '%' || :contextId || '%' or n.path like '%' || :contextId || '%')
 	and (:q is null
 		or lower(u.alias) like '%' || lower(:q) || '%'
 		or lower(a.given_name) like '%' || lower(:q) || '%'

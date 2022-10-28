@@ -82,12 +82,69 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
-				id="a0d844b1-87c7-4c1e-b76d-6afaa5345e19"
+				id="94bc1249-1057-4c18-be94-d7110d19c95d"
 				mask="false"
 				optional="false"
 				fixedValue="false">
-			<from>result130b0216f3ba4d66973018bb003e5f73</from>
-			<to>output/content</to>
+			<from>result130b0216f3ba4d66973018bb003e5f73/results</from>
+			<to>output/content/results</to>
 		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="178b18a1-57f1-48bc-8cb6-a2ca2debdae9"
+			label="output/content/results"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="09e261fa-a126-4fb8-91d2-971d0a249084"
+				serviceId="nabu.cms.core.v2.manage.security.crud.roleTag.services.list"
+				resultName="resulte0088c9bf35a4d0098f8889293428f0f"
+				temporaryMapping="true"
+				x="61"
+				y="60"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="876f02e8-1380-491d-a301-f0bc403dab90"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/content/results/id</from>
+				<to>filter/roleId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="2ba5d494-9759-431b-85d8-c8a8f2d93ac5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte0088c9bf35a4d0098f8889293428f0f/results</from>
+			<to>roleTags</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="bb64e8c0-0707-48af-8728-3fceb5368807"
+			lineNumber="5"
+			variable="role">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="77ca3230-f989-4456-9794-442961999ec8"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d9770735-a29c-431d-8b82-d710a574260b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>roleTags[roleId == /role/id]/definitionId</from>
+				<to>role/tagIds</to>
+			</steps>
+		</steps>
+		<query>output/content/results</query>
 	</steps>
 </sequence>

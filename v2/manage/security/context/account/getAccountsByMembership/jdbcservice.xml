@@ -14,7 +14,7 @@ from ~accounts a
 	where (:nodeId is null or gr.node_id = :nodeId
 			or (n.path like '%' || :nodeId || '%' and gr.inherit = true))
 		and (:roleId is null or gr.role_id = any(:roleId))
-	group by ug.user_id) m on m.id = u.id
+	group by ug.user_id) m on m.user_id = u.id
 where m.amount &gt;= :amountOfRolesToMatch
 	and (:q is null
 		or lower(u.alias) like '%' || lower(:q) || '%'

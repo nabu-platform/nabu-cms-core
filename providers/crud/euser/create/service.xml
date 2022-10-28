@@ -543,10 +543,47 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="If we are not tied to a specific parent, make sure we are linked to the realm context"
+			disabled="false"
+			id="b928e6a9-8609-4687-a9c6-b481853eae6a"
+			label="user/parentId == null"
+			lineNumber="20">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f7de1c6b-fa4a-4ba0-9a0f-efc93250f45e"
+				serviceId="nabu.cms.core.services.context.getRealm"
+				resultName="result787018b61f8b48cea9fec65e76cdbcf1"
+				temporaryMapping="true"
+				x="56"
+				y="97"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="42934ab1-7339-4294-b300-b3cc735dd84e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>user/realm</from>
+				<to>realm</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8127648b-14ac-4bd7-b45b-39516f31f369"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result787018b61f8b48cea9fec65e76cdbcf1/context/id</from>
+			<to>user/parentId</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="The rest of the handling is similar to node"
 			disabled="false"
 			id="54a2d6f1-b16c-4924-9067-9e4ad5201469"
-			lineNumber="20">
+			lineNumber="21">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="36bf8bee-8116-42fc-b8b0-ed356d228217"
@@ -627,7 +664,7 @@
 			comment="Call the hook"
 			disabled="false"
 			id="7f83ff91-eaba-4cdd-9118-3a54a2bdd5d9"
-			lineNumber="21">
+			lineNumber="22">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="b73aa274-5a69-4fe5-80b7-733e56945e43"

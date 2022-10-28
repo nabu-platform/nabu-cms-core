@@ -80,12 +80,21 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="aa2263a8-6be7-4036-8fd8-8ae6a0ed83bb"
+					id="2378620f-016d-433c-9bb1-ba0cdcc97e25"
+					mask="true"
+					optional="false"
+					fixedValue="false">
+				<from>result231a1c6d39ac468da017958bdaaa00e8/results</from>
+				<to>output/content/results</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e71cab17-5f51-47b5-a3ce-429d5ae202a8"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>result231a1c6d39ac468da017958bdaaa00e8</from>
-				<to>output/content</to>
+				<from>result231a1c6d39ac468da017958bdaaa00e8/page</from>
+				<to>output/content/page</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
@@ -300,5 +309,62 @@
 				<to>output/content/results</to>
 			</steps>
 		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="f0b155ab-6ade-40b0-b248-624aafd52537"
+			label="output/content/results"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="25f3d9f2-5eca-4e66-b906-ce352462669a"
+				serviceId="nabu.cms.core.v2.manage.basic.crud.nodeTag.services.list"
+				resultName="result3881a573a09f4b919256ab8f0307e4d5"
+				temporaryMapping="true"
+				x="161"
+				y="87"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="121c0f31-df49-4a3c-af50-54c184a8c970"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/content/results/id</from>
+				<to>filter/nodeId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="b8eec61d-fa9f-4908-9f23-0ff615aec048"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result3881a573a09f4b919256ab8f0307e4d5/results</from>
+			<to>nodeTags</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="43709a5e-2ffd-46be-ac95-14ab0219a9d5"
+			lineNumber="6"
+			variable="result">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="1916e121-6cd1-4ada-9afd-892965bee22c"
+				lineNumber="7">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ca87e0e3-5044-4246-8e20-7eff09357ff6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>nodeTags[nodeId == /result/id]</from>
+				<to>result/tags</to>
+			</steps>
+		</steps>
+		<query>output/content/results</query>
 	</steps>
 </sequence>

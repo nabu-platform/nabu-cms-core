@@ -1,0 +1,217 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="6d609b69-9233-4550-bbd4-1a8e870c2bf5"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="02ee8fdd-143d-42e9-9c91-b82216c2c15d"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="753cff24-022a-41f0-97b0-83ce76769cb4"
+				serviceId="nabu.cms.core.services.account.selectLinkedToContext"
+				resultName="result41d4b54b55444be2ab7b8bad9b2bef70"
+				temporaryMapping="true"
+				x="345"
+				y="55"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="54849f3b-6d1f-4d06-97f1-f856691e36b9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/q</from>
+				<to>parameters/q</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9d4b661e-e8c9-470c-98b1-4e62e968452f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>parameters/contextId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0f5e6fe7-16b0-498e-9edf-588006a4497d"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>totalRowCount</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="bc7386f0-3d63-4223-acf2-d9547f12e43d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result49ce944a2f2345fdbf283d82faad14d3/paging/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="242cb15a-739b-4f62-836b-6909f28f2d20"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result49ce944a2f2345fdbf283d82faad14d3/paging/offset</from>
+				<to>offset</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1354b753-22fc-49bd-88a0-e558e2158600"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/orderBy</from>
+				<to>orderBy</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="220ad3ec-c79a-4b13-8515-a1aecda0cfe2"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result41d4b54b55444be2ab7b8bad9b2bef70/results</from>
+			<to>output/content/results</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="8e41be32-179e-4e57-962b-c192e3b939eb"
+				serviceId="nabu.services.jdbc.Services.paging"
+				resultName="result49ce944a2f2345fdbf283d82faad14d3"
+				temporaryMapping="true"
+				x="46"
+				y="50"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="709fa2b8-b24e-4383-835b-aa4abd94f3e0"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e0e81dc0-63a5-4f1a-a7c5-e0128f21f7b1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/offset</from>
+				<to>offset</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="266f2244-ed4e-4164-a741-336c6ab9e72d"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>100</from>
+				<to>maxLimit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="27f6179b-585d-4e20-8cfe-ff8895631b0c"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>false</from>
+				<to>isPageOffset</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c24cd1b9-69b2-463d-82a5-e46c480c915a"
+				serviceId="nabu.services.jdbc.Services.page"
+				resultName="resultfe9b1c67f7124d9495f0f1d10ceca850"
+				temporaryMapping="true"
+				x="735"
+				y="208"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="009b0d62-6347-48e7-a48b-9977a39953d0"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result41d4b54b55444be2ab7b8bad9b2bef70/totalRowCount</from>
+				<to>totalRowCount</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="46a5f300-5396-40d9-9e18-c586dbc24869"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result49ce944a2f2345fdbf283d82faad14d3/paging/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ec33748e-5a49-409e-b01a-7dcd42e54466"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result49ce944a2f2345fdbf283d82faad14d3/paging/offset</from>
+				<to>offset</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="65e1b177-f0d1-4331-9a97-34b869be499a"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultfe9b1c67f7124d9495f0f1d10ceca850/page/current</from>
+			<to>output/content/page/current</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="5fb3a081-c915-4364-b02e-7f39cc3a3b4e"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultfe9b1c67f7124d9495f0f1d10ceca850/page/pageSize</from>
+			<to>output/content/page/pageSize</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="30fdf17b-f292-4247-81d7-b15f730f6656"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultfe9b1c67f7124d9495f0f1d10ceca850/page/rowOffset</from>
+			<to>output/content/page/rowOffset</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="68ebcf6f-6283-4fd8-8680-b804deab2542"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultfe9b1c67f7124d9495f0f1d10ceca850/page/total</from>
+			<to>output/content/page/total</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="93f17dd6-7098-4f09-8ddb-b26da8b32413"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultfe9b1c67f7124d9495f0f1d10ceca850/page/totalRowCount</from>
+			<to>output/content/page/totalRowCount</to>
+		</steps>
+	</steps>
+</sequence>

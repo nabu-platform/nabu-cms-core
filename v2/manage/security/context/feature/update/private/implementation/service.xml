@@ -1,0 +1,132 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="79a963e4-2d02-4680-9398-ec6d96de6d3d"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="44aa4115-84e2-4701-a683-aa9d6a96972c"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e544f5df-2267-4ae3-b5ee-98c312bb7185"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntry.services.list"
+				resultName="result7d769c11a0e241cc87b0ac8f82881512"
+				temporaryMapping="true"
+				x="212"
+				y="134"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ae57e1d8-96ee-43e6-aaed-a729afeb1f23"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8edb311f-4d5d-4b31-8e9f-ac05f1aa9cf9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/featureId</from>
+				<to>filter/id[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="52143424-a33a-4bad-90ae-c39b4bcfd878"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result7d769c11a0e241cc87b0ac8f82881512/results[0]</from>
+			<to>existing</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="19d71530-5aba-4153-bf1a-fac13ec252f5"
+			label="!existing"
+			lineNumber="3"
+			code="404" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Map fields"
+			disabled="false"
+			id="4af69163-91ab-4562-8dba-96480eba3241"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="b744257c-13d2-4a57-8ad4-c1aa1a7eab3c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/content/name</from>
+			<to>existing/name</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="46d8c130-1776-4e5a-b4ce-27d03812fe32"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/content/description</from>
+			<to>existing/description</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="ae804316-61a0-496d-925b-dd22a1bdc3fc"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/content/priority</from>
+			<to>existing/priority</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="12237734-fe15-4c87-8c90-e52cdba4962d"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="526dc444-682e-4279-9209-60a5c5839dd7"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntry.services.update"
+				resultName="resultac21e45f839d4cb59b6f5294bd742b7a"
+				temporaryMapping="true"
+				x="178"
+				y="39"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2966b04a-0165-4827-a1e4-13c557c590f2"
+					mask="true"
+					optional="false"
+					fixedValue="false">
+				<from>existing</from>
+				<to>instance</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d5482178-ee9f-46fe-af9a-2c5cd29abdc2"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>existing/id</from>
+				<to>id</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4043332a-2473-4bd4-b5f8-4a4bbe46c8ad"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultac21e45f839d4cb59b6f5294bd742b7a/updated</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+</sequence>

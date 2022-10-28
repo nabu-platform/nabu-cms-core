@@ -1,0 +1,81 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="40e2a210-d2e2-4874-a8a7-3cf38dc88ee5"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="44aa4115-84e2-4701-a683-aa9d6a96972c"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e544f5df-2267-4ae3-b5ee-98c312bb7185"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntry.services.list"
+				resultName="result7d769c11a0e241cc87b0ac8f82881512"
+				temporaryMapping="true"
+				x="212"
+				y="134"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ae57e1d8-96ee-43e6-aaed-a729afeb1f23"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8edb311f-4d5d-4b31-8e9f-ac05f1aa9cf9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/featureId</from>
+				<to>filter/id[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6b7a385d-79d4-4cd3-a1e9-8cce77c6504d"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result7d769c11a0e241cc87b0ac8f82881512/results[0]</from>
+			<to>existing</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="6ba3d72d-929d-4538-92ff-d19d795316cc"
+			label="!existing"
+			lineNumber="3"
+			code="404" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="aa778e92-a676-4f64-b343-a5a6ed10a16c"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="be7ed558-f91f-439e-a1fd-b893662a0dab"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntry.services.delete"
+				resultName="resultb10d41c196994164b854eae6e4e4b63a"
+				temporaryMapping="true"
+				x="232"
+				y="126"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f1888586-ec0d-4ef1-9385-c3739aaaa86e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>existing/id</from>
+				<to>id</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>
