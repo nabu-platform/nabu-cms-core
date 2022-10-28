@@ -1,0 +1,9 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.MasterDataEntry</outputDefinition>
+	<sql>select distinct *
+from ~master_data_entries mde
+	join ~node_tags nt on nt.definition_id = mde.id
+	join ~nodes n on nt.node_id = n.id
+where n.path like '%' || :contextId || '%'
+	and (:categoryIds is null or mde.master_data_category_id = any(:categoryIds))</sql>
+</jdbcService>

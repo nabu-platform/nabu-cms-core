@@ -1,3 +1,4 @@
 <structure name="nodeDetail" superType="nabu.cms.core.v2.manage.security.context.nodeTags">
     <structure collectionName="nodes" definition="nabu.cms.core.v2.manage.basic.crud.node.types.output" maxOccurs="unbounded" minOccurs="0" name="parents"/>
+    <field comment="I need to have a distinct collection of all the tags set on the children (in the feature set). This allows us to configure security on a parent that does not have a particular feature, but one of its children does. Conversely, the children inherit tags from their parents!" maxOccurs="unbounded" minOccurs="0" name="childTagDefinitionIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>

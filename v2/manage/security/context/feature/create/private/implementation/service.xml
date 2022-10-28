@@ -162,8 +162,8 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="f5167b18-cbaa-4139-8fc6-6b4b9b4eea3c"
-					mask="true"
+					id="9675b2bb-b156-44a3-bcc3-cb49d382906e"
+					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>resulte35f023759d448c0b54fdf91991fccb0/created</from>
@@ -211,6 +211,24 @@
 						fixedValue="false">
 					<from>input/content/name</from>
 					<to>instance/name</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="b1969914-a078-494e-b2d7-15e21cdd42f9"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>category/id</from>
+					<to>instance/masterDataCategoryId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9affb603-42fc-4697-9edc-336043683377"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/path/contextId</from>
+					<to>instance/ownerId</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
