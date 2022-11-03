@@ -2,18 +2,51 @@
 		disabled="false"
 		id="02c08cac-f46d-4917-b78b-4a8a5bdaaa67"
 		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			comment="If you are already impersonating, we don't allow you to impersonate further because we would lose track of it."
+			disabled="false"
+			id="e7788e12-1183-4889-bfe4-e077bcbeb11f"
+			label="input/token/impersonatorId != null"
+			lineNumber="2"
+			code="403" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="93510e4d-8f8f-4ec4-8e59-54259a5e30c4"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="032dde69-734e-4b2f-9e12-53877911055b"
+				serviceId="nabu.cms.core.services.user.getCurrent"
+				resultName="result37f235d0b8ba42f19535f7b82fbb8c30"
+				temporaryMapping="true"
+				x="292"
+				y="154"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="f96328f4-9f7d-45a5-8134-5cd5b1dfe886"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result37f235d0b8ba42f19535f7b82fbb8c30/current</from>
+			<to>current</to>
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="23aae063-5611-441c-b8ba-81646fc2e4e9"
-			lineNumber="2">
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="3f76f2e0-d31f-4ef6-8cdc-96eee2c8d4e9"
 				serviceId="nabu.web.application.Services.newTemporaryAuthentication"
 				resultName="result38fdba2a82f3472bb37630b2fef0e2a5"
 				temporaryMapping="true"
-				x="530"
-				y="83"
+				x="428"
+				y="92"
 				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
@@ -79,6 +112,33 @@
 					fixedValue="false">
 				<from>input/webApplicationId</from>
 				<to>webApplicationId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="942f673e-21e5-4300-a582-fbe2ff88b731"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>current/id</from>
+				<to>impersonatorId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f5d77899-2101-4d26-89fe-4cb885fa593a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>current/realm</from>
+				<to>impersonatorRealm</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9f5df548-e42e-496d-b548-f9dd0493d32d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>current/alias</from>
+				<to>impersonator</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -147,13 +207,13 @@
 			disabled="false"
 			id="af323483-35f6-4698-83cd-8c72dccbd3f0"
 			label="!authentication"
-			lineNumber="3"
+			lineNumber="5"
 			code="400" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set the token"
 			disabled="false"
 			id="609602c6-1501-4466-b0a7-e5c8f7ea0da7"
-			lineNumber="4">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="aca3a036-8c4e-41d5-8a24-3923f586b6c3"
@@ -167,7 +227,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="fa4990e7-9174-4fe2-9739-3db7a3b1d126"
-			lineNumber="5">
+			lineNumber="7">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="7fbb9eff-a776-4d5b-a9f5-d1b0f6b1e91a"
@@ -213,7 +273,7 @@
 			disabled="false"
 			id="d396098d-4046-459d-adda-fbee3933ab92"
 			label="user/languageId != null"
-			lineNumber="6">
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="ff37d857-3443-4c7d-b5c6-e7e55d54693b"

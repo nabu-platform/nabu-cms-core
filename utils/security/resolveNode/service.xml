@@ -609,4 +609,18 @@
 			lineNumber="24"
 			code="NODE-NOT-FOUND"
 			message="=&quot;Can not find node: &quot; + input/context" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="8bbb6efc-4927-4862-a709-1a6063228210"
+			lineNumber="25">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="a02ef6e2-16cc-47c7-993f-4c6aa0254f28"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>output/node</from>
+			<to>output/resolved</to>
+		</steps>
+	</steps>
 </sequence>

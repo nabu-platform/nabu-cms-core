@@ -1,0 +1,8 @@
+<structure comment="When we are remembering, we first check the temporary to see if it's ok.&#10;If it is OK, we can check the original protocol (e.g. oauth2) to see if we can remember there.&#10;&#10;This allows us to couple the lifecycle of our own security to that of the original security manager.&#10;Suppose oauth2 did not provide us with a refresh token (or it has been revoked), we want to be able to block the user further.&#10;" name="pipeline">
+    <structure name="input">
+        <structure definition="be.nabu.libs.authentication.api.Token" name="token"/>
+    </structure>
+    <structure name="output">
+        <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+    </structure>
+</structure>
