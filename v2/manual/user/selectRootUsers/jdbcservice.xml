@@ -1,0 +1,6 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
+	<sql>select *
+from ~nodes n join ~users u on u.id = n.id
+where n.parent_id is null</sql>
+</jdbcService>

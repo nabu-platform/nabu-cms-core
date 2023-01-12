@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-05-15T11:56:59.201+02:00" lastModified="2022-10-19T17:17:27.291+02:00" leaf="true" version="202">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-05-15T11:56:59.201+02:00" lastModified="2022-11-29T12:24:52.941+01:00" leaf="true" version="218">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties>
         <property key="authenticationType">password</property>
     </properties>
     <references>nabu.cms.core.utils.security.password.hash</references>
     <references>nabu.cms.core.database.user.update</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
     <references>be.nabu.libs.authentication.api.Device</references>
     <references>nabu.cms.core.configuration</references>
     <references>java.lang.Integer</references>
     <references>be.nabu.libs.authentication.api.principals.TypedPrincipal</references>
-    <references>nabu.cms.core.database.user.selectActiveByAlias</references>
     <references>nabu.libs.google.phone.Services.format</references>
-    <references>nabu.cms.core.types.model.core.UserDevice</references>
     <references>java.lang.Boolean</references>
-    <references>nabu.cms.core.database.user.selectById</references>
     <references>java.lang.String</references>
     <references>nabu.utils.types.NodeDescription</references>
     <references>nabu.cms.core.services.log.create</references>
-    <references>nabu.cms.core.types.model.core.Role</references>
     <references>nabu.utils.String.trim</references>
+    <references>nabu.cms.core.crud.user.services.get</references>
     <references>nabu.utils.Date.now</references>
     <references>be.nabu.eai.authentication.api.TypedAuthenticator.authenticate</references>
     <references>nabu.utils.reflection.Node.get</references>
+    <references>nabu.cms.core.database.user.selectActiveByAlias2</references>
+    <references>nabu.cms.core.crud.user.services.update</references>
     <references>java.util.UUID</references>
     <references>be.nabu.libs.authentication.api.Token</references>
     <references>nabu.cms.core.services.user.generateVerificationCode</references>
-    <references>nabu.cms.core.types.model.core.Node</references>
-    <references>nabu.cms.core.database.node.selectById</references>
     <references>nabu.cms.core.types.model.core.User</references>
     <references>nabu.cms.core.utils.initializeConfiguration</references>
     <references>nabu.cms.core.utils.security.password.validate</references>

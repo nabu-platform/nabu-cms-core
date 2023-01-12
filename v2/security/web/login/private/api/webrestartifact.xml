@@ -8,6 +8,8 @@
     <role>$guest</role>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
     <input>nabu.cms.core.v2.security.system.authenticationInput</input>
     <output>nabu.cms.core.v2.security.web.loginOutput</output>
     <device>true</device>
@@ -26,6 +28,8 @@
     <source>false</source>
     <allowRaw>false</allowRaw>
     <domain>false</domain>
+    <rateLimitContext>=input/content/authenticationId</rateLimitContext>
+    <rateLimitAction>user.authenticate</rateLimitAction>
     <ignoreOffline>false</ignoreOffline>
     <allowRootArrays>false</allowRootArrays>
     <captureErrors>false</captureErrors>

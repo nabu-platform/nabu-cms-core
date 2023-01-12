@@ -3,7 +3,7 @@
 	<sql>select distinct *
 from ~actions a
 	join ~action_roles ar on ar.action_id = a.id
-	join ~nodes n on n.id = a.owner_id
+	join ~nodes n on n.id = a.owner_id and n.enabled = true
 	join ~group_roles gr on gr.role_id = ar.role_id and (gr.node_id is null or gr.node_id = a.owner_id)
 	join ~user_groups ug on ug.group_id = gr.group_id
 where a.name = 'user.list'

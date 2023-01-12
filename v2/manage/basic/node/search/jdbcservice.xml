@@ -11,5 +11,6 @@ where (:q is null
 	and (:componentId is null or n.component_id = any(:componentId))
 	and (:parentId is null or n.parent_id = any(:parentId))
 	and (:ownerId is null or n.owner_id = any(:ownerId))
-	and (:id is null or n.id = any(:id))</sql>
+	and (:id is null or n.id = any(:id))
+	and (:pathId is null or n.path like '%' || :pathId || '%')</sql>
 </jdbcService>

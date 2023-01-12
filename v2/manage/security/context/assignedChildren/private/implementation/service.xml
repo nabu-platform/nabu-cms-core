@@ -346,4 +346,31 @@
 		</steps>
 		<query>output/content/nodes</query>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="04ad7c0c-8e93-4beb-b479-ab55f2c952f9"
+			label="output/content/nodes"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="4eedb3b3-0c0b-49da-aff6-0b5683a3e5a0"
+				serviceId="nabu.cms.core.v2.manage.security.context.enrichNodes"
+				resultName="result3e1666d4119042eb81601d88178e7e9a"
+				temporaryMapping="true"
+				x="122"
+				y="59"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4e479a30-7f6e-48c0-ba89-3ba3cd94d092"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/content/nodes</from>
+				<to>nodesToEnrich</to>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

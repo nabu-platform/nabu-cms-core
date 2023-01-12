@@ -2,6 +2,7 @@
 <restInterface>
     <method>GET</method>
     <path>/context/{contextId}</path>
+    <queryParameters>userId, roleId</queryParameters>
     <role>$user</role>
     <permissionAction>user.manage</permissionAction>
     <permissionContext>=input/path/contextId</permissionContext>

@@ -1,0 +1,7 @@
+<structure interface="$self:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <field name="hasPermission" type="java.lang.Boolean"/>
+    <structure collectionName="masterDataCategories" definition="nabu.cms.core.v2.manage.masterdata.crud.masterDataCategory.types.output" minOccurs="0" name="category"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntry.types.output" maxOccurs="unbounded" minOccurs="0" name="entries"/>
+</structure>

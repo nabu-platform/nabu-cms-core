@@ -33,8 +33,44 @@
         <input>true</input>
         <vary>false</vary>
     </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>ownerId</key>
+        <operator>is null</operator>
+        <or>false</or>
+        <alias>global</alias>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>operational</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>operational</key>
+        <operator>= false</operator>
+        <or>false</or>
+        <alias>fixed</alias>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>operational</key>
+        <operator>is null</operator>
+        <or>true</or>
+        <alias>fixed</alias>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
     <listRole>$user</listRole>
     <provider>nabu.services.crud.provider.basic.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
     <updateBlacklistFields>created</updateBlacklistFields>
     <updateBlacklistFields>modified</updateBlacklistFields>
     <updateRegenerateFields>modified</updateRegenerateFields>
@@ -43,6 +79,9 @@
     <useLanguage>false</useLanguage>
     <useListOutputForCreate>true</useListOutputForCreate>
     <useListOutputForUpdate>true</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
+    <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
+    <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
     <views>
         <blacklistFields>preloaded</blacklistFields>
         <blacklistFields>ownerId</blacklistFields>

@@ -10,5 +10,6 @@ from ~nodes n
 	join ~action_roles ar on ar.action_id = a.id
 	join ~user_groups ug on ug.group_id = gr.group_id
 where a.name = 'user.manage'
-	and ug.user_id = any(:userIds)</sql>
+	and ug.user_id = any(:userIds)
+	and n.enabled = true</sql>
 </jdbcService>

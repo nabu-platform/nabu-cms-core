@@ -1,10 +1,19 @@
-Application Manager: can configure the application
 Application Editor: can edit the screens in page builder
 Application Tester: can test the application
-Application Administrator: can do everything. We need at least one user with this role for the setup to be considered successful.
+Manager: can configure the application
+Administrator: can do everything. We need at least one user with this role for the setup to be considered successful.
 
 We provide a hook so other implementations can couple their own permissions as needed to these roles.
 
 By default we allow anyone with an account to log in. However, registration is by default not available to guest.
 
 System actions are the same across different applications, we _could_ create them without a context. However that makes them harder to pinpoint for management. In the future, additional features might also be added to action (like the audit already) that might differ per application.
+
+The user.register is connected to a web application, it indicates that a user is allowed to register, it does not (inherently) specify the realm though.
+It is coupled to $user by default which means only users that have a standing invite can register (check nabu.cms.core.services.user.canRegisterAs)
+If it is coupled to $guest, anyone can register.
+
+The user.authenticate is linked to a web application, if coupled to $user it means anyone with a valid user account can log in.
+If you make it more specific, you could say for example that only people with the Manager role can log in.
+
+There is also a user.create, but this is linked directly to the realm.

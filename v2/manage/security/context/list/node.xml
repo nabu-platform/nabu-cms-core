@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-21T09:23:10.353+02:00" lastModified="2022-10-23T07:59:17.138+02:00" leaf="true" version="27">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-21T09:23:10.353+02:00" lastModified="2022-11-29T14:04:48.765+01:00" leaf="true" version="39">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
-    <references>nabu.cms.core.v2.manage.basic.crud.component.services.list</references>
     <references>nabu.cms.core.v2.manage.security.context.selectManageableContexts</references>
+    <references>nabu.cms.core.services.context.ensureCoreComponents</references>
+    <references>nabu.cms.core.services.user.getCurrent</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
+    <references>nabu.cms.core.v2.manage.security.context.enrichNodes</references>
+    <references>nabu.cms.core.v2.manage.basic.crud.component.services.list</references>
     <references>nabu.cms.core.v2.manage.basic.crud.component.types.output</references>
     <references>nabu.cms.core.types.emodel.core.GroupRole</references>
-    <references>nabu.cms.core.services.user.getCurrent</references>
     <references>nabu.cms.core.v2.manage.basic.crud.node.services.list</references>
-    <references>nabu.cms.core.types.emodel.core.User</references>
     <references>nabu.cms.core.v2.manage.basic.crud.node.types.outputList</references>
     <references>nabu.cms.core.v2.manage.security.context.selectGlobalManageable</references>
     <summary>List all the security contexts that you can manage</summary>

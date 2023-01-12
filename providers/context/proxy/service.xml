@@ -1,0 +1,49 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="433172c2-2e4b-4bd3-9d0d-d180453d0204"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="8d29801a-8e01-4c12-b980-aa2a53c874d3"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7f22ed51-ae96-4892-806e-1345397cbe96"
+				serviceId="nabu.cms.core.services.context.getProxy"
+				resultName="result77942ae443434853bffe6a48272d5e4e"
+				temporaryMapping="true"
+				x="236"
+				y="118"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5ca3f479-88df-4af7-8780-99f8dcd66380"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/context</from>
+				<to>project</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6977223a-4635-4081-b2d6-de5aa58ae5a5"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>result77942ae443434853bffe6a48272d5e4e/context</from>
+			<to>output/node</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="d001d075-7284-48ec-82c0-85d72232cca8"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result77942ae443434853bffe6a48272d5e4e/context</from>
+			<to>output/context</to>
+		</steps>
+	</steps>
+</sequence>

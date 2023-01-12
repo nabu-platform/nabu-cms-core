@@ -318,4 +318,40 @@
 			<to>output/content/permissions</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="38c24202640d46218406ed1943b9e538"
+			label="input/token/tokenId != null"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e9e2cab393874299be6e0e18591f3d94"
+				serviceId="nabu.web.application.Services.revokeTemporaryAuthentication"
+				resultName="result25cc69ddc1294f15b5b9ac88c82bdc8f"
+				temporaryMapping="true"
+				x="120"
+				y="66"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a5949207508a4ea884e07816e58e12c9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/token/tokenId</from>
+				<to>tokenId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d3def13f2e8d4858b544927249bd88b9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

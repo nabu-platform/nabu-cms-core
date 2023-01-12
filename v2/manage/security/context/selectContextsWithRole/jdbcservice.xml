@@ -11,5 +11,6 @@ where n.path like '%' || :contextId || '%'
 		or lower(n.name) like '%' || lower(:q) || '%'
 		or lower(n.title) like '%' || lower(:q) || '%'
 		or lower(n.description) like '%' || lower(:q) || '%'
-	)</sql>
+	)
+	and n.enabled = true</sql>
 </jdbcService>

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-10-19T12:34:07.009+02:00" lastModified="2022-10-26T15:21:02.718+02:00" leaf="true" version="54">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-10-19T12:34:07.009+02:00" lastModified="2022-11-29T09:35:16.700+01:00" leaf="true" version="65">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
+    <references>nabu.cms.core.v2.security.initial.ensureGlobalCmsSecurity</references>
     <references>nabu.cms.core.crud.node.types.output</references>
-    <references>be.nabu.libs.authentication.api.Permission</references>
+    <references>nabu.cms.core.services.context.ensureCoreComponents</references>
     <references>nabu.cms.core.services.context.ensureSecurity</references>
+    <references>java.util.UUID</references>
+    <references>nabu.cms.core.hooks.security.initialize</references>
+    <references>be.nabu.libs.authentication.api.Permission</references>
     <references>nabu.cms.core.types.emodel.core.Role</references>
     <references>nabu.cms.core.crud.node.services.list</references>
     <references>java.lang.String</references>
-    <references>java.util.UUID</references>
     <references>nabu.cms.core.services.role.get</references>
-    <references>nabu.cms.core.hooks.security.initialize</references>
     <references>nabu.utils.String.split</references>
     <references>nabu.cms.core.v2.security.initial.mergeActions</references>
     <references>nabu.cms.core.services.context.ensureAdminPrivileges</references>

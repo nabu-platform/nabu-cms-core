@@ -85,9 +85,9 @@
 				serviceId="nabu.cms.core.services.user.canLoginAs"
 				resultName="result41dd2075ac784c24b287c1ee585f7a35"
 				temporaryMapping="true"
-				x="81"
-				y="36"
-				invocationOrder="0"
+				x="650"
+				y="27"
+				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -99,6 +99,15 @@
 				<from>token/authenticationId</from>
 				<to>userId</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8a6e3662-bb34-4a95-b6f7-80e0ede3281e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultac83de97001d4089ae35d6918bb7de04/context/id</from>
+				<to>contextId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -109,14 +118,57 @@
 			<from>result41dd2075ac784c24b287c1ee585f7a35/canLogin</from>
 			<to>canLogin</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="feb8ff4a-2d90-43f9-99e9-b04e95ea0fac"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result41dd2075ac784c24b287c1ee585f7a35/reason</from>
+			<to>reason</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="0ca8c247-f2c2-45ac-a2fc-a61b7df3140d"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result41dd2075ac784c24b287c1ee585f7a35/user</from>
+			<to>user</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="6588e8cf-a599-4ba7-b140-b91d44e444db"
+				serviceId="nabu.cms.core.services.context.getApplication"
+				resultName="resultac83de97001d4089ae35d6918bb7de04"
+				temporaryMapping="true"
+				x="199"
+				y="169"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="497d6e00-4379-4eb0-b9fd-fd3d5c6e5b7e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>application</to>
+			</steps>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 			comment="If you are not allowed to log in, stop"
+			description="=&quot;Not allowed to log in because: &quot; + reason"
 			disabled="false"
 			id="0b6afbb5-76a9-4b75-87cd-0039f03ae17c"
 			label="!canLogin"
 			lineNumber="4"
-			code="403" xsi:nil="true"/>
+			code="403"
+			message="Not allowed to log in"
+			alias="=user/alias"
+			realm="=user/realm" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set a default valid until on the token"
 			disabled="false"

@@ -7,4 +7,6 @@
     <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" name="node"/>
     <structure collectionName="userDevices" definition="nabu.cms.core.crud.userDevice.types.output" minOccurs="0" name="currentDevice"/>
     <field name="canLogin" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="reason" type="java.lang.String"/>
+    <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" minOccurs="0" name="user"/>
 </structure>

@@ -11,8 +11,50 @@
 			code="403" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="93510e4d-8f8f-4ec4-8e59-54259a5e30c4"
+			id="82a86851-da23-434b-a5e2-b12310e7050d"
 			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="617a4c45-d46d-4dec-9050-98e549bd7f02"
+				serviceId="nabu.web.application.Services.information"
+				resultName="result8550a0de0c80460aacde06cff194e3fc"
+				temporaryMapping="true"
+				x="36"
+				y="50"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b53f828e-710e-4a2a-985d-ec7470327482"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="26023a0d-f1d2-451e-a110-c08b72527236"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result8550a0de0c80460aacde06cff194e3fc/information</from>
+			<to>information</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			comment="This feature is too sensitive to allow without explicit permission checking"
+			disabled="false"
+			id="d1e62dcd-26dc-41da-a54d-2eb18285de27"
+			label="!information/hasPermissionHandler"
+			lineNumber="4"
+			code="403" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="93510e4d-8f8f-4ec4-8e59-54259a5e30c4"
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="032dde69-734e-4b2f-9e12-53877911055b"
@@ -38,7 +80,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="23aae063-5611-441c-b8ba-81646fc2e4e9"
-			lineNumber="4">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="3f76f2e0-d31f-4ef6-8cdc-96eee2c8d4e9"
@@ -207,13 +249,13 @@
 			disabled="false"
 			id="af323483-35f6-4698-83cd-8c72dccbd3f0"
 			label="!authentication"
-			lineNumber="5"
+			lineNumber="7"
 			code="400" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set the token"
 			disabled="false"
 			id="609602c6-1501-4466-b0a7-e5c8f7ea0da7"
-			lineNumber="6">
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="aca3a036-8c4e-41d5-8a24-3923f586b6c3"
@@ -227,7 +269,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="fa4990e7-9174-4fe2-9739-3db7a3b1d126"
-			lineNumber="7">
+			lineNumber="9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="7fbb9eff-a776-4d5b-a9f5-d1b0f6b1e91a"
@@ -273,7 +315,7 @@
 			disabled="false"
 			id="d396098d-4046-459d-adda-fbee3933ab92"
 			label="user/languageId != null"
-			lineNumber="8">
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="ff37d857-3443-4c7d-b5c6-e7e55d54693b"

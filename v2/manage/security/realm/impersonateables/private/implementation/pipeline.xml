@@ -1,0 +1,11 @@
+<structure interface="nabu.cms.core.v2.manage.security.realm.impersonateables:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="information"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="applicationRealms" type="java.lang.String"/>
+    <structure definition="nabu.cms.core.v2.manage.security.realm.impersonateable" maxOccurs="unbounded" minOccurs="0" name="applications"/>
+    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" name="realm"/>
+    <structure collectionName="Users" definition="nabu.cms.core.types.emodel.core.User" duplicate="id, created, modified" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000C68" minOccurs="0" name="current" namespace="nabu.cms.core.types.emodel.core"/>
+    <field name="globalRowCount" type="java.lang.Long"/>
+    <field name="applicationComponentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+</structure>

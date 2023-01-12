@@ -91,15 +91,24 @@
         <input>true</input>
         <vary>false</vary>
     </filters>
+    <foreignFields>
+        <foreignName>componentId:name</foreignName>
+        <localName>componentName</localName>
+    </foreignFields>
+    <getPermission>node.list</getPermission>
+    <listPermission>node.list</listPermission>
     <listRole>$user</listRole>
     <provider>nabu.cms.core.providers.crud.enode.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
     <updateBlacklistFields>modified</updateBlacklistFields>
     <updateRegenerateFields>modified</updateRegenerateFields>
     <updateRole>$user</updateRole>
     <useExplicitLanguage>false</useExplicitLanguage>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
     <useLanguage>false</useLanguage>
     <useListOutputForCreate>true</useListOutputForCreate>
     <useListOutputForUpdate>true</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
 </crud>

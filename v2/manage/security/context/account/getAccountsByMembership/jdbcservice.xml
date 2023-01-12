@@ -23,5 +23,6 @@ where m.amount &gt;= :amountOfRolesToMatch
 		or lower(a.phone_number) like '%' || lower(:q) || '%'
 		or lower(a.email) like '%' || lower(:q) || '%'
 	)
-	and (:realm is null or u.realm = any(:realm))</sql>
+	and (:realm is null or u.realm = any(:realm))
+	and n.enabled = true</sql>
 </jdbcService>

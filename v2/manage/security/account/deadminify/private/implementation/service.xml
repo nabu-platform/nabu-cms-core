@@ -1,0 +1,66 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="ca09c037-7f6f-4cdc-8d2b-9fc420a3540f"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="eca3b0a0-b96c-457e-adb6-b1d81f7a5960"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="027ea9bb-d8fe-4a2b-a9b7-b7b04a81dda6"
+				serviceId="nabu.cms.core.services.context.ensureAdminPrivileges"
+				resultName="resultccad58bde3714018b6c6e4b786556071"
+				temporaryMapping="true"
+				x="215"
+				y="181"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="ef08af69-34d1-4a8f-8f62-cd6e470df886"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultccad58bde3714018b6c6e4b786556071/group</from>
+			<to>group</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="f72ac4d9-2db0-4002-a98c-8187bf258287"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="88b3e438-a963-489c-bbca-cf01a2296304"
+				serviceId="nabu.cms.core.services.group.uninvite"
+				resultName="result1982c1192d1242ca82f7325d06e8b57e"
+				temporaryMapping="true"
+				x="112"
+				y="43"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0027dfbd-2b5a-4e04-941d-3f2ab4245877"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/accountId</from>
+				<to>userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="50af0573-5235-4d84-a35c-ac1c677112ce"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>group/id</from>
+				<to>groupId</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

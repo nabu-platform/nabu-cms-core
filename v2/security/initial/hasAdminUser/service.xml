@@ -111,9 +111,38 @@
 			lineNumber="3"
 			message="Could not resolve context" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Ensure the global context"
 			disabled="false"
-			id="49f2957a-ca85-4e73-b44c-9c97cda22e7e"
+			features="DEV"
+			id="a721cd0a-38bf-4151-92c8-95aa0a6d67f5"
 			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="82f72e35-223c-455c-bace-7e960e8805ed"
+				serviceId="nabu.cms.core.services.context.getGlobalContext"
+				resultName="result8b9cef76a2c64716815bb20b1e8d2188"
+				temporaryMapping="true"
+				x="216"
+				y="65"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2e96fb20-9e89-44cb-80a7-704c7007f729"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			features="DEV"
+			id="49f2957a-ca85-4e73-b44c-9c97cda22e7e"
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="3b46030e-3f7c-46bb-9c2e-0c9110745a16"
@@ -173,9 +202,46 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Ensure the system context"
+			disabled="true"
+			features="DEV"
+			id="742a956d37864a228e35a1e81e4f1b4c"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="01e17efa-2af0-45c9-a567-20a9b904a7f2"
+				serviceId="nabu.cms.core.services.context.getGlobalContext"
+				resultName="result8745c45609cf4369b6db851196bade68"
+				temporaryMapping="true"
+				x="196"
+				y="67"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="31838300-28cd-456f-8c76-9b0e647d0141"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>system</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="107d3ff0-3b85-4dc8-911d-ee87819de430"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="2a0bab31-0e64-4dc1-9aed-3958be3f712a"
-			lineNumber="5">
+			lineNumber="7">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="594dba06-4a8b-450b-b475-1307e381cb0e"
@@ -229,7 +295,7 @@
 			comment="Calculate output"
 			disabled="false"
 			id="aa5af4b6-ebdd-40f8-9439-f5b99e78a835"
-			lineNumber="6">
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="509c9ebf-594d-42ca-96d0-693c2e385af5"

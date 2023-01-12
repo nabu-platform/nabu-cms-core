@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-23T09:23:44.279+02:00" lastModified="2022-10-28T09:21:39.881+02:00" leaf="true" version="28">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-10-23T09:23:44.279+02:00" lastModified="2022-11-07T11:11:51.176+01:00" leaf="true" version="29">
     <description>This is meant to feed the user-centric view where you want to see all the children (within a context) where the user in question has certain roles.
 The reason that this is limited to a context is for readability (roles may overlap cross context), security (it is harder to determine cross-context everything you are allowed to see and manage) and to apply (applying a role from another context to a node from this context accidently would probably not do what you want.</description>
     <environmentId>apollo</environmentId>
@@ -10,6 +10,7 @@ The reason that this is limited to a context is for readability (roles may overl
     <references>nabu.cms.core.v2.manage.security.context.nodeMembershipList</references>
     <references>nabu.services.jdbc.Services.page</references>
     <references>nabu.cms.core.v2.manage.security.context.selectContextsWithRole</references>
+    <references>nabu.cms.core.v2.manage.security.context.enrichNodes</references>
     <references>nabu.cms.core.v2.manage.basic.crud.nodeTag.types.output</references>
     <references>nabu.cms.core.v2.manage.security.context.account.getExactMemberships</references>
     <references>nabu.cms.core.v2.manage.basic.crud.nodeTag.services.list</references>

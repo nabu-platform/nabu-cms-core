@@ -289,15 +289,6 @@
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
-							id="0de06056-dcba-4e74-9970-48379c617d1c"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>value</from>
-						<to>historyValue/newValue</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
 							id="2a8c5f07-1815-491f-9112-b52045660404"
 							mask="false"
 							optional="false"
@@ -367,6 +358,36 @@
 							fixedValue="false">
 						<from>correlationId</from>
 						<to>historyValue/correlationId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="55e4f6e6-3980-4287-a1aa-886a2309732b"
+							serviceId="nabu.utils.Object.toString"
+							resultName="result21b4cf230fbe41418e18cbb811ccc033"
+							temporaryMapping="true"
+							x="264"
+							y="301"
+							invocationOrder="0"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="9537a1d6-5b93-46e7-96ca-9bc7ff6f964f"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>value</from>
+							<to>object</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="ff248032-7b59-47d6-82ca-1a6a0c447daf"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>result21b4cf230fbe41418e18cbb811ccc033/string</from>
+						<to>historyValue/newValue</to>
 					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"

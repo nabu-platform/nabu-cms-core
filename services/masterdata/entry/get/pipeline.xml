@@ -5,10 +5,19 @@
         <field name="category" type="java.lang.String"/>
         <field name="name" type="java.lang.String"/>
         <field minOccurs="0" name="create" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="operational" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="system" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <structure collectionName="MasterDataEntries" definition="nabu.cms.core.types.model.core.MasterDataEntry" name="entry" namespace="nabu.cms.masterdata.types.model.masterdata"/>
         <field name="entryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <structure collectionName="masterDataEntries" definition="nabu.cms.core.types.emodel.core.MasterDataEntry" id="127-0-1-1-eb57550:15992d23a1e:-8000:00000000000011A7" name="masterDataEntry"/>
     </structure>
     <field name="categoryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <structure collectionName="components" definition="nabu.cms.core.crud.component.types.output" minOccurs="0" name="projectComponent"/>
+    <field name="contextResolved" type="java.lang.Boolean"/>
+    <structure collectionName="nodes" definition="nabu.cms.core.types.emodel.core.Node" id="127-0-1-1--349ff93a:1578fc8f0d7:-8000:0000000000000990" minOccurs="0" name="globalContext"/>
+    <field minOccurs="0" name="parentService" type="java.lang.String"/>
+    <field minOccurs="0" name="projectType" type="java.lang.String"/>
 </structure>

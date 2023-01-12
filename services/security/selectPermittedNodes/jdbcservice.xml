@@ -1,0 +1,14 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
+	<sql>select distinct *
+from ~nodes n 
+	join ~group_roles gr on gr.node_id = n.id
+	join ~actions a on gr.role_id = gr.role_id
+	join ~action_roles ar on ar.action_id = a.id
+	join ~user_groups ug on ug.group_id = gr.group_id
+where a.name = :action
+	and ug.user_id = any(:userIds)
+	and (:componentId is null or n.component_id = any(:componentId))
+	and n.enabled = true
+	and (:q is null or lower(n.name) like '%' || lower(:q) || '%' or lower(n.title) like '%' || lower(:q) || '%' or lower(n.description) like '%' || lower(:q) || '%')</sql>
+</jdbcService>

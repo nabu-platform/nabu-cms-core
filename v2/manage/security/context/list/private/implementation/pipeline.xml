@@ -1,7 +1,7 @@
 <structure interface="nabu.cms.core.v2.manage.security.context.list:api" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionName="components" definition="nabu.cms.core.v2.manage.basic.crud.component.types.output" minOccurs="0" name="component"/>
+    <structure collectionName="components" definition="nabu.cms.core.v2.manage.basic.crud.component.types.output" maxOccurs="unbounded" minOccurs="0" name="component"/>
     <structure collectionName="Users" definition="nabu.cms.core.types.emodel.core.User" duplicate="id, created, modified" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000C68" minOccurs="0" name="current" namespace="nabu.cms.core.types.emodel.core"/>
     <structure collectionName="groupRoles" definition="nabu.cms.core.types.emodel.core.GroupRole" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000CC4" maxOccurs="unbounded" minOccurs="0" name="global"/>
 </structure>

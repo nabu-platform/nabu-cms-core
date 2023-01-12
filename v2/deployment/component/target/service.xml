@@ -1,0 +1,77 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="34732782-adb5-4cdd-b114-d6795976837b"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="2b6a6ed7-bd62-44c4-883e-c48ba5cc13c8"
+			label="input/components"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="80eaf827-29c5-4069-bca4-2f32bc6d32f5"
+				serviceId="nabu.services.jdbc.Services.merge"
+				resultName="result14f9117e59ef4448a344d683b407f733"
+				temporaryMapping="true"
+				x="163"
+				y="52"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f665f60c-fd84-4cbf-9966-d28f59883bb3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="bdaf54dc-e3cf-41fd-b8b2-3d244f138d6e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/components</from>
+				<to>instances</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="aaa90b66-8191-458e-b000-e6a87dc318b3"
+			label="input/fields"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="4ffe3ff0-3e07-45cd-aaf5-88d8da114e47"
+				serviceId="nabu.services.jdbc.Services.merge"
+				resultName="result438f47ed3df34cb48e2ba053a5dd35dd"
+				temporaryMapping="true"
+				x="97"
+				y="117"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="fb9bb9df-451d-4365-b24f-40eab6b1f286"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/fields</from>
+				<to>instances</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="10a37df9-043a-468a-b7c8-ea64cd51f22e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

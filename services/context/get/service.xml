@@ -153,10 +153,36 @@
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="If we have no information but the input id does not contain a dot, we assume an old school project with no description"
+					disabled="false"
+					id="68679876-b3f1-4f84-a156-37d60ef896b1"
+					label="information == null &amp;&amp; input/id != null &amp;&amp; input/id !~ &quot;.*\..*&quot;"
+					lineNumber="9">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ef123f9d-4277-4b85-8fe3-a72b0af80d50"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/id</from>
+					<to>information/project</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="1114a04d-c277-4bd7-bc30-bb643eaa2147"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>project</from>
+					<to>information/projectType</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Always set type &quot;project&quot;"
 					disabled="false"
 					id="223e9ed8-c6c7-4adc-b51a-9e8838f62f01"
-					lineNumber="9">
+					label="information"
+					lineNumber="10">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="586dc6d1-0b06-4214-b806-2d91ed47ae44"
@@ -173,7 +199,7 @@
 			disabled="false"
 			id="8bdc169a-fc4f-47db-ac62-792ffb2a00a1"
 			label="information"
-			lineNumber="10">
+			lineNumber="11">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="ac2f1858-648d-4253-b71e-83a541cbf3fb"
@@ -203,6 +229,24 @@
 				<from>result9ff0a63725824c87933e055207f6c2b1/componentId</from>
 				<to>filter/componentId[0]</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="21b9a7c4ae8a48109c208aded06102da"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3590b552d3374e8abf2dcf558919747c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transactionId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -223,6 +267,24 @@
 					fixedValue="false">
 				<from>information/projectType</from>
 				<to>name</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="31dc21b306b646728cc2d9d1f6096a5d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c4b470cfd6894a67b13ae6a365677d9d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -248,12 +310,12 @@
 			disabled="false"
 			id="786f7909-b410-4f85-9a9f-b875afcd6709"
 			label="information &amp;&amp; !output/context"
-			lineNumber="11">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Create the context"
 				disabled="false"
 				id="3223fa26-24af-4e0d-b5c3-79b777fc1111"
-				lineNumber="12">
+				lineNumber="13">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="a2155ed7-d69d-449c-b22e-a7869c307f13"
@@ -283,6 +345,24 @@
 					<from>information/project</from>
 					<to>instance/name</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="8eb1196dabf540f4b9f7443a36eccf7c"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="355d6a94b4fa42e59123f10e3887c9f7"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
@@ -298,7 +378,7 @@
 				comment="Ensure we have security for this context"
 				disabled="false"
 				id="07140cba-6adc-4e53-9129-f9eb42687b0e"
-				lineNumber="13">
+				lineNumber="14">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="17ee6b4f-bc29-4627-9ec6-5ed1507c3eb5"
@@ -319,24 +399,60 @@
 					<from>output/context/id</from>
 					<to>contextNodeId</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="a14d42dd4e2e42b3b78a87b1748e2890"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="730be73b332f44f9aca99a56b02728dd"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
+				</steps>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Make sure the admin has permissions as well"
 				disabled="false"
 				id="652dfd59-d08d-49c7-8ec7-b8c406a7900c"
-				lineNumber="14">
+				lineNumber="15">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="4c38a545-aeb1-4906-ba7e-2708daaca07c"
 					serviceId="nabu.cms.core.services.context.ensureAdminPrivileges"
 					resultName="resultce7f0207be124ce185074a97f8446735"
 					temporaryMapping="true"
-					x="4"
-					y="48"
+					x="180"
+					y="81"
 					invocationOrder="0"
 					asynchronous="false"
 					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="2d92c03b97c843fea8fe4a299d1308df"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9a480d8c3aa841a6b8cdde4405e59a3f"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
+				</steps>
 			</steps>
 		</steps>
 	</steps>

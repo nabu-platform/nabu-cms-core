@@ -10,5 +10,6 @@ where n.path like '%' || :parentId || '%'
 		or lower(n.title) like '%' || lower(:q) || '%'
 		or lower(n.description) like '%' || lower(:q) || '%'
 	)
-	and (:componentId is null or n.component_id = any(:componentId))</sql>
+	and (:componentId is null or n.component_id = any(:componentId))
+	and n.enabled = true</sql>
 </jdbcService>

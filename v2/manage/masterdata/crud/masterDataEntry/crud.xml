@@ -76,6 +76,8 @@
     <listPermission>masterdata.list</listPermission>
     <listRole>$user</listRole>
     <provider>nabu.services.crud.provider.basic.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
+    <securityContextField>ownerId</securityContextField>
     <updateBlacklistFields>created</updateBlacklistFields>
     <updateBlacklistFields>modified</updateBlacklistFields>
     <updatePermission>masterdata.manage</updatePermission>
@@ -85,6 +87,7 @@
     <useLanguage>false</useLanguage>
     <useListOutputForCreate>true</useListOutputForCreate>
     <useListOutputForUpdate>true</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
 </crud>

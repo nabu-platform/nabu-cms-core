@@ -279,6 +279,15 @@
 						<from>viewablePathIds</from>
 						<to>filter/id</to>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="c20260d4-ef60-4203-8c15-45bdfdf581d9"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>created</from>
+						<to>orderBy[0]</to>
+					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
@@ -315,6 +324,15 @@
 						fixedValue="false">
 					<from>pathIds</from>
 					<to>filter/id</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="6912ac84-b34b-4ffb-a7b5-30e698a63955"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>created</from>
+					<to>orderBy[0]</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -481,6 +499,60 @@
 				<from>result1e0bdcc7e85f4213a3a42d4bcc37f643/results[0]/id</from>
 				<to>output/content/childTagDefinitionIds[0]</to>
 			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="4ee2f500-9c82-4dd5-901f-d8702fd454fa"
+			label="input/query/userId != null"
+			lineNumber="13">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1e54aa03-b9d3-4f3d-9f1c-b6e78f59d87c"
+				serviceId="nabu.cms.core.v2.manage.security.context.account.getExactMemberships"
+				resultName="result8b73cde201f9427490398eb290e814f1"
+				temporaryMapping="true"
+				x="48"
+				y="54"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3bef8f8c-25d3-43a9-a5c9-0b566cfe9a8b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/userId</from>
+				<to>parameters/userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1377d0ee-b4d3-4d0e-b13e-ec2ea39d87d3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/content/id</from>
+				<to>parameters/nodeId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9973d7a9-f428-4400-ae79-be55e583cb11"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/roleId</from>
+				<to>parameters/roleId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="df38f616-ecaa-4df9-af61-d20cbc8dff5b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result8b73cde201f9427490398eb290e814f1/results</from>
+			<to>output/content/memberships</to>
 		</steps>
 	</steps>
 </sequence>

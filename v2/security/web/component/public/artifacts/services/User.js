@@ -120,6 +120,37 @@ Vue.service("user", {
 				}
 			});
 		},
+		impersonate: function(userId) {
+			var promise = this.$services.q.defer();
+			var self = this;
+			this.$services.swagger.execute("nabu.cms.core.v2.security.web.impersonate", {userId: userId}).then(function(result) {
+				if (result) {
+					self.bearer = null;
+					self.$services.swagger.bearer = null;
+					self.roles.splice(0);
+					self.permissions.splice(0);
+					if (result) {
+						self.bearer = result.token;
+						// set the bearer token for the swagger client if we have a jwt token
+						self.$services.swagger.bearer = result.token;
+						self.language = result.language;
+						if (result.roles) {
+							nabu.utils.arrays.merge(self.roles, result.roles);
+						}
+						if (result.permissions) {
+							nabu.utils.arrays.merge(self.permissions, result.permissions);
+						}
+					}
+					self.$services.$clear().then(function() {
+						promise.resolve(result);
+					}, promise);
+				}
+				else {
+					promise.reject();
+				}
+			}, promise);
+			return promise;
+		},
 		login: function(username, password, remember, type, attemptRedirect) {
 			var self = this;
 			var promise = this.$services.q.defer();

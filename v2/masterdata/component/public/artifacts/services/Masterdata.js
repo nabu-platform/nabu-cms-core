@@ -50,17 +50,7 @@ Vue.service("masterdata", {
 				var self = this;
 				result.forEach(function(x) {
 					if (x.entries) {
-						x.entries.forEach(function(y) {
-							// we don't ship a label for these masterdata entries, check the translation service instead
-							if (!y.label) {
-								if (self.$services.translator) {
-									// pretty printed
-									var defaultValue = y.name.substring(0, 1).toUpperCase()
-										+ y.name.substring(1).replace(/([A-Z]+)/g, " $1").trim();
-									y.label = self.$services.translator.translationFor(x.name, y.name, defaultValue);
-								}
-							}	
-						});
+						x.entries.forEach(self.labelize);
 					}
 				});
 			}
@@ -72,7 +62,7 @@ Vue.service("masterdata", {
 		categories: function() {
 			var result = [];
 			this.preloaded.forEach(function(x) {
-				var existing = start.filter(function(y) {
+				var existing = result.filter(function(y) {
 					return y.name == x.name;
 				})[0];
 				if (!existing) {
@@ -86,6 +76,22 @@ Vue.service("masterdata", {
 		},
 	},	
 	methods: {
+		// add a label if it isn't there yet
+		labelize: function(entry) {
+			if (!entry.label) {
+				// pretty printed
+				var defaultValue = entry.name.substring(0, 1).toUpperCase()
+					+ entry.name.substring(1).replace(/([A-Z]+)/g, " $1").trim();
+				// check if we have a translation
+				if (this.$services.translator) {
+					entry.label = this.$services.translator.translationFor(entry.id, "name", defaultValue);
+				}
+				// otherwise, just set the default value
+				else {
+					entry.label = defaultValue;
+				}
+			}
+		},
 		// we can only list preloaded categories, use suggest for other categories	
 		list: function(name, q) {
 			for (var i = 0; i < this.preloaded.length; i++) {
@@ -164,9 +170,10 @@ Vue.service("masterdata", {
 				var ids = self.masterdata.idsToResolve.splice(0, self.masterdata.idsToResolve.length);
 				if (ids && ids.length) {
 					self.masterdata.timer = null;
-					self.$services.swagger.execute("nabu.cms.core.rest.masterdata.entry.resolve", { entryId: ids })
+					self.$services.swagger.execute("nabu.cms.core.v2.masterdata.crud.masterDataEntry.services.list", { id: ids })
 						.then(function(result) {
 							if (result.entries && result.entries.length) {
+								result.entries.forEach(self.labelize);
 								for (var i = 0; i < result.entries.length; i++) {
 									nabu.utils.objects.merge(self.masterdata.resolved[result.entries[i].id], result.entries[i])
 								}

@@ -6,7 +6,8 @@ from ~nodes n
 	join ~actions a on gr.role_id = gr.role_id
 	join ~action_roles ar on ar.action_id = a.id
 	join ~user_groups ug on ug.group_id = gr.group_id
-where a.name = 'user.manage'
+where a.name = (case when :action is null then 'user.manage' else :action end)
 	and ug.user_id = any(:userIds)
-	and (:componentId is null or n.component_id = any(:componentId))</sql>
+	and (:componentId is null or n.component_id = any(:componentId))
+	and n.enabled = true</sql>
 </jdbcService>

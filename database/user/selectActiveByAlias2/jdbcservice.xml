@@ -2,7 +2,7 @@
 	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
 	<sql>select *
 from users u join nodes n on u.id = n.id
-where (u.alias = :alias or (:caseInsensitive is not null and :caseInsensitive = true and lower(u.alias) = lower(:alias)))
+where lower(u.alias) = lower(:alias)
 and u.realm = :realm
 and n.enabled = true
 and (n.verified is not null or (:allowUnverified is not null and :allowUnverified = true))

@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-10-20T10:08:12.340+02:00" lastModified="2022-10-20T10:32:55.610+02:00" leaf="true" version="13">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-10-20T10:08:12.340+02:00" lastModified="2022-11-24T10:22:13.776+01:00" leaf="true" version="18">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
     <references>nabu.cms.core.services.security.selectPotentialUserActions.results</references>
-    <references>nabu.utils.String.join</references>
+    <references>nabu.cms.core.crud.component.services.list</references>
     <references>java.util.Date</references>
     <references>nabu.utils.Date.now</references>
+    <references>nabu.cms.core.crud.user.services.get</references>
     <references>nabu.cms.core.services.security.selectPotentialUserActions</references>
+    <references>nabu.cms.core.services.user.getCurrent</references>
     <references>nabu.cms.core.services.security.selectPotentialRoles.results</references>
-    <references>nabu.cms.core.services.security.selectPotentialRoles</references>
     <references>java.util.UUID</references>
-    <references>java.lang.String</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
+    <references>nabu.cms.core.services.security.selectPermittedNodes</references>
+    <references>nabu.utils.Runtime.getServiceContext</references>
     <references>nabu.cms.core.services.security.selectPotentialGuestActions</references>
+    <references>nabu.utils.List.addAll</references>
+    <references>nabu.utils.String.join</references>
+    <references>nabu.utils.Runtime.setServiceContext</references>
+    <references>nabu.cms.core.types.emodel.core.Node</references>
+    <references>nabu.cms.core.crud.user.types.output</references>
+    <references>nabu.cms.core.services.security.selectPotentialRoles</references>
+    <references>nabu.cms.core.services.security.selectGloballyPermitted</references>
+    <references>java.lang.String</references>
+    <references>nabu.cms.core.crud.component.types.output</references>
     <summary>Select all the potential security for a user or a guest</summary>
 </node>

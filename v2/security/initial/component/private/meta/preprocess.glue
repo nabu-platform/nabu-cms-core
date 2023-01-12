@@ -7,6 +7,8 @@ if (request.header("Original-Target") == null)
 	
 	# if there is an admin user, remove the initial component to prevent further overhead
 	if (hasAdminUser)
+		# in the past we didn't disable it for dev environments, but the overhead starts to add up when it is applied on every call!
+#		if (environment("development") == true)
 		application.stop("nabu.cms.core.v2.security.initial.component")
 	# otherwise redirect the user to force creation of an admin user
 	else

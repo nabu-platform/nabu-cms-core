@@ -297,9 +297,9 @@
 				serviceId="nabu.cms.core.services.user.canLoginAs"
 				resultName="result41dd2075ac784c24b287c1ee585f7a35"
 				temporaryMapping="true"
-				x="81"
-				y="36"
-				invocationOrder="0"
+				x="551"
+				y="35"
+				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -311,6 +311,15 @@
 				<from>token/authenticationId</from>
 				<to>userId</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1665daa6-cf7b-4cdf-983b-4725976cc250"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result9ce24df10c494e8483a8dd5a35b009a7/context/id</from>
+				<to>contextId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -320,6 +329,27 @@
 				fixedValue="false">
 			<from>result41dd2075ac784c24b287c1ee585f7a35/canLogin</from>
 			<to>canLogin</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a72ad421-fc1d-47cd-b1a8-eac158c8cc7b"
+				serviceId="nabu.cms.core.services.context.getApplication"
+				resultName="result9ce24df10c494e8483a8dd5a35b009a7"
+				temporaryMapping="true"
+				x="63"
+				y="155"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4552e353-a3f9-44aa-882a-ab8a81e3e36c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>application</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"

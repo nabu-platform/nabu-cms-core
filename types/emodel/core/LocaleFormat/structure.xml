@@ -1,0 +1,7 @@
+<structure name="LocaleFormat">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.Locale:id" name="localeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="date, number,..." name="type" type="java.lang.String"/>
+    <field comment="a logical name for this formatting option (e.g. currency)" name="name" type="java.lang.String"/>
+    <field comment="The formatting rules" name="format" type="java.lang.String"/>
+</structure>

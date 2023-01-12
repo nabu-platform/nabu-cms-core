@@ -1,0 +1,7 @@
+<structure name="Locale">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field comment="In most cases this will be the country. However, we want to allow cascading to for example continents or finetuning to provinces." foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="regionId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="languageId" type="java.util.UUID"/>
+    <field minOccurs="0" name="script" type="java.lang.String"/>
+    <field minOccurs="0" name="variant" type="java.lang.String"/>
+</structure>

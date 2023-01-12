@@ -1,0 +1,77 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="fa9e6925-fb4b-40dc-aa66-9ba0a038dc17"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Get the component ids to resolve"
+			disabled="false"
+			id="808f1ac2-a5fe-42e5-a330-506436a6bcc5"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="df803020-9f4b-4c64-9ec3-de53dd15041b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/nodesToEnrich[componentName == null]/componentId</from>
+			<to>componentIdsToResolve</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="547c794c-763a-4276-8218-c1e4960638d3"
+			label="componentIdsToResolve"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="0c1b54fd-b609-495b-b4d2-f7d85225aa5a"
+				serviceId="nabu.cms.core.v2.manage.basic.crud.component.services.list"
+				resultName="resultb1c37f7c6d1146e290f2b700d1dc8958"
+				temporaryMapping="true"
+				x="61"
+				y="58"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0e777a9e-6a03-43d6-8da1-70e01d318baa"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>componentIdsToResolve</from>
+				<to>filter/id</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="5d4935a8-22e4-4b4d-9c89-36a773b18b04"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultb1c37f7c6d1146e290f2b700d1dc8958/results</from>
+			<to>components</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="74f7a7db-737f-426e-93f2-7630842a0811"
+			lineNumber="4"
+			variable="nodeToEnrich">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="f89bd93e-a06c-4a5b-9bdf-0e3dfea868bb"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9cfaea9c-44f1-43cf-9f9f-a70654a6a6b8"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>components[id == /nodeToEnrich/componentId]/name</from>
+				<to>nodeToEnrich/componentName</to>
+			</steps>
+		</steps>
+		<query>input/nodesToEnrich[componentName == null]</query>
+	</steps>
+</sequence>

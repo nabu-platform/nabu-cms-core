@@ -1,3 +1,25 @@
+# Locale
+
+For the longest time we only had "language" as masterdata.
+Through the language we chose how "specific" you wanted to be.
+
+Either you just use "fr" and "nl" or you could be more specific and state "fr-fr" and "fr-be" etc.
+
+We can deduce the language (and often country) setting from the accept-language header in the browser, which is how your default language is often chosen.
+
+However, currently we almost never "choose" the country, let alone the script or variant that you might need.
+
+We also don't choose "europe" or "antwerp" or any other granularity than what country and language allow for.
+
+For backwards compatibility reasons, to keep supporting "simple" applications in the future and to allow for automatic matching with the accept-language header, we keep the "language" as leading choice.
+
+We already know the chosen language in the frontend, and from that we can deduce at the every least your language and possibly your country as well (nl-be for example).
+
+Based on that, we can choose the locale that applies to you.
+
+In the future we add mappings of how regions correlate to one another (e.g. belgium is a part of europe)
+and based on that we can set locale settings at a higher level than the granularity of language+country.
+
 # Authentication
 
 ## Typed Authentication
@@ -76,3 +98,27 @@ The solution:
 - user management stays as is, use "alias users" for specific edge cases
 - notification targets are stored in a separate table. initially you can copy the email from the user to that table and immediately activate consent if you captured it during registration
 
+
+## Deletion
+
+Delete user (and node):
+
+```sql
+delete from user_devices where user_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from user_groups where user_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from node_audits where actor_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from action_roles where action_id in (select id from actions where owner_id='e39bbcbea2564e09bd6488c4e478c061');
+delete from actions where owner_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from roles where owner_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from node_logs where node_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from node_external_ids where node_id='e39bbcbea2564e09bd6488c4e478c061';
+delete from accounts where id='e39bbcbea2564e09bd6488c4e478c061';
+delete from users where id='e39bbcbea2564e09bd6488c4e478c061';
+delete from nodes where id='e39bbcbea2564e09bd6488c4e478c061';
+```
+
+Optional:
+
+```sql
+delete from oauth2_provider_logins where user_id='dd878824ca134db191550f2b343c3b4e';
+```

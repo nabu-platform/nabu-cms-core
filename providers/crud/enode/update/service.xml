@@ -1,10 +1,12 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="accb2248-5728-407e-a414-08ba29f4b575">
+		id="accb2248-5728-407e-a414-08ba29f4b575"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Get existing and new"
 			disabled="false"
-			id="9c6198ed-692e-4d70-b7c3-396fb1bdcf52">
+			id="9c6198ed-692e-4d70-b7c3-396fb1bdcf52"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="8b61cd20-dcdf-423e-aa78-86d75068a1f6"
@@ -115,11 +117,13 @@
 			disabled="false"
 			id="9851e911-2c67-4c2c-a08f-6cbdbf058acb"
 			label="existing = null || existing/id != newNode/id"
+			lineNumber="3"
 			message="Invalid id" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Describe the type we passed in, specifically we need to differentiate between unsetting the parentId and not being able to update it at all"
 			disabled="false"
-			id="8a1dda8a-d26b-48aa-bc60-297057a53bc5">
+			id="8a1dda8a-d26b-48aa-bc60-297057a53bc5"
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="a4f49f0d-68af-4063-ac4e-586c279e560f"
@@ -184,7 +188,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="We update the exposed node fields and the extension"
 			disabled="false"
-			id="231b0579-88bc-42ef-82d7-b2b8456e6fb4">
+			id="231b0579-88bc-42ef-82d7-b2b8456e6fb4"
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="5cac1054-3544-4410-b66e-f8ba0bc74c46"
@@ -247,12 +252,14 @@
 			comment="If we have a parentId parameter, check if it has been updated"
 			disabled="false"
 			id="f58d9465-c7d5-4a96-90fc-90ebc4b98f10"
-			label="parentIdParameter != null">
+			label="parentIdParameter != null"
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="If we unset the parent id, path is simple"
 				disabled="false"
 				id="ca92fbf5-233b-44d5-8f18-0a356e3aeb5a"
-				label="newNode/parentId = null">
+				label="newNode/parentId = null"
+				lineNumber="7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="c55d300a-672a-41c3-bc59-2b94c1a7118d"
@@ -267,11 +274,13 @@
 				comment="If we updated the parent, we need to update the path field as well"
 				disabled="false"
 				id="fa37c8e7-5cd6-439f-bdfa-9f805b1d366d"
-				label="existing/parentId != newNode/parentId">
+				label="existing/parentId != newNode/parentId"
+				lineNumber="8">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Get parent"
 					disabled="false"
-					id="f94fc1d0ded94d1c8562b5b5f8d0613e">
+					id="f94fc1d0ded94d1c8562b5b5f8d0613e"
+					lineNumber="9">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="55cb9d96a52f4751a3df9f7a5f24ef4f"
@@ -343,11 +352,13 @@
 					disabled="false"
 					id="250ac53f-84a9-4708-ad22-ce395b0705f5"
 					label="!parentNode"
+					lineNumber="10"
 					message="Invalid parent id" xsi:nil="true"/>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Map updated path"
 					disabled="false"
-					id="09245f46-0fa5-42c1-9e94-cb93b91221dc">
+					id="09245f46-0fa5-42c1-9e94-cb93b91221dc"
+					lineNumber="11">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="3a04ef8c-6524-42e6-9400-c815f72e91f1"
@@ -363,7 +374,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Merge new fields into existing so we have an update to date copy without doing another select"
 			disabled="false"
-			id="f2659bc5-1cbf-404a-9ee5-4f25f404a98e">
+			id="f2659bc5-1cbf-404a-9ee5-4f25f404a98e"
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="f5efcf23-1809-4b6f-8f1a-f8895776b076"
@@ -398,7 +410,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Update version"
 			disabled="false"
-			id="0c76d3e9-f69f-4b86-a349-b239e03db8f6">
+			id="0c76d3e9-f69f-4b86-a349-b239e03db8f6"
+			lineNumber="13">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="4e1925fb-1e78-440c-a3e1-e494bbbcb3a7"
@@ -412,7 +425,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Update the node again with the remaining fields"
 			disabled="false"
-			id="886e6b8e-bccd-4375-91e7-c884e6845db2">
+			id="886e6b8e-bccd-4375-91e7-c884e6845db2"
+			lineNumber="14">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="f8fbdbf9-cd4a-4e5f-9102-5e14511f349f"
@@ -459,6 +473,15 @@
 					fixedValue="false">
 				<from>input/changeTracker</from>
 				<to>changeTracker</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7c13076e-8f1c-4ce7-94be-b7ea13a95c46"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/language</from>
+				<to>language</to>
 			</steps>
 		</steps>
 	</steps>

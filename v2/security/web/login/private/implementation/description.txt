@@ -5,6 +5,9 @@ We also send back additional information that can be used to optimize the user e
 
 Note that the remember only works if you have a valid device id. We want to ensure a remember can only be used from a specific device, not globally.
 
+Can't put the user.authenticate permission on this service!
+We want to have a situation where only admins can log in, however that means we want to limit user.authenticate permission. This would prevent logging in alltogether though.
+Instead we check at the application level and use a similarly named rate limit action "user.authenticate" to allow for rate limiting.
 
 TODO:
 - have a toggle where login is only allowed on known devices (currently simply wiping the device cookie allows you to log in again, so it mostly protects against remembers)

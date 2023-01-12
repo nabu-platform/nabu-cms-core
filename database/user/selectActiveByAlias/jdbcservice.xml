@@ -8,5 +8,6 @@ and n.enabled = true
 and (n.verified is not null or (:allowUnverified is not null and :allowUnverified = true))
 and n.started is not null
 and n.started &lt; current_timestamp
-and (n.stopped is null or n.stopped &gt; current_timestamp)</sql>
+and (n.stopped is null or n.stopped &gt; current_timestamp)
+and u.blocked_since is null</sql>
 </jdbcService>
