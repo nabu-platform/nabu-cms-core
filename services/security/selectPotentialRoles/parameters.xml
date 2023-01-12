@@ -1,4 +1,5 @@
 <structure name="parameter">
+    <field name="securityContext" type="java.lang.String"/>
     <field maxOccurs="unbounded" name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field minOccurs="0" name="current" timezone="UTC" type="java.util.Date"/>
 </structure>

@@ -122,3 +122,12 @@ Optional:
 ```sql
 delete from oauth2_provider_logins where user_id='dd878824ca134db191550f2b343c3b4e';
 ```
+
+Delete proxy/application...
+
+```sql
+delete from action_roles where action_id in (select id from actions where owner_id='243b4dff61174a0e8ba7227ef4f52050');
+delete from roles where owner_id='243b4dff61174a0e8ba7227ef4f52050';
+delete from actions where owner_id='243b4dff61174a0e8ba7227ef4f52050';
+delete from nodes where id='243b4dff61174a0e8ba7227ef4f52050';
+```

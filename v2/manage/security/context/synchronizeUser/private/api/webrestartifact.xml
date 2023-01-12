@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
-    <method>GET</method>
-    <path>/suggest/account/context</path>
+    <method>POST</method>
+    <path>/context/{targetContextId}/synchronizeUser/{userId}</path>
     <role>$user</role>
-    <permissionAction>user.list</permissionAction>
+    <permissionAction>user.manage</permissionAction>
+    <permissionContext>=input/path/targetContextId</permissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
     <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useGlobalPermissionContext>false</useGlobalPermissionContext>
-    <output>nabu.cms.core.v2.manage.basic.crud.node.types.outputList</output>
+    <output>nabu.cms.core.v2.manage.security.context.synchronizeUserOutput</output>
     <lenient>true</lenient>
     <webApplicationId>false</webApplicationId>
     <geoPosition>false</geoPosition>

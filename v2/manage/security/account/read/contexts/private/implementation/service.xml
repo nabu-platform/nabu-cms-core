@@ -49,4 +49,30 @@
 				recache="false">
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="289d75fa5c94496dafeee0204453ed6e"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="d36c3926339e496fa8e5fdcb49d41fed"
+				serviceId="nabu.cms.core.v2.manage.security.context.enrichNodes"
+				resultName="result7ee7d4bdc8bd49aa9ac167779bbd4179"
+				temporaryMapping="true"
+				x="116"
+				y="66"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="04a62101128044dbbd4becca55894c83"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/content/results</from>
+				<to>nodesToEnrich</to>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

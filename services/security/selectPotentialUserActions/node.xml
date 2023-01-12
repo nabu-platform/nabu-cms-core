@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T10:02:49.199+02:00" lastModified="2022-10-22T10:08:08.457+02:00" leaf="false" version="15">
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T10:02:49.199+02:00" lastModified="2023-01-12T12:59:27.791+01:00" leaf="false" version="17">
     <description>We want to select all the actions a particular potentially has. Note however that we do not know in which contexts he has these.
 For example we might know he has "company.update" and can (as such) update the company information.
 However we don't know for which companies.
@@ -7,6 +7,7 @@ The context that is returned here is the business context it is used in. This co
 It "should" be defined on a root node of type context but that is not always guaranteed</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
     <references>java.lang.String</references>
     <references>java.lang.Long</references>

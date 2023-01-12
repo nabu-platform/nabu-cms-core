@@ -1,0 +1,70 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="73bce1418b5145db8a06de8330eac9ed"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="59a2bbfd310a42b499751b9793dcd1a8"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="bf3441a795f24dd79a8630bcc9c16ce7"
+				serviceId="nabu.cms.core.services.user.mirror"
+				resultName="resultbbe051a1cdd84982bdeee331c03e98e4"
+				temporaryMapping="true"
+				x="563"
+				y="179"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5258412aa0f841a5b89c212d7470b378"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/userId</from>
+				<to>userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="365201dcb95240099fb8e5f14199b379"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result613674012a8444baace17e9338712e2b/result/name</from>
+				<to>context</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a07941616cd94e5fa2b9cfafbf804ea0"
+				serviceId="nabu.cms.core.crud.node.services.get"
+				resultName="result613674012a8444baace17e9338712e2b"
+				temporaryMapping="true"
+				x="133"
+				y="48"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e3f11f31bf2a4ca3a176fe0044ce3674"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/targetContextId</from>
+				<to>id</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="058388ceba44443a9553c757c942146f"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultbbe051a1cdd84982bdeee331c03e98e4/userId</from>
+			<to>output/content/userId</to>
+		</steps>
+	</steps>
+</sequence>

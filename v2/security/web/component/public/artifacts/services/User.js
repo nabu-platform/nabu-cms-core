@@ -20,6 +20,20 @@ Vue.service("user", {
 	computed: {
 		loggedIn: function() {
 			return this.bearer != null;
+		},
+		normalizedPermissions: function() {
+			return this.permissions.map(function(x) {
+				var parts = x.split(":");	
+				// only the name
+				if (parts.length == 1) {
+					parts = ["default", "$global", parts[0]];
+				}
+				// context + name
+				else if (parts.length == 2) {
+					parts = ["default", parts[0], parts[1]];
+				}
+				return parts;
+			});
 		}
 	},
 	// always try to remember the user
@@ -322,21 +336,32 @@ Vue.service("user", {
 			var fullName = (context ? context + ":" : "") + role;
 			return this.roles.indexOf(fullName) >= 0;
 		},
-		hasPermission: function(action, context) {
+		hasPermission: function(action, context, serviceContext) {
 			if (context == "this") {
 				context = this.application;
 			}
-			var fullName = (context ? context + ":" : "") + action;
-			if (this.permissions.indexOf(fullName) >= 0) {
-				return true;
+			return this.normalizedPermissions.filter(function(permission) {
+				return (!serviceContext || permission[0] == serviceContext)
+					&& (!context || permission[1] == context)
+					&& permission[2] == action;
+			}).length > 0;
+		},
+		hasPermissionInContext: function(context, serviceContext) {
+			if (context == "this" || !context) {
+				context = this.application;
 			}
-			// if we don't have an explicit context, check if there is a permission by that name in any context
-			else if (!context) {
-				return this.permissions.filter(function(x) {
-					return x.indexOf(":") > 0 && x.split(":")[1] == action;
-				}).length > 0;
+			return this.normalizedPermissions.filter(function(permission) {
+				return permission[1] == context
+					&& (!serviceContext || permission[0] == serviceContext);
+			}).length > 0;
+		},
+		hasPermissionInServiceContext: function(serviceContext) {
+			if (!serviceContext) {
+				serviceContext = "default";
 			}
-			return false;
+			return this.normalizedPermissions.filter(function(permission) {
+				return permission[0] == serviceContext;
+			}).length > 0;
 		},
 		// backwards compatible
 		hasPotentialRole: function(role, context) {

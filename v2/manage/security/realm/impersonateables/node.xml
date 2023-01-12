@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-11-08T13:08:03.747+01:00" lastModified="2022-11-08T15:55:30.752+01:00" leaf="true" version="30">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-11-08T13:08:03.747+01:00" lastModified="2023-01-12T17:37:19.838+01:00" leaf="true" version="38">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
-    <references>nabu.cms.core.v2.manage.security.realm.impersonateableList</references>
+    <references>nabu.cms.core.services.security.getAllPermitted</references>
     <references>nabu.cms.core.crud.node.types.output</references>
     <references>nabu.cms.core.v2.manage.security.realm.impersonateable</references>
     <references>nabu.cms.core.services.user.getCurrent</references>
     <references>nabu.utils.Uri.fromComponents</references>
     <references>nabu.cms.core.types.emodel.core.User</references>
-    <references>java.util.UUID</references>
     <references>nabu.cms.core.services.component.get</references>
     <references>nabu.cms.core.v2.manage.security.realm.selectImpersonateableContexts</references>
     <references>nabu.web.application.Services.information</references>
+    <references>nabu.web.application.Services.configuration</references>
     <references>java.lang.Long</references>
+    <references>nabu.utils.Runtime.setServiceContext</references>
+    <references>nabu.cms.core.v2.security.web.configuration</references>
+    <references>java.lang.String</references>
+    <references>nabu.cms.core.v2.manage.security.realm.impersonateables</references>
+    <references>nabu.cms.core.v2.manage.security.realm.impersonateableList</references>
+    <references>java.util.UUID</references>
+    <references>nabu.utils.Runtime.getServiceContext</references>
+    <references>nabu.utils.List.addAll</references>
     <references>nabu.cms.core.crud.node.services.get</references>
+    <references>nabu.cms.core.types.emodel.core.Node</references>
     <references>nabu.cms.core.v2.manage.security.realm.selectGlobalImpersonatable</references>
     <references>nabu.cms.core.crud.node.services.list</references>
-    <references>java.lang.String</references>
     <references>nabu.web.application.types.WebApplicationInformation</references>
 </node>

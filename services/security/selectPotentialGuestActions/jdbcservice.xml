@@ -1,7 +1,8 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<sql>select distinct
 	a.name,
-	n.name as context
+	n.name as context,
+	'default' as security_context
 from ~actions a
 	left outer join ~nodes n on n.id = a.owner_id
 	join ~action_roles ar on a.id = ar.action_id
