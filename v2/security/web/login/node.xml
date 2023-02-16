@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:02:20.153+02:00" lastModified="2022-12-23T13:54:43.006+01:00" leaf="true" version="95">
+    <description>By logging in you obtain a valid access token that represents who you are. This token has a max lifetime and usually comes with secondary timeouts based on last used. For instance the token might be valid for 24 hours max, but also times out after 30 minutes of inactivity.
+Logging in requires a type, this can be password, sms, oauth2,... 
+If you choose to be remembered, a one time use token is set in a secure cookie that can be redeemed later to get a new valid access token.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <locked>false</locked>
     <properties/>
+    <reference>S0</reference>
     <references>nabu.cms.core.services.context.getApplication</references>
     <references>nabu.cms.core.crud.node.types.output</references>
     <references>java.util.Date</references>
@@ -29,4 +33,5 @@
     <references>nabu.cms.core.crud.user.types.output</references>
     <references>nabu.cms.core.services.user.canLoginAs</references>
     <references>nabu.utils.Date.incrementDuration</references>
+    <summary>Log in as a user</summary>
 </node>

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:19:25.667+02:00" lastModified="2022-12-23T13:57:26.163+01:00" leaf="true" version="67">
+    <description>When a user logs in, he can opt to be remembered. This creates a secondary one time use long lived token in a secure cookie that can be used to remember the user at a later point. If his original access token times out or he simply closes the tab he can return at a later point. If the application calls the remember sequence, a valid access token can be obtained.
+Note that the one time use token is explicitly destroyed when you call forget.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <locked>false</locked>
     <properties/>
+    <reference>S1</reference>
     <references>nabu.cms.core.services.context.getApplication</references>
     <references>nabu.cms.core.crud.node.types.output</references>
     <references>java.util.Date</references>
@@ -29,4 +32,5 @@
     <references>nabu.utils.reflection.Service.listImplementations</references>
     <references>nabu.cms.core.services.user.canLoginAs</references>
     <references>nabu.utils.Date.incrementDuration</references>
+    <summary>Remember the user when his original token has expired</summary>
 </node>

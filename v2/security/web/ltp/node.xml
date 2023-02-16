@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-22T14:40:12.657+02:00" lastModified="2022-12-23T13:31:10.061+01:00" leaf="true" version="34">
+    <description>This functions more or less like the OTP service except you can reuse the LTP multiple times for a short duration.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <locked>false</locked>
     <properties/>
+    <reference>S3</reference>
     <references>nabu.cms.core.v2.security.web.otpOutput</references>
     <references>nabu.web.application.Services.newTemporaryAuthentication</references>
     <references>java.lang.String</references>
     <references>be.nabu.libs.authentication.api.Token</references>
     <references>nabu.utils.Date.incrementDuration</references>
+    <summary>Request a limited time password to execute a particular service</summary>
 </node>

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:08:03.682+02:00" lastModified="2022-09-21T22:18:47.523+02:00" leaf="true" version="14">
+    <description>Each browser is tagged with a functional device cookie. Each call that requires a device cookie will actually automatically create one. To prevent concurrent calls potentially registering multiple devices in parallel, it is advised to explicitly register the device.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
+    <reference>S5</reference>
     <references>java.lang.String</references>
     <references>be.nabu.libs.authentication.api.Device</references>
+    <summary>Register your device</summary>
 </node>

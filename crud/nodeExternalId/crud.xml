@@ -40,14 +40,24 @@
         <input>true</input>
         <vary>false</vary>
     </filters>
+    <foreignFields>
+        <foreignName>externalIdTypeId:name</foreignName>
+        <localName>externalIdTypeName</localName>
+    </foreignFields>
+    <hooks>false</hooks>
     <listRole>$user</listRole>
     <provider>nabu.services.crud.provider.basic.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
     <updateBlacklistFields>modified</updateBlacklistFields>
     <updateBlacklistFields>created</updateBlacklistFields>
     <updateRegenerateFields>modified</updateRegenerateFields>
     <updateRole>$user</updateRole>
     <useExplicitLanguage>false</useExplicitLanguage>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
     <useLanguage>false</useLanguage>
-    <useListOutputForCreate>false</useListOutputForCreate>
-    <useListOutputForUpdate>false</useListOutputForUpdate>
+    <useListOutputForCreate>true</useListOutputForCreate>
+    <useListOutputForUpdate>true</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
+    <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
+    <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
 </crud>

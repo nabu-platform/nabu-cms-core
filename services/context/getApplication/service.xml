@@ -137,8 +137,8 @@
 					serviceId="nabu.cms.core.crud.node.services.create"
 					resultName="result2e024baf914b425dafcd4dbaac23bbf6"
 					temporaryMapping="true"
-					x="322"
-					y="139"
+					x="64"
+					y="97"
 					invocationOrder="0"
 					asynchronous="false"
 					recache="false">
@@ -207,15 +207,6 @@
 					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="9a26c084-d79e-4e0c-8c24-29656ad26c2c"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>componentId</from>
-					<to>contextNodeId</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
 						id="e1b94552-b75f-44d8-919b-f3d0f5f45f7b"
 						mask="false"
 						optional="false"
@@ -240,6 +231,15 @@
 						fixedValue="false">
 					<from>input/transactionId</from>
 					<to>transactionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c18551f2425041cca1bb8ac8195ec832"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>output/context/id</from>
+					<to>contextNodeId</to>
 				</steps>
 			</steps>
 		</steps>

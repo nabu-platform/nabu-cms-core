@@ -1,0 +1,107 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="ac2149c6cc0f4a7a812e4eeb105886a1"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="ceddd7ec265b45669f005cb333fe4fd0"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f7e6d56b1bde43ba8d997bae23c0b4cc"
+				serviceId="nabu.utils.reflection.Service.listImplementations"
+				resultName="result05ebb57d152345c08a3fb148c8a36e4b"
+				temporaryMapping="true"
+				x="275"
+				y="68"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dba076b86e9146f79c6ac3e7908525e5"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>nabu.cms.core.v2.specs.loginIdentifier</from>
+				<to>interfaceId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1be0131634fb456cae848a357269405f"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>authenticationType</from>
+				<to>properties[0]/key</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5dd795e0b3e24d429410c0dd004c8ecb"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/login/type</from>
+				<to>properties[0]/value</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="2b4c32e6dbce4abeb5a840508ff0af4a"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result05ebb57d152345c08a3fb148c8a36e4b/implementations</from>
+			<to>implementations</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="36846564fe2149d4b10cd632aa677b37"
+			lineNumber="3"
+			variable="implementation">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="88e780bd60514afea417a3f1a61a6b6a"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="9fac5ef516bd49d8973e1c735be7d7d6"
+					serviceId="nabu.cms.core.v2.specs.loginIdentifier"
+					resultName="result30d65075c8ab475cbb2b3173c1f69aee"
+					temporaryMapping="true"
+					x="219"
+					y="58"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="f1d9bb91a05b44c48a1f1b4741c1494e"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/login</from>
+					<to>login</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3c547e9ba7b844068914cb429af285d0"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result30d65075c8ab475cbb2b3173c1f69aee/userId</from>
+				<to>output/userId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Break"
+				disabled="false"
+				id="5578284c20e0413985c7af9800bb74ce"
+				label="output/userId != null"
+				lineNumber="5">
+			<count>1</count>
+		</steps>
+		<query>implementations</query>
+	</steps>
+</sequence>

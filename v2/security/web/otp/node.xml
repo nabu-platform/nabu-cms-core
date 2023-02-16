@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-22T14:40:12.657+02:00" lastModified="2022-12-23T13:31:06.573+01:00" leaf="true" version="23">
+    <description>The one time password that is generated is valid for a very short duration, this allows construction of a URL that can be used once (in a short timeframe) where the resulting call can be run with the credentials of the one who requested the OTP.
+Most common usecase is secured file downloads.
+The OTP is coupled to a particular service. It can also be coupled to the device and/or a particular input correlation id for the service limiting the use to download for instance a specific file.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <locked>false</locked>
     <properties/>
+    <reference>S4</reference>
     <references>nabu.cms.core.v2.security.web.otpOutput</references>
     <references>nabu.web.application.Services.newTemporaryAuthentication</references>
     <references>java.lang.String</references>
     <references>be.nabu.libs.authentication.api.Device</references>
     <references>be.nabu.libs.authentication.api.Token</references>
     <references>nabu.utils.Date.incrementDuration</references>
+    <summary>Request a one time password to execute a particular service</summary>
 </node>

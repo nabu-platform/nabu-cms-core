@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-28T13:07:45.516+02:00" lastModified="2022-11-08T15:58:53.196+01:00" leaf="true" version="32">
+    <description>If you have sufficient priviliges, you can obtain an access token that emulates another user.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
+    <reference>S6</reference>
     <references>nabu.web.application.Services.newTemporaryAuthentication</references>
     <references>nabu.cms.core.crud.user.services.get</references>
     <references>nabu.cms.core.services.user.getCurrent</references>
@@ -18,4 +21,5 @@
     <references>java.lang.String</references>
     <references>nabu.web.application.types.WebApplicationInformation</references>
     <references>nabu.utils.Date.incrementDuration</references>
+    <summary>Impersonate another user</summary>
 </node>
