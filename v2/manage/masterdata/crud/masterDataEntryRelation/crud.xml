@@ -3,79 +3,13 @@
     <allowHeaderAsQueryParameter>true</allowHeaderAsQueryParameter>
     <broadcastCreate>false</broadcastCreate>
     <broadcastUpdate>false</broadcastUpdate>
-    <coreType>nabu.cms.core.types.emodel.core.MasterDataEntry</coreType>
+    <coreType>nabu.cms.core.types.emodel.core.MasterDataEntryRelation</coreType>
     <createBlacklistFields>created</createBlacklistFields>
     <createBlacklistFields>modified</createBlacklistFields>
+    <createPermission>masterdata.manage</createPermission>
     <createRole>$user</createRole>
+    <deletePermission>masterdata.manage</deletePermission>
     <deleteRole>$user</deleteRole>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>masterDataCategoryId</key>
-        <operator>=</operator>
-        <or>false</or>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>name</key>
-        <operator>=</operator>
-        <or>false</or>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>name</key>
-        <operator>ilike</operator>
-        <or>false</or>
-        <alias>q</alias>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>ownerId</key>
-        <operator>=</operator>
-        <or>false</or>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>masterDataCategory</key>
-        <operator>=</operator>
-        <or>false</or>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>ownerId</key>
-        <operator>is null</operator>
-        <or>false</or>
-        <alias>global</alias>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>operational</key>
-        <operator>= false</operator>
-        <or>false</or>
-        <alias>fixed</alias>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
-    <filters>
-        <caseInsensitive>false</caseInsensitive>
-        <key>operational</key>
-        <operator>is null</operator>
-        <or>true</or>
-        <alias>fixed</alias>
-        <input>true</input>
-        <vary>false</vary>
-    </filters>
     <filters>
         <caseInsensitive>false</caseInsensitive>
         <key>id</key>
@@ -84,16 +18,84 @@
         <input>true</input>
         <vary>false</vary>
     </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>sourceId</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>targetId</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>relationTypeId</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>relationTypeName</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>sourceMasterDataCategoryId</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>sourceName</key>
+        <operator>ilike</operator>
+        <or>false</or>
+        <alias>q</alias>
+        <input>true</input>
+        <vary>false</vary>
+    </filters>
     <foreignFields>
-        <foreignName>masterDataCategoryId:name</foreignName>
-        <localName>masterDataCategory</localName>
+        <foreignName>relationTypeId:name</foreignName>
+        <localName>relationTypeName</localName>
     </foreignFields>
+    <foreignFields>
+        <foreignName>sourceId:masterDataCategoryId</foreignName>
+        <localName>sourceMasterDataCategoryId</localName>
+    </foreignFields>
+    <foreignFields>
+        <foreignName>sourceId:name</foreignName>
+        <localName>sourceName</localName>
+    </foreignFields>
+    <foreignFields>
+        <foreignName>sourceId:masterDataCategoryId:name</foreignName>
+        <localName>sourceMasterDataCategoryName</localName>
+    </foreignFields>
+    <getPermission>masterdata.list</getPermission>
     <hooks>false</hooks>
+    <listPermission>masterdata.list</listPermission>
     <listRole>$user</listRole>
+    <primaryKeySecurityContext>true</primaryKeySecurityContext>
+    <primaryKeySecurityContextPrefix>masterDataEntryRelation</primaryKeySecurityContextPrefix>
     <provider>nabu.services.crud.provider.basic.provider</provider>
     <restLimitToUser>true</restLimitToUser>
+    <securityContextField>targetId</securityContextField>
+    <securityContextFieldPrefix>masterDataEntry</securityContextFieldPrefix>
     <updateBlacklistFields>created</updateBlacklistFields>
     <updateBlacklistFields>modified</updateBlacklistFields>
+    <updatePermission>masterdata.manage</updatePermission>
     <updateRegenerateFields>modified</updateRegenerateFields>
     <updateRole>$user</updateRole>
     <useExplicitLanguage>false</useExplicitLanguage>
@@ -104,22 +106,4 @@
     <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
-    <views>
-        <blacklistFields>created</blacklistFields>
-        <blacklistFields>description</blacklistFields>
-        <blacklistFields>modified</blacklistFields>
-        <blacklistFields>ownerId</blacklistFields>
-        <broadcastCreate>false</broadcastCreate>
-        <broadcastUpdate>false</broadcastUpdate>
-        <filters>
-            <caseInsensitive>false</caseInsensitive>
-            <key>masterDataCategoryId</key>
-            <operator>=</operator>
-            <or>false</or>
-            <input>true</input>
-            <vary>false</vary>
-        </filters>
-        <name>Preloaded</name>
-        <type>LIST</type>
-    </views>
 </crud>

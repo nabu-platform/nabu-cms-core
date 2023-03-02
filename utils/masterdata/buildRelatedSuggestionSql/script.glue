@@ -1,0 +1,39 @@
+nabu.cms.core.crud.masterDataEntry.types.output [] alreadyChosenEntryIds ?= null
+uuid masterDataCategoryId ?= null
+string q ?= null
+
+# group by masterdata category
+grouped = series.group(lambda(x, x/masterDataCategoryId), alreadyChosenEntryIds)
+
+# for example:
+# masterdata category 1 is "countries"
+# category 2 is "legal company types"
+# if you just list 2, you get all types all over the world
+# if you choose a country from category 1, you want only those legal company types that are available in that country
+# the country choice is the "fromEntryId" in the relation, the legal forms are the "toEntryId"
+# we could do a hard join on all requirements, this would be a rather simple sql: only suggestions where all relations are satisfied
+# however, within a single category you want an "or" and across category an "and"
+# for example all legal company types in either BE or NL but they should also be subject to VAT (or whatever)
+
+join = "~master_data_entries mde"
+for (key : keys(grouped))
+	if (sql == null)
+		sql = ""
+	else
+		sql = sql + " and"
+	
+	join = join + " join ~master_data_entry_relations mder" + $index + " on mder" + $index + " = mde.id = mder" + $index + ".to_entry_id and mder" + $index + ".from_entry_id in ("
+	first = true
+	for (entry in grouped[/key])
+		if (first)
+			first = false
+		else
+			join = join + ", "
+		join = join + "'" + entry/id + "'"
+	join = join + ")"
+	
+@return
+string sql = "select distinct(*) from " + join + " where mde.master_data_category_id='" + masterDataCategoryId + "'"
+
+if (q != null)
+	sql = sql + " and lower(mde.name) like lower(:q)"

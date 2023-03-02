@@ -70,8 +70,8 @@
 					serviceId="nabu.cms.core.v2.specs.loginIdentifier"
 					resultName="result30d65075c8ab475cbb2b3173c1f69aee"
 					temporaryMapping="true"
-					x="219"
-					y="58"
+					x="98"
+					y="49"
 					invocationOrder="0"
 					asynchronous="false"
 					recache="false">
@@ -83,6 +83,15 @@
 						fixedValue="false">
 					<from>input/login</from>
 					<to>login</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="8e494acc56104b9d910ea40059678277"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/webApplicationId</from>
+					<to>webApplicationId</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"

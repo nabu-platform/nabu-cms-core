@@ -1,0 +1,93 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="42018b5f16d24aee9c804cd312c2d90c"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="1366be497f2443109f68a6bf4889074a"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="abcf543684e9443ba46cedadb2b22ac1"
+				serviceId="nabu.web.application.Services.information"
+				resultName="result3c585f6ca7704f7f854da0cb93a3eb52"
+				temporaryMapping="true"
+				x="52"
+				y="64"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2dc360ad271a493abb386772e4e79a7d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="72d2e298b8124fbe999bf36d2a096d50"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result3c585f6ca7704f7f854da0cb93a3eb52/information</from>
+			<to>information</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="2c06c2f27336422185629d9d76cb42f5"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c2835ff212ff48fba776ea9f84c85577"
+				serviceId="nabu.cms.core.crud.account.services.list"
+				resultName="resultf80934cda8624a02b27b50aff9fbb925"
+				temporaryMapping="true"
+				x="71"
+				y="50"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b97a90f4db36435aa52522219e882ab6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>information/realm</from>
+				<to>filter/realm[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ecf151b8fa9d4c0dbae5c21d4a88b69f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/login/authenticationId</from>
+				<to>filter/alias</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5735a4a29515436caf3266d8465ad2ea"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>1</from>
+				<to>limit</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="2c08b7c887bd4aa89d8e0562b30e8045"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultf80934cda8624a02b27b50aff9fbb925/results[0]/id</from>
+			<to>output/userId</to>
+		</steps>
+	</steps>
+</sequence>
