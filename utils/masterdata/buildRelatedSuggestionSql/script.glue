@@ -22,9 +22,10 @@ for (key : keys(grouped))
 	else
 		sql = sql + " and"
 	
-	join = join + " join ~master_data_entry_relations mder" + $index + " on mder" + $index + " = mde.id = mder" + $index + ".to_entry_id and mder" + $index + ".from_entry_id in ("
+	join = join + " join ~master_data_entry_relations mder" + $index + " on mde.id = mder" + $index + ".target_id and mder" + $index + ".source_id in ("
 	first = true
-	for (entry in grouped[/key])
+	console("Grouped is", grouped, key, grouped[/key])
+	for (entry : grouped[/key])
 		if (first)
 			first = false
 		else
@@ -33,7 +34,7 @@ for (key : keys(grouped))
 	join = join + ")"
 	
 @return
-string sql = "select distinct(*) from " + join + " where mde.master_data_category_id='" + masterDataCategoryId + "'"
+string sql = "select distinct * from " + join + " where mde.master_data_category_id='" + masterDataCategoryId + "'"
 
 if (q != null)
 	sql = sql + " and lower(mde.name) like lower(:q)"

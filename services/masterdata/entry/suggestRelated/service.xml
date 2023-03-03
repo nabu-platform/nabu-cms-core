@@ -103,8 +103,32 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="f289fa6880d7447cbeeebc3c55099bbf"
+					id="98b5ec500e9a4a05bd9e04410441bdfe"
+					label="input/q != null"
 					lineNumber="6">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="efdfe2fd965843de81547d091759fc95"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>q</from>
+					<to>search/key</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="98007b1abebf434d96c8e4a1db3db973"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/q</from>
+					<to>search/value</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="f289fa6880d7447cbeeebc3c55099bbf"
+					lineNumber="7">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="637263b09bbd4588acee8c5cf50063a1"
@@ -133,24 +157,6 @@
 							fixedValue="true">
 						<from>nabu.cms.core.types.emodel.core.MasterDataEntry</from>
 						<to>typeId</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="3393defaf90544d7843485d07fbb3fee"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/q</from>
-						<to>properties[0]/value</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="a4d03034889741c89dd5997a86755a76"
-							mask="false"
-							optional="false"
-							fixedValue="true">
-						<from>q</from>
-						<to>properties[0]/key</to>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
@@ -187,6 +193,15 @@
 							fixedValue="true">
 						<from>=input/limit != null</from>
 						<to>totalRowCount</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="604c9c1296924207b0245d8b90e5c04f"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>search</from>
+						<to>properties[0]</to>
 					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -251,7 +266,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="fef23a82885d4b719dce1c5de703e593"
-				lineNumber="7">
+				lineNumber="8">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="b5f25bdbc7e24c51b9b57eea8c47fba7"
