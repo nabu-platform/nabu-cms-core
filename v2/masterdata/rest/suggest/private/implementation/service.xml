@@ -1,0 +1,133 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="20e30ae9922d48c5a21b879b09944a74"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="29eeb827458749e5ab6ef681429bb28d"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="d534cbd1956f49d782a6baa21b4b7674"
+				serviceId="nabu.cms.core.crud.masterDataEntry.services.list"
+				resultName="result20fb0826eec8436a96c277ac644cb0b8"
+				temporaryMapping="true"
+				x="371"
+				y="89"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5621fd081dad4708a63a63a1331d7f2d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/q</from>
+				<to>filter/q</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="71b88a3a78f34dc3bfc9e72a42c28af1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/masterDataCategoryId</from>
+				<to>filter/masterDataCategoryId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a114357821bb44b790ee74229aa5a35c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/orderBy</from>
+				<to>orderBy</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="aeaa49115d114288af4b22f8a5086400"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultba44545ae67d49788903cec30ea5e394/paging/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="47a366c78e7148af8c1cca2bf43e3932"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultba44545ae67d49788903cec30ea5e394/paging/offset</from>
+				<to>offset</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a54ff2fa5c9c43579c702b6e8e042866"
+				serviceId="nabu.services.jdbc.Services.paging"
+				resultName="resultba44545ae67d49788903cec30ea5e394"
+				temporaryMapping="true"
+				x="38"
+				y="15"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e05aa9e8b91f43858a6f839326306651"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cd3b8af84fa94486a198ce5053ef06af"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/offset</from>
+				<to>offset</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b0638f8859634f389653f77ee3807632"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>100</from>
+				<to>maxLimit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0a545ec742d44c4f91c772d4ddc526b7"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>false</from>
+				<to>isPageOffset</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6b486516cf88498b8b03ecdd152e3b4e"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result20fb0826eec8436a96c277ac644cb0b8/results</from>
+			<to>output/content/results</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="5ff214197e1644c6b784e38fd833005c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result20fb0826eec8436a96c277ac644cb0b8/page</from>
+			<to>output/content/page</to>
+		</steps>
+	</steps>
+</sequence>

@@ -1,0 +1,133 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="30cfad336f8e4e7f8c2159463bdaf2a4"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="9e5407d03d5c4b9fb7eee2d27ea315d8"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="8d87cf2e28514a349a027f94a125b3c7"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataCategory.services.list"
+				resultName="result80c27a07675c4a69aaf97be4d6f3dbb7"
+				temporaryMapping="true"
+				x="156"
+				y="91"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b373829730bf46809b9d4775d43622b2"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/contextId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0b273854439e4270a5c7f873a4517e1e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6b4bc904973046eea4fe0f1ad4e5b5b7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/offset</from>
+				<to>offset</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3846cc39deda4e0982bcaaa0cd0dd74d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/orderBy</from>
+				<to>orderBy</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="5eed66a2df7a415f904268e9466407d8"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result80c27a07675c4a69aaf97be4d6f3dbb7/results</from>
+			<to>output/content/results</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="e9e17335dbe84cca967478ff55e51fe2"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result80c27a07675c4a69aaf97be4d6f3dbb7/page</from>
+			<to>output/content/page</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="f36d1a04585d4ff2888054e283bb3657"
+			label="input/query/relationSourceIds != null"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="bdddbaff64464ebcbcf02160fe4569e5"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataCategoryRelation.services.list"
+				resultName="result3bdd67ef694a4929816d6b224e3ff0e1"
+				temporaryMapping="true"
+				x="105"
+				y="99"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dca72f810aab4ebd960f875af5977bc0"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/relationSourceIds</from>
+				<to>filter/sourceId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6f37984719df499f85ae3d4a27a73a93"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result3bdd67ef694a4929816d6b224e3ff0e1/results</from>
+			<to>relations</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="c3ef6ece8fdc41b0905f387679f8f223"
+			lineNumber="4"
+			variable="category">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="010866b4273943f78e6e48f649f3f689"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dab9bdeca1cb45618b621ca385286999"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>relations[targetId == /category/id]</from>
+				<to>category/relations</to>
+			</steps>
+		</steps>
+		<query>output/content/results</query>
+	</steps>
+</sequence>
