@@ -46,6 +46,15 @@
 					<from>resultcec13329e879488d824d7eb25ace832d/results</from>
 					<to>choices</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="cba5cc685315441f8f2c1a0ccc35d7f1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>resultcec13329e879488d824d7eb25ace832d/results/id</from>
+					<to>masterDataEntryChoiceIds</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Build a dynamic sql to select the masterdata"
@@ -89,6 +98,15 @@
 							fixedValue="false">
 						<from>input/masterDataCategoryId</from>
 						<to>masterDataCategoryId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="792529cd862b4f6e8805d5c6e9ea0867"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/alreadyChosenEntryIds[$this !# /masterDataEntryChoiceIds]</from>
+						<to>additionalChoiceIds</to>
 					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
