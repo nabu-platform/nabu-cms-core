@@ -170,12 +170,12 @@ Vue.service("masterdata", {
 				var ids = self.masterdata.idsToResolve.splice(0, self.masterdata.idsToResolve.length);
 				if (ids && ids.length) {
 					self.masterdata.timer = null;
-					self.$services.swagger.execute("nabu.cms.core.v2.masterdata.crud.masterDataEntry.services.list", { id: ids })
+					self.$services.swagger.execute("nabu.cms.core.v2.masterdata.rest.resolve", { id: ids })
 						.then(function(result) {
-							if (result.entries && result.entries.length) {
-								result.entries.forEach(self.labelize);
-								for (var i = 0; i < result.entries.length; i++) {
-									nabu.utils.objects.merge(self.masterdata.resolved[result.entries[i].id], result.entries[i])
+							if (result.results && result.results.length) {
+								result.results.forEach(self.labelize);
+								for (var i = 0; i < result.results.length; i++) {
+									nabu.utils.objects.merge(self.masterdata.resolved[result.results[i].id], result.results[i])
 								}
 							}
 						});

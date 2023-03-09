@@ -138,66 +138,185 @@
 			</steps>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="Initialize security if relevant"
 			disabled="false"
 			features="DEV"
-			id="49f2957a-ca85-4e73-b44c-9c97cda22e7e"
+			id="f4d6b91885e64cab95623d403ac3f276"
 			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="We did a trylock before but then if we fail, we can't resolve the admin role and incorrectly assume there is no admin user"
+				disabled="false"
+				id="c2524e14933c43b6b4fcfc3bd6c80584"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="08dbfb1542de4c51b1ff5740bdbd9b0b"
+					serviceId="nabu.utils.Lock.lock"
+					resultName="resultb5ad621b2db54044a325a0b6cda6edb0"
+					temporaryMapping="true"
+					x="97"
+					y="52"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="8f6cd8d5ae79454e8da48c4d0788fec5"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>initialize-security</from>
+					<to>name</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="0410e66d93fa4e1eb13e367f118d31b5"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>false</from>
+					<to>local</to>
+				</steps>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="49f2957a-ca85-4e73-b44c-9c97cda22e7e"
+				lineNumber="7">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="3b46030e-3f7c-46bb-9c2e-0c9110745a16"
+					serviceId="nabu.cms.core.v2.security.initial.ensureSecurity"
+					resultName="resultb121ab009a57495c98370d4c0474d95f"
+					temporaryMapping="true"
+					x="113"
+					y="72"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="b4d3da6d-6ac7-46c0-91d0-19d3457aaba8"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="77ecb8de-0483-4128-8d16-990473342f82"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/webApplication</from>
+					<to>webApplicationId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="860b3cc6-21de-4187-ae20-2eaf5939c0ad"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>node/id</from>
+					<to>contextNodeId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5a0f850d-a6c3-4c1f-a63f-5f5beb1bc7da"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultb121ab009a57495c98370d4c0474d95f/administratorRole</from>
+				<to>output/administratorRole</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="52f288ef-2a03-4988-9b8b-d5ca217aef33"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultb121ab009a57495c98370d4c0474d95f/administratorRole</from>
+				<to>output/administratorRole</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
+				disabled="false"
+				id="caa2f66b253a4840ab9239e85a2e5153"
+				lineNumber="8">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="e9c2823956df41b1b8a9321039c23e77"
+					lineNumber="9">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="2f1d4ee8370e412a8f66b3ebbec6f185"
+						serviceId="nabu.utils.Lock.unlock"
+						resultName="result239a0bab32354d409ecdecba6d16a11f"
+						temporaryMapping="true"
+						x="122"
+						y="78"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="1e25a1425d3a44d6b5d0149a0f56f0b0"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>initialize-security</from>
+						<to>name</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="0e8aed1972c44170a2dcb5ba41fd09a7"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>false</from>
+						<to>local</to>
+					</steps>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Just get the administrator role"
+			disabled="false"
+			features="!DEV"
+			id="696f60537eec4424b3837ea196e1f90f"
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="3b46030e-3f7c-46bb-9c2e-0c9110745a16"
-				serviceId="nabu.cms.core.v2.security.initial.ensureSecurity"
-				resultName="resultb121ab009a57495c98370d4c0474d95f"
+				id="88899b638cc4451ea5da9dbec3f63a73"
+				serviceId="nabu.cms.core.services.context.ensureAdminPrivileges"
+				resultName="result7cf18c38572b45498e859f701ebe75fc"
 				temporaryMapping="true"
-				x="113"
-				y="72"
+				x="77"
+				y="94"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="b4d3da6d-6ac7-46c0-91d0-19d3457aaba8"
+					id="9742dbbbfcee4cb588d857ae7de69e8b"
 					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>input/connectionId</from>
 				<to>connectionId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="77ecb8de-0483-4128-8d16-990473342f82"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/webApplication</from>
-				<to>webApplicationId</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="860b3cc6-21de-4187-ae20-2eaf5939c0ad"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>node/id</from>
-				<to>contextNodeId</to>
-			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
-				id="5a0f850d-a6c3-4c1f-a63f-5f5beb1bc7da"
+				id="b2eefe75cd0144a69507e9469eadd81a"
 				mask="false"
 				optional="false"
 				fixedValue="false">
-			<from>resultb121ab009a57495c98370d4c0474d95f/administratorRole</from>
-			<to>output/administratorRole</to>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="52f288ef-2a03-4988-9b8b-d5ca217aef33"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>resultb121ab009a57495c98370d4c0474d95f/administratorRole</from>
+			<from>result7cf18c38572b45498e859f701ebe75fc/administratorRole</from>
 			<to>output/administratorRole</to>
 		</steps>
 	</steps>
@@ -206,7 +325,7 @@
 			disabled="true"
 			features="DEV"
 			id="742a956d37864a228e35a1e81e4f1b4c"
-			lineNumber="6">
+			lineNumber="11">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="01e17efa-2af0-45c9-a567-20a9b904a7f2"
@@ -239,17 +358,18 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="We can get here without a role"
 			disabled="false"
 			id="2a0bab31-0e64-4dc1-9aed-3958be3f712a"
-			lineNumber="7">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="594dba06-4a8b-450b-b475-1307e381cb0e"
 				serviceId="nabu.cms.core.services.user.selectUserForRole"
 				resultName="resultca5163e4fcb348e98223ef381d98e451"
 				temporaryMapping="true"
-				x="530"
-				y="65"
+				x="133"
+				y="59"
 				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
@@ -295,14 +415,14 @@
 			comment="Calculate output"
 			disabled="false"
 			id="aa5af4b6-ebdd-40f8-9439-f5b99e78a835"
-			lineNumber="8">
+			lineNumber="13">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="509c9ebf-594d-42ca-96d0-693c2e385af5"
 				mask="false"
 				optional="false"
 				fixedValue="true">
-			<from>=amountOfUsers &gt; 0</from>
+			<from>=amountOfUsers != null &amp;&amp; amountOfUsers &gt; 0</from>
 			<to>output/hasAdminUser</to>
 		</steps>
 	</steps>

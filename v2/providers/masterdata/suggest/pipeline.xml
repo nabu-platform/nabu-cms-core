@@ -1,0 +1,9 @@
+<structure interface="nabu.cms.core.v2.specs.masterdata.suggest" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <field minOccurs="0" name="originalServiceContext" type="java.lang.String"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" maxOccurs="unbounded" minOccurs="0" name="choices"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="choiceIdsFound" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field name="sql" type="java.lang.String"/>
+    <structure definition="be.nabu.libs.types.api.KeyValuePair" minOccurs="0" name="search"/>
+</structure>

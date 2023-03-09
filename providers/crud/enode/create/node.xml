@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2020-02-09T16:07:17.870+01:00" lastModified="2022-10-24T10:21:53.594+02:00" leaf="true" version="73">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2020-02-09T16:07:17.870+01:00" lastModified="2023-03-03T15:11:14.720+01:00" leaf="true" version="75">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
     <references>nabu.services.jdbc.Services.describe</references>
     <references>be.nabu.eai.module.services.crud.provider.CRUDMeta</references>
@@ -11,6 +12,7 @@
     <references>nabu.services.jdbc.Services.merge</references>
     <references>nabu.utils.Server.uuid</references>
     <references>nabu.utils.Date.now</references>
+    <references>nabu.cms.core.services.context.getGlobalContext</references>
     <references>be.nabu.eai.module.services.crud.api.CRUDProvider.create</references>
     <references>nabu.cms.core.services.component.get</references>
     <references>be.nabu.libs.authentication.api.Token</references>
@@ -25,4 +27,5 @@
     <references>nabu.utils.types.ContextInformation</references>
     <references>nabu.cms.core.database.user.selectByAlias</references>
     <references>nabu.utils.reflection.Type.mask</references>
+    <references>nabu.cms.core.services.context.getProject</references>
 </node>

@@ -1,3 +1,4 @@
-<structure name="masterDataCategory" superType="nabu.cms.core.crud.masterDataCategory.types.outputPreloaded">
+<structure name="masterDataCategory" restrict="created, modified, ownerId, description" superType="nabu.cms.core.types.emodel.core.MasterDataCategory">
+    <field minOccurs="0" name="suggestable" type="java.lang.Boolean"/>
     <structure definition="nabu.cms.core.providers.environment.masterDataEntry" maxOccurs="unbounded" minOccurs="0" name="entries" restrict="masterDataCategoryId"/>
 </structure>

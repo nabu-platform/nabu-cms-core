@@ -110,4 +110,76 @@
 			</steps>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="4389ebb0c0f34a7088478c55460acf9e"
+			label="input/categoryRelations"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f9b4ec4914a04cd2a7f0a100dfda5ffb"
+				serviceId="nabu.services.jdbc.Services.merge"
+				resultName="resultc37c067308554a62b75fbb4df696f830"
+				temporaryMapping="true"
+				x="40"
+				y="46"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="388d65b277524fa6824c27577dca3a43"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/categoryRelations</from>
+				<to>instances</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2de066dc67bd4c26955bb79a7a408eb1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="0f51c315ff964639b0ff78fbab768ad3"
+			label="input/entryRelations"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="b225214bee2f415a9f92d380f74d06da"
+				serviceId="nabu.services.jdbc.Services.merge"
+				resultName="resultd503000e3961471dba8f268dda70ff2d"
+				temporaryMapping="true"
+				x="95"
+				y="110"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4892e8786e24447bbe369e750a6da0d6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b43163930b46489fb03f5bc3a51a3aa3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/entryRelations</from>
+				<to>instances</to>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

@@ -1,4 +1,5 @@
-nabu.cms.core.crud.masterDataEntry.types.output [] alreadyChosenEntryIds ?= null
+nabu.cms.core.crud.masterDataEntry.types.output [] alreadyChosenEntryIds ?= series()
+uuid [] additionalChoiceIds ?= series()
 uuid masterDataCategoryId ?= null
 string q ?= null
 
@@ -17,14 +18,8 @@ grouped = series.group(lambda(x, x/masterDataCategoryId), alreadyChosenEntryIds)
 
 join = "~master_data_entries mde"
 for (key : keys(grouped))
-	if (sql == null)
-		sql = ""
-	else
-		sql = sql + " and"
-	
 	join = join + " join ~master_data_entry_relations mder" + $index + " on mde.id = mder" + $index + ".target_id and mder" + $index + ".source_id in ("
 	first = true
-	console("Grouped is", grouped, key, grouped[/key])
 	for (entry : grouped[/key])
 		if (first)
 			first = false
@@ -32,6 +27,11 @@ for (key : keys(grouped))
 			join = join + ", "
 		join = join + "'" + entry/id + "'"
 	join = join + ")"
+
+startIndex = size(keys(grouped))	
+
+for (key : additionalChoiceIds)
+	join = join + " join ~master_data_entry_relations mder" + (startIndex + $index) + " on mde.id = mder" + (startIndex + $index) + ".target_id and mder" + (startIndex + $index) + ".source_id = '" + key + "'"
 	
 @return
 string sql = "select distinct * from " + join + " where mde.master_data_category_id='" + masterDataCategoryId + "'"

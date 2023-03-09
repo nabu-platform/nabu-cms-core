@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-09-11T10:07:16.037+02:00" lastModified="2022-10-27T14:10:50.567+02:00" leaf="true" version="17">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-09-11T10:07:16.037+02:00" lastModified="2023-03-09T10:52:23.793+01:00" leaf="true" version="31">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
     <references>nabu.cms.core.crud.masterDataEntry.types.outputPreloaded</references>
     <references>nabu.cms.core.providers.context.context</references>
+    <references>nabu.cms.core.services.context.getGlobalContext</references>
+    <references>nabu.cms.core.crud.masterDataCategory.services.list</references>
+    <references>java.util.UUID</references>
+    <references>nabu.utils.List.addAll</references>
+    <references>nabu.cms.core.crud.masterDataEntry.services.listPreloaded</references>
     <references>nabu.web.core.specifications.environmentData</references>
-    <references>nabu.cms.core.providers.environment.selectPreloadedCategories</references>
+    <references>nabu.cms.core.services.masterdata.entry.get</references>
     <references>nabu.cms.core.types.emodel.core.Node</references>
+    <references>nabu.cms.core.types.emodel.core.MasterDataCategory</references>
+    <references>nabu.cms.core.crud.masterDataCategoryPreload.services.list</references>
     <references>java.lang.Object</references>
     <references>nabu.cms.core.providers.environment.masterDataCategoryList</references>
     <references>java.lang.String</references>
     <references>nabu.utils.String.split</references>
-    <references>nabu.cms.core.crud.masterDataEntry.services.listPreloaded</references>
+    <references>nabu.cms.core.crud.masterDataCategoryRelation.services.list</references>
 </node>

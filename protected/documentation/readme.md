@@ -22,6 +22,31 @@ and based on that we can set locale settings at a higher level than the granular
 
 # Authentication
 
+## Masterdata
+
+### Relations
+
+The original reason for relations was being able to limit masterdata results based on previous choices made. For instance if you choose a country (masterdata), you may want to limit vat options to those available in that country.
+
+Masterdata relations used to have a foreign key on the source as well, but we have removed it for two reasons:
+
+- we want to be able to set relations cross schema
+- we want to limit results based on something other than masterdata
+
+Important: relations can be used to artificially limit result sets as well. Suppose for a specific usecase you only need 50% of all the available entries. You can set link it via relations and limit the resultset like that.
+This creates a solution to the "choice" problem we have had.
+
+### Proxies
+
+We want to be able to centralize masterdata where it belongs. This may mean one application (in schema A) may need masterdata from say an integration package (in schema B).
+We already have the concept of a proxy node that is used for security, we will add a masterdata category (with the same identifier) to the proxy node.
+
+This id does NOT have to point to a masterdata at a root node in the target proxy, but _any_ masterdata category in the target proxy.
+
+For each proxy we will first search for an implementation that specifically resolves for that proxy, if not found we use the default implementation that uses database-level integration (so directly access the target connection) to resolve this.
+
+If masterdata has an extension, it goes from "generic" to "specific" masterdata and needs specific, custom support anyway.
+
 ## Typed Authentication
 
 Typed authentication allows plugging in multiple providers with different types. The basic assumption is that you have:
