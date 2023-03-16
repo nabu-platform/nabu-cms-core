@@ -8,6 +8,7 @@ from ~nodes n
 	join ~user_groups ug on gr.group_id = ug.group_id and ug.user_id = :userId
 where gr.node_id is null
 	and (:componentId is null or n.component_id = any(:componentId))
+	and (:actionOwnerId is null or a.owner_id = any(:actionOwnerId))
 	and n.enabled = true
 	and (:q is null or lower(n.name) like '%' || lower(:q) || '%' or lower(n.title) like '%' || lower(:q) || '%' or lower(n.description) like '%' || lower(:q) || '%')</sql>
 </jdbcService>

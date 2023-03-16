@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-22T16:49:33.116+02:00" lastModified="2023-03-16T11:10:07.710+01:00" leaf="false" version="21">
-    <description>Permissions have owners. This owner is assumed to be the root of where the permission is applicable.
-If you have a globally assigned permission, we assume the owner of the permission is the root and return this.</description>
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2022-10-20T16:13:16.647+02:00" lastModified="2023-03-16T11:40:34.615+01:00" leaf="false" version="36">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <locked>false</locked>
@@ -11,10 +9,9 @@ If you have a globally assigned permission, we assume the owner of the permissio
     <references>java.lang.Integer</references>
     <references>java.lang.Boolean</references>
     <references>be.nabu.libs.services.jdbc.AffixInput</references>
-    <references>nabu.cms.core.services.security.selectGloballyPermitted.parameters</references>
     <references>be.nabu.libs.types.api.KeyValuePair</references>
     <references>nabu.cms.core.types.emodel.core.Node</references>
     <references>java.lang.Long</references>
     <references>java.lang.Boolean</references>
-    <summary>Get all the nodes where you have the permission {parameters/action} globally</summary>
+    <summary>Get all the owners of the permissions that you have somewhere</summary>
 </node>

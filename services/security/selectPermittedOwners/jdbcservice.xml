@@ -2,9 +2,9 @@
 	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
 	<sql>select distinct *
 from ~nodes n 
-	join ~group_roles gr on gr.node_id = n.id
-	join ~actions a on gr.role_id = gr.role_id
+	join ~actions a on a.owner_id = n.id
 	join ~action_roles ar on ar.action_id = a.id
+	join ~group_roles gr on gr.role_id = ar.role_id
 	join ~user_groups ug on ug.group_id = gr.group_id
 where a.name = :action
 	and ug.user_id = any(:userIds)
