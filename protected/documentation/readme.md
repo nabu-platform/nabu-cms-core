@@ -1,3 +1,19 @@
+# TODO
+
+We need a node connection between "$global" and all other root nodes.
+This allows inheritance of security when set in global, which is the only location where you want to manage "global" roles that are not context specific.
+Inheritance in non security (e.g. masterdata) is custom.
+
+"marker permissions"
+-> the "user.authenticate" in application is a marker permission, we don't check that you have the permission contextually correct but because the user.authenticate is contextually bound to the only node it makes sense on, having the permission in _any_ context is considered acceptable.
+
+It is "nice" to have it as a marker permission, because now you can define a role in a sibling project and say "this role should be able to log in to the application" with all other security also at the project level.
+Otherwise, if we use security inheritance, the only way to do this correctly is to manage roles at the $global level as that is the only one that can use inheritance on the application.
+
+unless node connection can also be applied between root nodes, for example the business package has a node connection to the application
+
+permission -> list of contexts is based on node connections! only if you are the parent of a node connection to a child
+
 # Locale
 
 For the longest time we only had "language" as masterdata.

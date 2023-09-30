@@ -93,7 +93,8 @@
 			id="b3af94bc-f45c-4561-988f-26dd0a1ed611"
 			label="!current"
 			lineNumber="3"
-			code="403" xsi:nil="true"/>
+			code="403"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="edb5fed6-4ff4-4541-8766-55da8b14c4ed"
@@ -231,10 +232,53 @@
 			variable="application"
 			into="output/content/applications">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="96d9fdeb0895492d9655f9d75d9d46aa"
+				lineNumber="9">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="01550a6ef82c4751a89202cd7a89bf6a"
+					serviceId="nabu.utils.reflection.Node.get"
+					resultName="result872cd2b6ab354d6f87a40f15b809242d"
+					temporaryMapping="true"
+					x="109"
+					y="65"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="09e1687ae85d497593a4a9355d0bbbd1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>application/name</from>
+					<to>id</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="196b2427ace74e738c1b973615ed060b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result872cd2b6ab354d6f87a40f15b809242d/node</from>
+				<to>node</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Break"
+				disabled="false"
+				id="a0f5c503c7964c5ba896241a5011f5f6"
+				label="node/artifactClass != &quot;be.nabu.eai.module.web.application.WebApplication&quot;"
+				lineNumber="10">
+			<count>1</count>
+			<continueExecution>true</continueExecution>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="TODO: resolve from node settings configuration"
 				disabled="false"
 				id="90aa3301-c6d5-4bc4-b723-a8e432f7f803"
-				lineNumber="9">
+				lineNumber="11">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="7e014cb32fc3422d89d7230c0cf2eb8f"
@@ -258,26 +302,26 @@
 				comment="TODO: get applicable realms from node relations between application and realm node"
 				disabled="false"
 				id="2f3c17dd-654b-4193-9190-4d3a5087d9db"
-				lineNumber="10">
+				lineNumber="12">
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				comment="Check configuration"
 				disabled="false"
 				id="3a1df2b7b52c41b39bc2e6bd15f32078"
 				label="application/link == null"
-				lineNumber="11">
+				lineNumber="13">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="c2cd8c28f5d7485eb3a90ae745a6ac6f"
-					lineNumber="12">
+					lineNumber="14">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="349e8cec3a994fcb96960cdbd407449e"
 						serviceId="nabu.web.application.Services.configuration"
 						resultName="result9e68b7158eaf41f29abb9e1362c23adc"
 						temporaryMapping="true"
-						x="423"
-						y="102"
+						x="112"
+						y="121"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
@@ -314,7 +358,7 @@
 					disabled="false"
 					id="9a6a1b4817b446a9b7bc9dcf1fd781c1"
 					label="applicationConfiguration/imitationEndpoint != null"
-					lineNumber="13">
+					lineNumber="15">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="a720d8f004a2467194526d9e9df61a5a"
@@ -331,11 +375,11 @@
 				disabled="false"
 				id="c15a2a4e-0da2-4af2-ad94-9e595d608d8e"
 				label="application/link == null"
-				lineNumber="14">
+				lineNumber="16">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="e0019bb8-92f5-4cbe-92d5-b9965d355ca5"
-					lineNumber="15">
+					lineNumber="17">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="e88c85c3-8052-428f-9a9d-73e91e59d919"
@@ -371,12 +415,12 @@
 					disabled="false"
 					id="ac4483ab-c0a0-45f7-8027-8b72f28d16e1"
 					label="information"
-					lineNumber="16">
+					lineNumber="18">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						comment="Build general uri"
 						disabled="false"
 						id="98ffb36b-6efa-4c00-8e71-2ed8d91658aa"
-						lineNumber="17">
+						lineNumber="19">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="0f31f465-b147-410c-a9fc-ef5dafa4f0eb"
@@ -439,7 +483,7 @@
 						comment="Add query parameter"
 						disabled="false"
 						id="26afc56f-2ae2-42e3-a647-ca736f80a017"
-						lineNumber="18">
+						lineNumber="20">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="3eac4499-f9c7-4497-ae97-b7f6b63da8bb"
@@ -456,7 +500,7 @@
 				disabled="false"
 				id="dc9a3f26-c9be-4f1c-8ad5-082823746d4a"
 				label="applicationRealms == null"
-				lineNumber="19">
+				lineNumber="21">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="8b04f179-e7cf-4aae-972a-59f9864f16d7"
@@ -492,7 +536,7 @@
 				disabled="false"
 				id="b05198ff-5b34-4066-8596-364774e24fd0"
 				label="realm/name # applicationRealms"
-				lineNumber="20">
+				lineNumber="22">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="71419641-942a-4f7e-b660-a6ee479df632"
@@ -509,11 +553,11 @@
 			comment="Proxy logic"
 			disabled="false"
 			id="d60404541b8b41b499651906ca359a9c"
-			lineNumber="21">
+			lineNumber="23">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="d3d23008409b41cd8d9b5f22a91233ad"
-				lineNumber="22">
+				lineNumber="24">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="bf755782d38f479abc52cdea7c5fb178"
@@ -539,7 +583,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="f1f289648fdf4caa86bb76151630e4b9"
-				lineNumber="23">
+				lineNumber="25">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="b41e9249c4414b75bc53983335d74b1a"
@@ -613,12 +657,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.For"
 				disabled="false"
 				id="49888bcce72841ac8f3fbb87fa3aa699"
-				lineNumber="24"
+				lineNumber="26"
 				variable="proxy">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="cb5c772f5ddf4038ae0d98fffb67d636"
-					lineNumber="25">
+					lineNumber="27">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="0676d665d2a54ab0a8add79316897b8b"
@@ -644,7 +688,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="c18c74a17d054ad58cd559564e893336"
-					lineNumber="26">
+					lineNumber="28">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="1534c63d74884b83ab99a4d7afdffb1a"
@@ -719,11 +763,11 @@
 					disabled="false"
 					id="4aa2bdeec43d41e5a158c8d1a191f2a1"
 					label="proxyRealm"
-					lineNumber="27">
+					lineNumber="29">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
 						id="1bb41fcef0e7437c918f69849720b7e9"
-						lineNumber="28">
+						lineNumber="30">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="6546185c3c774a72a6011b2348a17193"
@@ -758,12 +802,12 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.For"
 						disabled="false"
 						id="e3da00b81370442da90002afb0a3e1c4"
-						lineNumber="29"
+						lineNumber="31"
 						variable="proxyApplication">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
 							id="b085492321214721b927e87c748fc174"
-							lineNumber="30">
+							lineNumber="32">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="11b565ab18e448129eeddb9dfb8d345f"
@@ -788,7 +832,7 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
 						id="9294b3b2a9b24230a73a8ed04b05fe66"
-						lineNumber="31">
+						lineNumber="33">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="b9023c9a04704ed0bf6f35d0638d7310"
@@ -835,11 +879,11 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
 				disabled="false"
 				id="62f6179d52a34666ace72fa511733ccc"
-				lineNumber="32">
+				lineNumber="34">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="15ce01014f744c8797b07aebce0c3c9a"
-					lineNumber="33">
+					lineNumber="35">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="e46631e979eb4150bea0b83be51a60c6"

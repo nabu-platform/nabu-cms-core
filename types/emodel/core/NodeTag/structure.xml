@@ -5,4 +5,5 @@
     <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" name="definitionId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field comment="In case you want to differentiate tags between users (e.g. users have their own tags for a node, or users can only delete their own tags etc)" foreignKey="nabu.cms.core.types.emodel.core.Node:id" minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field aggregation="composite" foreignKey="nabu.cms.core.types.emodel.core.Node:id" indexed="true" name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field minOccurs="0" name="weight" type="java.lang.Double"/>
 </structure>

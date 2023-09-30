@@ -51,7 +51,7 @@ Vue.service("user", {
 		// if the service does not allow anonymous access, we must pass some credentials in the url
 		// we can't use the token we already have because it is not authorized for this use
 		// instead we want a one time use password that can be used specifically to call this service
-		downloadUrl: function(operationId, parameters) {
+		downloadUrl: function(operationId, parameters, reusable) {
 			var promise = this.$services.q.defer();
 			var self = this;
 			var operation = this.$services.swagger.operations[operationId];
@@ -59,24 +59,40 @@ Vue.service("user", {
 				var correlationId = null;
 				// if we don't have these markings, we can't use otp
 				if (operation["x-temporary-id"] && operation["x-temporary-secret"]) {
-					if (operation["x-temporary-correlation-id"]) {
-						correlationId = parameters[operation["x-temporary-correlation-id"]];
+					if (reusable) {
+						this.ltp(operationId).then(function(result) {
+							if (result.authenticationId) {
+								var cloned = {};
+								nabu.utils.objects.merge(cloned, parameters);
+								cloned[operation["x-temporary-id"]] = result.authenticationId;
+								cloned[operation["x-temporary-secret"]] = result.secret;
+								promise.resolve(self.$services.swagger.parameters(operationId, cloned).url);
+							}
+							else {
+								promise.reject();
+							}
+						});
 					}
-					this.$services.swagger.execute("nabu.cms.core.v2.security.web.otp", {
-						serviceId: operationId,
-						correlationId: correlationId
-					}).then(function(result) {
-						if (result.authenticationId) {
-							var cloned = {};
-							nabu.utils.objects.merge(cloned, parameters);
-							cloned[operation["x-temporary-id"]] = result.authenticationId;
-							cloned[operation["x-temporary-secret"]] = result.secret;
-							promise.resolve(self.$services.swagger.parameters(operationId, cloned).url);
+					else {
+						if (operation["x-temporary-correlation-id"]) {
+							correlationId = parameters[operation["x-temporary-correlation-id"]];
 						}
-						else {
-							promise.reject();
-						}
-					}, promise);
+						this.$services.swagger.execute("nabu.cms.core.v2.security.web.otp", {
+							serviceId: operationId,
+							correlationId: correlationId
+						}).then(function(result) {
+							if (result.authenticationId) {
+								var cloned = {};
+								nabu.utils.objects.merge(cloned, parameters);
+								cloned[operation["x-temporary-id"]] = result.authenticationId;
+								cloned[operation["x-temporary-secret"]] = result.secret;
+								promise.resolve(self.$services.swagger.parameters(operationId, cloned).url);
+							}
+							else {
+								promise.reject();
+							}
+						}, promise);
+					}
 				}
 				// just resolve it without anything special
 				else {
@@ -242,7 +258,7 @@ Vue.service("user", {
 				promise.reject(error);
 				// better to feed it back to the user in situ!
 				//if (attemptRedirect) {
-				//	self.$services.router.route("error", {message: "%{Could not log in}"});
+				//	self.$services.router.route("error", {message: "Could not log in"});
 				//}
 			});
 			return promise;

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-06-06T12:00:32.637+02:00" deprecated="2022-11-15T12:01:35.662+01:00" lastModified="2018-08-29T11:36:43.489+02:00" leaf="true" version="30">
-    <environmentId>hyperion</environmentId>
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-06-06T12:00:32.637+02:00" lastModified="2023-05-03T17:32:26.162+02:00" leaf="true" version="36">
+    <comment>Get or create masterdata category {name|with a given name}</comment>
+    <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
     <references>nabu.cms.core.types.model.core.MasterDataCategory</references>
-    <references>nabu.cms.core.database.masterdata.category.insert</references>
-    <references>nabu.utils.Server.uuid</references>
-    <references>nabu.utils.Date.now</references>
+    <references>nabu.cms.core.types.emodel.core.MasterDataCategory</references>
+    <references>nabu.cms.core.crud.masterDataCategory.services.create</references>
     <references>java.lang.Boolean</references>
+    <references>nabu.cms.core.crud.masterDataCategory.services.list</references>
     <references>java.lang.String</references>
-    <references>nabu.cms.core.database.masterdata.category.selectByName</references>
+    <references>java.util.UUID</references>
 </node>

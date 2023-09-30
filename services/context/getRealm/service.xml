@@ -53,6 +53,15 @@
 				<from>input/transactionId</from>
 				<to>transaction</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7c3dbe25e5bd45e09262fa7ec1a9f1af"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>global</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -70,36 +79,18 @@
 			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="effc8b76-0b75-4d33-811f-28c248bba1af"
-				serviceId="nabu.cms.core.crud.node.services.list"
-				resultName="result0ba7e4a8c9de4d008dff868973565771"
+				id="f84c3e975a4f43758caa6d1eb58c07d4"
+				serviceId="nabu.cms.core.utils.security.getContext"
+				resultName="result92f80b93294a41a7a6622e63f18a6b96"
 				temporaryMapping="true"
-				x="66"
-				y="131"
+				x="174"
+				y="96"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="074c50a5-8557-486f-8a34-7c6221ef22ae"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/realm</from>
-				<to>filter/name[0]</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="52778469-1d94-4321-9886-2e4f681c93bd"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>componentId</from>
-				<to>filter/componentId[0]</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="42829caa757843dba8bfa881397d5876"
+					id="8528225d88614f7eb26b9df5bad552b3"
 					mask="false"
 					optional="false"
 					fixedValue="false">
@@ -108,101 +99,79 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="1a7bcda5ade349e8901db5abfc9e279e"
+					id="882e753530094901b4a8496c22c8f074"
 					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>input/transactionId</from>
 				<to>transactionId</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c60c94d990e2445984f9e2e436a0f5e9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/realm</from>
+				<to>name</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dade63af25db460d9c33130ddf571144"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>componentId</from>
+				<to>componentId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
-				id="6cc8caee-a299-4479-8995-183614dedb34"
+				id="c635aa25204a46569325815655bd30ef"
 				mask="false"
 				optional="false"
 				fixedValue="false">
-			<from>result0ba7e4a8c9de4d008dff868973565771/results[0]</from>
+			<from>result92f80b93294a41a7a6622e63f18a6b96/context</from>
 			<to>output/context</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="bb1ab724264c49c09b43add471ca0e53"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result92f80b93294a41a7a6622e63f18a6b96/created</from>
+			<to>created</to>
 		</steps>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			disabled="false"
-			id="cd0efc2e-b7e2-441d-8ed6-d3cbe8db943c"
-			label="!output/context"
+			id="efccf98c4a4e4042b08dae1ee19c3dd6"
+			label="created"
 			lineNumber="4">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="ee9e2386-dc79-493e-95cd-54d1d1b36efb"
-				serviceId="nabu.cms.core.crud.node.services.create"
-				resultName="resultd639576687b84d0292a0a7309f39e23c"
-				temporaryMapping="true"
-				x="131"
-				y="46"
-				invocationOrder="0"
-				asynchronous="false"
-				recache="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				id="8b0165555ef34f87bc84fa608ae1eaed"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
-					id="3f666063-a60a-4d00-a6a7-108ab89b5acc"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>componentId</from>
-				<to>instance/componentId</to>
+					id="0a4cc81251bc4a46a0dc0a0b459dbc69"
+					serviceId="nabu.cms.core.v2.security.initial.ensureContextConnections"
+					resultName="resultac0c36ab829a490789a412f145dbed7c"
+					temporaryMapping="true"
+					x="110"
+					y="61"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="79b71bf2-d658-4af1-967b-ba0b698c884b"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/realm</from>
-				<to>instance/name</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="fd30ddff58174b96bc6c1d92780fdf8a"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/connectionId</from>
-				<to>connectionId</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="3dd6bd121c294cc6ba5cb5175224dfeb"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/transactionId</from>
-				<to>transactionId</to>
-			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="50602938-5fee-496e-804c-52cab44fd6c7"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>resultd639576687b84d0292a0a7309f39e23c/created</from>
-			<to>output/context</to>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="b3a84e83-7976-40ca-b601-e766c270900a"
-				mask="false"
-				optional="false"
-				fixedValue="true">
-			<from>true</from>
-			<to>input/forceSecurity</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="ccc94ee05f584106a6a667b35d9569de"
 			label="input/forceSecurity"
-			lineNumber="5">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="2494b8d419864264a3e3b98f0726a403"

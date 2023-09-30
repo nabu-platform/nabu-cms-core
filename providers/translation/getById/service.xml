@@ -1,0 +1,107 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="53363c9fe6bc4291a36b8aa407d685cf"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="4d2719737b174a22baa49bf225c1b511"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="05a14e4b0bb94d54ab02afb52de72ad8"
+				serviceId="nabu.cms.core.providers.translation.selectByLanguage"
+				resultName="resultda7a7540fd184e78aefb5a8e024b30bb"
+				temporaryMapping="true"
+				x="243"
+				y="32"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b1c6fcd9569b4ec1a9b101d8ee27fd30"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/language</from>
+				<to>parameters/language</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7ac74d793dd143fe911f7f8a0b1ad2f9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/ids</from>
+				<to>parameters/instanceIds</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="696a5557eb684e028459a43434557dd7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2ac31fa600ca413cb438b08fe1eacf26"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/transactionId</from>
+				<to>transaction</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1c7fc2ba4383409ebad3db63667c97d5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultda7a7540fd184e78aefb5a8e024b30bb/results</from>
+			<to>results</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="d76b95028f814edbab23d88e63e1a60c"
+			lineNumber="3"
+			variable="result"
+			into="output/translations">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="feb810f57fe64d339000c67117cb36d5"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="76933d5766c049d992e33fe5ea627768"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result/name</from>
+				<to>output/translations[0]/name</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e00a17cdf86c4edcbb3dcda5c75ff974"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result/translation</from>
+				<to>output/translations[0]/translation</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="42163ce2ae8044e4a27687e8f1b4458a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result/instanceId</from>
+				<to>output/translations[0]/id</to>
+			</steps>
+		</steps>
+		<query>results</query>
+	</steps>
+</sequence>

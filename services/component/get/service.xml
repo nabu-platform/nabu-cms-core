@@ -209,11 +209,21 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b6a5ad69dda942319d8a877bf06fd06a"
+			label="input/global"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+				disabled="false"
+				id="3331d51f95a5429cbc04cfa7016d20ac"
+				path="globalContext" xsi:nil="true"/>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Create it"
 			disabled="false"
 			id="25df54e5-aa2a-4c49-b272-71a837fccd28"
 			label="output/component == null &amp;&amp; (input/create == null || input/create)"
-			lineNumber="5">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="fbdaf44a-5a10-4421-a624-fd3d1849bed2"

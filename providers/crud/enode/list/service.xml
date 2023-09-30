@@ -71,12 +71,165 @@
 			<to>configuration</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="Check if we have a component id filter"
+			disabled="false"
+			id="b1c2816f27b14027b82880aad9e93a1a"
+			label="configuration/component != null"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Get existing component filter"
+				disabled="false"
+				id="a1aa89176cc849db9efd42945ae4ceed"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="393da8a0294347498d13d5a303a3b671"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/filters[key == "componentId"]</from>
+				<to>componentFilter</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				comment="Add it"
+				disabled="false"
+				id="9bceb091c8ed45af99945b3c093deaa5"
+				label="!componentFilter"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="bf2b3e59e97642358f035cf5bcde161d"
+					lineNumber="6">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="97f0f29bf478430596fe2ce9d3f030ea"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>componentId</from>
+					<to>componentFilter/key</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="dec5c552cd9a41a38c5a3f5924317902"
+						serviceId="nabu.cms.core.services.component.get"
+						resultName="resultd1ce9979f52e402a87d99d3028ee15c9"
+						temporaryMapping="true"
+						x="117"
+						y="160"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="f58c1810c36f45ec8e18ca0a93c24786"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>configuration/component</from>
+						<to>name</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="b9d08e14d4564383baf9e84e9b11accb"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>resultd1ce9979f52e402a87d99d3028ee15c9/componentId</from>
+					<to>componentFilter/values[0]</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="d2acfef22ada49b1bee0d57c296f6e38"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>="="</from>
+					<to>componentFilter/operator</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="af475af6d8c2469d8e56f1a0bfa690c8"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>false</from>
+					<to>componentFilter/or</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c2d477d630e44c4d974fe446971fcbbe"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>false</from>
+					<to>componentFilter/caseInsensitive</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="8c7f17f1d8bf477b8f5b8ffdcd19e9cd"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>false</from>
+					<to>componentFilter/input</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="be1332e5c0124380ba798df4ed16de5f"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="36c7ea27a1ba4a92b16d036db31b194c"
+						serviceId="nabu.utils.List.add"
+						resultName="result29fec2d6203b441b827cadc86c9a2411"
+						temporaryMapping="true"
+						x="172"
+						y="141"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="424cf967cb2a40d998ce04ff262b87c8"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>componentFilter</from>
+						<to>object</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="5b4c9fa035904f249cd422bb8966f50a"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/filters</from>
+						<to>list</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9493ae0582504c63ae5ae6dc097cf1d5"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result29fec2d6203b441b827cadc86c9a2411/list</from>
+					<to>input/filters</to>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Unless we specifically allow it, add the enabled filter"
 			disabled="false"
 			id="ea15512a-57b0-407d-be6f-acecea3d45cd"
 			label="configuration/allowListingDisabled != true"
-			lineNumber="3">
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="acd65aba-a66f-42cd-ac45-ff514219f16c"
@@ -126,11 +279,11 @@
 			disabled="false"
 			id="39c43edf-90a9-4a4c-8be9-fdc5709d27c7"
 			label="input/limitToUser"
-			lineNumber="4">
+			lineNumber="9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="3da189dd-4055-4c34-bd50-803241a3bd9a"
-				lineNumber="5">
+				lineNumber="10">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="6a6d1e8f-2726-4710-ab6c-561c6afe2cfa"
@@ -165,14 +318,14 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="07fc2ed3-727e-4cc8-b175-b0d2bb584224"
-				lineNumber="6"
+				lineNumber="11"
 				query="user">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Odd workaround for '$' || 'guest' is to avoid it being seen as a variable in the sql... Should really add escaping or the like"
 					disabled="false"
 					id="bfa6677f-00b7-4101-b2ef-7c84c738adfa"
 					label="null"
-					lineNumber="7">
+					lineNumber="12">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="15b2a500-5926-4c34-a7ff-c1406dcc7598"
@@ -228,7 +381,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="3f1018f3c6c544f3ae808daf553571e9"
-					lineNumber="8">
+					lineNumber="13">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="26a70912bc094a468820dd2f7cb9ed68"
@@ -286,7 +439,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="0c3bcfb5-2c9b-4ef8-857c-99565e9ae6c8"
-			lineNumber="9">
+			lineNumber="14">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="9c87566f-88b9-427e-bda3-c24779989e79"

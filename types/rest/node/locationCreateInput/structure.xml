@@ -13,4 +13,5 @@
     <field minOccurs="0" name="lastName" type="java.lang.String"/>
     <field minOccurs="0" name="priority" type="java.lang.Integer"/>
     <field foreignKey="nabu.cms.masterdata.types.model.masterdata.MasterDataEntry:id" minOccurs="0" name="locationTypeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field foreignKey="nabu.cms.core.types.model.core.MasterDataEntry:id" minOccurs="0" name="sectorId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>

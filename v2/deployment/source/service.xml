@@ -12,8 +12,8 @@
 				serviceId="nabu.cms.core.v2.deployment.component.source"
 				resultName="result75c33fea7e5e467ba52ab797a3d81821"
 				temporaryMapping="true"
-				x="30"
-				y="30"
+				x="98"
+				y="81"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
@@ -98,6 +98,15 @@
 			<from>resultde45614a96424e10a947c5ff81043194/contexts</from>
 			<to>output/contexts</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="0f24c0f20e1a418ebef9f0372c77f3b0"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultde45614a96424e10a947c5ff81043194/connections</from>
+			<to>output/connections</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
@@ -109,8 +118,8 @@
 				serviceId="nabu.cms.core.v2.deployment.component.source"
 				resultName="result75c33fea7e5e467ba52ab797a3d81821"
 				temporaryMapping="true"
-				x="30"
-				y="30"
+				x="58"
+				y="76"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
@@ -301,6 +310,41 @@
 				fixedValue="false">
 			<from>result8e187ec6d49f4443912fd4b48b18872a/roleTags</from>
 			<to>output/roleTags</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="be489285d1214ead85d9aaebc352baed"
+			lineNumber="7">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="9acc83b4d9444d08a064abed5c9b79df"
+				serviceId="nabu.cms.core.v2.deployment.translation.source"
+				resultName="resulte94a0107683747529e45a879cc9ec9a5"
+				temporaryMapping="true"
+				x="30"
+				y="30"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="947f2719ae0a47d3939b0c6981cc9bc1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c76065a10ce8471fbb348d1488fa379f"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte94a0107683747529e45a879cc9ec9a5/translations</from>
+			<to>output/translations</to>
 		</steps>
 	</steps>
 </sequence>

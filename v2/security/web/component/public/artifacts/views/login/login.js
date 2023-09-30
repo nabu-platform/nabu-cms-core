@@ -41,7 +41,7 @@ Vue.view("cms-login", {
 					},
 					function(error) {
 						self.messages.push({
-							title: "%{login:Login failed}",
+							title: "%{default::Login failed}",
 							severity: "error"
 						})
 						self.working = false;

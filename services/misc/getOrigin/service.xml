@@ -1,0 +1,172 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="47d5f24e17d5439f9e18473fc1d361be"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="The referer (if available) is more specific than the origin"
+			disabled="false"
+			id="9555715b5a4a488fbdb99c74dadd1196"
+			label="input/referer != null"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="6f30993c13eb4f57844e91db0a96ce47"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/referer</from>
+			<to>input/origin</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="8bcf2be878ac4ed19c6eef639f9a0bb0"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="32b5973e38454ec8a2ae13c61b051a03"
+				serviceId="nabu.cms.core.crud.masterDataEntry.services.list"
+				resultName="resultc34b9ebd5e774ab2b2e3582837f51155"
+				temporaryMapping="true"
+				x="93"
+				y="67"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8d3c607e2ed1424693cb558bc5d7e737"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>origin</from>
+				<to>filter/masterDataCategory[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b391a6e957bc4789a07bd8203f591019"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/webApplicationId</from>
+				<to>filter/ownerId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3160c97d0ccd460d81886c105eb6c2a7"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>priority desc</from>
+				<to>orderBy[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="daa5e21c75cc42169c8abcaf6ce16f54"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc34b9ebd5e774ab2b2e3582837f51155/results</from>
+			<to>origins</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="6bb4a3cf57374d98a398b00792a481ed"
+			label="input/origin != null"
+			lineNumber="4"
+			variable="origin">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="The description should be a regex, for example: .*//localhost(?::|/|$).*"
+				disabled="false"
+				id="c37ea9ea69b843888687853def779978"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="7b3c3621f39e4768a996a6709e4023a3"
+					serviceId="nabu.utils.String.find"
+					resultName="resultffde1d8536934793897639821265bfda"
+					temporaryMapping="true"
+					x="271"
+					y="89"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="689cf2219436402cb3aea86e487e1362"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/origin</from>
+					<to>content</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="bd72339e65b441d5b350ff85c735c4f2"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>origin/description</from>
+					<to>find</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="1c8ecc44a45a4304a209fd99529f8920"
+					serviceId="nabu.utils.List.size"
+					resultName="result8363a6ce43474e1b808e19aedf2ac0ee"
+					temporaryMapping="true"
+					x="447"
+					y="266"
+					invocationOrder="1"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="bedc4e9881774d8e8fd542ef842cd6c9"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>resultffde1d8536934793897639821265bfda/matches</from>
+					<to>list</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a16c0d2c9f6c4b42a83936cbc81dd1dc"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8363a6ce43474e1b808e19aedf2ac0ee/size</from>
+				<to>amountOfMatches</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="If we have found a match, map it"
+				disabled="false"
+				id="2f8e53972dec4c1f89a2a1c35d35c9c2"
+				label="amountOfMatches &gt;= 1"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b5024b681bb34e8a8a23b6ae75f0e028"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>origin</from>
+				<to>output/origin</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Break"
+				comment="If we have an origin, stop looking"
+				disabled="false"
+				id="34d2fa2f9f9148a0b1269cc755ff1392"
+				label="output/origin"
+				lineNumber="7">
+			<count>1</count>
+		</steps>
+		<query>origins[description != null]</query>
+	</steps>
+</sequence>

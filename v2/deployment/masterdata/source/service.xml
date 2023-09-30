@@ -244,4 +244,67 @@
 			<to>output/categoryRelations</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="a1513b82c8e24256821d760ae7e34451"
+			label="output/entries"
+			lineNumber="7">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="86867cae54a8437dbb0a170d2df6b0e8"
+				serviceId="nabu.cms.core.crud.masterDataEntryExternalId.services.list"
+				resultName="result3a85dedd43ca4df69640cbb7ea444c74"
+				temporaryMapping="true"
+				x="173"
+				y="158"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="862d67ef0a1548628bcc5f641cd591fe"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/entries/id</from>
+				<to>filter/externalIdTypeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="08445fd1b07147ed8b1412cc9b357054"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/entries/id</from>
+				<to>filter/masterDataEntryId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b5b3cd23da1743cdabee38923a7bf283"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>false</from>
+				<to>filter/environmentSpecific</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="16b93ea74aec42ac88948df3b7f3b674"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="22f0b89316e7464aa8dde764cec65a6d"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result3a85dedd43ca4df69640cbb7ea444c74/results</from>
+			<to>output/entryExternalIds</to>
+		</steps>
+	</steps>
 </sequence>

@@ -4,40 +4,8 @@
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="cffeaf3d-82ef-4fc0-a288-a6126e484e6e"
-			lineNumber="2">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-				disabled="false"
-				id="7b5fcdd4-2b36-4431-868c-fd825d73013b"
-				serviceId="nabu.cms.core.v2.manage.security.account.realms"
-				resultName="result04340c40d8e8451a9957b033f9575274"
-				temporaryMapping="true"
-				x="235"
-				y="48"
-				invocationOrder="0"
-				asynchronous="false"
-				recache="false">
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="3051004d-075c-4163-9f79-7ab52ca4e516"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>result04340c40d8e8451a9957b033f9575274/content/realms/name</from>
-			<to>allowedRealms</to>
-		</steps>
-	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
-			disabled="false"
-			id="5dfcd309-8b27-484a-84b2-80f572159c5f"
-			label="input/content/realm !# allowedRealms"
-			lineNumber="3"
-			code="403" xsi:nil="true"/>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
 			id="2fc46655-463f-41c6-9e79-c061de25aaf3"
-			lineNumber="4">
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="061f1f33-bb7b-47cb-94a0-498f04b785b6"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2023-03-20T11:08:44.458+01:00" lastModified="2023-03-20T11:11:47.783+01:00" leaf="true" version="10">
+    <comment>Make sure we have a node connection between $global and all other root nodes</comment>
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.cms.core.crud.nodeConnection.services.list</references>
+    <references>nabu.cms.core.crud.node.types.output</references>
+    <references>nabu.cms.core.types.emodel.core.Node</references>
+    <references>nabu.cms.core.services.context.getGlobalContext</references>
+    <references>nabu.cms.core.crud.node.services.list</references>
+    <references>nabu.cms.core.crud.nodeConnection.services.create</references>
+    <references>nabu.cms.core.crud.nodeConnection.types.output</references>
+</node>

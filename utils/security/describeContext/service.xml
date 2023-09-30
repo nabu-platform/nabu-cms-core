@@ -1,0 +1,141 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="55709709b4034f55b5c10b621213a808"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b15f350e753c43208ef05df7539a30f1"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c57123b93af541febb81a3ebaf91ea08"
+				serviceId="nabu.utils.Runtime.getCorrelationId"
+				resultName="resultb1f851ec25554380bf55a341b130becd"
+				temporaryMapping="true"
+				x="273"
+				y="184"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="41b72f60a712417ca3c5a0312b5fe741"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultb1f851ec25554380bf55a341b130becd/correlationId</from>
+			<to>correlationId</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="ff7cd7b12b0c43e584952bad0382ba58"
+				serviceId="nabu.utils.Runtime.getServiceContext"
+				resultName="resulte7e8556adf00491da56a7318099d6b22"
+				temporaryMapping="true"
+				x="266"
+				y="286"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3c25eca6a96e41388556171d9e5212b6"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte7e8556adf00491da56a7318099d6b22/serviceContext</from>
+			<to>serviceContext</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f486cdf1f776467a940ea5d89756dc54"
+				serviceId="nabu.utils.Runtime.getServices"
+				resultName="result0471e2f003f349169e13088b0b412a08"
+				temporaryMapping="true"
+				x="294"
+				y="399"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1524e3249264426abd819e299334c824"
+				serviceId="nabu.utils.String.join"
+				resultName="resultc8705f6624634504bbdcda061a58c192"
+				temporaryMapping="true"
+				x="606"
+				y="402"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="699ce62f6fd346d2b8c3d2e18c469a1a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result0471e2f003f349169e13088b0b412a08/services</from>
+				<to>parts</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="51d0fa4dc18a4ca790f64dacd348dc89"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>, </from>
+				<to>separator</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="afbf8821633444e7ae6716c36415c8f5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc8705f6624634504bbdcda061a58c192/string</from>
+			<to>services</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="7e8232f60b804d05bbb653f579417143"
+				serviceId="nabu.utils.Runtime.getCurrentToken"
+				resultName="resultc75548cc67f64ab6846b5ff6f84ba664"
+				temporaryMapping="true"
+				x="330"
+				y="599"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="423a4a76e09d4715afc9ab9d6f62e3d8"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc75548cc67f64ab6846b5ff6f84ba664/token/name</from>
+			<to>alias</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="d955853e9cfb45df8b269ef3fceea75f"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="5b0b5f287f3f4f7281e1faeb56544a77"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>="Alias: " + alias + "
+Services: " +  services + "
+Context: " + serviceContext + "
+Correlation Id: " + correlationId</from>
+			<to>output/description</to>
+		</steps>
+	</steps>
+</sequence>

@@ -38,4 +38,40 @@
 			</steps>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="4da9f79721b242a6aa05d4fde2e6f636"
+			label="input/connections"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="e320a5d3ad6049d792c5b0b491b39e12"
+				serviceId="nabu.services.jdbc.Services.merge"
+				resultName="result13711f9e32ce4abeb86ab9cf2482fda7"
+				temporaryMapping="true"
+				x="139"
+				y="123"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="72db907cd7384213af02e273efd7144e"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connections</from>
+				<to>instances</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a85df4f463184aafaf7b0c4a389aa36b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

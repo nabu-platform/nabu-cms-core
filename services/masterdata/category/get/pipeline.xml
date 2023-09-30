@@ -4,8 +4,11 @@
         <field minOccurs="0" name="transactionId" type="java.lang.String"/>
         <field name="name" type="java.lang.String"/>
         <field minOccurs="0" name="create" type="java.lang.Boolean"/>
+        <field minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="bestEffort" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <structure collectionName="MasterDataCategories" definition="nabu.cms.core.types.model.core.MasterDataCategory" minOccurs="0" name="category" namespace="nabu.cms.masterdata.types.model.masterdata"/>
+        <structure collectionName="masterDataCategories" definition="nabu.cms.core.types.emodel.core.MasterDataCategory" id="127-0-1-1-eb57550:15992d23a1e:-8000:00000000000011AD" name="result"/>
     </structure>
 </structure>

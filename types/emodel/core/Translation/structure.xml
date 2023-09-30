@@ -2,10 +2,12 @@
     <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
     <field name="created" timezone="UTC" type="java.util.Date"/>
     <field name="modified" timezone="UTC" type="java.util.Date"/>
-    <field minOccurs="0" name="context" type="java.lang.String"/>
+    <field comment="The context this is for, could be used as categorization (like &quot;copy&quot; or &quot;masterdata&quot;...)" minOccurs="0" name="context" type="java.lang.String"/>
     <field name="name" type="java.lang.String"/>
     <field name="translation" type="java.lang.String"/>
     <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field comment="Most translations are for static copy that is somehow available in the application (error codes, validation feedback, button labels,...). Some translations however are for operational content (e.g. faq, blog,...). We need to be able to differentiate between these." minOccurs="0" name="operational" type="java.lang.Boolean"/>
     <field comment="Can be for a specific tenant (e.g. custom copy)" foreignKey="nabu.cms.core.types.emodel.core.Node:id" minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="Where did the translation come from (export, manual,...)" minOccurs="0" name="source" type="java.lang.String"/>
+    <field comment="For instance a masterdata id to indicate this is a translation for that. Or an operational instance of something like faq." minOccurs="0" name="instanceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>

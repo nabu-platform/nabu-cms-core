@@ -1,0 +1,50 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="136320057c864810aaec64ffc5fe51da"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="e8de4b5049ca400d901baff6a14c5f8f"
+			label="input/masterDataEntryId != null"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="fca7654571404812a69cacf9057f1c1c"
+				serviceId="nabu.cms.core.crud.masterDataEntryExternalId.services.list"
+				resultName="resultab9017c907644fc197e15baef94d8b44"
+				temporaryMapping="true"
+				x="274"
+				y="71"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5c4d0e516e4d42b6b424f9b970261b28"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/masterDataEntryId</from>
+				<to>filter/masterDataEntryId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="722c5504deaa4c6296b72070c9a0346b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/externalIdType</from>
+				<to>filter/externalIdTypeName[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4e6a27884cbd4729baea5ad953edfab5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultab9017c907644fc197e15baef94d8b44/results[0]</from>
+			<to>output/externalId</to>
+		</steps>
+	</steps>
+</sequence>

@@ -6,7 +6,9 @@
     <coreType>nabu.cms.core.types.emodel.core.Group</coreType>
     <createBlacklistFields>created</createBlacklistFields>
     <createBlacklistFields>modified</createBlacklistFields>
+    <createPermission>user.manage</createPermission>
     <createRole>$user</createRole>
+    <deletePermission>user.manage</deletePermission>
     <deleteRole>$user</deleteRole>
     <filters>
         <caseInsensitive>false</caseInsensitive>
@@ -33,16 +35,24 @@
         <input>true</input>
         <vary>false</vary>
     </filters>
+    <getPermission>user.list</getPermission>
+    <hooks>false</hooks>
+    <listPermission>user.list</listPermission>
     <listRole>$user</listRole>
     <provider>nabu.services.crud.provider.basic.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
+    <securityContextField>ownerId</securityContextField>
     <updateBlacklistFields>created</updateBlacklistFields>
     <updateBlacklistFields>modified</updateBlacklistFields>
+    <updatePermission>user.manage</updatePermission>
     <updateRegenerateFields>modified</updateRegenerateFields>
     <updateRole>$user</updateRole>
     <useExplicitLanguage>false</useExplicitLanguage>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
     <useLanguage>false</useLanguage>
-    <useListOutputForCreate>false</useListOutputForCreate>
-    <useListOutputForUpdate>false</useListOutputForUpdate>
+    <useListOutputForCreate>true</useListOutputForCreate>
+    <useListOutputForUpdate>true</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>true</useWebApplicationAsPermissionContext>
 </crud>

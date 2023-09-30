@@ -44,6 +44,15 @@
 				<from>parentId nulls first</from>
 				<to>orderBy[0]</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="87177042cc5d4f8d9cb684e401afe7be"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -128,6 +137,15 @@
 				<from>true</from>
 				<to>filter/isRoot</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="391bd76fde9f48a9bb6fb010ac23a6ed"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -155,5 +173,60 @@
 					path="outputContext/ownerId" xsi:nil="true"/>
 		</steps>
 		<query>output/contexts</query>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Select all the connections BETWEEN contexts"
+			disabled="false"
+			id="232e4d1de5e24f33a12ff2772e978bb1"
+			label="output/contexts"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="0a89219d4e5648fda019659123f69748"
+				serviceId="nabu.cms.core.crud.nodeConnection.services.list"
+				resultName="result205bd1eb541c4029adb576e6fad780ad"
+				temporaryMapping="true"
+				x="276"
+				y="54"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="109c8300016b4b5abfad8bedcc391dd3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/contexts/id</from>
+				<to>filter/sourceId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="50cc4dca265942eab9c2c935fb05da12"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/contexts/id</from>
+				<to>filter/targetId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="47efa44750f04c8da40c87194b7a7e36"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8331efda6fbf45969917031e0c5545df"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result205bd1eb541c4029adb576e6fad780ad/results</from>
+			<to>output/connections</to>
+		</steps>
 	</steps>
 </sequence>

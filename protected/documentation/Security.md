@@ -1,3 +1,29 @@
+# TODO
+
+security issues:
+
+- context list etc does not take into account node connections (e.g. $global) to determine whether you are allowed or not
+- want to do role management at the global level but assignment at the node level
+- get rid of "marker permissions" (e.g. user.authenticate etc)
+
+imitate kapot
+
+
+# Owner id on actions
+
+In the past we did not have owner ids for actions, which means there was one global action "masterdata.list" with no owner.
+
+If you then have a role that has this action (e.g. masterdata manager), you can choose to give a group that role in a particular context to limit the masterdata that they can manage. This means we limit the scope of the global masterdata.list action through targetted group relations.
+
+However, note that in security v2 we abstract away groups in favor of a more role-centric approach. With a global "masterdata.list" permission there is no way to limit the scope of that permission in a role itself, only in the group assignment. By abstracting away group management, this means for each new user we have to micromanage role assignment in certain contexts.
+
+However, now for each context we create a new masterdata.list with the ownerid being that context. This solves two problems:
+
+- accidental naming collisions between cohosted projects that do not know of one another
+- it allows us to do more granular security at the role level, we can now say a particular role can manage masterdata.list for context 1 but not context 2
+
+This does incur more micromanagement when configuring the role, but this is a one-off overhead.
+
 # Contexts
 
 The concept of an "execution context" has existed since day 1 in nabu. It is used in a number of ways but the most visible is the choosing of a correct JDBC connection when none is explicitly specified.

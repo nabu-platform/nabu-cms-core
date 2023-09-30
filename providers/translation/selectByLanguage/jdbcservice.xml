@@ -1,0 +1,8 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Translation</outputDefinition>
+	<sql>select *
+from ~translations t
+	join ~master_data_entries mde on t.language_id = mde.id
+where mde.name = :language
+	and t.instance_id = any(:instanceIds)</sql>
+</jdbcService>

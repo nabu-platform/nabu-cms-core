@@ -79,6 +79,15 @@
 				<from>input/contexts</from>
 				<to>contexts</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6b3411c05d024e839f0ea619c1482ff2"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connections</from>
+				<to>connections</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
@@ -255,6 +264,41 @@
 					fixedValue="false">
 				<from>input/roleTags</from>
 				<to>roleTags</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="32b8c92f7d2f42349a381712022ed32e"
+			lineNumber="7">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="174ecc1fd1f74ec999c260fb268f628f"
+				serviceId="nabu.cms.core.v2.deployment.translation.target"
+				resultName="result66726ef97d094ddda8db7c6bbc830c2f"
+				temporaryMapping="true"
+				x="101"
+				y="83"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="302d59c541eb450f919b7afcafb8725f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/translations</from>
+				<to>translations</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3cd1a60ee68d4d059009b43ca49f5f3c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connectionId</to>
 			</steps>
 		</steps>
 	</steps>

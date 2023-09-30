@@ -32,7 +32,8 @@ Vue.service("masterdata", {
 					label: "name",
 					value: "id",
 					values: ["id", "name"],
-					labels: ["name", "label"]
+					//labels: ["name", "label"]
+					labels: ["name", "title"]
 				});
 			});
 		}
@@ -97,7 +98,7 @@ Vue.service("masterdata", {
 			for (var i = 0; i < this.preloaded.length; i++) {
 				if (this.preloaded[i].name == name || this.preloaded[i].id == name) {
 					return this.preloaded[i].entries == null ? [] : this.preloaded[i].entries.filter(function(x) {
-						return !q || x.label.toLowerCase().indexOf(q.toLowerCase()) >= 0;
+						return !q || x.name.toLowerCase().indexOf(q.toLowerCase()) >= 0;
 					});
 				}
 			}
@@ -146,7 +147,7 @@ Vue.service("masterdata", {
 			var self = this;
 			// check if we already have it
 			if (this.masterdata.resolved[masterdataId]) {
-				return this.masterdata.resolved[masterdataId].label;
+				return this.masterdata.resolved[masterdataId].title ? this.masterdata.resolved[masterdataId].title : this.masterdata.resolved[masterdataId].name;
 			}
 			var result = null;
 			if (this.preloaded) {
@@ -182,7 +183,7 @@ Vue.service("masterdata", {
 				}
 			};
 			if (result != null) {
-				return result.label;
+				return result.title ? result.title : result.name;
 			}
 			// if we did not find a result, ask the server
 			// add it to the idsToResolve
@@ -191,7 +192,7 @@ Vue.service("masterdata", {
 				// set a value that can be returned and updated later
 				Vue.set(this.masterdata.resolved, masterdataId, {
 					id: "",
-					label: ""
+					title: ""
 				});
 				// if there is a timer pending, reset it
 				if (this.masterdata.timer != null) {
@@ -201,7 +202,7 @@ Vue.service("masterdata", {
 				// set a timeout
 				this.masterdata.timer = setTimeout(resolve, 25);
 			}
-			return this.masterdata.resolved[masterdataId].label;
+			return this.masterdata.resolved[masterdataId].title;
 		}
 	}
 });
