@@ -1,0 +1,60 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="febebfcf1dbc4ca789e688ff795400a9"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Get the current account"
+			disabled="false"
+			id="ff6174913cad4fd4887785c860e0eb5a"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2561eaa02d124744ae0e369bcd4f3301"
+				serviceId="nabu.cms.core.services.account.getCurrent"
+				resultName="result9a0eecc109db4282875f00ca83955860"
+				temporaryMapping="true"
+				x="57"
+				y="99"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="97f7f3e246374e3fb5a331f8b1c84639"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result9a0eecc109db4282875f00ca83955860/account</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Try to get the user, he might need an upgrade to account"
+			disabled="false"
+			id="05f6ac7f3f024e47805e34a992e2b7b4"
+			label="!output/content"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="ec81ddcf7ecc4706a3a4458af56f39de"
+				serviceId="nabu.cms.core.services.user.getCurrent"
+				resultName="resultb4d9f3e81e9e44b6bd7e60c7229911ec"
+				temporaryMapping="true"
+				x="177"
+				y="72"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="efbe560e65d24171ae7239b92e0f823c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultb4d9f3e81e9e44b6bd7e60c7229911ec/current</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+</sequence>

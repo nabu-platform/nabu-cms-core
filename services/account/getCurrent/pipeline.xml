@@ -1,6 +1,10 @@
 <structure name="pipeline">
-    <structure name="input"/>
-    <structure name="output">
-        <structure collectionName="accounts" definition="nabu.cms.core.types.emodel.core.Account" duplicate="id, created, modified" label="Account" name="account"/>
+    <structure name="input">
+        <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
     </structure>
+    <structure name="output">
+        <structure collectionCrudProvider="account" collectionName="accounts" definition="nabu.cms.core.types.emodel.core.Account" duplicate="id, created, modified" label="Account" minOccurs="0" name="account"/>
+    </structure>
+    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="unwrapped"/>
 </structure>

@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="applicationId" type="java.lang.String"/>
+        <field name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="duration" type="be.nabu.libs.types.base.Duration"/>
+        <field minOccurs="0" name="timeout" type="be.nabu.libs.types.base.Duration"/>
+        <field minOccurs="0" name="maxUses" type="java.lang.Integer"/>
+    </structure>
+    <structure name="output">
+        <field name="apiKey" type="java.lang.String"/>
+    </structure>
+</structure>

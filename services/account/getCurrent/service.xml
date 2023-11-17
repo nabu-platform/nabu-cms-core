@@ -2,9 +2,185 @@
 		disabled="false"
 		id="2f48c00ceed445a3bbd931b8dfe050e8"
 		lineNumber="1">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
-			id="345aeddca699493faa884d3b78947190"
-			lineNumber="2">
+			id="45292830-26c9-4fc4-a1ee-798a2994781f"
+			lineNumber="2"
+			query="input/token">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="1fe0c88b-3eae-4941-bdc2-c2541e12317b"
+				label="null"
+				lineNumber="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="32457273-01f9-468d-b841-1022f5b18d1d"
+					serviceId="nabu.utils.Runtime.getCurrentToken"
+					resultName="resultdc9f8398a0404e1fa050cc76f2cf44eb"
+					temporaryMapping="true"
+					x="46"
+					y="81"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b5ccfd23-a59e-449e-b288-0456c21e279b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultdc9f8398a0404e1fa050cc76f2cf44eb/token</from>
+				<to>token</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="500522eb-7a76-470f-a62a-d927d97ea772"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2443a303-4ac1-4cd3-9a35-74f9c55e463b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/token</from>
+				<to>token</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Unwrap the token (if applicable)"
+			disabled="false"
+			id="31569a25-e1d7-44de-b51c-395dd3f4b770"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="b08ab2f9-ec07-4c92-8392-5a3c2327a098"
+				serviceId="nabu.utils.Token.unwrap"
+				resultName="resulte15fc3bfe50d4187a663d1462ae64e71"
+				temporaryMapping="true"
+				x="54"
+				y="67"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a6cf75c7-dfe1-41a3-bd23-d41a7c6249e3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>token</from>
+				<to>token</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="18fb58a5-15b7-467e-b423-1a8eb725d8a6"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte15fc3bfe50d4187a663d1462ae64e71/token</from>
+			<to>unwrapped</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+			disabled="false"
+			id="2e786ec9-aba2-4a3d-8980-9582a30d2f27"
+			label="token != null"
+			lineNumber="6"
+			query="unwrapped">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Get active user by alias (case sensitive because it comes from token)"
+				disabled="false"
+				id="253df6ec116e4b3cbb2b450f7eeb5a34"
+				label="null"
+				lineNumber="7">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="355d22de12e6445eaf20ff889146bcfa"
+					serviceId="nabu.cms.core.database.account.selectActiveByAlias"
+					resultName="resultd1b7a3ee9edb40b199f1cebbead67784"
+					temporaryMapping="true"
+					x="278"
+					y="42"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="0a7de2ef9f4f4cc38cffd65644d663b1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>token/realm</from>
+					<to>parameters/realm</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c3f9ea5f68204a8ba4ab029dbd76e0ce"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>token/name</from>
+					<to>parameters/alias</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8fc2ad2a16734d4384861d1dee83ea0f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultd1b7a3ee9edb40b199f1cebbead67784/results[0]</from>
+				<to>output/account</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Get any user (even inactive) if the token was wrapped"
+				disabled="false"
+				id="9bdf1b98-2287-4efa-9375-097fd539552f"
+				lineNumber="8">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="ea67092b4b7941bcb80cb1013316d428"
+					serviceId="nabu.cms.core.crud.account.services.list"
+					resultName="result6bd6b48d6e504d3aac9ed113eb0eb593"
+					temporaryMapping="true"
+					x="167"
+					y="59"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c2bffd41e76c4037adfd3e9569fcbf8b"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>token/name</from>
+					<to>filter/alias</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="4e7a29e0abed44e9ad11ed818759bdd3"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>token/realm</from>
+					<to>filter/realm[0]</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f623c3cfce7c4352963aa3ecba714a0f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result6bd6b48d6e504d3aac9ed113eb0eb593/results[0]</from>
+				<to>output/account</to>
+			</steps>
+		</steps>
 	</steps>
 </sequence>

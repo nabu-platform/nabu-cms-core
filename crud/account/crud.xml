@@ -18,18 +18,25 @@
     <filters>
         <caseInsensitive>false</caseInsensitive>
         <key>alias</key>
-        <operator>ilike</operator>
+        <operator>=~</operator>
         <or>false</or>
         <input>true</input>
         <vary>false</vary>
     </filters>
+    <hooks>false</hooks>
     <listRole>$user</listRole>
     <provider>nabu.cms.core.providers.crud.eaccount.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
     <updateBlacklistFields>modified</updateBlacklistFields>
     <updateRegenerateFields>modified</updateRegenerateFields>
     <updateRole>$user</updateRole>
+    <useAsAuthorizationServiceContext>false</useAsAuthorizationServiceContext>
     <useExplicitLanguage>false</useExplicitLanguage>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
     <useLanguage>false</useLanguage>
     <useListOutputForCreate>false</useListOutputForCreate>
     <useListOutputForUpdate>false</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
+    <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
+    <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
 </crud>
