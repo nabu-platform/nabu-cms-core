@@ -168,7 +168,8 @@
 			code="403"
 			message="Not allowed to log in"
 			alias="=user/alias"
-			realm="=user/realm" xsi:nil="true"/>
+			realm="=user/realm"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set a default valid until on the token"
 			disabled="false"
@@ -315,12 +316,19 @@
 			<to>authentication</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="b92973fc8c0c47d480f485ef7a47514c"
+			label="token != null &amp;&amp; authentication == null"
+			lineNumber="7"
+			message="Login was successful but no token could be generated. You might be missing a temporary authentication provider."
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set the token"
 			disabled="false"
 			id="609602c6-1501-4466-b0a7-e5c8f7ea0da7"
 			label="authentication"
-			lineNumber="7">
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="aca3a036-8c4e-41d5-8a24-3923f586b6c3"
@@ -336,11 +344,11 @@
 			disabled="false"
 			id="f528eb3f-0aee-47c1-8b49-2e2c2933dbd6"
 			label="input/query/remember &amp;&amp; input/device/deviceId != null"
-			lineNumber="8">
+			lineNumber="9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="9f102dc2-7664-4715-853b-af401c873e9e"
-				lineNumber="9">
+				lineNumber="10">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="7bad8fb7-e370-4371-9c38-dd656d379083"
@@ -508,7 +516,7 @@
 				disabled="false"
 				id="a39cee48-849d-4ef7-a0c5-94d427a72428"
 				label="authentication"
-				lineNumber="10">
+				lineNumber="11">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="272b0892-e80f-4286-a7b0-0009bdd2e453"
@@ -573,11 +581,11 @@
 			disabled="false"
 			id="3766a887-be1e-4d21-8444-8ec069276365"
 			label="input/cookie/Remember != null"
-			lineNumber="11">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="2351da6a-7acb-4477-b63b-d06879709e20"
-				lineNumber="12">
+				lineNumber="13">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="e04b2144-65ce-4fb7-b633-545fe88de0b9"
@@ -632,7 +640,7 @@
 				disabled="false"
 				id="7bf10a4e-0a20-4faf-93ed-cb7feec1581b"
 				label="authentication/id != null &amp;&amp; authentication/secret != null"
-				lineNumber="13">
+				lineNumber="14">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="8f6d9cf4-adc5-4904-9de4-1cd0b4db8ed2"
@@ -686,19 +694,19 @@
 				comment="It is possible that the remember is not valid. We don't want the whole login to fail at that point"
 				disabled="false"
 				id="48515a86-9eb4-4609-9dfc-4da13c865dbc"
-				lineNumber="14"
+				lineNumber="15"
 				suppressException="true">
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
 				disabled="false"
 				id="8ff0464f-8911-4bc6-a1d4-dd699dd05fcc"
-				lineNumber="15">
+				lineNumber="16">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="If we don't have a cookie by now, we want to forget the one there is"
 					disabled="false"
 					id="fb5c5272bd4c4073b15e00deccab5966"
 					label="output/header/setCookie == null"
-					lineNumber="16">
+					lineNumber="17">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="821ff930b29649b3b34186adfcfc169c"
@@ -793,12 +801,12 @@
 			disabled="false"
 			id="d94fb19b-163c-4cc7-b998-51d3deb96aa4"
 			label="output/content/token != null &amp;&amp; token/authenticationId != null"
-			lineNumber="17">
+			lineNumber="18">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Get the node for this (presumably) user"
 				disabled="false"
 				id="64f9e8e9-b28e-445f-86dc-47a80bf3aec6"
-				lineNumber="18">
+				lineNumber="19">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ab544db2-4feb-4a95-8de8-cf5a8cd74ce0"
@@ -835,7 +843,7 @@
 				disabled="true"
 				id="d396098d-4046-459d-adda-fbee3933ab92"
 				label="node/languageId != null"
-				lineNumber="19">
+				lineNumber="20">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ff37d857-3443-4c7d-b5c6-e7e55d54693b"
@@ -863,11 +871,11 @@
 				disabled="false"
 				id="98138971-a97d-4b78-823a-3ead1312c1bf"
 				label="input/device/deviceId != null"
-				lineNumber="20">
+				lineNumber="21">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="5bf99cad-7583-4c24-a6fb-ce87ece19f98"
-					lineNumber="21">
+					lineNumber="22">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="319eeb3a-256d-4f67-99d4-52cc039efd2f"
@@ -911,13 +919,13 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 					disabled="false"
 					id="121033ef-4c9a-4044-a327-c9e9b4fb52ca"
-					lineNumber="22">
+					lineNumber="23">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						comment="If device is not yet known, create it"
 						disabled="false"
 						id="1c5dd030-af0c-476a-9f6c-df19bc75b711"
 						label="!currentDevice"
-						lineNumber="23">
+						lineNumber="24">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="f15927fb-219a-4a0b-8c9f-768ffaed815b"
@@ -1002,7 +1010,7 @@
 						disabled="false"
 						id="529782a1-c7cf-40ca-8f17-73ebb70ed702"
 						label="currentDevice/allowed == false"
-						lineNumber="24">
+						lineNumber="25">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
 							disabled="false"
 							id="b2f9f3ba-d09f-44e0-b1c9-3ef3f0a2588a"
@@ -1014,7 +1022,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="70513f81-7fc6-496d-b93b-7be2cd9c79b3"
-			lineNumber="25">
+			lineNumber="26">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="70aef0a8-dc38-42f9-92d2-468b7338286e"
@@ -1059,7 +1067,7 @@
 			disabled="false"
 			id="2804e7838507421d979b356020180dbf"
 			label="user"
-			lineNumber="26">
+			lineNumber="27">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="71be5a3c072f4394b9674518b325281b"

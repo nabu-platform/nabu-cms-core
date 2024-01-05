@@ -46,12 +46,12 @@
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="f3d9252b3c1d4dbb8ac9caabb3bb4953"
+					id="2f527034ff964e66b3ffd94fb0801142"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/content/permissions[0]/securityContext</from>
-				<to>list[0]</to>
+				<from>input/content/permissions/serviceContext</from>
+				<to>list</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -239,7 +239,7 @@
 				comment="If we are accessing a proxy and you are not allowed to, skip"
 				disabled="false"
 				id="f5aa42facbe44f129d6dc4c05309fb7e"
-				label="group/securityContext != null &amp;&amp; group/securityContext !# /proxies/slug"
+				label="group/serviceContext != null &amp;&amp; group/serviceContext !# /proxies/slug"
 				lineNumber="8">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
@@ -305,7 +305,7 @@
 						comment="We need to switch to the context and get the relevant local user"
 						disabled="false"
 						id="cb5f7a1b06814d2cb4f3889b95e36245"
-						label="group/permissions/securityContext != null"
+						label="group/serviceContext != null"
 						lineNumber="13">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
@@ -324,11 +324,11 @@
 								recache="false">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
-									id="136061c45582491eacda198c6372e9c3"
+									id="f66e4068e60144ff84a05af68e790503"
 									mask="false"
 									optional="false"
 									fixedValue="false">
-								<from>group/securityContext</from>
+								<from>group/serviceContext</from>
 								<to>context</to>
 							</steps>
 						</steps>
@@ -394,7 +394,7 @@
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					disabled="false"
+					disabled="true"
 					id="eae2e254113e4f5085cf41c0e6bc172c"
 					lineNumber="17">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -403,8 +403,8 @@
 						serviceId="nabu.cms.core.providers.security.checkPermissions"
 						resultName="result7e7e8e6b07df4dda9ff5b597dee28cc6"
 						temporaryMapping="true"
-						x="227"
-						y="91"
+						x="58"
+						y="25"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
@@ -506,14 +506,148 @@
 					<to>output/content/disallowed</to>
 				</steps>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="Service context is lost due to casting, reintroduce it"
+					disabled="false"
+					id="3fa92525394b4c5388d08247517515f1"
+					lineNumber="18">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="a5a9327218774592980c8b263bebd43b"
+						serviceId="nabu.cms.core.providers.security.checkPermissions"
+						resultName="result7e7e8e6b07df4dda9ff5b597dee28cc6"
+						temporaryMapping="true"
+						x="58"
+						y="25"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="2d02a50a1bb8493fb550e00d40040a3f"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>group/permissions</from>
+						<to>permissions</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="012084b058764a1792c5ac4bf4b5d01b"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>localizedUserId</from>
+						<to>userId</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="293e8ce8dcc2426a9dda7f8b8fa0509c"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result7e7e8e6b07df4dda9ff5b597dee28cc6/allowed</from>
+					<to>allowed</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="87acdfafab384ef28cfcca47356ab1ad"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result7e7e8e6b07df4dda9ff5b597dee28cc6/disallowed</from>
+					<to>disallowed</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.For"
+					disabled="false"
+					id="e24787c480c84b01bbb6610b49a42164"
+					lineNumber="19"
+					variable="singleAllowed"
+					into="output/content/allowed">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="d195fea46ad942779db29e69fdba6457"
+						lineNumber="20">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="2916787b156e46afae5becfe64cab0e3"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>singleAllowed/context</from>
+						<to>output/content/allowed[0]/context</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="175a7cdf6fa04ed2ad8ac0017cc92ada"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>singleAllowed/name</from>
+						<to>output/content/allowed[0]/name</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="50a34df349934d4d8261f194fe6aabf5"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>group/serviceContext</from>
+						<to>output/content/allowed[0]/serviceContext</to>
+					</steps>
+				</steps>
+				<query>allowed</query>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.For"
+					disabled="false"
+					id="52dee3277c944630a8111efde74a5a5a"
+					lineNumber="21"
+					variable="singleDisallowed"
+					into="output/content/disallowed">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="affc8199a5174dd29de0ead1a3a9083a"
+						lineNumber="22">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="2400130591ee4368a2bb0beb17c47f8b"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>group/serviceContext</from>
+						<to>output/content/allowed[0]/serviceContext</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="8833fd880a314ee0809cbfecad00baf6"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>singleDisallowed/context</from>
+						<to>output/content/allowed[0]/context</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="cc46b9c645694130a421de2795115116"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>singleDisallowed/name</from>
+						<to>output/content/allowed[0]/name</to>
+					</steps>
+				</steps>
+				<query>disallowed</query>
+			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
 					disabled="false"
 					id="1b8f52b7fb8b46639ee71fd7e70f9413"
-					lineNumber="18">
+					lineNumber="23">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
 						id="1bbc6b99bb3c4da78904cdce17fd75ea"
-						lineNumber="19">
+						lineNumber="24">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="6c00c2fc828a44c49998b8443c6f7b2a"

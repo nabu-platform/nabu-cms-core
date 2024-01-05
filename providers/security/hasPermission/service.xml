@@ -1,0 +1,93 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="452f410430c04763884409c15165f064"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="ed2808d0a555461cb156f119bdfea6f9"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="be84f45f19fb4e8fa90b2c98b8e9955f"
+				serviceId="nabu.cms.core.providers.security.checkPermissions"
+				resultName="result88812ac73f984868b108b5eebf7d7f95"
+				temporaryMapping="true"
+				x="470"
+				y="87"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="92cdf21342fc4efcbf5128f25c635d1a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/token/authenticationId</from>
+				<to>userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dc487df54d94431396d7fc55018a2c19"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/context</from>
+				<to>permissions[0]/context</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f0a40f782ce1401eb68fe845adf9f9af"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/action</from>
+				<to>permissions[0]/name</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1a29147a6600457ea1108cb8dc6b4026"
+				serviceId="nabu.utils.List.size"
+				resultName="result4fb81bfc3e894d01ae2cc3d0cc1ed6c5"
+				temporaryMapping="true"
+				x="670"
+				y="268"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="61320a2e283446cda7f92c0800d9f675"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result88812ac73f984868b108b5eebf7d7f95/allowed</from>
+				<to>list</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="50b2e9bfe7cd4c538758f3300260d6bf"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result4fb81bfc3e894d01ae2cc3d0cc1ed6c5/size</from>
+			<to>amount</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="a52e536ab0b34be79e57598c437f3a15"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8c1bd0e982d841e78a32a366d0162596"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>=amount &gt; 0</from>
+			<to>output/response</to>
+		</steps>
+	</steps>
+</sequence>

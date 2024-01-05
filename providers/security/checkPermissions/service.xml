@@ -29,7 +29,7 @@
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>input/permissions[$this ~ "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$" || $this ~ "^[a-f0-9]{32}$"]/context</from>
+					<from>input/permissions[context ~ "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$" || context ~ "^[a-f0-9]{32}$"]/context</from>
 					<to>list</to>
 				</steps>
 			</steps>
@@ -65,7 +65,7 @@
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>input/permissions[$this ~ "^[^:]+$" &amp;&amp; $this !# /nodeIdContexts]/context</from>
+					<from>input/permissions[context ~ "^[^:]+$" &amp;&amp; context !# /nodeIdContexts]/context</from>
 					<to>list</to>
 				</steps>
 			</steps>
@@ -101,7 +101,7 @@
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>input/permissions[$this !# /nodeIdContexts &amp;&amp; $this !# /nodeSlugContexts]/context</from>
+					<from>input/permissions[context != null &amp;&amp; context !# /nodeIdContexts &amp;&amp; context !# /nodeSlugContexts]/context</from>
 					<to>list</to>
 				</steps>
 			</steps>
@@ -324,85 +324,231 @@
 			</steps>
 			<query>otherContexts</query>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				comment="Get connected nodes"
 				disabled="false"
-				id="ab2cf2f1-8989-414b-9e0c-ef27be9380b4"
+				id="7fafc70854a04c8ea18d9d3ab95270c4"
 				label="nodes"
 				lineNumber="11">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+			<steps xsi:type="be.nabu.libs.services.vm.step.For"
 					disabled="false"
-					id="2adf2061885442deafb41399bb422a94"
-					serviceId="nabu.cms.core.crud.nodeConnection.services.list"
-					resultName="resultd4a7c279b8124b0eb1e0ca7ffe337552"
-					temporaryMapping="true"
-					x="114"
-					y="97"
-					invocationOrder="0"
-					asynchronous="false"
-					recache="false">
+					id="5730fe0a604840758974895dc6b90f26"
+					lineNumber="12"
+					variable="singleNode"
+					into="allNodeIdsInPath">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="1ab7f3a6115a45d5875de32446eb01ba"
+						lineNumber="13">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="d241b28b262e46d2b07f08beb3811dea"
+							serviceId="nabu.utils.String.split"
+							resultName="result4583add7e576490da2996e709da248c9"
+							temporaryMapping="true"
+							x="134"
+							y="147"
+							invocationOrder="0"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="cbf0a9cc226d420ea38162f7369dde8e"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>singleNode/path</from>
+							<to>string</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="97fe0218c5b1479f94f2a287fb318904"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>/</from>
+							<to>separator</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="82fed3a1087c43b490b10222e704f737"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>result4583add7e576490da2996e709da248c9/parts</from>
+						<to>allNodeIdsInPath</to>
+					</steps>
+				</steps>
+				<query>nodes</query>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="ab2cf2f1-8989-414b-9e0c-ef27be9380b4"
+					lineNumber="14">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="2adf2061885442deafb41399bb422a94"
+						serviceId="nabu.cms.core.crud.nodeConnection.services.list"
+						resultName="resultd4a7c279b8124b0eb1e0ca7ffe337552"
+						temporaryMapping="true"
+						x="114"
+						y="97"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="cb29d3132c45494cb0640c0944e5ed0f"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>nodes/id</from>
+						<to>filter/targetId</to>
+					</steps>
+				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="cb29d3132c45494cb0640c0944e5ed0f"
+						id="e588e6f38c16414f8540b7727b08b612"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>nodes/id</from>
-					<to>filter/targetId</to>
+					<from>resultd4a7c279b8124b0eb1e0ca7ffe337552/results</from>
+					<to>nodeConnections</to>
 				</steps>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="e588e6f38c16414f8540b7727b08b612"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>resultd4a7c279b8124b0eb1e0ca7ffe337552/results</from>
-				<to>nodeConnections</to>
+					id="e65af91362344649b162593cd787dd17"
+					label="nodeConnections"
+					lineNumber="15">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="bb9155c6ae3c48c9b99b5e03ae833468"
+						serviceId="nabu.cms.core.crud.node.services.list"
+						resultName="result82855791ac7c43d8ac65726ca2b9153a"
+						temporaryMapping="true"
+						x="137"
+						y="33"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="fabeaae0fbc44765bc5b4e7ffc4b4532"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>nodeConnections/sourceId</from>
+						<to>filter/id</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="3919321445994cdca668295af4c6fc77"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result82855791ac7c43d8ac65726ca2b9153a/results</from>
+					<to>connectedNodes</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.For"
+					disabled="false"
+					id="09fadd0d7ffd4240bda9b2773609068f"
+					label="connectedNodes"
+					lineNumber="16"
+					variable="singleNode"
+					into="allNodeIdsInPath">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="e7282b9a4c2e4d81b1367658745745cf"
+						lineNumber="17">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="50df34fadfee4ab28b90511120005c51"
+							serviceId="nabu.utils.String.split"
+							resultName="result4583add7e576490da2996e709da248c9"
+							temporaryMapping="true"
+							x="134"
+							y="147"
+							invocationOrder="0"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="a2711d8b392a4cf3bbb6b6b16d556dd3"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>singleNode/path</from>
+							<to>string</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="79e71fab99f84d11b17e58f441ae6062"
+								mask="false"
+								optional="false"
+								fixedValue="true">
+							<from>/</from>
+							<to>separator</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="5cc749fda48a4e189b1577e972b0a9ce"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>result4583add7e576490da2996e709da248c9/parts</from>
+						<to>allNodeIdsInPath</to>
+					</steps>
+				</steps>
+				<query>connectedNodes</query>
 			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Get unique names of permissions"
+			disabled="false"
+			id="15f85696b90b4db8b277123cb09cbe69"
+			lineNumber="18">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
-				id="e65af91362344649b162593cd787dd17"
-				label="nodeConnections"
-				lineNumber="12">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-					disabled="false"
-					id="bb9155c6ae3c48c9b99b5e03ae833468"
-					serviceId="nabu.cms.core.crud.node.services.list"
-					resultName="result82855791ac7c43d8ac65726ca2b9153a"
-					temporaryMapping="true"
-					x="137"
-					y="33"
-					invocationOrder="0"
-					asynchronous="false"
-					recache="false">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="fabeaae0fbc44765bc5b4e7ffc4b4532"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>nodeConnections/sourceId</from>
-					<to>filter/id</to>
-				</steps>
-			</steps>
+				id="ddda1ec3780343c78364ec41d707ac7e"
+				serviceId="nabu.utils.List.unique"
+				resultName="result7a0c4965cc1d4f87b0629b3e37fa3748"
+				temporaryMapping="true"
+				x="119"
+				y="134"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="3919321445994cdca668295af4c6fc77"
+					id="2b89a3f0045e4f869dbf4009933ebcb5"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>result82855791ac7c43d8ac65726ca2b9153a/results</from>
-				<to>connectedNodes</to>
+				<from>input/permissions/name</from>
+				<to>list</to>
 			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="804deeec527f48febc9e04855ec4a5d7"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result7a0c4965cc1d4f87b0629b3e37fa3748/list</from>
+			<to>actionNames</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Get all actions with the respective names"
 			disabled="false"
 			id="c77eff86cc8042ce81de9d6da6e9336d"
-			lineNumber="13">
+			lineNumber="19">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="c6d83b30fa624f288be65604e194f33f"
@@ -416,11 +562,11 @@
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="7b5285b2ae7f46dcbcd12d4130cd9263"
+					id="c25ff63c15ba4290bee1efe0342cf2e6"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/permissions/name</from>
+				<from>actionNames</from>
 				<to>filter/name</to>
 			</steps>
 		</steps>
@@ -438,14 +584,14 @@
 			comment="Get user settings"
 			disabled="false"
 			id="d34052a8f0eb4efc94062a385d663208"
-			lineNumber="14"
+			lineNumber="20"
 			query="input/userId">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Get all pseudo $guest roles"
 				disabled="false"
 				id="0d9c2c3fd59f4470b73e738557a936e7"
 				label="null"
-				lineNumber="15">
+				lineNumber="21">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="243f754b1b4f4984959ec04586f15df6"
@@ -475,6 +621,15 @@
 					<from>true</from>
 					<to>filter/pseudo</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="a5cfe56e13b94bff97713b2e46ac4299"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>allNodeIdsInPath</from>
+					<to>filter/ownerId</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
@@ -483,13 +638,13 @@
 					optional="false"
 					fixedValue="false">
 				<from>result55a5a18040494c17b913d0b3db7dfcfd/results</from>
-				<to>guestRoles</to>
+				<to>pseudoRoles</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="72be1011c16943a19e65bf743a7f63f3"
-				lineNumber="16">
+				lineNumber="22">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="3c69f6b056ef40a2bcb15d62936eb710"
@@ -512,42 +667,12 @@
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="7e1ef8e370784d8689448a954fc885e1"
+						id="77b5fb275e094067b0e7aab1e69642df"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>resulta5ea4ee485004cedb9efd69ff7763036/list</from>
+					<from>allNodeIdsInPath</from>
 					<to>parameters/nodeIds</to>
-				</steps>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-					disabled="false"
-					id="119708853f364b21be2bf4ef94de1cdd"
-					serviceId="nabu.utils.List.addAll"
-					resultName="resulta5ea4ee485004cedb9efd69ff7763036"
-					temporaryMapping="true"
-					x="28"
-					y="175"
-					invocationOrder="0"
-					asynchronous="false"
-					recache="false">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="6dfac853c9d547a492a1f95417945861"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>nodes/id</from>
-					<to>list</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="cf6343dd43f54b0d9a9aa34d9e84594f"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>connectedNodes/id</from>
-					<to>objects</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -559,13 +684,61 @@
 				<from>resulta201b8ade4fd49439967b66ffdafec8d/results</from>
 				<to>allRelevantGroupRoles</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="1485b6f03fc74358a2b0682d642bcf9a"
+					serviceId="nabu.cms.core.crud.role.services.list"
+					resultName="result6b1c670951cc461ba1f7fe9f13138f8c"
+					temporaryMapping="true"
+					x="482"
+					y="227"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ed2117e02fb0476e9e2c542cf7eea32a"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>$user</from>
+					<to>filter/name[0]</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="32766451b03c405cb914934c1c1aa3cb"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>filter/pseudo</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c4bc969de0c44c68b7564ab933d1ce56"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>allNodeIdsInPath</from>
+					<to>filter/ownerId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cce78d3a99c14380abc7670d735906c9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result6b1c670951cc461ba1f7fe9f13138f8c/results</from>
+				<to>pseudoRoles</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Combine all potential role ids"
 			disabled="false"
 			id="50bbbaf8ee9e4c4bb7c20433f20ea562"
-			lineNumber="17">
+			lineNumber="23">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="ac5706dab6834c5b838f60e7ad01901c"
@@ -583,7 +756,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>guestRoles/id</from>
+				<from>pseudoRoles/id</from>
 				<to>list</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -611,7 +784,7 @@
 			disabled="false"
 			id="f4e97bcc081f435db64adaded7fbe0a0"
 			label="allRoleIds != null"
-			lineNumber="18">
+			lineNumber="24">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="b8867cd3f1a2477bb114708703069b96"
@@ -655,18 +828,18 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.For"
 			disabled="false"
 			id="28fd16dce47a4e128ef94e6cd3d5ae23"
-			lineNumber="19"
+			lineNumber="25"
 			variable="permission">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				comment="Determine the roles and actions that are in play"
 				disabled="false"
 				id="01fcccef878d4f2985e72a7664586ba3"
-				lineNumber="20">
+				lineNumber="26">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Drop previous values"
 					disabled="false"
 					id="d72613f34eae41cbafbeb413f9d6f2be"
-					lineNumber="21">
+					lineNumber="27">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
 						disabled="false"
 						id="5a1a872a90a547518189e9fe91d69da1"
@@ -679,51 +852,55 @@
 						disabled="false"
 						id="e14320999a664c93aa1f79cae729811a"
 						path="applicableRoleIds" xsi:nil="true"/>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+						disabled="false"
+						id="682b97d842f146cf9467c2ea458ee593"
+						path="applicableActionIds" xsi:nil="true"/>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 					disabled="false"
 					id="e2d9bc0a822a47c29db2bc95f243aa94"
-					lineNumber="22"
+					lineNumber="28"
 					query="permission/context">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						comment="If we don't have a context, we don't care, any context will do"
 						disabled="false"
 						id="fccc66439ea245d19fef50d4ec4a72d5"
 						label="null"
-						lineNumber="23">
+						lineNumber="29">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							comment="Any action with the same name will do"
 							disabled="false"
 							id="166144bc27a54499b678b86a868ed981"
-							lineNumber="24">
+							lineNumber="30">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="9f50195288c54d8fa53b79a2216ce859"
 								mask="false"
 								optional="false"
 								fixedValue="false">
-							<from>allActions[name == /permission/name]/id</from>
+							<from>allActions[/permission/name == null || name == /permission/name]/id</from>
 							<to>applicableActionIds</to>
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							disabled="false"
 							id="330fd895905a403d8cbc95959b38a878"
-							lineNumber="25"
+							lineNumber="31"
 							query="input/userId">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								comment="Only guest roles apply. They can not be given within a context, only globally"
 								disabled="false"
 								id="306ecc700d174a67b80e320b69d2c057"
 								label="null"
-								lineNumber="26">
+								lineNumber="32">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="ccece9a49cfe4e8e83609ece0da09b88"
 									mask="false"
 									optional="false"
 									fixedValue="false">
-								<from>guestRoles/id</from>
+								<from>pseudoRoles/id</from>
 								<to>applicableRoleIds</to>
 							</steps>
 						</steps>
@@ -731,14 +908,14 @@
 								comment="If we don't have a context but we do have a user, all roles he has are allowed"
 								disabled="false"
 								id="4fdf934800e4451ea60b6c9b88cef170"
-								lineNumber="27">
+								lineNumber="33">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
-									id="0f5b9b47f8734f4888f1025f144b8077"
+									id="cb29044763c040c3aafac7b66b06b344"
 									mask="false"
 									optional="false"
 									fixedValue="false">
-								<from>allRelevantGroupRoles/roleId</from>
+								<from>allRoleIds</from>
 								<to>applicableRoleIds</to>
 							</steps>
 						</steps>
@@ -748,17 +925,17 @@
 						comment="We need to check which contexts apply"
 						disabled="false"
 						id="48978356470a49288875e0f9606944a7"
-						lineNumber="28">
+						lineNumber="34">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							comment="First we need to know which node this security request applies to"
 							disabled="false"
 							id="a14f06acd1b74335a6f05aa917bbf400"
-							lineNumber="29">
+							lineNumber="35">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								disabled="false"
 								id="40c9872c195d4eab9faaef0a77826261"
 								label="permission/context # nodeIdContexts"
-								lineNumber="30">
+								lineNumber="36">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="15a7993bd2d841bf8b60970c5e6cde4f"
@@ -773,7 +950,7 @@
 								disabled="false"
 								id="bfe868a3166440bd834ef834e38516a1"
 								label="permission/context # nodeSlugContexts"
-								lineNumber="31">
+								lineNumber="37">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="a8743223c1c7487c9129ef9d44ffd16d"
@@ -788,12 +965,12 @@
 								comment="Mapped"
 								disabled="false"
 								id="d31b81d03e94471a800a32285c993739"
-								lineNumber="32">
+								lineNumber="38">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 									comment="Get mapped"
 									disabled="false"
 									id="e40e1947707c48ef97e5c70e47106d69"
-									lineNumber="33">
+									lineNumber="39">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="951086ae63c8450785a86da35ee09425"
@@ -809,7 +986,7 @@
 									disabled="false"
 									id="ea856bad839f4c8ebd5db7459eaa0a1b"
 									label="mappedContext"
-									lineNumber="34">
+									lineNumber="40">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="d2d5fbf67cb74a80845c66fe20f82d8d"
@@ -827,19 +1004,20 @@
 							disabled="false"
 							id="da3a97711a4242d491ce034740e403ae"
 							label="!applicableNode"
-							lineNumber="35"
-							message="Could not resolve node" xsi:nil="true"/>
+							lineNumber="41"
+							message="Could not resolve node"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							comment="Then resolve all the node ids (parents and connections) that are relevant"
 							disabled="false"
 							id="c99c7b57e77248f59304a09afe1722c4"
-							lineNumber="36"
+							lineNumber="42"
 							query="applicableNode">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								disabled="false"
 								id="f95d27622b014983ae199a35fc36f1d8"
 								label="null"
-								lineNumber="37">
+								lineNumber="43">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
 									disabled="false"
 									id="2b8ea673dfb748888fd2c072c77e5b70"
@@ -848,11 +1026,11 @@
 						<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 								disabled="false"
 								id="656ee972b9534197804f92e139e126d2"
-								lineNumber="38">
+								lineNumber="44">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 									disabled="false"
 									id="59f2102555554179aabe08ff2050152e"
-									lineNumber="39">
+									lineNumber="45">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 										disabled="false"
 										id="13a58c647c394838b176a1824daf0046"
@@ -897,7 +1075,7 @@
 									comment="Get connected nodes"
 									disabled="false"
 									id="096744f315914154b465ae262f733218"
-									lineNumber="40">
+									lineNumber="46">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="e453aba33d794fdaa517164e6ec0c894"
@@ -917,7 +1095,7 @@
 									disabled="false"
 									id="a17dab4b12f04826a5b6654b15f468ea"
 									label="applicableNodeConnections"
-									lineNumber="41">
+									lineNumber="47">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 										disabled="false"
 										id="052b5dabaaf642c3917497fafdc38681"
@@ -931,12 +1109,12 @@
 							<steps xsi:type="be.nabu.libs.services.vm.step.For"
 									disabled="false"
 									id="6685b4be89fd49fb82bee1533bf71363"
-									lineNumber="42"
+									lineNumber="48"
 									variable="applicableConnectedNode">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										disabled="false"
 										id="652622ea5cf84106b9996ae4040deac7"
-										lineNumber="43">
+										lineNumber="49">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="b49576e4c6df48dfbd71833a5d159060"
@@ -980,7 +1158,7 @@
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										disabled="false"
 										id="a6d3107e1d6d4ab2b4b2dbedf20379d6"
-										lineNumber="44">
+										lineNumber="50">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="2151ab387c894f7ea765254ae8cdb531"
@@ -1028,21 +1206,21 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							disabled="false"
 							id="3d1ae65c69be4b7a9459e1e42cf0d217"
-							lineNumber="45"
+							lineNumber="51"
 							query="input/userId">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								comment="Only guest roles apply. They can not be given within a context, only globally"
 								disabled="false"
 								id="33e8fd635ba244c889ad3220ec682af7"
 								label="null"
-								lineNumber="46">
+								lineNumber="52">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="a8c49365e19e4662997d0526315249ba"
 									mask="false"
 									optional="false"
 									fixedValue="false">
-								<from>guestRoles/id</from>
+								<from>pseudoRoles[ownerId == null || ownerId # /applicableNodeIds]/id</from>
 								<to>applicableRoleIds</to>
 							</steps>
 						</steps>
@@ -1050,14 +1228,44 @@
 								comment="Get the roles from the group roles and the contexts"
 								disabled="false"
 								id="4cf39a49ad944cf9ac34ef06674ff164"
-								lineNumber="47">
+								lineNumber="53">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+									disabled="false"
+									id="2f058acfb5ec48318215068fccfd8709"
+									serviceId="nabu.utils.List.addAll"
+									resultName="result6fa6a88c675945cfbb002c71fb109383"
+									temporaryMapping="true"
+									x="80"
+									y="177"
+									invocationOrder="0"
+									asynchronous="false"
+									recache="false">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="9dfa46266bac4919aea91ad7c250b100"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>pseudoRoles[ownerId == null || ownerId # /applicableNodeIds]/id</from>
+									<to>list</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="c25634bd11964843a7d46b9570a4445a"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>allRelevantGroupRoles[nodeId == null || nodeId # /applicableNodeIds]/roleId</from>
+									<to>objects</to>
+								</steps>
+							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
-									id="9395ef6805bc478fa5a2d857c79d96c3"
+									id="1b7b5148b25740468b1eff691e29155f"
 									mask="false"
 									optional="false"
 									fixedValue="false">
-								<from>allRelevantGroupRoles[nodeId == null || nodeId # /applicableNodeIds]/roleId</from>
+								<from>result6fa6a88c675945cfbb002c71fb109383/list</from>
 								<to>applicableRoleIds</to>
 							</steps>
 						</steps>
@@ -1066,14 +1274,14 @@
 							comment="Get only the actions with the same name that belong to somewhere in the path (or without an owner)"
 							disabled="false"
 							id="1fd2ecbc0c4d4d60b7d00f0b3f4a183e"
-							lineNumber="48">
+							lineNumber="54">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="6b65681a72d441b5818c47e7953de11e"
 								mask="false"
 								optional="false"
 								fixedValue="false">
-							<from>allActions[name == /permission/name &amp;&amp; (ownerId == null || ownerId # /applicableNodeIds)]/id</from>
+							<from>allActions[(/permission/name == null || name == /permission/name) &amp;&amp; (ownerId == null || ownerId # /applicableNodeIds)]/id</from>
 							<to>applicableActionIds</to>
 						</steps>
 					</steps>
@@ -1084,7 +1292,7 @@
 				comment="Check the action roles for a valid combination"
 				disabled="false"
 				id="92f09a6d5a2d40d1ab762b3de21fda76"
-				lineNumber="49">
+				lineNumber="55">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="033320d834e34a98ab09546e2a1eae2d"
@@ -1098,7 +1306,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="0b8cee46d8e34793a93f9d61410bae29"
-				lineNumber="50">
+				lineNumber="56">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ce37eea93a5347339407d7db608b719f"
@@ -1133,13 +1341,13 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="b4c43c2bb3a547d68e37d656954a9c1d"
-				lineNumber="51"
+				lineNumber="57"
 				query="amountOfApplicableActionRoles">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="d2ec0a050ca04923b7fbdaa8f5520a64"
 					label="0"
-					lineNumber="52">
+					lineNumber="58">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="1626f620cadf4d069532cc402a59fcbe"
@@ -1183,7 +1391,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="f43601248f3646c8b25fafdbd4989fcc"
-					lineNumber="53">
+					lineNumber="59">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="2dbe961fe4124497805b7272d442ccdd"

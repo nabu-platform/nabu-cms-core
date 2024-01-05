@@ -5,10 +5,16 @@ Vue.service("user", {
 			id: null,
 			language: null,
 			roles: ["$guest"],
+			allowedPermissions: [],
+			disallowedPermissions: [],
 			permissions: [],
 			contextualRoles: {},
 			application: "${environment('webApplicationId')}",
 			remembering: false,
+			canTimer: null,
+			// permissions we want to check
+			permissionsToCheck: [],
+			permissionCheckPromise: null,
 			// we keep track of the token here
 			// almost all calls go through the swagger client, which already has the bearer
 			// some calls however (like loading the swagger file itself) bypass the swagger client
@@ -103,6 +109,110 @@ Vue.service("user", {
 				promise.reject();
 			}
 			return promise;
+		},
+		loadCan: function(permissions) {
+			var self = this;
+			nabu.utils.arrays.merge(self.permissionsToCheck, permissions);
+			if (self.canTimer) {
+				clearTimeout(self.canTimer);
+				self.canTimer = null;
+			}
+			if (self.permissionsToCheck.length) {
+				if (!self.permissionCheckPromise) {
+					self.permissionCheckPromise = this.$services.q.defer();
+				}
+				self.canTimer = setTimeout(function() {
+					var permissionsToCheck = self.permissionsToCheck.splice(0);
+					if (permissionsToCheck.length) {
+						self.$services.swagger.execute("nabu.cms.core.v2.security.web.can", {
+							body: {
+								permissions: permissionsToCheck
+							}
+						}).then(function(result) {
+							if (result.allowed) {
+								nabu.utils.arrays.merge(self.allowedPermissions, result.allowed);
+							}
+							if (result.disallowed) {
+								nabu.utils.arrays.merge(self.disallowedPermissions, result.disallowed);
+							}
+							self.permissionCheckPromise.resolve(result);
+							self.permissionCheckPromise = null;
+						}, function(error) {
+							self.permissionCheckPromise.reject(error);
+							self.permissionCheckPromise = null;
+						});
+					}
+					else {
+						self.permissionCheckPromise.resolve();
+					}
+				}, 25);
+				return this.permissionCheckPromise;
+			}
+			else {
+				return this.$services.q.resolve();
+			}
+		},
+		// checks one or more permissions
+		// you can send an object or an array of objects where each object has:
+		// - context: e.g. the node id
+		// - name: the permission name
+		can: function(permission, cachedOnly) {
+			var self = this;
+			if (permission != null) {
+				if (!(permission instanceof Array)) {
+					permission = [permission];
+				}
+				// if we want to check permissions
+				if (permission.length) {
+					var allowed = [];
+					var disallowed = [];
+					// first check the already resolved permissions, we might be able to send back an answer immediately
+					
+					// we check the disallowed first because if _any_ requested are disallowed, the promise is rejected
+					this.disallowedPermissions.forEach(function(cache) {
+						for (var i = 0; i < permission.length; i++) {
+							var toCheck = permission[i];
+							if (cache.serviceContext == toCheck.serviceContext && cache.name == toCheck.name && cache.context == toCheck.context) {
+								disallowed.push(toCheck);
+								permission.splice(i, 1);
+								break;
+							}
+						}
+					});
+					if (disallowed.length) {
+						return this.$services.q.reject(disallowed);
+					}
+					// check if any are known to be allowed
+					if (permission.length) {
+						this.allowedPermissions.forEach(function(cache) {
+							for (var i = 0; i < permission.length; i++) {
+								var toCheck = permission[i];
+								if (cache.serviceContext == toCheck.serviceContext && cache.name == toCheck.name && cache.context == toCheck.context) {
+									allowed.push(toCheck);
+									permission.splice(i, 1);
+									break;
+								}
+							}
+						});
+					}
+					// if we get here and no permissions remain, we assume you are allowed
+					if (!permission.length) {
+						return this.$services.q.resolve(allowed);
+					}
+					// we need to do a rest call to check them
+					else if (!cachedOnly) {
+						var promise = this.$services.q.defer();
+						this.loadCan(permission).then(function() {
+							// recheck the permission now that it has been persisted
+							self.can(permission, true)
+								.then(promise, promise);
+						}, promise);
+						return promise;
+					}
+				}
+			}
+			// nothing to resolve
+			return this.$services.q.reject();
 		},
 		// get a valid ltp for an operation
 		ltp: function(operationId) {

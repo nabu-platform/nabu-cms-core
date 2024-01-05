@@ -1,3 +1,20 @@
+@2024-01-05
+
+actions are at the global level if they are generic (frameworks usually) cross project (e.g. user.manage)
+actions are at a project level if they are specific to a particular project (e.g. device.list)
+actions always represent an actual piece of logic and as such it is useless to let end users create their own actions. this means actions should never occur deeper down in the tree than the root of a project
+"marker" actions are a thing of the past and will not be used
+
+roles represent the "role" a user takes in a company, this can have effects on one or more projects and as such roles should exist at the global level
+if possible even pushed from a central management point (much like accounts)
+roles combine which actions are allowed and can be assigned in a context, role and permission linking is done at the level where the role is owned (not below)
+custom roles _can_ be created by users at various points in the hierarchy because they simply allow you to recombine actions in different ways, as such roles should be expected throughout the tree
+however, via management we focus on global & project roles, less so on nested roles (you can see the impact of their security but have fewer modification options)
+pseudo roles are never assigned in a particular context but there is a need to do contextual resolving
+for instance "$guest" may be able to blog.list on a public blog but _not_ on a private blog nested in the tree somewhere.
+pseudo roles _can_ be marker roles where the OWNER of the role is relevant, as such pseudo roles can be found throughout the tree and are automanaged by the management screens
+
+
 # TODO
 
 security issues:
