@@ -83,7 +83,7 @@
 				comment="If we just created it, link it to the expected role"
 				disabled="false"
 				id="20a1431d-4991-4929-918a-f5f60ca3398d"
-				label="created || input/force"
+				label="(created || input/force) &amp;&amp; input/roleId != null"
 				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
@@ -133,6 +133,68 @@
 					<to>actionId</to>
 				</steps>
 			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+				disabled="false"
+				id="4b130b932a824ca39b15354c6ce43461"
+				label="created || input/force"
+				lineNumber="5"
+				variable="roleId">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="If we just created it, link it to the expected role"
+					disabled="false"
+					id="4857b1e380a442168914ec1176d7d57f"
+					lineNumber="6">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="21fd78b160e649949e23150565b90bfb"
+						serviceId="nabu.cms.core.services.action.link"
+						resultName="resultfb1cf8e31c87474bab5c8b5f0b7d54cc"
+						temporaryMapping="true"
+						x="304"
+						y="92"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="6d9e7546264749a08bfcca045badc843"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/connectionId</from>
+						<to>connectionId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="12260458c2df4e26bb1c66c7d12dd679"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/transactionId</from>
+						<to>transactionId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="8fe9adbeca794126a441dd82fed78ca1"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>output/actions[0]/id</from>
+						<to>actionId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="54ea05553d5c4f648110900baaabc062"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>roleId</from>
+						<to>roleId</to>
+					</steps>
+				</steps>
+			</steps>
+			<query>input/roleIds</query>
 		</steps>
 		<query>input/actions</query>
 	</steps>

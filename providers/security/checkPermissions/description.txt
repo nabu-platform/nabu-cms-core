@@ -1,3 +1,11 @@
 $guest uses "marker" roles where the owner of the role is important for whether or not it applies
 a $guest role is never "linked" to a user in a context via a group because there is no user (and no group) and thus no context
 the owner id is the only context
+
+$owner is slightly different: you can set for example at $global that $owner should be able to do "contract.list"
+if contract is a child of company which in turn is a child of $global, you could wonder: is the owner of a company automatically allowed to view _all_ contracts? meaning is the owner "inherited" throughout the tree?
+an alternative approach is that the owner only applies to the node in question, meaning you must be the owner of a contract itself to be able to do something.
+
+both views have merit, depending on the circumstances, but it is programatically easier to support the last one because we don't naturally have all the "owners" of all the nodes in the tree loaded, so it would require an additional roundtrip.
+besides, "narrow" permissions are easier to combine into broader sets, restricting that company owner later on to not view some contracts can be annoying
+we don't use $owner much anyway, most limited cases that are known are better served with a specific owner rather than a hierarchical one

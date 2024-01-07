@@ -122,6 +122,8 @@ Vue.service("user", {
 					self.permissionCheckPromise = this.$services.q.defer();
 				}
 				self.canTimer = setTimeout(function() {
+					var promiseToResolve = self.permissionCheckPromise;
+					self.permissionCheckPromise = null;
 					var permissionsToCheck = self.permissionsToCheck.splice(0);
 					if (permissionsToCheck.length) {
 						self.$services.swagger.execute("nabu.cms.core.v2.security.web.can", {
@@ -135,11 +137,9 @@ Vue.service("user", {
 							if (result.disallowed) {
 								nabu.utils.arrays.merge(self.disallowedPermissions, result.disallowed);
 							}
-							self.permissionCheckPromise.resolve(result);
-							self.permissionCheckPromise = null;
+							promiseToResolve.resolve(result);
 						}, function(error) {
-							self.permissionCheckPromise.reject(error);
-							self.permissionCheckPromise = null;
+							promiseToResolve.reject(error);
 						});
 					}
 					else {

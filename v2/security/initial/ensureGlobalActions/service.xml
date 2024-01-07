@@ -155,18 +155,81 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="6b768bdf-d35f-43cb-a0fc-886da05e2cc3"
+					id="c7e3e889f26b4c90984bac141b7701b2"
 					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>result52973dd55d0345a9bb95d57c8e26fbaf/result</from>
-				<to>managerRole</to>
+				<to>roles[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="4d35790804e44e9d9f6452e668c77800"
+				label="input/allowOwner"
+				lineNumber="7">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="f4afcd5be43b484ab901ab388d39831d"
+					serviceId="nabu.cms.core.services.role.get"
+					resultName="result52973dd55d0345a9bb95d57c8e26fbaf"
+					temporaryMapping="true"
+					x="270"
+					y="121"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="86487ac6fd09451aaa48ceef85f3df12"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>connectionId</from>
+					<to>connectionId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="720db3512fcc4ca5aa347d506b5c6dba"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>$owner</from>
+					<to>name</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="3fdc7c387e1a4206948de5ad18090ea1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>globalContext/id</from>
+					<to>ownerId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="7e9df98c8e6a438b8af0b34037bf93c4"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/transactionId</from>
+					<to>transactionId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="151e685d0815415cb3211fe0c0307983"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result52973dd55d0345a9bb95d57c8e26fbaf/result</from>
+				<to>roles[1]</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="30f97d42-811d-41aa-a35f-c889fef3f66e"
-				lineNumber="7">
+				lineNumber="8">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="3a43c404-be2b-44f9-a0e9-67e58d176e42"
@@ -186,15 +249,6 @@
 						fixedValue="false">
 					<from>connectionId</from>
 					<to>connectionId</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="ed2faaef-4fe0-4c30-a8ce-2b70e5271796"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>managerRole/id</from>
-					<to>roleId</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
@@ -223,6 +277,15 @@
 					<from>input/transactionId</from>
 					<to>transactionId</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="2e2eb413d9f94cfba6eab95c78bf2717"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>roles/id</from>
+					<to>roleIds</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
@@ -238,7 +301,7 @@
 				comment="Make sure admin can at least do it"
 				disabled="false"
 				id="61b8fd64-4f21-4328-b4c9-4366902c0446"
-				lineNumber="8">
+				lineNumber="9">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ee97c0f9-1f53-4009-a1af-03484d6d62cf"
