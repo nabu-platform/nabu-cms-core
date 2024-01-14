@@ -14,7 +14,10 @@ Vue.service("user", {
 			canTimer: null,
 			// permissions we want to check
 			permissionsToCheck: [],
+			permissionsBeingChecked: [],
 			permissionCheckPromise: null,
+			// the promise while checking
+			permissionBeingCheckedPromise: null,
 			// we keep track of the token here
 			// almost all calls go through the swagger client, which already has the bearer
 			// some calls however (like loading the swagger file itself) bypass the swagger client
@@ -122,46 +125,94 @@ Vue.service("user", {
 					self.permissionCheckPromise = this.$services.q.defer();
 				}
 				self.canTimer = setTimeout(function() {
-					var promiseToResolve = self.permissionCheckPromise;
+					self.permissionBeingCheckedPromise = self.permissionCheckPromise;
 					self.permissionCheckPromise = null;
-					var permissionsToCheck = self.permissionsToCheck.splice(0);
-					if (permissionsToCheck.length) {
+					nabu.utils.arrays.merge(self.permissionsBeingChecked, self.permissionsToCheck.splice(0));
+					if (self.permissionsBeingChecked.length) {
 						self.$services.swagger.execute("nabu.cms.core.v2.security.web.can", {
 							body: {
-								permissions: permissionsToCheck
+								permissions: self.permissionsBeingChecked
 							}
 						}).then(function(result) {
+							self.permissionsBeingChecked.splice(0);
 							if (result.allowed) {
 								nabu.utils.arrays.merge(self.allowedPermissions, result.allowed);
 							}
 							if (result.disallowed) {
 								nabu.utils.arrays.merge(self.disallowedPermissions, result.disallowed);
 							}
-							promiseToResolve.resolve(result);
+							self.permissionBeingCheckedPromise.resolve(result);
+							self.permissionBeingCheckedPromise = null;
 						}, function(error) {
-							promiseToResolve.reject(error);
+							self.permissionsBeingChecked.splice(0);
+							self.permissionBeingCheckedPromise.reject(error);
+							self.permissionBeingCheckedPromise = null;
 						});
 					}
 					else {
-						self.permissionCheckPromise.resolve();
+						self.permissionBeingCheckedPromise.resolve();
+						self.permissionBeingCheckedPromise = null;
 					}
-				}, 25);
+				}, 50);
 				return this.permissionCheckPromise;
 			}
 			else {
 				return this.$services.q.resolve();
 			}
 		},
+		cant: function(permission, context, serviceContext) {
+			var promise = this.$services.q.defer();
+			this.can(permission, context, serviceContext).then(function(allowed) {
+				promise.reject(allowed);
+			}, function(disallowed) {
+				promise.resolve(disallowed);
+			})
+			return promise;
+		},
 		// checks one or more permissions
 		// you can send an object or an array of objects where each object has:
 		// - context: e.g. the node id
 		// - name: the permission name
-		can: function(permission, cachedOnly) {
+		// you can also send "name" as the first parameter and context as the second
+		can: function(permission, context, serviceContext, cachedOnly) {
 			var self = this;
+			var sameServiceContext = function(a, b) {
+				if (a == null) {
+					a = "default";
+				}
+				if (b == null) {
+					b = "default";
+				}
+				return a == b;
+			}
+			// allow string based parameters
+			if (typeof(permission) == "string") {
+				permission = {
+					name: permission,
+					context: context,
+					serviceContext: serviceContext
+				};
+			}
 			if (permission != null) {
 				if (!(permission instanceof Array)) {
 					permission = [permission];
 				}
+				var calculateKey = function(permission) {
+					return (permission.name ? permission.name : "no-name") + "::"
+						+ (permission.context ? permission.context : "no-context") + "::"
+						+ (permission.serviceContext ? permission.serviceContext : "default");
+				}
+				
+				// remove doubles from the requested permissions
+				if (permission.length > 1) {
+					var uniquePermissions = {};
+					permission.forEach(function(x) {
+						var key = calculateKey(x);
+						uniquePermissions[key] = x;
+					});
+					permission = Object.values(uniquePermissions);
+				}
+				
 				// if we want to check permissions
 				if (permission.length) {
 					var allowed = [];
@@ -172,7 +223,7 @@ Vue.service("user", {
 					this.disallowedPermissions.forEach(function(cache) {
 						for (var i = 0; i < permission.length; i++) {
 							var toCheck = permission[i];
-							if (cache.serviceContext == toCheck.serviceContext && cache.name == toCheck.name && cache.context == toCheck.context) {
+							if (sameServiceContext(cache.serviceContext, toCheck.serviceContext) && cache.name == toCheck.name && cache.context == toCheck.context) {
 								disallowed.push(toCheck);
 								permission.splice(i, 1);
 								break;
@@ -187,7 +238,7 @@ Vue.service("user", {
 						this.allowedPermissions.forEach(function(cache) {
 							for (var i = 0; i < permission.length; i++) {
 								var toCheck = permission[i];
-								if (cache.serviceContext == toCheck.serviceContext && cache.name == toCheck.name && cache.context == toCheck.context) {
+								if (sameServiceContext(cache.serviceContext, toCheck.serviceContext) && cache.name == toCheck.name && cache.context == toCheck.context) {
 									allowed.push(toCheck);
 									permission.splice(i, 1);
 									break;
@@ -201,10 +252,34 @@ Vue.service("user", {
 					}
 					// we need to do a rest call to check them
 					else if (!cachedOnly) {
+						// we need to check that the permission is not already queued for checking or actually being checked right now
+						if (this.permissionCheckPromise) {
+							var keysToCheck = this.permissionsToCheck.map(function(x) {
+								return calculateKey(x);
+							});
+							permission = permission.filter(function(x) {
+								return keysToCheck.indexOf(calculateKey(x)) < 0;
+							});
+							if (!permission.length) {
+								return this.permissionCheckPromise;	
+							}
+						}
+						if (permission.length && this.permissionBeingCheckedPromise) {
+							var keysBeingChecked = this.permissionsBeingChecked.map(function(x) {
+								return calculateKey(x);
+							});
+							permission = permission.filter(function(x) {
+								return keysBeingChecked.indexOf(calculateKey(x)) < 0;
+							});
+							if (!permission.length) {
+								return this.permissionBeingCheckedPromise;	
+							}
+						}
+						
 						var promise = this.$services.q.defer();
 						this.loadCan(permission).then(function() {
 							// recheck the permission now that it has been persisted
-							self.can(permission, true)
+							self.can(permission, null, null, true)
 								.then(promise, promise);
 						}, promise);
 						return promise;
@@ -309,6 +384,12 @@ Vue.service("user", {
 				remember: remember ? remember : false,
 				$$skipRemember: true
 			}).then(function(result) {
+				// if we received a challenge, we need to continue
+				if (result && result.challengeType) {
+					promise.resolve(result);
+					return;
+				}
+				
 				self.bearer = null;
 				self.$services.swagger.bearer = null;
 				self.roles.splice(0);

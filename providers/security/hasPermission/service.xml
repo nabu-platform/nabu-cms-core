@@ -12,20 +12,11 @@
 				serviceId="nabu.cms.core.providers.security.checkPermissions"
 				resultName="result88812ac73f984868b108b5eebf7d7f95"
 				temporaryMapping="true"
-				x="470"
-				y="87"
-				invocationOrder="0"
+				x="562"
+				y="70"
+				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="92cdf21342fc4efcbf5128f25c635d1a"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/token/authenticationId</from>
-				<to>userId</to>
-			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="dc487df54d94431396d7fc55018a2c19"
@@ -43,6 +34,15 @@
 					fixedValue="false">
 				<from>input/action</from>
 				<to>permissions[0]/name</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c7a5c3e483364e1995d93c1ee435d101"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result9094d4191c894fcc96b4d445e3461996/current/id</from>
+				<to>userId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -74,6 +74,27 @@
 				fixedValue="false">
 			<from>result4fb81bfc3e894d01ae2cc3d0cc1ed6c5/size</from>
 			<to>amount</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="9345f9d8160f4f5681dee7bc3242265b"
+				serviceId="nabu.cms.core.services.user.getCurrent"
+				resultName="result9094d4191c894fcc96b4d445e3461996"
+				temporaryMapping="true"
+				x="39"
+				y="47"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6db109dccfa14bd99f6c9aba694e1638"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/token</from>
+				<to>token</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"

@@ -2,10 +2,101 @@
 		disabled="false"
 		id="fc2c7c16-e2f2-4aef-a5e5-ceacc64a1acd"
 		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+			disabled="false"
+			id="db8e3b4c31e8417ba7a0dcbdda2d6f39"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="If the role is a uuid, use that"
+				disabled="false"
+				id="7fc92832c31c4130ba8251cca288054f"
+				label="input/path/roleId ~ &quot;^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$&quot; || input/path/roleId ~ &quot;^[a-f0-9]{32}$&quot;"
+				lineNumber="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="34c6ad76661447ab9f019f31c64bd76c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/roleId</from>
+				<to>roleId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Supported pseudo role"
+				disabled="false"
+				id="993f5daf9c804a27ab1c59006d0008db"
+				label="input/path/roleId == &quot;$guest&quot; || input/path/roleId == &quot;$user&quot; || input/path/roleId == &quot;$owner&quot;"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="1fff1a86bfb94297917d3c8d71a2e58d"
+					serviceId="nabu.cms.core.services.role.get"
+					resultName="resultd8289432e6994e4c895e95992d2af866"
+					temporaryMapping="true"
+					x="251"
+					y="141"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="e9dba030f3d6480c94204cc89a1599b9"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/path/roleId</from>
+					<to>name</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="1587c0b3350945d581de05536308b57a"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/path/contextId</from>
+					<to>ownerId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="4ea9b9311744422f95d4b03a7fedc5e4"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>true</from>
+					<to>create</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d6a5972afc794d9eb79ad19e806c03fc"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultd8289432e6994e4c895e95992d2af866/result/id</from>
+				<to>roleId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cfe1c91416664709970005eda96ab79c"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultd8289432e6994e4c895e95992d2af866/result</from>
+				<to>output/content</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+				disabled="false"
+				id="a8b7326b08c443e8a5f52e7cbdb8ad17"
+				lineNumber="5"
+				message="Invalid role"
+				whitelist="false" xsi:nil="true"/>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="8b7cd4c8-4a69-4300-acb4-138f777db73b"
-			lineNumber="2">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="337f8f7f-2e0f-4ff3-bb0a-0b6a8d55d580"
@@ -40,7 +131,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="ea2cb54f-da10-4f8c-a1a8-092f50e5f589"
-			lineNumber="3">
+			lineNumber="7">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="0315ee49-8e11-44fe-baae-e85842017df4"
@@ -63,21 +154,21 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="af8ecf37-c17a-49fb-b44d-8ea47fab742c"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/path/roleId</from>
-				<to>filter/roleId[0]</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
 					id="a0a7b3a5-fd9e-4b99-88cf-024d3fbda134"
 					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>pathIds</from>
 				<to>filter/actionOwnerId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="75ed32f9bf56430382e696131638bf6f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>roleId</from>
+				<to>filter/roleId[0]</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -95,7 +186,7 @@
 			disabled="false"
 			id="e4951b6f-4308-48f0-af85-14571cd1caaf"
 			label="!existing"
-			lineNumber="4">
+			lineNumber="8">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="1544d6b7-3a24-4fa0-a499-0c1a3b54bf64"
@@ -141,7 +232,7 @@
 			disabled="false"
 			id="e106dfd1-b8cd-407c-8055-f7b154cd8481"
 			label="action"
-			lineNumber="5">
+			lineNumber="9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="824b8349-ed12-432d-8e15-5f329fd88886"
@@ -164,11 +255,11 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="ad0095c0-0fd3-4f0c-97db-ba1ddb5f50e5"
+					id="389ce86ee14042009de210655142dda1"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/path/roleId</from>
+				<from>roleId</from>
 				<to>instance/roleId</to>
 			</steps>
 		</steps>

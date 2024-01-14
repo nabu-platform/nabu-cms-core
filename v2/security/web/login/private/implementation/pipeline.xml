@@ -9,4 +9,10 @@
     <field name="canLogin" type="java.lang.Boolean"/>
     <field minOccurs="0" name="reason" type="java.lang.String"/>
     <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" minOccurs="0" name="user"/>
+    <structure definition="nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes.results" maxOccurs="unbounded" minOccurs="0" name="authenticationTypes"/>
+    <structure definition="nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes.results" minOccurs="0" name="currentChallenge"/>
+    <structure definition="nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes.results" minOccurs="0" name="challengeToUse"/>
+    <field minOccurs="0" name="currentChallengeIndex" type="java.lang.Integer"/>
+    <field minOccurs="0" name="amountOfChallengeTypes" type="java.lang.Integer"/>
+    <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="challengeImplementation"/>
 </structure>

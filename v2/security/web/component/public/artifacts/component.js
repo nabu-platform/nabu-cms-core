@@ -21,6 +21,15 @@ window.addEventListener("load", function() {
 				}, {
 					"name": "type",
 					"type": "string"
+				}],
+				outputs: [{
+					"name": "challengeType",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "token",
+					"required": false,
+					"type": "string"
 				}]
 			});
 			nabu.page.provide("page-function", {

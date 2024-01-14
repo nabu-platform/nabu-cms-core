@@ -141,7 +141,7 @@
 								optional="false"
 								fixedValue="false">
 							<from>token/realm</from>
-							<to>parameters/realm</to>
+							<to>parameters/realm[0]</to>
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -213,7 +213,7 @@
 								optional="false"
 								fixedValue="false">
 							<from>token/realm</from>
-							<to>parameters/realm</to>
+							<to>parameters/realm[0]</to>
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -243,13 +243,15 @@
 					lineNumber="11"
 					message="Invalid token"
 					alias="=input/token/name"
-					realm="=input/token/realm" xsi:nil="true"/>
+					realm="=input/token/realm"
+					whitelist="false" xsi:nil="true"/>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				disabled="false"
 				id="6cf6b452-cd25-4cd3-b5ee-29bb8787c699"
 				label="input/mustExist != null &amp;&amp; input/mustExist"
 				lineNumber="12"
-				message="No token found" xsi:nil="true"/>
+				message="No token found"
+				whitelist="false" xsi:nil="true"/>
 	</steps>
 </sequence>

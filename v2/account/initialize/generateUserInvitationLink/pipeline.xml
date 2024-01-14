@@ -1,0 +1,15 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="webApplicationId" type="java.lang.String"/>
+        <field name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="validFor" type="be.nabu.libs.types.base.Duration"/>
+        <field comment="The endpoint to redirect the user to, use {authenticationId} and {code} as variables" minOccurs="0" name="endpoint" type="java.lang.String"/>
+        <field minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    </structure>
+    <structure name="output">
+        <field name="inviteUri" type="java.net.URI"/>
+    </structure>
+    <structure collectionName="accounts" definition="nabu.cms.core.crud.account.types.output" duplicate="id, created, modified" name="account"/>
+    <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="information"/>
+</structure>

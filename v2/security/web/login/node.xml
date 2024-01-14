@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:02:20.153+02:00" lastModified="2023-12-06T11:52:09.328+01:00" leaf="true" version="103">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-21T22:02:20.153+02:00" lastModified="2024-01-14T16:02:20.275+01:00" leaf="true" version="115">
     <description>By logging in you obtain a valid access token that represents who you are. This token has a max lifetime and usually comes with secondary timeouts based on last used. For instance the token might be valid for 24 hours max, but also times out after 30 minutes of inactivity.
 Logging in requires a type, this can be password, sms, oauth2,... 
 If you choose to be remembered, a one time use token is set in a secure cookie that can be redeemed later to get a new valid access token.</description>
@@ -12,6 +12,8 @@ If you choose to be remembered, a one time use token is set in a secure cookie t
     <references>nabu.cms.core.crud.node.types.output</references>
     <references>java.util.Date</references>
     <references>be.nabu.libs.authentication.api.Device</references>
+    <references>java.lang.Integer</references>
+    <references>nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes.results</references>
     <references>nabu.cms.core.crud.userDevice.services.create</references>
     <references>nabu.cms.core.crud.userDevice.types.output</references>
     <references>nabu.cms.core.services.security.getPotentialSecurity</references>
@@ -24,6 +26,7 @@ If you choose to be remembered, a one time use token is set in a secure cookie t
     <references>java.lang.String</references>
     <references>nabu.cms.core.utils.security.guessDeviceName</references>
     <references>nabu.cms.core.crud.userDevice.services.list</references>
+    <references>nabu.utils.types.NodeDescription</references>
     <references>nabu.utils.String.split</references>
     <references>nabu.web.application.Services.temporarilyAuthenticate</references>
     <references>nabu.cms.core.crud.nodeLog.services.create</references>
@@ -34,10 +37,15 @@ If you choose to be remembered, a one time use token is set in a secure cookie t
     <references>nabu.utils.Server.getServerName</references>
     <references>nabu.utils.String.upper</references>
     <references>nabu.cms.core.v2.security.web.loginOutput</references>
+    <references>nabu.utils.List.size</references>
+    <references>nabu.cms.core.v2.specs.challengeHandler</references>
     <references>nabu.cms.core.crud.node.services.get</references>
     <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
+    <references>nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes</references>
     <references>nabu.cms.core.crud.user.types.output</references>
+    <references>nabu.utils.List.indexOf</references>
     <references>nabu.utils.Runtime.getCorrelationId</references>
+    <references>nabu.utils.reflection.Service.listImplementations</references>
     <references>nabu.utils.Object.last</references>
     <references>nabu.cms.core.services.user.canLoginAs</references>
     <references>nabu.utils.Date.incrementDuration</references>

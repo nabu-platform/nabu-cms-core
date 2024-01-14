@@ -1,9 +1,12 @@
 <structure name="pipeline">
     <structure name="input">
         <field name="contextId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="includeConnected" type="java.lang.Boolean"/>
     </structure>
     <structure name="output">
         <field maxOccurs="unbounded" name="pathIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     </structure>
     <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" name="node"/>
+    <structure collectionName="nodeConnections" definition="nabu.cms.core.crud.nodeConnection.types.output" maxOccurs="unbounded" minOccurs="0" name="connections"/>
+    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" maxOccurs="unbounded" minOccurs="0" name="connectedNodes"/>
 </structure>

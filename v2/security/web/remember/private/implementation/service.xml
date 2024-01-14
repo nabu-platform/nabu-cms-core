@@ -437,7 +437,8 @@
 			id="0b6afbb5-76a9-4b75-87cd-0039f03ae17c"
 			label="!canLogin"
 			lineNumber="17"
-			code="403" xsi:nil="true"/>
+			code="403"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="If we successfully authenticated, create a new temporary authentication to serve as opaque token"
 			disabled="false"
@@ -535,6 +536,15 @@
 					fixedValue="false">
 				<from>token/authenticator</from>
 				<to>authenticator</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f7c60ad17f7446fab57aa5fe87d12ac9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>token/realm</from>
+				<to>realm</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -680,6 +690,15 @@
 					fixedValue="false">
 				<from>token/authenticator</from>
 				<to>authenticator</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2c73714a719c4aaa9859fc03925a7210"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>token/realm</from>
+				<to>realm</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"

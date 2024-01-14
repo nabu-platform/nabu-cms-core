@@ -1,0 +1,70 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="00ffd345eaf244ddbb6f7c79ef8e5e91"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="804734cb9c8d481db8d8f7cbe84e7958"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="0c3b15bb500d4b0c93b393a5b44dbd72"
+				serviceId="nabu.cms.core.v2.services.user.selectConnectedRealms"
+				resultName="result75776e3b5ed54ffa8b9757eb22fc3cad"
+				temporaryMapping="true"
+				x="162"
+				y="104"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7f29fae4e8b043ac9d4d3fac5247ff5b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/realm</from>
+				<to>parameters/realm</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="97862c11b4594ee0b25633eac53bc2b7"
+				serviceId="nabu.utils.List.add"
+				resultName="result1388e51de94c4ad4a618627a47de3183"
+				temporaryMapping="true"
+				x="594"
+				y="248"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0b9f35e403534f28909c371c1ead07d3"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result75776e3b5ed54ffa8b9757eb22fc3cad/results[slug != null]/slug</from>
+				<to>list</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="79b9b15372144e06a096d8c96188ce31"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/realm</from>
+				<to>object</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="7919a8b1807e4129a709a45f69372ad4"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result1388e51de94c4ad4a618627a47de3183/list</from>
+			<to>output/realms</to>
+		</steps>
+	</steps>
+</sequence>

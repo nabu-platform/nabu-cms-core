@@ -81,4 +81,133 @@
 			<to>output/pathIds</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			disabled="false"
+			id="75ac43f8c77449b9a415f6e95baff602"
+			label="input/includeConnected"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="8644671b71ec45f0a6a4dd2dd4ec5940"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="4a03d93f069b4f9f81470a184415e9e4"
+					serviceId="nabu.cms.core.crud.nodeConnection.services.list"
+					resultName="result8b13132435b84e7d851f26405b97aa77"
+					temporaryMapping="true"
+					x="63"
+					y="106"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="740c670b920b4745a376da3dbda7852f"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>output/pathIds</from>
+					<to>filter/targetId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2d45978bc2d34bcf87692175918765b8"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8b13132435b84e7d851f26405b97aa77/results</from>
+				<to>connections</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="45265aa413914441a4cd479fb66b6c20"
+				label="connections"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="d03b1ad2bb0b4eab9738aee221688112"
+					serviceId="nabu.cms.core.crud.node.services.list"
+					resultName="result9a25827062e0484da813eb44f817867c"
+					temporaryMapping="true"
+					x="263"
+					y="17"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="ab0f756d48ef4bb694010bb2aa2c29e5"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>connections/sourceId</from>
+					<to>filter/id</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0842612b7a264f9fb66d693042be1a1f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result9a25827062e0484da813eb44f817867c/results</from>
+				<to>connectedNodes</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+				disabled="false"
+				id="be2979f8a7264a4f901deef5cc9099b2"
+				lineNumber="7"
+				variable="connectedNode"
+				into="output/pathIds">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="1031a2f9ec484b7dbcb5c39d4b29417f"
+					lineNumber="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="550a1eeecbd843848f076d327bbc7344"
+						serviceId="nabu.utils.String.split"
+						resultName="result274eddeb3ea344a0b551e763bbf8548f"
+						temporaryMapping="true"
+						x="179"
+						y="158"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="3cbbbc74d4114292b3e8af2f155ebb17"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>connectedNode/path</from>
+						<to>string</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="ebe799eedad4490b8a9276810eddc5d0"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>/</from>
+						<to>separator</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="2254a2bc73da4ca0a81a44b8a09e6ff2"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result274eddeb3ea344a0b551e763bbf8548f/parts</from>
+					<to>output/pathIds</to>
+				</steps>
+			</steps>
+			<query>connectedNodes</query>
+		</steps>
+	</steps>
 </sequence>

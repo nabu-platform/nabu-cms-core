@@ -8,7 +8,8 @@
 			id="0ba85e99-5008-4b34-a953-eb476e3c3f40"
 			label="input/device/deviceId == null"
 			lineNumber="2"
-			code="403" xsi:nil="true"/>
+			code="403"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="172db769-5a36-4ae9-bf8b-9749d201f5a7"
@@ -95,6 +96,15 @@
 					fixedValue="false">
 				<from>result8c224587bac54073b23b52b1e6b054a7/date</from>
 				<to>until</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7fe3e173bc224caab9e659a946f22489"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/token/realm</from>
+				<to>realm</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

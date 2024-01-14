@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select
+	at.name,
+	at.category,
+	at.cost,
+	uat.forced,
+	uat.created
+from ~authentication_types at join ~user_authentication_types uat on uat.authentication_type_id = at.id
+where uat.user_id = :userId
+order by at.cost asc nulls first, uat.created asc</sql>
+</jdbcService>

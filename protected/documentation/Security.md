@@ -1,5 +1,3 @@
-@2024-01-05
-
 actions are at the global level if they are generic (frameworks usually) cross project (e.g. user.manage)
 actions are at a project level if they are specific to a particular project (e.g. device.list)
 actions always represent an actual piece of logic and as such it is useless to let end users create their own actions. this means actions should never occur deeper down in the tree than the root of a project
@@ -24,6 +22,37 @@ security issues:
 - get rid of "marker permissions" (e.g. user.authenticate etc)
 
 imitate kapot
+
+# final verdict of v2
+
+## Permissions
+
+A permission is linked to a particular bit of code, this code is typically linked to a business project (unless its a framework).
+
+As such framework permissions often live at the $global level, business permissions live at the project level.
+You should almost never need permissions further down in the tree because again: they are linked to specific code. The only exception might be if you start rolling out features for specific customers of your platform and the permissions only count there.
+
+## Roles
+
+Roles are generally cross-company: you have a specific role _in the company_ and as such you get access to particular projects etc.
+This means roles are generally created at the $global level.
+
+If you want project-specific roles, you can add roles to the project itself, but they can only be assigned there (logically).
+
+At any given level, the role list is the combination of all roles up until that level (including connections). That means when configuring permissions inside a project, you see all the roles from the $global level as well.
+
+There is an edge case where you might want a project specific role AND want people with that role to be able to log into a web application (which is its own sibling node)
+Because they are siblings you can not assign a permission from one context to the other (at least in the management screens), the goal should then be to make a connection FROM your project TO the application.
+
+This will allow the roles of your project to pop up in the application where you can configure them.
+
+In the earlier versions of the management screens you could switch role contexts etc but this was hard to use correctly.
+
+Roles are a "dynamic" grouping of permissions which _may_ be in the hands of an end user to allow him to decide for himself which roles are relevant.
+At this point roles will appear further down in the tree. They will still be visible in the management screens so their impact on the security matrix can be evaluated, but they are not meant to be modified there as they are owned by the end user.
+
+
+Everything below this point is subject to review and may or may not be up to date! (@2024-01-10)
 
 
 # Owner id on actions

@@ -73,6 +73,36 @@
 			<from>result6858e05795934ef9b13956418718ccdd/configuration</from>
 			<to>input/configuration</to>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="d67ef868e2244003b0e39e6dbfca1633"
+				serviceId="nabu.cms.core.v2.services.user.getAllowedRealms"
+				resultName="result27e604312ded4dd1ba7f0e89794436eb"
+				temporaryMapping="true"
+				x="261"
+				y="341"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="23f9bb6bbf254fd4ac00495f0a788993"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/realm</from>
+				<to>realm</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c483fc0e2f7e49cdb483b57b15beb904"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result27e604312ded4dd1ba7f0e89794436eb/realms</from>
+			<to>realms</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Get user by alias and realm"
@@ -102,21 +132,21 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="4b548e4a-6c54-41cf-93bc-594e95a845ad"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/realm</from>
-				<to>parameters/realm</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
 					id="6d25cfc3-6129-4c16-9a5b-f5d94925fa1e"
 					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>input/credentials/name</from>
 				<to>parameters/alias</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3c70dbd025ed43acb656091cad0abdf8"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>realms</from>
+				<to>parameters/realm</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -245,11 +275,11 @@
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="758ca613-93ee-47a2-b9a8-21121c118d12"
+						id="31be513e483a4355aa3df38013df3c63"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>input/realm</from>
+					<from>realms</from>
 					<to>parameters/realm</to>
 				</steps>
 			</steps>
@@ -288,7 +318,8 @@
 			code="CMS-AUTH-8"
 			message="Can not log in with an anonymous account"
 			alias="=user/alias"
-			realm="=user/realm" xsi:nil="true"/>
+			realm="=user/realm"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 			description="=&quot;Can not log in with a blocked account: &quot; + user/alias"
 			disabled="false"
@@ -298,7 +329,8 @@
 			code="CMS-AUTH-11"
 			message="Can not log in with a blocked account"
 			alias="=user/alias"
-			realm="=user/realm" xsi:nil="true"/>
+			realm="=user/realm"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			disabled="false"
 			id="5dd12f91-58eb-4e2b-a786-0d0d789d28c7"
@@ -313,7 +345,8 @@
 				code="CMS-AUTH-10"
 				message="The user is not verified yet, can not log in"
 				alias="=user/alias"
-				realm="=user/realm" xsi:nil="true"/>
+				realm="=user/realm"
+				whitelist="false" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="If the user is not his own owner, it is an alias account"
 				disabled="false"
@@ -360,7 +393,8 @@
 				code="CMS-AUTH-11"
 				message="Can not log in with a blocked account"
 				alias="=user/alias"
-				realm="=user/realm" xsi:nil="true"/>
+				realm="=user/realm"
+				whitelist="false" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 				description="=&quot;Invalid owner for &quot; + input/credentials/name + &quot; in &quot; + input/realm"
 				disabled="false"
@@ -370,7 +404,8 @@
 				code="CMS-AUTH-6"
 				message="Invalid owner"
 				alias="=user/alias"
-				realm="=user/realm" xsi:nil="true"/>
+				realm="=user/realm"
+				whitelist="false" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				id="f3085ae6-4f69-4c10-8ef4-7f5f2fc90e02"
@@ -725,21 +760,21 @@
 						</steps>
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
-								id="8bcd8970-37ec-47f0-84cc-dcce0371ca57"
-								mask="false"
-								optional="false"
-								fixedValue="false">
-							<from>input/realm</from>
-							<to>output/token/realm</to>
-						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-								disabled="false"
 								id="f879e274-47a4-419b-a124-b4b43806562a"
 								mask="false"
 								optional="false"
 								fixedValue="false">
 							<from>input/credentials</from>
 							<to>output/token/credentials[0]</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="75771d32eea3478e9b878e1eef66b7ee"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>user/realm</from>
+							<to>output/token/realm</to>
 						</steps>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
@@ -849,7 +884,8 @@
 						code="CMS-AUTH-1"
 						message="Invalid password"
 						alias="=user/alias"
-						realm="=user/realm" xsi:nil="true"/>
+						realm="=user/realm"
+						whitelist="false" xsi:nil="true"/>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
 					disabled="false"
@@ -937,7 +973,8 @@
 						disabled="false"
 						id="90af9313-d224-4a86-a518-545fb3f00211"
 						lineNumber="32"
-						message="=exception" xsi:nil="true"/>
+						message="=exception"
+						whitelist="false" xsi:nil="true"/>
 			</steps>
 		</steps>
 	</steps>
@@ -948,5 +985,6 @@
 			lineNumber="33"
 			code="CMS-AUTH-7"
 			alias="=input/credentials/name"
-			realm="=input/realm" xsi:nil="true"/>
+			realm="=input/realm"
+			whitelist="false" xsi:nil="true"/>
 </sequence>

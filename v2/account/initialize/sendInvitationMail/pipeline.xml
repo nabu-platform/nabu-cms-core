@@ -1,0 +1,16 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="webApplicationId" type="java.lang.String"/>
+        <field name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="validFor" type="be.nabu.libs.types.base.Duration"/>
+        <field comment="The endpoint to redirect the user to, use {authenticationId} and {code} as variables" minOccurs="0" name="endpoint" type="java.lang.String"/>
+        <field minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="subject" type="java.lang.String"/>
+        <field comment="Use {firstName}, {lastName}, {link},..." minOccurs="0" name="body" type="java.lang.String"/>
+        <field minOccurs="0" name="smtpClientId" type="java.lang.String"/>
+    </structure>
+    <structure name="output"/>
+    <field name="inviteUri" type="java.net.URI"/>
+    <structure collectionName="accounts" definition="nabu.cms.core.crud.account.types.output" duplicate="id, created, modified" name="account"/>
+    <structure definition="be.nabu.libs.types.api.KeyValuePair" maxOccurs="unbounded" minOccurs="0" name="properties"/>
+</structure>

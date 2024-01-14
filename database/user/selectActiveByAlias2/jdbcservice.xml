@@ -3,7 +3,7 @@
 	<sql>select *
 from users u join nodes n on u.id = n.id
 where lower(u.alias) = lower(:alias)
-and u.realm = :realm
+and u.realm = any(:realm)
 and n.enabled = true
 and (n.verified is not null or (:allowUnverified is not null and :allowUnverified = true))
 and n.started is not null

@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
+	<sql>select *
+from ~nodes n
+	-- we connect FROM the realm that is also allowed TO the realm we are checking
+	join ~node_connections nc on nc.source_id = n.id
+	join ~nodes target on nc.target_id = target.id
+	join ~components c1 on n.component_id = c1.id and c1.name = 'realm'
+	join ~components c2 on target.component_id = c2.id and c1.name = 'realm'
+where target.slug = :realm</sql>
+</jdbcService>

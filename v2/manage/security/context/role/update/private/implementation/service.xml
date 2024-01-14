@@ -51,11 +51,13 @@
 			id="db531422-7cfb-490c-9792-8bf6c5debbe6"
 			label="!existing"
 			lineNumber="3"
-			code="404" xsi:nil="true"/>
+			code="404"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			comment="Groups with the exact same name should be renamed for clarity, these are &quot;autogroups&quot;"
+			comment="If we update the name, autogroups should be renamed as well"
 			disabled="false"
 			id="6deedb6c-f191-4bae-aa3f-cbcd25ee7f34"
+			label="existing/name != input/content/name"
 			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"

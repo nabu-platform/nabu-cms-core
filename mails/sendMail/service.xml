@@ -1,0 +1,140 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="d7ce24ea9bcd4d8c9e2e34087cfb8e8a"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="aab379ab532b4fd68bcba5bc92663d9c"
+			label="input/smtpClientId == null"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1d919380816441ff9df8e4e0cb73be38"
+				serviceId="nabu.utils.reflection.Node.listByType"
+				resultName="result230a4cb1dc7a45db801d609645de8838"
+				temporaryMapping="true"
+				x="118"
+				y="49"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b82329dfeffd4f5db139050caf2d07dd"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>be.nabu.eai.module.smtp.SMTPClientArtifact</from>
+				<to>type</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="2e9cc0f708f54fd48f1c95f6e2a8eca9"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result230a4cb1dc7a45db801d609645de8838/nodes[0]/id</from>
+			<to>input/smtpClientId</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			disabled="false"
+			id="d3b106934f3645f2abaeced53d95a8b0"
+			label="input/smtpClientId == null"
+			lineNumber="3"
+			message="No SMTP client found"
+			whitelist="false" xsi:nil="true"/>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="bcf795b6a0b64aea8cbc4cc33ff331e8"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="20af598aeea94fe3ab76fb2eed7585cd"
+				serviceId="nabu.protocols.smtp.client.Services.newEmailPart"
+				resultName="resultfc085b220fb94c75958dc9d4c7a8d117"
+				temporaryMapping="true"
+				x="154"
+				y="108"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="809dfad841a240069c894fe3dc6b243b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/to</from>
+				<to>to[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9ba8c70e5c9f477ca887d06241e308e1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/subject</from>
+				<to>subject</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8355da433c6845a997b07aa8a0f9156a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/body</from>
+				<to>content</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a7664e560c5e4fde92ab73368bad9c5a"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>HTML</from>
+				<to>type</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="197c96cd06c140f7a3cbb7170d35b6a1"
+				serviceId="nabu.protocols.smtp.client.Services.send"
+				resultName="result1ce18eb0b80d404fa03c1c86f64aafe9"
+				temporaryMapping="true"
+				x="504"
+				y="180"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c59a3422da844d8bb3e524313721ed6a"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultfc085b220fb94c75958dc9d4c7a8d117/part</from>
+				<to>part</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0989daa31bfe4848951c88bdee6d6a0d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/to</from>
+				<to>to[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7739cb1e6618454d995fbf65c40ee96f"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/smtpClientId</from>
+				<to>smtpClientId</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

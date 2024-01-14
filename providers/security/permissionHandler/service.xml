@@ -136,7 +136,8 @@
 				id="45eeba61-9181-4719-85c0-7bcfaf185390"
 				label="!node"
 				lineNumber="6"
-				message="Security context could not be resolved" xsi:nil="true"/>
+				message="Security context could not be resolved"
+				whitelist="false" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Only retain action that pertain to no particular component OR this specific component"
 				disabled="false"
@@ -301,7 +302,8 @@
 			label="amountOfPotentialActions == 0"
 			lineNumber="12"
 			code="403"
-			message="No applicable actions found" xsi:nil="true"/>
+			message="No applicable actions found"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Break"
 			comment="We don't fail hard, we just return false"
 			disabled="false"
@@ -330,8 +332,8 @@
 						serviceId="nabu.cms.core.database.user.selectActiveByAlias"
 						resultName="result2129e08ddde64d2db97a7473c21df295"
 						temporaryMapping="true"
-						x="63"
-						y="58"
+						x="512"
+						y="75"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
@@ -395,7 +397,8 @@
 						lineNumber="18"
 						message="Invalid user"
 						alias="=input/token/name"
-						realm="=input/token/realm" xsi:nil="true"/>
+						realm="=input/token/realm"
+						whitelist="false" xsi:nil="true"/>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						disabled="false"
 						id="adf85499-7d55-46ab-ae70-4b826d4b38a8"
@@ -847,7 +850,8 @@
 							lineNumber="38"
 							message="=&quot;Unknown pseudo role: &quot; + role/name"
 							alias="=user/alias"
-							realm="=user/realm" xsi:nil="true"/>
+							realm="=user/realm"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							disabled="false"
 							id="31acf4c7-ed2e-4e5c-87f4-9a9b38e51abd"

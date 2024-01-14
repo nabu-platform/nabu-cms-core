@@ -3,5 +3,5 @@
 	<sql>select *
 from users u join nodes n on u.id = n.id
 where (u.alias = :alias or (:caseInsensitive is not null and :caseInsensitive = true and lower(u.alias) = lower(:alias)))
-and u.realm = :realm</sql>
+and u.realm = any(:realm)</sql>
 </jdbcService>

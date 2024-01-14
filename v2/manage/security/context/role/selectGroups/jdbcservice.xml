@@ -2,5 +2,5 @@
 	<outputDefinition>nabu.cms.core.types.emodel.core.Group</outputDefinition>
 	<sql>select *
 from ~groups g
-	join ~group_roles gr on g.group_id = g.id and gr.role_id = :roleId</sql>
+	join ~group_roles gr on gr.group_id = g.id and gr.role_id = :roleId</sql>
 </jdbcService>

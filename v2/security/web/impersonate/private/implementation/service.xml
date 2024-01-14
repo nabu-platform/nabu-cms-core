@@ -8,7 +8,8 @@
 			id="e7788e12-1183-4889-bfe4-e077bcbeb11f"
 			label="input/token/impersonatorId != null"
 			lineNumber="2"
-			code="403" xsi:nil="true"/>
+			code="403"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="82a86851-da23-434b-a5e2-b12310e7050d"
@@ -50,7 +51,8 @@
 			id="d1e62dcd-26dc-41da-a54d-2eb18285de27"
 			label="!information/hasPermissionHandler"
 			lineNumber="4"
-			code="403" xsi:nil="true"/>
+			code="403"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="93510e4d-8f8f-4ec4-8e59-54259a5e30c4"
@@ -182,6 +184,15 @@
 				<from>current/alias</from>
 				<to>impersonator</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="de6299ba8dff4c8c8d9dc6387398e2a4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultded15fbf225d4712afce3fc2c99f430e/result/realm</from>
+				<to>realm</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -250,7 +261,8 @@
 			id="af323483-35f6-4698-83cd-8c72dccbd3f0"
 			label="!authentication"
 			lineNumber="7"
-			code="400" xsi:nil="true"/>
+			code="400"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Set the token"
 			disabled="false"
