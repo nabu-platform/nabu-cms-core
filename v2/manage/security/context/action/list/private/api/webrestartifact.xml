@@ -2,16 +2,19 @@
 <restInterface>
     <method>GET</method>
     <path>/context/{contextId}/action</path>
-    <queryParameters>id, q, orderBy, roleId</queryParameters>
+    <queryParameters>id, q, orderBy, roleId, limit, offset</queryParameters>
     <role>$user</role>
     <permissionAction>role.list</permissionAction>
     <permissionContext>=input/path/contextId</permissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
     <output>nabu.cms.core.v2.manage.security.context.action.actionList</output>
     <lenient>true</lenient>
     <webApplicationId>false</webApplicationId>
     <geoPosition>false</geoPosition>
+    <useAsAuthorizationServiceContext>false</useAsAuthorizationServiceContext>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
@@ -24,8 +27,12 @@
     <source>false</source>
     <allowRaw>false</allowRaw>
     <domain>false</domain>
+    <origin>false</origin>
+    <scheme>false</scheme>
     <ignoreOffline>false</ignoreOffline>
     <allowRootArrays>false</allowRootArrays>
     <captureErrors>false</captureErrors>
     <captureSuccessful>false</captureSuccessful>
+    <limitedToInterface>false</limitedToInterface>
+    <allowExplicitResponseCode>false</allowExplicitResponseCode>
 </restInterface>

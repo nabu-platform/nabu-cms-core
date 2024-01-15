@@ -1,0 +1,103 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="6890610448c848369525ef28743b4fb7"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Get the proxy component"
+			disabled="false"
+			id="38cfe350-6b3a-4abd-9ca9-0cd9e725e9c5"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a777940b-4574-4200-a86e-a75d831c77a1"
+				serviceId="nabu.cms.core.crud.component.services.list"
+				resultName="result21e3a7158ca7401f99f9024139bc10f4"
+				temporaryMapping="true"
+				x="73"
+				y="50"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="2474333c-0471-4fbc-8eb4-fbe0d61264af"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>proxy</from>
+				<to>filter/name[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b345a35a-b57a-499b-8c33-f02d7b60bf96"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>filter/global</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4e68a3d720b34687ae835d4c190c5b13"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result21e3a7158ca7401f99f9024139bc10f4/results[0]</from>
+			<to>component</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="6e5f91495adb4730a6bb0a612cde827b"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c1cb3ba055954b20b08914364d204b52"
+				serviceId="nabu.cms.core.v2.services.user.selectAllowedNodes"
+				resultName="resultc8da01de3bca4f238441c2df80cb686b"
+				temporaryMapping="true"
+				x="191"
+				y="64"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="50b542f2ef65460785f2acfd431278d1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/userId</from>
+				<to>parameters/userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f3af63b17dbc44da8bf22c59e84bd774"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>context.switch</from>
+				<to>parameters/actionName</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1707f4ad0ea64ebfab45174dcbc62ca1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>component/id</from>
+				<to>parameters/componentId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="c29c7e156ed04d2ea29d79693567cab1"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc8da01de3bca4f238441c2df80cb686b/results</from>
+			<to>output/proxies</to>
+		</steps>
+	</steps>
+</sequence>

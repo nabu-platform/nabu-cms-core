@@ -94,8 +94,8 @@
 				serviceId="nabu.cms.core.services.user.canLoginAs"
 				resultName="result41dd2075ac784c24b287c1ee585f7a35"
 				temporaryMapping="true"
-				x="650"
-				y="27"
+				x="318"
+				y="30"
 				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
@@ -151,8 +151,8 @@
 				serviceId="nabu.cms.core.services.context.getApplication"
 				resultName="resultac83de97001d4089ae35d6918bb7de04"
 				temporaryMapping="true"
-				x="199"
-				y="169"
+				x="45"
+				y="173"
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
@@ -165,6 +165,45 @@
 				<from>input/webApplicationId</from>
 				<to>application</to>
 			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="f6d546bccbb447c283744378d86b45eb"
+				serviceId="nabu.cms.core.services.user.canRememberAs"
+				resultName="resulta3052fe296e9462a816e2832357393c7"
+				temporaryMapping="true"
+				x="395"
+				y="304"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="bbbc63eb83da49f38cd0549e13af26da"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultac83de97001d4089ae35d6918bb7de04/context/id</from>
+				<to>contextId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="653b227d446641bebc5b1773a3c6b4ee"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>token/authenticationId</from>
+				<to>userId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="cca1bb842d4142cca25c3e071225bca6"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulta3052fe296e9462a816e2832357393c7/canRemember</from>
+			<to>canRemember</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
@@ -800,7 +839,7 @@
 			comment="If we want to be remembered, we need to generate a secret that can be read again. We also want to link it to the device."
 			disabled="false"
 			id="f528eb3f-0aee-47c1-8b49-2e2c2933dbd6"
-			label="input/query/remember &amp;&amp; input/device/deviceId != null"
+			label="input/query/remember &amp;&amp; input/device/deviceId != null &amp;&amp; canRemember"
 			lineNumber="24">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
@@ -964,7 +1003,7 @@
 						mask="false"
 						optional="false"
 						fixedValue="true">
-					<from>P1Y</from>
+					<from>P1M</from>
 					<to>options[0]</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -1487,6 +1526,7 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
+			features="USE_OLD_SECURITY_CHECKS"
 			id="70513f81-7fc6-496d-b93b-7be2cd9c79b3"
 			lineNumber="41">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"

@@ -1,7 +1,8 @@
-<structure collectionName="groups" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000CBE" name="Group">
+<structure collectionName="groups" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000CBE" name="group">
     <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
     <field name="created" timezone="UTC" type="java.util.Date"/>
     <field name="modified" timezone="UTC" type="java.util.Date"/>
     <field name="name" type="java.lang.String"/>
     <field foreignKey="nabu.cms.core.types.emodel.core.Node:id" minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field name="managed" type="java.lang.Boolean"/>
 </structure>

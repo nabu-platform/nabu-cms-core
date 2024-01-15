@@ -1,0 +1,13 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
+	<sql>select distinct * 
+from ~nodes target
+	left outer join ~node_connections nc on nc.target_id = target.id
+	left outer join ~nodes source on source.id = nc.source_id
+	join ~group_roles gr on (gr.node_id is null or target.path like replace('%' || gr.node_id || '%', '-', '') or (source.id is not null and source.path like replace('%' || gr.node_id || '%', '-', '')))
+	join ~action_roles ar on ar.role_id = gr.role_id
+	join ~actions a on ar.action_id = a.id and (target.path like replace('%' || a.owner_id || '%', '-', '') or (source.id is not null and source.path like replace('%' || a.owner_id || '%', '-', '')))
+	join ~user_groups ug on ug.group_id = gr.group_id and ug.user_id = :userId
+where a.name = :actionName
+	and (:componentId is null or target.component_id = :componentId)</sql>
+</jdbcService>

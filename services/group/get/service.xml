@@ -164,63 +164,6 @@
 					id="7e14a6c8-49e9-4d29-9617-cee4c9a5abe8"
 					label="true"
 					lineNumber="8">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="1280ba2d-4886-4cb5-a9a2-2768b877427a"
-						serviceId="nabu.cms.core.services.group.create"
-						resultName="result1d4681c9a8b44734ba08eb8af6cbfbfb"
-						temporaryMapping="true"
-						x="23"
-						y="32"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="0bdb7f4a-51ee-4d71-88d2-561a5520002f"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/connectionId</from>
-						<to>connectionId</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="f28ed0b8-7082-4161-a0e1-99ea5d2022a1"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/name</from>
-						<to>name</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="ffbb7c3b-a60a-44e5-94c7-ea3ef636aa6d"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/ownerId</from>
-						<to>ownerId</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="21f3f531-99cf-41f1-9399-f0d8b4321900"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/transactionId</from>
-						<to>transactionId</to>
-					</steps>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="5440018f-5a21-4e47-80dd-e6dc6eef764c"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>result1d4681c9a8b44734ba08eb8af6cbfbfb/group</from>
-					<to>output/group</to>
-				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="85172965-d255-4d1e-97bb-15c124e65f32"
@@ -230,12 +173,88 @@
 					<from>true</from>
 					<to>output/created</to>
 				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="04a09ae11a604fc1ae4b523ea8bf8514"
+						serviceId="nabu.cms.core.crud.group.services.create"
+						resultName="result7b2ea569def0483aa7d095973655987d"
+						temporaryMapping="true"
+						x="202"
+						y="108"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="29d3b6733bc440feb70825482ce7b32d"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/name</from>
+						<to>instance/name</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="c7199b0bf3e945428c8172ad4c3512fe"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/ownerId</from>
+						<to>instance/ownerId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="9dab4456dfe44eac91b6f6effd181f08"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/managed</from>
+						<to>instance/managed</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="c35e7f25680947a79eccdf4390b5e7c2"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/connectionId</from>
+						<to>connectionId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="1aec0d56694544e08f465f10cce9d9d6"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/transactionId</from>
+						<to>transactionId</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="a295030c16ea491792bce49073d56daf"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result7b2ea569def0483aa7d095973655987d/created</from>
+					<to>output/result</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="95af4ae8834645fe9c9a348532f87fba"
+						mask="true"
+						optional="false"
+						fixedValue="false">
+					<from>result7b2ea569def0483aa7d095973655987d/created</from>
+					<to>output/group</to>
+				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 					disabled="false"
 					id="12fe9143-6593-47be-96ae-ca1f9b64a6f9"
 					lineNumber="9"
-					message="=&quot;The group '&quot; + input/name + &quot;' does not exist&quot;" xsi:nil="true"/>
+					message="=&quot;The group '&quot; + input/name + &quot;' does not exist&quot;"
+					whitelist="false" xsi:nil="true"/>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
@@ -247,7 +266,8 @@
 				id="2c217c35-868d-4eaf-b286-78bc09004ca7"
 				label="input/mustExist != null &amp;&amp; input/mustExist &amp;&amp; output/group == null"
 				lineNumber="11"
-				message="=&quot;Could not find group: &quot; + input/name + &quot; for owner: &quot; + input/ownerId" xsi:nil="true"/>
+				message="=&quot;Could not find group: &quot; + input/name + &quot; for owner: &quot; + input/ownerId"
+				whitelist="false" xsi:nil="true"/>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Map output"

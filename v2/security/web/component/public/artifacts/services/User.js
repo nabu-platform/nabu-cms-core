@@ -261,7 +261,13 @@ Vue.service("user", {
 								return keysToCheck.indexOf(calculateKey(x)) < 0;
 							});
 							if (!permission.length) {
-								return this.permissionCheckPromise;	
+								var promise = this.$services.q.defer();
+								this.permissionCheckPromise.then(function() {
+									// recheck the permission now that it has been persisted
+									self.can(permission, null, null, true)
+										.then(promise, promise);
+								}, promise);
+								return promise;
 							}
 						}
 						if (permission.length && this.permissionBeingCheckedPromise) {
@@ -272,7 +278,13 @@ Vue.service("user", {
 								return keysBeingChecked.indexOf(calculateKey(x)) < 0;
 							});
 							if (!permission.length) {
-								return this.permissionBeingCheckedPromise;	
+								var promise = this.$services.q.defer();
+								this.permissionBeingCheckedPromise.then(function() {
+									// recheck the permission now that it has been persisted
+									self.can(permission, null, null, true)
+										.then(promise, promise);
+								}, promise);
+								return promise;
 							}
 						}
 						
@@ -537,6 +549,12 @@ Vue.service("user", {
 			return false;
 		},
 		hasRole: function(role, context) {
+			if (role == "$user") {
+				return !!this.loggedIn;
+			}
+			else if (role == "$guest") {
+				return !this.loggedIn;
+			}
 			if (context == "this") {
 				context = this.application;
 			}

@@ -430,12 +430,51 @@
 				<to>application</to>
 			</steps>
 		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="ff69dcae65564d73bb34dd1ea004bcc9"
+				serviceId="nabu.cms.core.services.user.canRememberAs"
+				resultName="result0780ece6a0c049f596a8dddfd67e4fdf"
+				temporaryMapping="true"
+				x="559"
+				y="255"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e2f4d2bc3322450181060a145541bb5b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>token/authenticationId</from>
+				<to>userId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="fff1fd8a52be4d838a385fdf410683dd"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result9ce24df10c494e8483a8dd5a35b009a7/context/id</from>
+				<to>contextId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="2c5fc91e13e44603a2d30410ac1a8f8b"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result0780ece6a0c049f596a8dddfd67e4fdf/canRemember</from>
+			<to>canRemember</to>
+		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 			comment="If you are not allowed to log in, stop"
 			disabled="false"
 			id="0b6afbb5-76a9-4b75-87cd-0039f03ae17c"
-			label="!canLogin"
+			label="!canLogin || !canRemember"
 			lineNumber="17"
 			code="403"
 			whitelist="false" xsi:nil="true"/>
@@ -1158,6 +1197,7 @@
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
+			features="USE_OLD_SECURITY_CHECKS"
 			id="70513f81-7fc6-496d-b93b-7be2cd9c79b3"
 			lineNumber="32">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
