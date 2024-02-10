@@ -16,6 +16,8 @@ Vue.service("user", {
 			permissionsToCheck: [],
 			permissionsBeingChecked: [],
 			permissionCheckPromise: null,
+			// check if we are already waiting for the swagger call
+			batchWaiting: false,
 			// the promise while checking
 			permissionBeingCheckedPromise: null,
 			// we keep track of the token here
@@ -124,36 +126,49 @@ Vue.service("user", {
 				if (!self.permissionCheckPromise) {
 					self.permissionCheckPromise = this.$services.q.defer();
 				}
-				self.canTimer = setTimeout(function() {
-					self.permissionBeingCheckedPromise = self.permissionCheckPromise;
-					self.permissionCheckPromise = null;
-					nabu.utils.arrays.merge(self.permissionsBeingChecked, self.permissionsToCheck.splice(0));
-					if (self.permissionsBeingChecked.length) {
-						self.$services.swagger.execute("nabu.cms.core.v2.security.web.can", {
-							body: {
-								permissions: self.permissionsBeingChecked
-							}
-						}).then(function(result) {
-							self.permissionsBeingChecked.splice(0);
-							if (result.allowed) {
-								nabu.utils.arrays.merge(self.allowedPermissions, result.allowed);
-							}
-							if (result.disallowed) {
-								nabu.utils.arrays.merge(self.disallowedPermissions, result.disallowed);
-							}
-							self.permissionBeingCheckedPromise.resolve(result);
+				var waitAndGo = function() {
+					self.canTimer = setTimeout(function() {
+						self.batchWaiting = false;
+						self.permissionBeingCheckedPromise = self.permissionCheckPromise;
+						self.permissionCheckPromise = null;
+						nabu.utils.arrays.merge(self.permissionsBeingChecked, self.permissionsToCheck.splice(0));
+						if (self.permissionsBeingChecked.length) {
+							self.$services.swagger.execute("nabu.cms.core.v2.security.shared.can", {
+								body: {
+									permissions: self.permissionsBeingChecked
+								}
+							}).then(function(result) {
+								self.permissionsBeingChecked.splice(0);
+								if (result.allowed) {
+									nabu.utils.arrays.merge(self.allowedPermissions, result.allowed);
+								}
+								if (result.disallowed) {
+									nabu.utils.arrays.merge(self.disallowedPermissions, result.disallowed);
+								}
+								self.permissionBeingCheckedPromise.resolve(result);
+								self.permissionBeingCheckedPromise = null;
+							}, function(error) {
+								self.permissionsBeingChecked.splice(0);
+								self.permissionBeingCheckedPromise.reject(error);
+								self.permissionBeingCheckedPromise = null;
+							});
+						}
+						else {
+							self.permissionBeingCheckedPromise.resolve();
 							self.permissionBeingCheckedPromise = null;
-						}, function(error) {
-							self.permissionsBeingChecked.splice(0);
-							self.permissionBeingCheckedPromise.reject(error);
-							self.permissionBeingCheckedPromise = null;
-						});
+						}
+					}, 50);
+				}
+				// if we are already doing a can check, wait until it returns so we don't have parallel checks
+				if (self.permissionBeingCheckedPromise) {
+					if (!self.batchWaiting) {
+						self.permissionBeingCheckedPromise.then(waitAndGo, waitAndGo);
+						self.batchWaiting = true;
 					}
-					else {
-						self.permissionBeingCheckedPromise.resolve();
-						self.permissionBeingCheckedPromise = null;
-					}
-				}, 50);
+				}
+				else {
+					waitAndGo();
+				}
 				return this.permissionCheckPromise;
 			}
 			else {
@@ -257,31 +272,33 @@ Vue.service("user", {
 							var keysToCheck = this.permissionsToCheck.map(function(x) {
 								return calculateKey(x);
 							});
-							permission = permission.filter(function(x) {
-								return keysToCheck.indexOf(calculateKey(x)) < 0;
+							var permissionsInToCheck = permission.filter(function(x) {
+								return keysToCheck.indexOf(calculateKey(x)) >= 0;
 							});
-							if (!permission.length) {
+							// if there are permissions in the current promise, we wait for that one, even if it is not all permissions
+							// other permission checks might be chained later
+							if (permissionsInToCheck.length) {
 								var promise = this.$services.q.defer();
 								this.permissionCheckPromise.then(function() {
 									// recheck the permission now that it has been persisted
-									self.can(permission, null, null, true)
+									self.can(permission)
 										.then(promise, promise);
 								}, promise);
 								return promise;
 							}
 						}
-						if (permission.length && this.permissionBeingCheckedPromise) {
+						if (this.permissionBeingCheckedPromise) {
 							var keysBeingChecked = this.permissionsBeingChecked.map(function(x) {
 								return calculateKey(x);
 							});
-							permission = permission.filter(function(x) {
-								return keysBeingChecked.indexOf(calculateKey(x)) < 0;
+							var permissionsInBeingChecked = permission.filter(function(x) {
+								return keysBeingChecked.indexOf(calculateKey(x)) >= 0;
 							});
-							if (!permission.length) {
+							if (permissionsInBeingChecked.length) {
 								var promise = this.$services.q.defer();
 								this.permissionBeingCheckedPromise.then(function() {
 									// recheck the permission now that it has been persisted
-									self.can(permission, null, null, true)
+									self.can(permission)
 										.then(promise, promise);
 								}, promise);
 								return promise;
@@ -289,6 +306,7 @@ Vue.service("user", {
 						}
 						
 						var promise = this.$services.q.defer();
+						// any actually resolved permissions are rechecked only against the cache
 						this.loadCan(permission).then(function() {
 							// recheck the permission now that it has been persisted
 							self.can(permission, null, null, true)
@@ -473,6 +491,8 @@ Vue.service("user", {
 				self.bearer = null;
 				self.roles.splice(0);
 				self.permissions.splice(0);
+				self.allowedPermissions.splice(0);
+				self.disallowedPermissions.splice(0);
 				if (result && result.roles) {
 					nabu.utils.arrays.merge(self.roles, result.roles);
 				}

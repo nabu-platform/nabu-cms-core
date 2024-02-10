@@ -189,4 +189,31 @@
 			</steps>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Make sure we verify the user in the proxies as well"
+			disabled="false"
+			id="4c83bd223b27477d8d09b7174143b2ed"
+			lineNumber="9">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="cc66350b52d943bc8dc538a40743e3cd"
+				serviceId="nabu.cms.core.v2.services.user.verifyInProxies"
+				resultName="result45f632383da745e3b5ef8fd8ec32c11a"
+				temporaryMapping="true"
+				x="174"
+				y="89"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="41dc0c9be3724afd8586c302d824813d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>account/id</from>
+				<to>userId</to>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

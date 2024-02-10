@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
     <method>POST</method>
-    <path>/login</path>
+    <path>/user/login</path>
     <queryParameters>remember</queryParameters>
     <cookieParameters>Remember</cookieParameters>
     <responseHeaders>Set-Cookie</responseHeaders>
@@ -10,9 +10,9 @@
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
     <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useGlobalPermissionContext>false</useGlobalPermissionContext>
-    <input>nabu.cms.core.v2.security.system.authenticationInput</input>
+    <input>nabu.cms.core.v2.security.system.loginInput</input>
     <output>nabu.cms.core.v2.security.web.loginOutput</output>
-    <configurationType>nabu.cms.core.v2.security.web.configuration</configurationType>
+    <configurationType>nabu.cms.core.v2.security.configuration</configurationType>
     <device>true</device>
     <lenient>true</lenient>
     <webApplicationId>true</webApplicationId>

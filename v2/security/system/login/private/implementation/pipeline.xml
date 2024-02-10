@@ -1,0 +1,11 @@
+<structure interface="nabu.cms.core.v2.security.system.login:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
+    <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="current"/>
+    <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
+    <field name="canLogin" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="reason" type="java.lang.String"/>
+    <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" minOccurs="0" name="user"/>
+    <field name="canRemember" type="java.lang.Boolean"/>
+</structure>

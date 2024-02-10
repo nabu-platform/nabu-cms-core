@@ -67,7 +67,7 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			disabled="false"
+			disabled="true"
 			id="c5b286e8-d301-425b-8b37-c5439f83449b"
 			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
@@ -132,7 +132,7 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
-			disabled="false"
+			disabled="true"
 			id="06d55097-2680-4fc3-a22b-4ceceb37ebe9"
 			lineNumber="5"
 			query="global">
@@ -293,6 +293,121 @@
 					fixedValue="false">
 				<from>result95944577b6c34170a54c8c912a20e35a</from>
 				<to>output/content</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="00295f60ac2f4079b438190ca893903d"
+			lineNumber="10">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="fc6119d5327e49c9bb0d9c217636745a"
+				serviceId="nabu.cms.core.services.user.getCurrent"
+				resultName="result583fb357712841da94ddcaca9a062ea5"
+				temporaryMapping="true"
+				x="121"
+				y="34"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1c3a00fe13eb493fa6fae052b46b80f5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result583fb357712841da94ddcaca9a062ea5/current</from>
+			<to>current</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="6e5f91495adb4730a6bb0a612cde827b"
+			lineNumber="11">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c1cb3ba055954b20b08914364d204b52"
+				serviceId="nabu.cms.core.v2.services.user.selectAllowedNodes"
+				resultName="resultc8da01de3bca4f238441c2df80cb686b"
+				temporaryMapping="true"
+				x="104"
+				y="21"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f3af63b17dbc44da8bf22c59e84bd774"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>user.manage</from>
+				<to>parameters/actionName</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1707f4ad0ea64ebfab45174dcbc62ca1"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>component/id</from>
+				<to>parameters/componentId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7ac26fffb9f54100a9f0acef41c9eac0"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>parameters/rootOnly</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="71fb622b2dc94891b9fa02fcdfaab509"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>current/id</from>
+				<to>parameters/userId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3c7dde3c975642c2a6c2e3d779dd6c99"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc8da01de3bca4f238441c2df80cb686b/results</from>
+			<to>output/content/results</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="d8fe4e7d-17b6-414b-a6f7-651db827510d"
+			label="output/content/results"
+			lineNumber="12">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="14c51010-5db5-4a5b-a84b-fd9203cdccbb"
+				serviceId="nabu.cms.core.v2.manage.security.context.enrichNodes"
+				resultName="resulte76df01e3dc94b578e9cbf741d5085ea"
+				temporaryMapping="true"
+				x="200"
+				y="94"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3f40335e-384c-4cfd-b679-3d63e76efbba"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>output/content/results</from>
+				<to>nodesToEnrich</to>
 			</steps>
 		</steps>
 	</steps>

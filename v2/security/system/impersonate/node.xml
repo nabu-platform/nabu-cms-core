@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-28T13:07:45.516+02:00" lastModified="2024-01-22T10:19:29.715+01:00" leaf="true" version="47">
+    <description>If you have sufficient priviliges, you can obtain an access token that emulates another user.</description>
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <reference>S6</reference>
+    <references>nabu.web.application.Services.newTemporaryAuthentication</references>
+    <references>nabu.cms.core.crud.user.services.get</references>
+    <references>nabu.cms.core.services.user.getCurrent</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
+    <references>nabu.cms.core.v2.security.system.loginOutput</references>
+    <references>nabu.cms.core.v2.security.configuration</references>
+    <references>be.nabu.libs.authentication.api.Device</references>
+    <references>be.nabu.libs.authentication.api.Token</references>
+    <references>nabu.utils.Server.getServerName</references>
+    <references>nabu.web.application.Services.information</references>
+    <references>nabu.cms.core.services.masterdata.entry.get</references>
+    <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
+    <references>nabu.cms.core.crud.user.types.output</references>
+    <references>nabu.utils.Runtime.getCorrelationId</references>
+    <references>nabu.cms.core.crud.masterDataEntry.services.get</references>
+    <references>nabu.utils.Object.last</references>
+    <references>java.lang.String</references>
+    <references>nabu.web.application.types.WebApplicationInformation</references>
+    <references>nabu.utils.Date.incrementDuration</references>
+    <references>nabu.cms.core.crud.nodeLog.services.create</references>
+    <summary>Impersonate another user</summary>
+</node>

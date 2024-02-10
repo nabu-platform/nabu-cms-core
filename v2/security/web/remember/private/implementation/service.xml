@@ -73,6 +73,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Add $guest"
 				disabled="false"
+				features="USE_OLD_SECURITY_CHECKS"
 				id="072236fa-b980-4a30-a818-38930774729e"
 				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -171,6 +172,7 @@
 			comment="Attempt to authenticate using remember-once"
 			disabled="false"
 			id="a8700a096f1f4f979d94d9d1f28fcdcc"
+			label="!token"
 			lineNumber="9">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
@@ -182,8 +184,8 @@
 					serviceId="nabu.web.application.Services.temporarilyAuthenticate"
 					resultName="result605fa12863834226ae1ecd615548fe91"
 					temporaryMapping="true"
-					x="424"
-					y="60"
+					x="165"
+					y="59"
 					invocationOrder="1"
 					asynchronous="false"
 					recache="false">
@@ -490,9 +492,9 @@
 				serviceId="nabu.web.application.Services.newTemporaryAuthentication"
 				resultName="result38fdba2a82f3472bb37630b2fef0e2a5"
 				temporaryMapping="true"
-				x="530"
-				y="83"
-				invocationOrder="1"
+				x="676"
+				y="42"
+				invocationOrder="2"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -521,15 +523,6 @@
 					fixedValue="false">
 				<from>resulte12d61efd27f480cb26876e13ac96e54/date</from>
 				<to>until</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="b3699769-e579-417b-ac20-2eb66c3d5f46"
-					mask="false"
-					optional="false"
-					fixedValue="true">
-				<from>PT30M</from>
-				<to>timeout</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
@@ -585,6 +578,15 @@
 				<from>token/realm</from>
 				<to>realm</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e94249c0f388460c9cd0922ceb9d72b4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result316f5fc112bf4574b7d04426fe085590/last</from>
+				<to>timeout</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -592,18 +594,18 @@
 				serviceId="nabu.utils.Date.incrementDuration"
 				resultName="resulte12d61efd27f480cb26876e13ac96e54"
 				temporaryMapping="true"
-				x="114"
-				y="305"
-				invocationOrder="0"
+				x="419"
+				y="317"
+				invocationOrder="1"
 				asynchronous="false"
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="3d596450-37c4-4f84-8597-325c51d966c9"
+					id="6512c35cd56f4ce4abb77b73f1e5d83d"
 					mask="false"
 					optional="false"
-					fixedValue="true">
-				<from>P1D</from>
+					fixedValue="false">
+				<from>resulte4eab055aa324eaca5fb9b567bc58124/last</from>
 				<to>duration</to>
 			</steps>
 		</steps>
@@ -615,6 +617,66 @@
 				fixedValue="false">
 			<from>result38fdba2a82f3472bb37630b2fef0e2a5/authentication</from>
 			<to>authentication</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c55d9c74958747179655eedac9eedbd4"
+				serviceId="nabu.utils.Object.last"
+				resultName="result316f5fc112bf4574b7d04426fe085590"
+				temporaryMapping="true"
+				x="72"
+				y="27"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e89285d9caf84d1d9ccdf332e00e2d77"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>PT30M</from>
+				<to>options[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="84c3f4bf93c9458fa5428285d2f4bf94"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration/tokenTimeout</from>
+				<to>options[1]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="ca066280a5cd45728e38cca1d5d6ac2f"
+				serviceId="nabu.utils.Object.last"
+				resultName="resulte4eab055aa324eaca5fb9b567bc58124"
+				temporaryMapping="true"
+				x="84"
+				y="192"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="99fb90c8479c4bfaba81115dfe834af5"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>P1D</from>
+				<to>options[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6be4adba357548db8624a4d9b34cae3d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/configuration/tokenDuration</from>
+				<to>options[1]</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
@@ -796,7 +858,7 @@
 					mask="false"
 					optional="false"
 					fixedValue="true">
-				<from>P1Y</from>
+				<from>P1M</from>
 				<to>options[0]</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"

@@ -1,0 +1,85 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="71ef0315c0f34328ad193fd0649812b2"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="f55955366e4d4545b8b857b12fd282b0"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="0ef7f87c0ada4abbba8da1de5ac2c61d"
+				serviceId="nabu.cms.core.crud.component.services.list"
+				resultName="result19291af722294686b96ac276005de9c1"
+				temporaryMapping="true"
+				x="197"
+				y="182"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="73c743c8e7f34d99bd24150a9ca60a49"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>filter/global</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b7ade4fd2a39401599e511baff84d45f"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>proxy</from>
+				<to>filter/name[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="0eff887d6db44c4e899ad85b88f15fca"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result19291af722294686b96ac276005de9c1/results[0]</from>
+			<to>component</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="6ae9b13ace50428682c1c184cf09e5da"
+			label="component"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="6da79e208b4e4300984653ab60d5d874"
+				serviceId="nabu.cms.core.crud.node.services.list"
+				resultName="result5187ba1d55634844a3c156558fb2269e"
+				temporaryMapping="true"
+				x="80"
+				y="113"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b0b108b0ba254054b90d839233c82234"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>component/id</from>
+				<to>filter/componentId[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="cf8911449c1f417ab782a8be524094e2"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result5187ba1d55634844a3c156558fb2269e/results</from>
+			<to>output/proxies</to>
+		</steps>
+	</steps>
+</sequence>

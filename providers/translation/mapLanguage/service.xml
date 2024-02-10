@@ -1,0 +1,59 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="e3995387420c48fdac2fbc2eebbaee45"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="If there are multiple categories that have a valid entry, this will likely not work correctly!"
+			disabled="false"
+			id="2355c2b2a616472cb79c209f154844b6"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="a0c988c1424943f6b9ae3740a274c08f"
+				serviceId="nabu.cms.core.crud.masterDataEntry.services.list"
+				resultName="result7aaedd074f214e11ba6d6bb09c15479b"
+				temporaryMapping="true"
+				x="196"
+				y="25"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b32147556f5043bb95a588f17ad67f8b"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>language</from>
+				<to>filter/masterDataCategory[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1843ea3cc0d543688796e6ec7b91b349"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/language</from>
+				<to>filter/name[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="85b5fca1ac3f4d5280fb2fe0fca4fe33"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result7aaedd074f214e11ba6d6bb09c15479b/results[0]/id</from>
+			<to>output/mappedLanguage</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+			comment="We want to throw an explicit error to prevent sql injection"
+			description="=&quot;Unsupported language: &quot; + input/language"
+			disabled="false"
+			id="308d713b53964d60a60d9bd5ab5bdae7"
+			label="output/mappedLanguage == null"
+			lineNumber="3"
+			message="Unsupported language"
+			whitelist="false" xsi:nil="true"/>
+</sequence>

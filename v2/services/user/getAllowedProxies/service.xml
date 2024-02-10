@@ -87,7 +87,16 @@
 					optional="false"
 					fixedValue="false">
 				<from>component/id</from>
-				<to>parameters/componentId</to>
+				<to>parameters/componentId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="7ac26fffb9f54100a9f0acef41c9eac0"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>parameters/rootOnly</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

@@ -1,0 +1,8 @@
+<structure comment="Validate whether a token you previously created is still valid.&#10;You must implement the &quot;refreshToken&quot;  spec to get a new one" name="pipeline">
+    <structure name="input">
+        <structure definition="be.nabu.libs.authentication.api.Token" name="token"/>
+    </structure>
+    <structure name="output">
+        <field name="valid" type="java.lang.Boolean"/>
+    </structure>
+</structure>

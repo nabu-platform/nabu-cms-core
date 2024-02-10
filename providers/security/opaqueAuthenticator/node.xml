@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-09-22T12:35:16.127+02:00" lastModified="2022-09-22T12:36:33.730+02:00" leaf="true" version="7">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2022-09-22T12:35:16.127+02:00" lastModified="2024-01-22T09:12:54.457+01:00" leaf="true" version="20">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
+    <references>nabu.cms.core.v2.specs.validateToken</references>
     <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
+    <references>java.lang.Boolean</references>
+    <references>nabu.utils.reflection.Service.listImplementations</references>
     <references>java.lang.String</references>
+    <references>nabu.web.application.Services.revokeTemporaryAuthentication</references>
     <references>be.nabu.libs.authentication.api.Device</references>
-    <references>nabu.web.application.types.WebApplicationInformation</references>
     <references>be.nabu.libs.authentication.api.Token</references>
+    <references>nabu.utils.types.NodeDescription</references>
     <references>nabu.utils.String.split</references>
     <references>nabu.web.application.Services.temporarilyAuthenticate</references>
     <references>be.nabu.eai.module.web.application.api.BearerAuthenticator.authenticate</references>

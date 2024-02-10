@@ -1,0 +1,7 @@
+An impersonate is considered temporary and will not generate a remember cookie.
+This means, once the impersonate token is expired, you will need to re-impersonate.
+
+This also means you can use the remember cookie to switch back to who you originally were and "de-impersonate".
+
+We don't set an authenticator or token id because even if they did work (say an oauth2 environment), they would not be linked to your original user, not the new one. At the time of impersonation it is impossible to guarantee a valid token of said user exists.
+In general, impersonation should not be attempted in systems where authentication is hard coupled to a remote environment like oauth2, specifically not when permissions etc are deduced from scope rather than locally managed.

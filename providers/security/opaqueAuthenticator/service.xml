@@ -126,4 +126,155 @@
 			<to>output/token</to>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="If we are using a specific authenticator, check if there is a validate routine"
+			disabled="false"
+			id="ae2d9f890b724732a8a9e3583612c4c0"
+			label="output/token/authenticator != null"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="aaff82566fd6428d9d0df0da7673bcf2"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="8f4b1326d0664631afeeb8912dae5cfc"
+					serviceId="nabu.utils.reflection.Service.listImplementations"
+					resultName="result8390c676ab2c465885c7bdc20bccf996"
+					temporaryMapping="true"
+					x="91"
+					y="105"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="2c1348df903142108ad29110205d04f8"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>nabu.cms.core.v2.specs.validateToken</from>
+					<to>interfaceId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="99e23f10d45e48a4b2591ddb52b96e5a"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>authenticationType</from>
+					<to>properties[0]/key</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="bf03a7a05fc84546990e10cef19e0700"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>output/token/authenticator</from>
+					<to>properties[0]/value</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="719b07b83fa6452490743d239aa2bf97"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8390c676ab2c465885c7bdc20bccf996/implementations[0]</from>
+				<to>validator</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+				disabled="false"
+				id="f26c877848e84818aa3e9a72d046ab0e"
+				label="validator"
+				lineNumber="6">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="a0263af64dca494b865d2c0d7c712eab"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="10ea981e4f7b4f92980242a444664b78"
+						serviceId="nabu.cms.core.v2.specs.validateToken"
+						resultName="result2a35c3efd8f34783a0bb067b905a6d14"
+						temporaryMapping="true"
+						x="184"
+						y="121"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="8fe433c384c643258cda4704ba83b839"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>validator/id</from>
+						<to>implementationId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="af36c1abdb80442793efc42da19edfd3"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>output/token</from>
+						<to>token</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="de488de41b3647918c876c0ae63f4dc4"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result2a35c3efd8f34783a0bb067b905a6d14/valid</from>
+					<to>tokenValid</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="Drop the token"
+					disabled="false"
+					id="0ca4e5f7503b485bb98c26aa482e4851"
+					label="tokenValid == false"
+					lineNumber="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+						disabled="false"
+						id="20c00adb385c43b0be0d1313aa4c4180"
+						path="output/token" xsi:nil="true"/>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="2c04fa88594940cb99573da98df4ac6b"
+						serviceId="nabu.web.application.Services.revokeTemporaryAuthentication"
+						resultName="result12ee304ffe484d60ae5071ab9a2ad234"
+						temporaryMapping="true"
+						x="272"
+						y="76"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="57b9683b16894653898459f12abe024d"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>input/webApplicationId</from>
+						<to>webApplicationId</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="762c7f1ff49a493bb891e346ca5ad76c"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>output/token/tokenId</from>
+						<to>tokenId</to>
+					</steps>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
 </sequence>

@@ -3,7 +3,9 @@
     <field name="created" timezone="UTC" type="java.util.Date"/>
     <field name="modified" timezone="UTC" type="java.util.Date"/>
     <field name="name" type="java.lang.String"/>
+    <field minOccurs="0" name="title" translatable="true" type="java.lang.String"/>
     <field comment="Foreign key not easily set because of circular dependency with node" minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
-    <field minOccurs="0" name="description" type="java.lang.String"/>
+    <field minOccurs="0" name="description" translatable="true" type="java.lang.String"/>
     <field minOccurs="0" name="operational" type="java.lang.Boolean"/>
+    <field comment="A human readable description of the entry, intended target is people managing the masterdata to describe what this entry is for." minOccurs="0" name="comment" type="java.lang.String"/>
 </structure>
