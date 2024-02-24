@@ -7,7 +7,8 @@
 			id="9ad50fdc96c84bb99b76efc7d03c7b65"
 			label="input/properties/webApplicationId == null"
 			lineNumber="2"
-			message="Application id is mandatory" xsi:nil="true"/>
+			message="Application id is mandatory"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Get all the terms"
 			disabled="false"
@@ -32,6 +33,15 @@
 					fixedValue="false">
 				<from>input/translationTransportId</from>
 				<to>transportId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="94e338b8988345cba99cb2ae77da794b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/properties/includeDefault</from>
+				<to>includeDefault</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -84,7 +94,8 @@
 			id="6a40368584ba4c0b94b169a7b9301ca0"
 			label="connectionId == null"
 			lineNumber="5"
-			message="Could not determine connection id" xsi:nil="true"/>
+			message="Could not determine connection id"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Get all the languages used so we can map them"
 			disabled="false"
@@ -570,6 +581,23 @@
 				<from>translations</from>
 				<to>instances</to>
 			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="92866bb1e94b4453887a041f62cac732"
+			lineNumber="20">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="917731eeb5d5410f9388b6a27e4f3030"
+				serviceId="nabu.utils.Cache.clear"
+				resultName="resulte73383670f194055ad5aa0d6d807115d"
+				temporaryMapping="true"
+				x="199"
+				y="225"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
 		</steps>
 	</steps>
 </sequence>

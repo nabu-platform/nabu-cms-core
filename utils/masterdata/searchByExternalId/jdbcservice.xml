@@ -1,11 +1,11 @@
 <jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<outputDefinition>nabu.cms.core.types.emodel.core.MasterDataEntry</outputDefinition>
-	<sql>select *
+	<sql>select distinct *
 from ~master_data_entries mde
 	join ~master_data_entry_external_ids mdeei on mdeei.master_data_entry_id = mde.id
 	join ~master_data_entries mde2 on mde2.id = mdeei.external_id_type_id
 	join ~master_data_categories mdc on mde.master_data_category_id = mdc.id
 where (:externalIdType is null or mde2.name = :externalIdType)
-	and mdeei.external_id = :externalId
+	and mdeei.external_id = any(:externalId)
 	and (:category is null or mdc.name = :category)</sql>
 </jdbcService>

@@ -5,7 +5,7 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="baefba9267d64d6db5b430d955b594d0"
-			label="input/externalId != null"
+			label="input/externalIds != null"
 			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
@@ -24,8 +24,8 @@
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/externalId</from>
-				<to>parameters/externalId[0]</to>
+				<from>input/externalIds</from>
+				<to>parameters/externalId</to>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
@@ -47,7 +47,7 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="0a498e6b59b24a1a84f1c3cd897b446d"
+					id="d6152b3777af4d2fa78c75891117bf04"
 					mask="false"
 					optional="false"
 					fixedValue="false">
@@ -62,7 +62,7 @@
 				optional="false"
 				fixedValue="false">
 			<from>result8641abc81b65417b9b052cf9b57a1e54/results[0]</from>
-			<to>output/entry</to>
+			<to>output/entries</to>
 		</steps>
 	</steps>
 </sequence>

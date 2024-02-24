@@ -1,4 +1,4 @@
-<structure collectionName="nodeAddresses" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" name="NodeAddress">
+<structure collectionName="nodeAddresses" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" name="NodeAddress">
     <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
     <field name="created" timezone="UTC" type="java.util.Date"/>
     <field name="modified" timezone="UTC" type="java.util.Date"/>
@@ -18,4 +18,6 @@
     <field aggregation="composite" foreignKey="nabu.cms.core.types.emodel.core.Node:id" name="nodeId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field comment="Some general information that gives more context to the address itself" minOccurs="0" name="general" type="java.lang.String"/>
     <field comment="Free comment from the user." minOccurs="0" name="comment" type="java.lang.String"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="countryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="An address might be expressed in a particular language" foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>

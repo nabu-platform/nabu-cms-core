@@ -1,0 +1,17 @@
+<structure interface="be.nabu.eai.repository.api.ObjectEnricher.apply" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure definition="nabu.utils.types.EnrichmentConfiguration" minOccurs="0" name="configuration"/>
+    <field minOccurs="0" name="addressTypeName" type="java.lang.String"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" maxOccurs="unbounded" name="primaryKeys"/>
+    <structure definition="nabu.utils.types.ParameterDescription" maxOccurs="unbounded" minOccurs="0" name="fields"/>
+    <structure definition="nabu.utils.types.ParameterDescription" minOccurs="0" name="field"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="addresses"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" maxOccurs="unbounded" minOccurs="0" name="addressTypeIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" maxOccurs="unbounded" minOccurs="0" name="addressTypes"/>
+    <structure collectionHandler="stringMap" definition="java.util.Map" minOccurs="0" name="map"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" minOccurs="0" name="value"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="applicableAddresses"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" minOccurs="0" name="primaryKey"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" minOccurs="0" name="addressType"/>
+</structure>
