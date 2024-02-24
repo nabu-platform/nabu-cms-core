@@ -1,0 +1,28 @@
+<structure interface="be.nabu.eai.repository.api.ObjectEnricher.persist" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure definition="nabu.utils.types.EnrichmentConfiguration" minOccurs="0" name="configuration"/>
+    <field minOccurs="0" name="addressTypeName" type="java.lang.String"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" maxOccurs="unbounded" name="primaryKeys"/>
+    <structure definition="nabu.utils.types.ParameterDescription" maxOccurs="unbounded" minOccurs="0" name="fields"/>
+    <structure definition="nabu.utils.types.ParameterDescription" minOccurs="0" name="field"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="addresses" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" maxOccurs="unbounded" minOccurs="0" name="addressTypeIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" maxOccurs="unbounded" minOccurs="0" name="addressTypes" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
+    <structure collectionHandler="stringMap" definition="java.util.Map" minOccurs="0" name="map"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" minOccurs="0" name="value"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="existingAddresses" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" minOccurs="0" name="primaryKey"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" minOccurs="0" name="addressType" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="addressTypeNames" type="java.lang.String"/>
+    <field minOccurs="0" name="amountOfExistingAddresses" type="java.lang.Integer"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="addressesToUpdate" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="addressesToCreate" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" minOccurs="0" name="addressToCreate" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <field minOccurs="0" name="date" type="java.util.Date"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" maxOccurs="unbounded" minOccurs="0" name="addressesToDelete" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" maxOccurs="unbounded" minOccurs="0" name="valueList"/>
+    <field name="addressId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <structure collectionName="nodeAddresses" definition="nabu.cms.core.types.emodel.core.NodeAddress" enricher="nabu.cms.core.providers.enrichment.address.apply" id="127-0-1-1--4949a219:15e806a5e31:-8000:000000000000117C" minOccurs="0" name="currentAddress" persister="nabu.cms.core.providers.enrichment.address.persist"/>
+    <structure definition="nabu.utils.types.ParameterDescription" minOccurs="0" name="idField"/>
+</structure>
