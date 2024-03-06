@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2024-02-24T09:55:51.798+01:00" lastModified="2024-02-24T10:46:06.838+01:00" leaf="true" version="55">
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2024-02-24T09:55:51.798+01:00" lastModified="2024-02-26T13:38:59.199+01:00" leaf="true" version="59">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
     <locked>false</locked>
@@ -31,6 +31,7 @@
     <references>java.util.UUID</references>
     <references>nabu.utils.reflection.Type.set</references>
     <references>nabu.utils.List.addAll</references>
+    <references>nabu.utils.reflection.Type.newInstance</references>
     <references>nabu.services.jdbc.Services.update</references>
     <references>nabu.utils.String.replace</references>
     <references>nabu.utils.List.remove</references>
@@ -38,4 +39,9 @@
     <references>be.nabu.eai.repository.api.ObjectEnricher.persist</references>
     <references>java.lang.Object</references>
     <references>nabu.cms.core.types.emodel.core.NodeAddress</references>
+    <todos>
+        <id>nabu.cms.core.providers.enrichment.address.persist:ee272bb254574240bd6495387139f1f6</id>
+        <tags>nabu</tags>
+        <todo>: we might want to just exit?</todo>
+    </todos>
 </node>

@@ -1,8 +1,8 @@
 <structure interface="nabu.cms.core.v2.manage.security.context.action.list:api" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionName="actions" definition="nabu.cms.core.v2.manage.security.crud.action.types.output" maxOccurs="unbounded" minOccurs="0" name="foundActions"/>
-    <structure collectionName="actionRoles" definition="nabu.cms.core.v2.manage.security.crud.actionRole.types.output" maxOccurs="unbounded" minOccurs="0" name="applicableActionRoles"/>
+    <structure collectionName="actions" definition="nabu.cms.core.v2.manage.security.crud.action.types.output" enricher="nabu.cms.core.v2.manage.security.crud.action.services.list" maxOccurs="unbounded" minOccurs="0" name="foundActions" persister="nabu.cms.core.v2.manage.security.crud.action.batch.updateAll"/>
+    <structure collectionName="actionRoles" definition="nabu.cms.core.v2.manage.security.crud.actionRole.types.output" enricher="nabu.cms.core.v2.manage.security.crud.actionRole.services.list" maxOccurs="unbounded" minOccurs="0" name="applicableActionRoles" persister="nabu.cms.core.v2.manage.security.crud.actionRole.batch.updateAll"/>
     <field name="lastGroup" type="java.lang.String"/>
     <field maxOccurs="unbounded" name="pathIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
 </structure>

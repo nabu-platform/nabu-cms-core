@@ -1214,10 +1214,45 @@
 									label="amountOfExistingAddresses == 0 &amp;&amp; value != null"
 									lineNumber="50">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+										disabled="false"
+										id="d93c74b99d284447afe2a5278209a853"
+										lineNumber="51">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="8edf7b34025847f4a6564b4c0b51fa07"
+											serviceId="nabu.utils.reflection.Type.newInstance"
+											resultName="result94c2941fc47b402780166d68a9abda14"
+											temporaryMapping="true"
+											x="179"
+											y="144"
+											invocationOrder="0"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="e8d69ef6f70d44c79ac26153b0810abe"
+												mask="false"
+												optional="false"
+												fixedValue="true">
+											<from>nabu.cms.core.types.emodel.core.NodeAddress</from>
+											<to>typeId</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="b7e29b4087d0468281446d5f48acd988"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>result94c2941fc47b402780166d68a9abda14/typeInstance</from>
+										<to>addressToCreate</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										comment="Map initial"
 										disabled="false"
 										id="e146acfc0b09449e882c7faf24b5f8e7"
-										lineNumber="51">
+										lineNumber="52">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="07da6e90f799459d93ec3dc8a54ac923"
@@ -1254,7 +1289,7 @@
 										disabled="false"
 										id="76fb1b86ac974d629da6243652c094b2"
 										label="addressToCreate/id == null"
-										lineNumber="52">
+										lineNumber="53">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="92282811de27467ca7aa4e6c3cf02815"
@@ -1282,7 +1317,7 @@
 										disabled="false"
 										id="1613abbd5ea6444fa411b76e092ae368"
 										label="addressToCreate/created == null"
-										lineNumber="53">
+										lineNumber="54">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 											disabled="false"
 											id="f79274e892f14e8bb3cea28f8b9cfc11"
@@ -1298,7 +1333,7 @@
 										disabled="false"
 										id="e26078b6c7834ba8821d06f151cb395d"
 										label="addressToCreate/modified == null"
-										lineNumber="54">
+										lineNumber="55">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 											disabled="false"
 											id="975e2dc535bb4453aa654894e90be8b8"
@@ -1310,9 +1345,40 @@
 									</steps>
 								</steps>
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+										comment="Map the calculated address type (if any)"
+										disabled="false"
+										id="2a646acee77c49db8f0b89124cca4c29"
+										label="addressToCreate/addressTypeId == null"
+										lineNumber="56">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="e28377d4448342878a9d660ad6a4d52b"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>addressType/id</from>
+										<to>addressToCreate/addressTypeId</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+										comment="Map the node id"
+										disabled="false"
+										id="409d8364286d438e9954d2319b813476"
+										lineNumber="57">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="9b891174553d49b6acf416dd9195afca"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>primaryKey</from>
+										<to>addressToCreate/nodeId</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										disabled="false"
 										id="d3be94655e7f44e7b577f4d9f97b46ae"
-										lineNumber="55">
+										lineNumber="58">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="bdc4fc881e2a46889204ad0c4ba8d51d"
@@ -1363,12 +1429,12 @@
 									disabled="false"
 									id="fcea111ff3104328994687afe96067c5"
 									label="amountOfExistingAddresses == 1 &amp;&amp; value != null"
-									lineNumber="56">
+									lineNumber="59">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										comment="Map"
 										disabled="false"
 										id="ec158171dbef4dcfb226ef6eaecadcae"
-										lineNumber="57">
+										lineNumber="60">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="e5e59898df0149caa1645b51e0bb0dac"
@@ -1403,7 +1469,7 @@
 								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 										disabled="false"
 										id="19caac9aefa14362a891f63be7a0d479"
-										lineNumber="58">
+										lineNumber="61">
 									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 											disabled="false"
 											id="fa651d34fdb14ae0b7be5ce8bc47d744"
@@ -1450,7 +1516,7 @@
 									disabled="false"
 									id="2efbd1c7594b440eaf8096dd520b88c0"
 									label="amountOfExistingAddresses == 1 &amp;&amp; value == null"
-									lineNumber="59">
+									lineNumber="62">
 								<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 										disabled="false"
 										id="b883215d045143c88564c234db495473"
@@ -1503,7 +1569,7 @@
 				disabled="false"
 				id="d8eed89ad01e4a4899f81b5abf9191bc"
 				label="addressesToUpdate"
-				lineNumber="60">
+				lineNumber="63">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="8a89799b026940dc8d796879d1547715"
@@ -1551,7 +1617,7 @@
 				disabled="false"
 				id="4ff69c916e2b47388479ee2feec1f893"
 				label="addressesToCreate"
-				lineNumber="61">
+				lineNumber="64">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="dbaaadf3eefb4d4ab2928a3dd59e06d6"
@@ -1578,7 +1644,7 @@
 				disabled="false"
 				id="17f620f2043f4ca4a1ec849f61a02b3d"
 				label="addressesToDelete"
-				lineNumber="62">
+				lineNumber="65">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="4302d9da9c5147329d322226aa8d1b2e"

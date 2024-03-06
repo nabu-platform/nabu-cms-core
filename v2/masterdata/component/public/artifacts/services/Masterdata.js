@@ -140,14 +140,17 @@ Vue.service("masterdata", {
 			}
 			return null;
 		},
-		resolve: function(masterdataId) {
+		resolve: function(masterdataId, field, serviceContext) {
+			if (field == null) {
+				field = "title";
+			}
 			if (!masterdataId || !masterdataId.match(/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}/)) {
 				return masterdataId;
 			}
 			var self = this;
 			// check if we already have it
 			if (this.masterdata.resolved[masterdataId]) {
-				return this.masterdata.resolved[masterdataId].title ? this.masterdata.resolved[masterdataId].title : this.masterdata.resolved[masterdataId].name;
+				return this.masterdata.resolved[masterdataId][field] ? this.masterdata.resolved[masterdataId][field] : this.masterdata.resolved[masterdataId].name;
 			}
 			var result = null;
 			if (this.preloaded) {
@@ -171,11 +174,15 @@ Vue.service("masterdata", {
 				var ids = self.masterdata.idsToResolve.splice(0, self.masterdata.idsToResolve.length);
 				if (ids && ids.length) {
 					self.masterdata.timer = null;
-					self.$services.swagger.execute("nabu.cms.core.v2.masterdata.rest.resolve", { id: ids })
+					self.$services.swagger.execute("nabu.cms.core.v2.masterdata.rest.resolve", { id: ids, "$serviceContext": serviceContext })
 						.then(function(result) {
 							if (result.results && result.results.length) {
 								result.results.forEach(self.labelize);
 								for (var i = 0; i < result.results.length; i++) {
+									// make sure we have a title because that is what we are returning!
+									if (result.results[i].title == null) {
+										result.results[i].title = result.results[i].label ? result.results[i].label : result.results[i].name;
+									}
 									nabu.utils.objects.merge(self.masterdata.resolved[result.results[i].id], result.results[i])
 								}
 							}
@@ -183,7 +190,7 @@ Vue.service("masterdata", {
 				}
 			};
 			if (result != null) {
-				return result.title ? result.title : result.name;
+				return result[field] ? result[field] : result.name;
 			}
 			// if we did not find a result, ask the server
 			// add it to the idsToResolve
@@ -192,7 +199,9 @@ Vue.service("masterdata", {
 				// set a value that can be returned and updated later
 				Vue.set(this.masterdata.resolved, masterdataId, {
 					id: "",
-					title: ""
+					title: "",
+					label: "",
+					name: ""
 				});
 				// if there is a timer pending, reset it
 				if (this.masterdata.timer != null) {
@@ -202,7 +211,7 @@ Vue.service("masterdata", {
 				// set a timeout
 				this.masterdata.timer = setTimeout(resolve, 25);
 			}
-			return this.masterdata.resolved[masterdataId].title;
+			return this.masterdata.resolved[masterdataId][field];
 		}
 	}
 });

@@ -1,6 +1,7 @@
 <structure name="action">
     <field comment="The id of the action if it is an action actual (and not a group)" minOccurs="0" name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field comment="We group actions together" name="group" type="java.lang.String"/>
+    <field comment="Partial name as related to the group" minOccurs="0" name="groupedName" type="java.lang.String"/>
     <field comment="The name of the action (if not a group)" minOccurs="0" name="name" type="java.lang.String"/>
     <field minOccurs="0" name="description" type="java.lang.String"/>
     <field minOccurs="0" name="ownerId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
