@@ -1,6 +1,6 @@
 <structure interface="nabu.cms.core.v2.manage.security.context.role.update:api" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionName="roles" definition="nabu.cms.core.v2.manage.security.crud.role.types.output" minOccurs="0" name="existing"/>
+    <structure collectionName="roles" definition="nabu.cms.core.v2.manage.security.crud.role.types.output" enricher="nabu.cms.core.v2.manage.security.crud.role.services.list" minOccurs="0" name="existing" persister="nabu.cms.core.v2.manage.security.crud.role.batch.updateAll"/>
     <structure collectionName="groups" definition="nabu.cms.core.types.emodel.core.Group" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000CBE" maxOccurs="unbounded" minOccurs="0" name="groupsToRename"/>
 </structure>

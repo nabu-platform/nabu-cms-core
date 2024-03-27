@@ -6,6 +6,9 @@ from ~nodes n
 	join ~node_connections nc on nc.source_id = n.id
 	join ~nodes target on nc.target_id = target.id
 	join ~components c1 on n.component_id = c1.id and c1.name = 'realm'
-	join ~components c2 on target.component_id = c2.id and c1.name = 'realm'
-where target.slug = :realm</sql>
+	-- we want to allow you to connect realms to non-realm objects like projects
+	--join ~components c2 on target.component_id = c2.id and c1.name = 'realm'
+where target.slug = :realm
+	-- make sure that it is a root node
+	and target.parent_id is null</sql>
 </jdbcService>

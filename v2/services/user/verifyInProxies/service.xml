@@ -91,130 +91,141 @@
 			id="2fabb2d9353e43e9817c71aed3cb4556"
 			lineNumber="4"
 			variable="proxy">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				disabled="false"
-				id="63f14b4ad2a84db4974545b4da1a14a9"
-				lineNumber="5">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-					disabled="false"
-					id="295aabe95d374bf8b896e229ba604063"
-					serviceId="nabu.utils.Runtime.setServiceContext"
-					resultName="result38f29b657d604099b6fdda1673f40f50"
-					temporaryMapping="true"
-					x="211"
-					y="141"
-					invocationOrder="0"
-					asynchronous="false"
-					recache="false">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="d363e01bb14243679373bc37ee39806d"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>proxy/slug</from>
-					<to>context</to>
-				</steps>
-			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				disabled="false"
-				id="9d40e257335043c28d47a678f0a5e15c"
-				lineNumber="6">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-					disabled="false"
-					id="b7530e7534d34cd785e707e9f6570d60"
-					serviceId="nabu.cms.core.crud.user.services.list"
-					resultName="result42afc87c0a154a4a88171cff01f22626"
-					temporaryMapping="true"
-					x="76"
-					y="102"
-					invocationOrder="0"
-					asynchronous="false"
-					recache="false">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="43cce1f4e87c4113a56a2c4912ba4262"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>user/alias</from>
-					<to>filter/alias</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="93b462586518415ea0c213fadf3b61a5"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>user/realm</from>
-					<to>filter/realm[0]</to>
-				</steps>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="361485daedc34da6bb6153e920ed5f32"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>result42afc87c0a154a4a88171cff01f22626/results[0]</from>
-				<to>localUser</to>
-			</steps>
-		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-				comment="If not verified, verify him"
 				disabled="false"
-				id="2ae9b5e7730e42d8b54623730bf9ea2e"
-				label="user != null &amp;&amp; localUser/verified == null"
-				lineNumber="7">
+				id="fe75e0de2b74405299ad4a558cc84f9c"
+				lineNumber="5">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="824b1d45cb114d14a1b8f610c7a1c9da"
-					lineNumber="8">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="ba6e3b3da5f245eaa1a4dabca19fa3da"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>user/verified</from>
-					<to>localUser/verified</to>
-				</steps>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					disabled="false"
-					id="c0bafc997e5a4c61be62ea069a0273a8"
-					lineNumber="9">
+					id="63f14b4ad2a84db4974545b4da1a14a9"
+					lineNumber="6">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
-						id="14d45bbf6c03400e88bb4e26391ecd49"
-						serviceId="nabu.cms.core.crud.user.services.update"
-						resultName="result07296ada188242c6959c7419c64beae9"
+						id="295aabe95d374bf8b896e229ba604063"
+						serviceId="nabu.utils.Runtime.setServiceContext"
+						resultName="result38f29b657d604099b6fdda1673f40f50"
 						temporaryMapping="true"
-						x="134"
-						y="135"
+						x="211"
+						y="141"
 						invocationOrder="0"
 						asynchronous="false"
 						recache="false">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
-							id="3fee72994a6444b5801f7a13810a708e"
-							mask="true"
-							optional="false"
-							fixedValue="false">
-						<from>localUser</from>
-						<to>instance</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="3a55e65a6b0a49698d90eedf19762fa3"
+							id="d363e01bb14243679373bc37ee39806d"
 							mask="false"
 							optional="false"
 							fixedValue="false">
-						<from>localUser/id</from>
-						<to>id</to>
+						<from>proxy/slug</from>
+						<to>context</to>
 					</steps>
 				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="9d40e257335043c28d47a678f0a5e15c"
+					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="b7530e7534d34cd785e707e9f6570d60"
+						serviceId="nabu.cms.core.crud.user.services.list"
+						resultName="result42afc87c0a154a4a88171cff01f22626"
+						temporaryMapping="true"
+						x="76"
+						y="102"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="43cce1f4e87c4113a56a2c4912ba4262"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>user/alias</from>
+						<to>filter/alias</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="93b462586518415ea0c213fadf3b61a5"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>user/realm</from>
+						<to>filter/realm[0]</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="361485daedc34da6bb6153e920ed5f32"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result42afc87c0a154a4a88171cff01f22626/results[0]</from>
+					<to>localUser</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+					comment="If not verified, verify him"
+					disabled="false"
+					id="2ae9b5e7730e42d8b54623730bf9ea2e"
+					label="localUser != null &amp;&amp; localUser/verified == null"
+					lineNumber="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="824b1d45cb114d14a1b8f610c7a1c9da"
+						lineNumber="9">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="ba6e3b3da5f245eaa1a4dabca19fa3da"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>user/verified</from>
+						<to>localUser/verified</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+						disabled="false"
+						id="c0bafc997e5a4c61be62ea069a0273a8"
+						lineNumber="10">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							disabled="false"
+							id="14d45bbf6c03400e88bb4e26391ecd49"
+							serviceId="nabu.cms.core.crud.user.services.update"
+							resultName="result07296ada188242c6959c7419c64beae9"
+							temporaryMapping="true"
+							x="134"
+							y="135"
+							invocationOrder="0"
+							asynchronous="false"
+							recache="false">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="3fee72994a6444b5801f7a13810a708e"
+								mask="true"
+								optional="false"
+								fixedValue="false">
+							<from>localUser</from>
+							<to>instance</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="3a55e65a6b0a49698d90eedf19762fa3"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>localUser/id</from>
+							<to>id</to>
+						</steps>
+					</steps>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Catch"
+					comment="We musn't stop on error"
+					disabled="false"
+					id="982b80a58eb246a1ae67e6b15d4ab478"
+					lineNumber="11">
 			</steps>
 		</steps>
 		<query>proxies[slug != null]</query>
@@ -222,11 +233,11 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Finally"
 			disabled="false"
 			id="29fae2a53c67484083e314ee1558f840"
-			lineNumber="10">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="ccb81166bac1467f91670ea98aaa1a3d"
-				lineNumber="11">
+				lineNumber="13">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="6a198bc76509458bbe088cf88ff840d4"
