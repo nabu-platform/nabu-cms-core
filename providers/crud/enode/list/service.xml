@@ -559,6 +559,15 @@
 				<from>=input/limit != null &amp;&amp; input/totalCount == "ESTIMATE"</from>
 				<to>estimateRowCount</to>
 			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ca869cb6aa3c4b579b082703e20ebc29"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/statistics</from>
+				<to>statistics</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
@@ -586,6 +595,15 @@
 				fixedValue="false">
 			<from>result5300aba2dab44a92abe45e2cb6bc4b46/response/totalRowCount</from>
 			<to>output/results/totalRowCount</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="92e73d8f2251456f97b2a2442e08fc89"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result5300aba2dab44a92abe45e2cb6bc4b46/response/statistics</from>
+			<to>output/results/statistics</to>
 		</steps>
 	</steps>
 </sequence>

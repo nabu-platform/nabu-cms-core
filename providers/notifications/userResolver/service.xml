@@ -2,39 +2,80 @@
 		disabled="false"
 		id="eb6687eb4d534d2ea54d94b41b4a1e4b"
 		lineNumber="1">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
-			id="5fd26d8a35eb4c58a4f3f516467f3ac6"
+			id="282b059125664451b8c765888728f62f"
 			lineNumber="2">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="37dcb96df2d4412f9ea39aadc5dc2139"
-				serviceId="nabu.cms.core.crud.account.services.list"
-				resultName="result8a436bd7475840e3aa093b8a662283b9"
-				temporaryMapping="true"
-				x="169"
-				y="45"
-				invocationOrder="0"
-				asynchronous="false"
-				recache="false">
+				id="68782a7a590746c981d8c7cf859837ef"
+				label="input/recipient ~ &quot;[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}&quot; || input/recipient ~ &quot;[a-f0-9]{32}&quot;"
+				lineNumber="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="4bf4b7b2681540219ddeb09262b4d4ff"
+					serviceId="nabu.cms.core.crud.account.services.get"
+					resultName="resultfa924bd2aa344e5694c7195b65818a8d"
+					temporaryMapping="true"
+					x="144"
+					y="48"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="15c13776d7c3428aa123556adcfb2036"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/recipient</from>
+					<to>id</to>
+				</steps>
+			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="618106d2da93487badeb17ffd7ba89fc"
+					id="d279811e9b1e4334b1ac67c9fa80ddf4"
 					mask="false"
 					optional="false"
 					fixedValue="false">
-				<from>input/recipient</from>
-				<to>filter/alias[0]</to>
+				<from>resultfa924bd2aa344e5694c7195b65818a8d/result</from>
+				<to>account</to>
 			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="dd6782b262cb4e9a9cd099c51c50d634"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>result8a436bd7475840e3aa093b8a662283b9/results[0]</from>
-			<to>account</to>
+				id="5fd26d8a35eb4c58a4f3f516467f3ac6"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="37dcb96df2d4412f9ea39aadc5dc2139"
+					serviceId="nabu.cms.core.crud.account.services.list"
+					resultName="result8a436bd7475840e3aa093b8a662283b9"
+					temporaryMapping="true"
+					x="169"
+					y="45"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="618106d2da93487badeb17ffd7ba89fc"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/recipient</from>
+					<to>filter/alias[0]</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="dd6782b262cb4e9a9cd099c51c50d634"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8a436bd7475840e3aa093b8a662283b9/results[0]</from>
+				<to>account</to>
+			</steps>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
@@ -42,12 +83,12 @@
 			disabled="false"
 			id="3381c917e82c4fccb3baecf801ffcdd8"
 			label="account &amp;&amp; account/verified != null"
-			lineNumber="3">
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Map main"
 				disabled="false"
 				id="a499bb18420b40c28d1dfebc1a2d46f9"
-				lineNumber="4">
+				lineNumber="6">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="0d6de1759f804e4bb72544b999e54871"
@@ -128,7 +169,7 @@
 				disabled="false"
 				id="fdc59a85af044cfa8ba32d60f7b64f80"
 				label="account/aliasTypeId != null"
-				lineNumber="5">
+				lineNumber="7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="5a3f6534ed4a4eb98366da8d16cbe95e"
@@ -164,7 +205,7 @@
 				disabled="false"
 				id="f6d78baef0d44ef0909a45f7f6437406"
 				label="account/languageId != null"
-				lineNumber="6">
+				lineNumber="8">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="b6de5829501e454d92ce497a307ec47d"
@@ -199,12 +240,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="ce1d4abb2ca043609134c1ea8756e953"
-				lineNumber="7">
+				lineNumber="9">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="d664c12c043c4d7084fdc3e2b1a2fbb2"
 					label="account/email != null &amp;&amp; account/emailVerified == true"
-					lineNumber="8">
+					lineNumber="10">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="664b192b80344a2ab5ea1e4801386b85"
@@ -229,7 +270,7 @@
 					disabled="false"
 					id="4a45c16bb05d435eb239ff786a76a6e5"
 					label="aliasType/name == &quot;email&quot; || account/aliasTypeId == null"
-					lineNumber="9">
+					lineNumber="11">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="be013747767249cd863a5f6ccb2fd007"
@@ -254,7 +295,7 @@
 				disabled="false"
 				id="01e0ca2e30d449669e1bae5333b6a3b7"
 				label="email"
-				lineNumber="10">
+				lineNumber="12">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="66d7c26e1dd24b8d8c6915c7eb30ffa0"
@@ -298,12 +339,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="433a2053f37a47f09edd2290468e01a7"
-				lineNumber="11">
+				lineNumber="13">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="f616efa62c3743998a9f83a664da9c08"
 					label="account/phoneNumber != null &amp;&amp; account/phoneNumberVerified == true"
-					lineNumber="12">
+					lineNumber="14">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="cdad1d0917414b7eac1a20dadb9b0e03"
@@ -327,7 +368,7 @@
 					disabled="false"
 					id="13327204f93646e38c0dafa4be3a12fd"
 					label="aliasType/name == &quot;phone&quot;"
-					lineNumber="13">
+					lineNumber="15">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="afb47faee0824aceaa3f35a68af94091"
