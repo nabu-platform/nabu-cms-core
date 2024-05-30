@@ -193,7 +193,8 @@
 			id="9851e911-2c67-4c2c-a08f-6cbdbf058acb"
 			label="existing = null || existing/id != newUser/id"
 			lineNumber="4"
-			message="Invalid id" xsi:nil="true"/>
+			message="Invalid id"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 			comment="If we can update the password, we need to check it"
 			disabled="false"
@@ -464,6 +465,15 @@
 								invocationOrder="0"
 								asynchronous="false"
 								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="01d22d5857154cc89b319ea83038ef0d"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>true</from>
+								<to>allowInvalidToken</to>
+							</steps>
 						</steps>
 					</steps>
 				</steps>
@@ -739,6 +749,15 @@
 								invocationOrder="0"
 								asynchronous="false"
 								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="fcea06f306e34c55830c781a97659ef4"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>true</from>
+								<to>allowInvalidToken</to>
+							</steps>
 						</steps>
 					</steps>
 				</steps>

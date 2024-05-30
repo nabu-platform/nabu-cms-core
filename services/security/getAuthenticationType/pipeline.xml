@@ -2,7 +2,7 @@
     <structure name="input" validate="true">
         <field name="name" type="java.lang.String"/>
     </structure>
-    <structure name="output" validate="true">
+    <structure name="output">
         <structure definition="nabu.cms.core.services.security.authenticationType" name="type" restrict="id,created,modified"/>
     </structure>
     <structure collectionName="authenticationTypes" definition="nabu.cms.core.crud.authenticationType.types.output" enricher="nabu.cms.core.crud.authenticationType.services.list" maxOccurs="unbounded" minOccurs="0" name="authenticationTypes" persister="nabu.cms.core.crud.authenticationType.batch.updateAll"/>

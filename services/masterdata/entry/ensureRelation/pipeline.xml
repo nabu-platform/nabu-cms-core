@@ -1,0 +1,16 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="fromCategory" type="java.lang.String"/>
+        <field minOccurs="0" name="fromEntry" type="java.lang.String"/>
+        <field minOccurs="0" name="toCategory" type="java.lang.String"/>
+        <field name="toEntry" type="java.lang.String"/>
+        <field minOccurs="0" name="relationType" type="java.lang.String"/>
+    </structure>
+    <structure name="output"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" minOccurs="0" name="from" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" minOccurs="0" name="to" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
+    <structure collectionName="masterDataEntryRelations" definition="nabu.cms.core.crud.masterDataEntryRelation.types.output" enricher="nabu.cms.core.crud.masterDataEntryRelation.services.list" minOccurs="0" name="existingRelation" persister="nabu.cms.core.crud.masterDataEntryRelation.batch.updateAll"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" minOccurs="0" name="relationType" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" maxOccurs="unbounded" minOccurs="0" name="allFrom" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
+    <structure collectionName="masterDataEntryRelations" definition="nabu.cms.core.crud.masterDataEntryRelation.types.output" enricher="nabu.cms.core.crud.masterDataEntryRelation.services.list" maxOccurs="unbounded" minOccurs="0" name="existingRelations" persister="nabu.cms.core.crud.masterDataEntryRelation.batch.updateAll"/>
+</structure>

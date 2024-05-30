@@ -2,6 +2,6 @@
     <structure name="input"/>
     <structure name="output"/>
     <structure collectionName="accounts" definition="nabu.cms.core.crud.account.types.output" duplicate="id, created, modified" enricher="nabu.cms.core.crud.account.services.list" minOccurs="0" name="account" persister="nabu.cms.core.crud.account.batch.updateAll"/>
-    <structure definition="nabu.frameworks.notifications.specs.address" minOccurs="0" name="email"/>
+    <structure definition="nabu.frameworks.notifications.specs.address" minOccurs="0" name="address"/>
     <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" name="aliasType" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
 </structure>

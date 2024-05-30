@@ -6,6 +6,6 @@
     <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
     <field name="canLogin" type="java.lang.Boolean"/>
     <field minOccurs="0" name="reason" type="java.lang.String"/>
-    <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" minOccurs="0" name="user"/>
+    <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" enricher="nabu.cms.core.crud.user.services.list" minOccurs="0" name="user" persister="nabu.cms.core.crud.user.batch.updateAll"/>
     <field name="canRemember" type="java.lang.Boolean"/>
 </structure>

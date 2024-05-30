@@ -2,7 +2,7 @@
     <structure name="input"/>
     <structure name="output"/>
     <structure collectionCrudProvider="user" collectionName="users" definition="nabu.cms.core.types.emodel.core.User" duplicate="id, created, modified" id="127-0-1-1-40ef4a87:15793f51e3b:-8000:0000000000000C68" name="user"/>
-    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" name="aliasType"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" name="aliasType" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
     <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="phoneService"/>
     <field minOccurs="0" name="rawPassword" type="java.lang.String"/>
 </structure>

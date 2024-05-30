@@ -451,7 +451,7 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-			comment="If we want to be remembered, we need to generate a secret that can be read again. We also want to link it to the device."
+			comment="If we want to be remembered, we need to generate a secret that can be read again"
 			disabled="false"
 			id="f528eb3f-0aee-47c1-8b49-2e2c2933dbd6"
 			label="input/query/remember &amp;&amp; canRemember"
@@ -515,15 +515,6 @@
 						fixedValue="true">
 					<from>1</from>
 					<to>maxUses</to>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="718c91ff-3d54-401b-8c72-94c8b3f4af38"
-						mask="false"
-						optional="false"
-						fixedValue="false">
-					<from>input/device</from>
-					<to>device</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"

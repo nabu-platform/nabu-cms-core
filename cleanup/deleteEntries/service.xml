@@ -1,0 +1,46 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="962e5f6533fc4fe7a4abb9be4ff4d50c"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b3eaffa9248b41668885f3593d08c966"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="b04c766c701a4b74b206b48b49fe2e48"
+				serviceId="nabu.protocols.jdbc.pool.Services.execute"
+				resultName="resultc1734905510d410c92d7fcd0f90edb8a"
+				temporaryMapping="true"
+				x="74"
+				y="100"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="795c7e5b3a7546e9a577b92f48a60f08"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>jdbcPoolId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a26c250806604c90b0e92d74c7f1612c"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>="
+delete from master_data_entry_external_ids where master_data_entry_id in (select id from master_data_entries where master_data_category_id='" + input/masterdataCategoryId + "');
+delete from master_data_entry_relations where target_id in (select id from master_data_entries where master_data_category_id='" + input/masterdataCategoryId + "') or source_id in (select id from master_data_entries where master_data_category_id='" + input/masterdataCategoryId + "');
+delete from master_data_entries where master_data_category_id='" + input/masterdataCategoryId + "';
+"
+
+</from>
+				<to>sql</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>

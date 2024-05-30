@@ -91,7 +91,8 @@
 			id="2f5a8063-12a2-45e9-93b9-dcc7869f47f3"
 			label="!context"
 			lineNumber="3"
-			message="Could not resolve context" xsi:nil="true"/>
+			message="Could not resolve context"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="7b7bd833-99b6-4d00-85c0-7f8d2fe25493"
@@ -206,15 +207,6 @@
 				<to>instance/verified</to>
 			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="7a34d2b0-4e48-4d74-b997-8e03410cae15"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>resulta367c794fc1d44318d40ac81e5bc16ef/created</from>
-			<to>account</to>
-		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="f80cb723-77e3-45b1-8a03-37e042ff9ffa"
@@ -226,6 +218,15 @@
 				invocationOrder="0"
 				asynchronous="false"
 				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="ac1e2da696ec403089a9a3fcec6a139b"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>resulta367c794fc1d44318d40ac81e5bc16ef/created</from>
+			<to>account</to>
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"

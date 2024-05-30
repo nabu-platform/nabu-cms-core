@@ -15,4 +15,6 @@
     <structure collectionName="translations" definition="nabu.cms.core.crud.translation.types.output" enricher="nabu.cms.core.crud.translation.services.list" minOccurs="0" name="existingTranslation" persister="nabu.cms.core.crud.translation.batch.updateAll"/>
     <field minOccurs="0" name="date" type="java.util.Date"/>
     <structure definition="nabu.cms.translation.specs.finalizedTranslation" maxOccurs="unbounded" minOccurs="0" name="terms"/>
+    <structure collectionHandler="stringMap" definition="java.util.Map" minOccurs="0" name="translationHash"/>
+    <structure collectionName="translations" definition="nabu.cms.core.crud.translation.types.output" enricher="nabu.cms.core.crud.translation.services.list" maxOccurs="unbounded" minOccurs="0" name="potentialExistingTranslations" persister="nabu.cms.core.crud.translation.batch.updateAll"/>
 </structure>

@@ -3,10 +3,92 @@
 		id="e3995387420c48fdac2fbc2eebbaee45"
 		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-			comment="If there are multiple categories that have a valid entry, this will likely not work correctly!"
+			disabled="false"
+			id="bbe9816fa6c74a8fb0030858b9591dfb"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="41783488fed04f9fa60a1e674fe28e7f"
+				serviceId="nabu.cms.core.crud.node.services.list"
+				resultName="result9b6bffb6f3c5402ea9fcffe2871f0e8e"
+				temporaryMapping="true"
+				x="72"
+				y="101"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d3afff25e54d40c6814d8ccc57bdcd87"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>filter/isRoot</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="4abf4368010a4edf9f010806fb7c0763"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result9b6bffb6f3c5402ea9fcffe2871f0e8e/results</from>
+			<to>rootNodes</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Get any language categories owned by a root node, if there are multiple, this will probably not work correctly! Language is important enough to be in the $global namespace"
+			disabled="false"
+			id="8ddbb2c43299499995a8935ad5cdc49c"
+			label="rootNodes"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="cc17768391464e819064608b7f178399"
+				serviceId="nabu.cms.core.crud.masterDataCategory.services.list"
+				resultName="result89c555970c934acf9d82e0915935f354"
+				temporaryMapping="true"
+				x="273"
+				y="74"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0710d0f3b5dc44d0ad445500c057b070"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>rootNodes/id</from>
+				<to>filter/ownerId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a20bb09554ee47bb8d3eece265e99254"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>language</from>
+				<to>filter/name[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1d8b5e8616dc4820b63bc9525c6acf9a"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result89c555970c934acf9d82e0915935f354/results</from>
+			<to>languageCategories</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="If there are multiple categories that have a valid entry, this will likely not work correctly! (check description)"
 			disabled="false"
 			id="2355c2b2a616472cb79c209f154844b6"
-			lineNumber="2">
+			label="languageCategories"
+			lineNumber="4">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="a0c988c1424943f6b9ae3740a274c08f"
@@ -20,21 +102,21 @@
 				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
-					id="b32147556f5043bb95a588f17ad67f8b"
-					mask="false"
-					optional="false"
-					fixedValue="true">
-				<from>language</from>
-				<to>filter/masterDataCategory[0]</to>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
 					id="1843ea3cc0d543688796e6ec7b91b349"
 					mask="false"
 					optional="false"
 					fixedValue="false">
 				<from>input/language</from>
 				<to>filter/name[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="5c292cccd2d4448f93f09e828d28e8bf"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>languageCategories/id</from>
+				<to>filter/masterDataCategoryId</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -53,7 +135,7 @@
 			disabled="false"
 			id="308d713b53964d60a60d9bd5ab5bdae7"
 			label="output/mappedLanguage == null"
-			lineNumber="3"
+			lineNumber="5"
 			message="Unsupported language"
 			whitelist="false" xsi:nil="true"/>
 </sequence>

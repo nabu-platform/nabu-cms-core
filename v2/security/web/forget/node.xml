@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-22T11:17:33.053+02:00" lastModified="2024-01-22T10:26:12.996+01:00" leaf="true" version="40">
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2022-09-22T11:17:33.053+02:00" lastModified="2024-05-24T14:27:27.958+02:00" leaf="true" version="41">
     <description>By forgetting who the user is, you both destroy his current access token and any remember token that might have been registered.</description>
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
@@ -8,14 +8,17 @@
     <reference>S2</reference>
     <references>nabu.utils.List.add</references>
     <references>nabu.web.application.Services.formatCookie</references>
+    <references>nabu.cms.core.v2.specs.logoutHandler</references>
     <references>be.nabu.libs.authentication.api.Device</references>
     <references>be.nabu.libs.authentication.api.Token</references>
     <references>nabu.utils.List.addAll</references>
     <references>nabu.cms.core.v2.security.web.forgetOutput</references>
     <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
     <references>nabu.cms.core.database.action.selectByRoleName</references>
+    <references>nabu.utils.reflection.Service.listImplementations</references>
     <references>java.lang.String</references>
     <references>nabu.web.application.Services.revokeTemporaryAuthentication</references>
+    <references>nabu.utils.types.NodeDescription</references>
     <references>nabu.utils.String.split</references>
     <references>nabu.web.application.Services.temporarilyAuthenticate</references>
     <references>nabu.utils.Date.incrementDuration</references>

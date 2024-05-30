@@ -1,0 +1,8 @@
+<structure name="pipeline">
+    <structure name="input">
+        <structure definition="be.nabu.libs.authentication.api.Token" name="token"/>
+    </structure>
+    <structure name="output">
+        <field comment="A provider can provide an uri that the user should be redirected to for logout purposes" minOccurs="0" name="logoutUri" type="java.net.URI"/>
+    </structure>
+</structure>

@@ -133,7 +133,8 @@
 			id="9851e911-2c67-4c2c-a08f-6cbdbf058acb"
 			label="existing = null || existing/id != newNode/id"
 			lineNumber="4"
-			message="Invalid id" xsi:nil="true"/>
+			message="Invalid id"
+			whitelist="false" xsi:nil="true"/>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Describe the type we passed in, specifically we need to differentiate between unsetting the parentId and not being able to update it at all"
 			disabled="false"
@@ -377,7 +378,8 @@
 					id="250ac53f-84a9-4708-ad22-ce395b0705f5"
 					label="!parentNode"
 					lineNumber="11"
-					message="Invalid parent id" xsi:nil="true"/>
+					message="Invalid parent id"
+					whitelist="false" xsi:nil="true"/>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Map updated path"
 					disabled="false"
@@ -612,6 +614,15 @@
 								invocationOrder="0"
 								asynchronous="false"
 								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="84a2ee707688489a8e4e6b0a80d31dba"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>true</from>
+								<to>allowInvalidToken</to>
+							</steps>
 						</steps>
 					</steps>
 				</steps>
@@ -818,6 +829,15 @@
 								invocationOrder="0"
 								asynchronous="false"
 								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="7271ec62ab28419789b07996e93ca935"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>true</from>
+								<to>allowInvalidToken</to>
+							</steps>
 						</steps>
 					</steps>
 				</steps>

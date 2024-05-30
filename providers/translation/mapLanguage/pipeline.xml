@@ -1,5 +1,6 @@
 <structure interface="be.nabu.libs.services.jdbc.api.JDBCTranslator.mapLanguage" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionName="masterDataCategories" definition="nabu.cms.core.types.emodel.core.MasterDataCategory" id="127-0-1-1-eb57550:15992d23a1e:-8000:00000000000011AD" name="languageCategory"/>
+    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" enricher="nabu.cms.core.crud.node.services.list" maxOccurs="unbounded" minOccurs="0" name="rootNodes" persister="nabu.cms.core.crud.node.batch.updateAll"/>
+    <structure collectionName="masterDataCategories" definition="nabu.cms.core.crud.masterDataCategory.types.output" enricher="nabu.cms.core.crud.masterDataCategory.services.list" maxOccurs="unbounded" minOccurs="0" name="languageCategories" persister="nabu.cms.core.crud.masterDataCategory.batch.updateAll"/>
 </structure>

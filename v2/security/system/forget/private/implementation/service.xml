@@ -2,12 +2,117 @@
 		disabled="false"
 		id="884791f30eff40b783dde18947c8cc9d"
 		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="Check if we have a remember handler for the given authenticator"
+			disabled="false"
+			id="7e784b47-db7f-44ce-ad49-1f0a337053a3"
+			label="input/token/authenticator != null"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="469275c2-c1e4-45ad-a24f-f525ad27653e"
+				lineNumber="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="42649f3c-0ec3-491a-9ceb-6aed95c81933"
+					serviceId="nabu.utils.reflection.Service.listImplementations"
+					resultName="resultd351100b898942fb986c9c761eaf87e1"
+					temporaryMapping="true"
+					x="88"
+					y="46"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9760059a-275b-45d6-ae0a-2e31084e18fe"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>nabu.cms.core.v2.specs.logoutHandler</from>
+					<to>interfaceId</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="0f27602e-3a64-4537-b526-2d152b1efebb"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>authenticationType</from>
+					<to>properties[0]/key</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="12b2a0d2373644e5bdf4266d6a67216f"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/token/authenticator</from>
+					<to>properties[0]/value</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="815a136a51554d4f85a2d5e5920481b7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultd351100b898942fb986c9c761eaf87e1/implementations[0]</from>
+				<to>logoutProvider</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="ea48cfd1-ee41-4a42-988a-62dfd9fc193c"
+				label="logoutProvider"
+				lineNumber="4">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="a38fd9b3bf614517a15dfaea02279a08"
+					serviceId="nabu.cms.core.v2.specs.logoutHandler"
+					resultName="result8e981298ed1842359337700f6abf4524"
+					temporaryMapping="true"
+					x="160"
+					y="28"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c6a735e18b2d409cafc99f7a31009bf1"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/token</from>
+					<to>token</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="08877c3d3ab64c3ca4093a93e5a91128"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>logoutProvider/id</from>
+					<to>implementationId</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="50b4fd6e13304b0ca365db903344f9e2"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result8e981298ed1842359337700f6abf4524/logoutUri</from>
+				<to>output/content/logoutUri</to>
+			</steps>
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="Disable the actual opaqueToken"
 			disabled="false"
 			id="38c24202640d46218406ed1943b9e538"
 			label="input/token/tokenId != null"
-			lineNumber="2">
+			lineNumber="5">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="e9e2cab393874299be6e0e18591f3d94"
@@ -43,7 +148,7 @@
 			disabled="false"
 			id="672e503a-bb9b-478d-8e26-63eeca0d215d"
 			label="input/content/rememberToken != null"
-			lineNumber="3">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="6592c709-ed0c-4a46-8e03-885f67e54cfe"
@@ -98,7 +203,7 @@
 			disabled="false"
 			id="5a0b914b-3b84-4867-8527-9ff1205a9928"
 			label="authentication/id != null &amp;&amp; authentication/secret != null"
-			lineNumber="4">
+			lineNumber="7">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="c0e93f62-9f5e-47a0-a3b2-05cee1b0cfd2"

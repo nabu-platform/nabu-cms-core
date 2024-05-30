@@ -78,17 +78,163 @@
 			</steps>
 		</steps>
 	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Generate an anonymous account"
+			disabled="true"
+			id="f0c4686bc5c04cb0978a463ac30a7da8"
+			label="account == null &amp;&amp; input/allowUnverified"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="41a66566213c4f32a7f6b986fd2d03c9"
+				serviceId="nabu.cms.core.crud.account.services.create"
+				resultName="resultcb99d13068e240b192bff76753971fc3"
+				temporaryMapping="true"
+				x="457"
+				y="96"
+				invocationOrder="1"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d16f3e54c490407f9734fd7199c6c52a"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>instance/anonymous</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6c21d9ab8b144e33b4a3c43f9f90ac84"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/recipient</from>
+				<to>instance/alias</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e522c176fca14560a42be2eaf52b38c0"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result69a8f181cfd14ea990fc45b43a2e76ea/date</from>
+				<to>instance/started</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="6fd77284e3154171862d6989002c5e21"
+				serviceId="nabu.utils.Date.now"
+				resultName="result69a8f181cfd14ea990fc45b43a2e76ea"
+				temporaryMapping="true"
+				x="72"
+				y="78"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="bc71593879a04d71b1a84347fb0099cf"
+				mask="true"
+				optional="false"
+				fixedValue="false">
+			<from>resultcb99d13068e240b192bff76753971fc3/created</from>
+			<to>account</to>
+		</steps>
+	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-			comment="Only verified accounts (?)"
+			disabled="false"
+			id="5f1f2f22f029471ebd9182664e06251f"
+			label="account == null &amp;&amp; input/allowUnverified"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+				disabled="false"
+				id="e342c0e7caea4a0297760292090eff31"
+				lineNumber="7">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="Email"
+					disabled="false"
+					id="9bdf7b6a9ff04d26b0d699861da633b5"
+					label="input/recipient ~ &quot;.*@.*&quot;"
+					lineNumber="8">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="c69d38974d72430184ca2cc3b74b9695"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>email</from>
+					<to>output/recipient/addresses[0]/addressType</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="f84dfd3d664844d29ea4c21afbd5668d"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>anonymous</from>
+					<to>output/recipient/type</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="f7d28db113c64f7bae071ad754eb81c5"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/recipient</from>
+					<to>output/recipient/addresses[0]/address</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					comment="Phone"
+					disabled="false"
+					id="36e3ffc1c6f7496db2ce4ec9db6cece3"
+					label="input/recipient ~ &quot;^[0-9/.\s+-]+$&quot;"
+					lineNumber="9">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="abf73f4b75a74af8b5ac8216c6d890ba"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>phone</from>
+					<to>output/recipient/addresses[0]/addressType</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="59500e7907794ff5810091332e6492bf"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>anonymous</from>
+					<to>output/recipient/type</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="42a8e5a8bd814eb2a6aaddc87777a5e0"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/recipient</from>
+					<to>output/recipient/addresses[0]/address</to>
+				</steps>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+			comment="For most purposes we want to only send to verified addresses. In some cases however (e.g. to verify), we want to allow unverified addresses"
 			disabled="false"
 			id="3381c917e82c4fccb3baecf801ffcdd8"
-			label="account &amp;&amp; account/verified != null"
-			lineNumber="5">
+			label="account &amp;&amp; (account/verified != null || input/allowUnverified)"
+			lineNumber="10">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Map main"
 				disabled="false"
 				id="a499bb18420b40c28d1dfebc1a2d46f9"
-				lineNumber="6">
+				lineNumber="11">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="0d6de1759f804e4bb72544b999e54871"
@@ -169,7 +315,7 @@
 				disabled="false"
 				id="fdc59a85af044cfa8ba32d60f7b64f80"
 				label="account/aliasTypeId != null"
-				lineNumber="7">
+				lineNumber="12">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="5a3f6534ed4a4eb98366da8d16cbe95e"
@@ -205,7 +351,7 @@
 				disabled="false"
 				id="f6d78baef0d44ef0909a45f7f6437406"
 				label="account/languageId != null"
-				lineNumber="8">
+				lineNumber="13">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="b6de5829501e454d92ce497a307ec47d"
@@ -240,12 +386,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="ce1d4abb2ca043609134c1ea8756e953"
-				lineNumber="9">
+				lineNumber="14">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="d664c12c043c4d7084fdc3e2b1a2fbb2"
-					label="account/email != null &amp;&amp; account/emailVerified == true"
-					lineNumber="10">
+					label="account/email != null &amp;&amp; (account/emailVerified == true || input/allowUnverified)"
+					lineNumber="15">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="664b192b80344a2ab5ea1e4801386b85"
@@ -253,7 +399,7 @@
 						optional="false"
 						fixedValue="false">
 					<from>account/email</from>
-					<to>email/address</to>
+					<to>address/address</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
@@ -262,7 +408,7 @@
 						optional="false"
 						fixedValue="true">
 					<from>email</from>
-					<to>email/addressType</to>
+					<to>address/addressType</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
@@ -270,7 +416,7 @@
 					disabled="false"
 					id="4a45c16bb05d435eb239ff786a76a6e5"
 					label="aliasType/name == &quot;email&quot; || account/aliasTypeId == null"
-					lineNumber="11">
+					lineNumber="16">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="be013747767249cd863a5f6ccb2fd007"
@@ -278,7 +424,7 @@
 						optional="false"
 						fixedValue="false">
 					<from>account/alias</from>
-					<to>email/address</to>
+					<to>address/address</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
@@ -287,15 +433,15 @@
 						optional="false"
 						fixedValue="true">
 					<from>email</from>
-					<to>email/addressType</to>
+					<to>address/addressType</to>
 				</steps>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="01e0ca2e30d449669e1bae5333b6a3b7"
-				label="email"
-				lineNumber="12">
+				label="address"
+				lineNumber="17">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="66d7c26e1dd24b8d8c6915c7eb30ffa0"
@@ -313,7 +459,7 @@
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>email</from>
+					<from>address</from>
 					<to>object</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -339,12 +485,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="433a2053f37a47f09edd2290468e01a7"
-				lineNumber="13">
+				lineNumber="18">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="f616efa62c3743998a9f83a664da9c08"
-					label="account/phoneNumber != null &amp;&amp; account/phoneNumberVerified == true"
-					lineNumber="14">
+					label="account/phoneNumber != null &amp;&amp; (account/phoneNumberVerified == true || input/allowUnverified)"
+					lineNumber="19">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="cdad1d0917414b7eac1a20dadb9b0e03"
@@ -352,7 +498,7 @@
 						optional="false"
 						fixedValue="true">
 					<from>phone</from>
-					<to>email/addressType</to>
+					<to>address/addressType</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
@@ -361,14 +507,14 @@
 						optional="false"
 						fixedValue="false">
 					<from>account/phoneNumber</from>
-					<to>email/address</to>
+					<to>address/address</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="13327204f93646e38c0dafa4be3a12fd"
 					label="aliasType/name == &quot;phone&quot;"
-					lineNumber="15">
+					lineNumber="20">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="afb47faee0824aceaa3f35a68af94091"
@@ -376,7 +522,7 @@
 						optional="false"
 						fixedValue="false">
 					<from>account/alias</from>
-					<to>email/address</to>
+					<to>address/address</to>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
@@ -385,8 +531,53 @@
 						optional="false"
 						fixedValue="true">
 					<from>phone</from>
-					<to>email/addressType</to>
+					<to>address/addressType</to>
 				</steps>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="ab9d405d7d22446ca778246d34bcdc4b"
+				label="address"
+				lineNumber="21">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="2d453075337c418cbe9184de8d5543c6"
+					serviceId="nabu.utils.List.add"
+					resultName="resulte450e59a9ced408c80aa356ecdd946b5"
+					temporaryMapping="true"
+					x="58"
+					y="84"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9af5b72dd16f4ae1aa591d6dd64806cd"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>address</from>
+					<to>object</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="88e9e2879d0a4e7a86000edb758133f6"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>output/recipient/addresses</from>
+					<to>list</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ea5012fb73ee42bc9e3daf4b7b0e1319"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resulte450e59a9ced408c80aa356ecdd946b5/list</from>
+				<to>output/recipient/addresses</to>
 			</steps>
 		</steps>
 	</steps>
