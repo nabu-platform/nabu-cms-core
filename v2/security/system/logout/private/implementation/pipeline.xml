@@ -1,7 +1,6 @@
-<structure interface="nabu.cms.core.v2.security.web.forget:api" name="pipeline">
+<structure interface="nabu.cms.core.v2.security.system.logout:api" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
     <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
-    <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
     <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="logoutProvider"/>
 </structure>

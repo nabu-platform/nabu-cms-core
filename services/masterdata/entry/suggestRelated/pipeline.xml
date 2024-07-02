@@ -8,12 +8,13 @@
         <field minOccurs="0" name="limit" type="java.lang.Integer"/>
         <field minOccurs="0" name="offset" type="java.lang.Long"/>
         <field maxOccurs="unbounded" minOccurs="0" name="orderBy" type="java.lang.String"/>
+        <field minOccurs="0" name="language" type="java.lang.String"/>
     </structure>
     <structure name="output">
         <structure collectionName="masterDataEntries" definition="nabu.cms.core.types.emodel.core.MasterDataEntry" id="127-0-1-1-eb57550:15992d23a1e:-8000:00000000000011A7" maxOccurs="unbounded" minOccurs="0" name="entries"/>
         <structure definition="nabu.services.jdbc.types.Page" minOccurs="0" name="page"/>
     </structure>
-    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" maxOccurs="unbounded" minOccurs="0" name="choices"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" maxOccurs="unbounded" minOccurs="0" name="choices" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
     <field name="sql" type="java.lang.String"/>
     <structure definition="be.nabu.libs.types.api.KeyValuePair" minOccurs="0" name="search"/>
     <field maxOccurs="unbounded" name="masterDataEntryChoiceIds" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>

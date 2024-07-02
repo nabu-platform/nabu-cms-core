@@ -487,7 +487,7 @@ Vue.service("user", {
 		logout: function() {
 			var self = this;
 			var promise = this.$services.q.defer();
-			this.$services.swagger.execute("nabu.cms.core.v2.security.web.forget", {$$skipRemember: true}).then(function(result) {
+			this.$services.swagger.execute("nabu.cms.core.v2.security.web.logout", {$$skipRemember: true}).then(function(result) {
 				self.bearer = null;
 				self.roles.splice(0);
 				self.permissions.splice(0);
@@ -510,6 +510,11 @@ Vue.service("user", {
 		},
 		remember: function() {
 			var self = this;
+			// @2024-06-29
+			// if we were logged in but are triggering the remember, our token probably expired
+			// the likelihood that our actual security rules changed at around the same time are small
+			// so we actually skip the clear routine because it is pretty heavy
+			var wasLoggedIn = self.bearer != null;
 			var promise = this.$services.q.defer();
 			if (this.remembering) {
 				promise.reject();
@@ -536,10 +541,16 @@ Vue.service("user", {
 						}
 						// only do a clear if we actually got remembered, otherwise nothing likely changed!
 						if (result.token) {
-							self.$services.$clear().then(function() {
+							if (!wasLoggedIn) {
+								self.$services.$clear().then(function() {
+									promise.resolve(result);
+									self.remembering = false;
+								}, promise);
+							}
+							else {
 								promise.resolve(result);
 								self.remembering = false;
-							}, promise);
+							}
 						}
 						else {
 							promise.reject(result);

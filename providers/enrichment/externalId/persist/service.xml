@@ -313,7 +313,7 @@
 								mask="false"
 								optional="false"
 								fixedValue="false">
-							<from>externalIds[externalIdTypeName == /fieldToPersist]</from>
+							<from>externalIds[externalIdTypeName == /fieldToPersist &amp;&amp; nodeId == /primaryKey]</from>
 							<to>existingExternalId</to>
 						</steps>
 					</steps>

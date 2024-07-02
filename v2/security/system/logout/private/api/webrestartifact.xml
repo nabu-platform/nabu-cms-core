@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <restInterface>
-    <method>DELETE</method>
-    <path>/user/forget</path>
-    <cookieParameters>Remember</cookieParameters>
-    <responseHeaders>Set-Cookie</responseHeaders>
+    <method>POST</method>
+    <path>/system/logout</path>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
     <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useGlobalPermissionContext>false</useGlobalPermissionContext>
-    <output>nabu.cms.core.v2.security.web.forgetOutput</output>
-    <device>true</device>
+    <input>nabu.cms.core.v2.security.system.logoutInput</input>
+    <output>nabu.cms.core.v2.security.system.logoutOutput</output>
     <token>true</token>
     <lenient>true</lenient>
     <webApplicationId>true</webApplicationId>

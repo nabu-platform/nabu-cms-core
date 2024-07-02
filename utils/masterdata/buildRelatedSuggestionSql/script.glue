@@ -37,4 +37,4 @@ for (key : additionalChoiceIds)
 string sql = "select distinct * from " + join + " where mde.master_data_category_id='" + masterDataCategoryId + "'"
 
 if (q != null)
-	sql = sql + " and lower(mde.name) like lower(:q)"
+	sql = sql + " and (lower(mde.name) like lower(:q) or lower(mde.title) like lower(:q) or lower(mde.description) like lower(:q))"

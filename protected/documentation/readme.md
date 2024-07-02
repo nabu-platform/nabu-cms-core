@@ -1,3 +1,11 @@
+# Translation Indexes
+
+For operational translations, the real time binding is greatly improved by adding this index: (speed up x2)
+
+```
+create index idx_translation_binding on translations(instance_id, name, language_id);
+```
+
 # TODO
 
 We need a node connection between "$global" and all other root nodes.
