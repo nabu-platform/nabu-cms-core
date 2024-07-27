@@ -1,13 +1,15 @@
 <structure interface="be.nabu.eai.repository.api.ObjectEnricher.apply" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" maxOccurs="unbounded" name="primaryKeys"/>
+    <structure collectionName="teamsTemplates" definition="java.lang.Object" maxOccurs="unbounded" name="primaryKeys"/>
     <structure collectionName="nodeTags" definition="nabu.cms.core.crud.nodeTag.types.output" enricher="nabu.cms.core.crud.nodeTag.services.list" maxOccurs="unbounded" minOccurs="0" name="tags" persister="nabu.cms.core.crud.nodeTag.batch.updateAll"/>
     <structure definition="nabu.utils.types.ParameterDescription" maxOccurs="unbounded" minOccurs="0" name="fields"/>
     <structure collectionHandler="stringMap" definition="java.util.Map" minOccurs="0" name="map"/>
     <structure definition="nabu.utils.types.ParameterDescription" maxOccurs="unbounded" minOccurs="0" name="parametersToEnrich"/>
-    <structure collectionCrudProvider="odata" collectionName="teamsTemplates" definition="java.lang.Object" minOccurs="0" name="primaryKey"/>
+    <structure collectionName="teamsTemplates" definition="java.lang.Object" minOccurs="0" name="primaryKey"/>
     <structure collectionName="nodeTags" definition="nabu.cms.core.crud.nodeTag.types.output" enricher="nabu.cms.core.crud.nodeTag.services.list" maxOccurs="unbounded" minOccurs="0" name="applicableTags" persister="nabu.cms.core.crud.nodeTag.batch.updateAll"/>
     <structure definition="nabu.utils.types.ParameterDescription" minOccurs="0" name="parameterToEnrich"/>
     <field name="booleanValue" type="java.lang.Boolean"/>
+    <structure definition="nabu.utils.types.TypeResult" maxOccurs="unbounded" minOccurs="0" name="values"/>
+    <structure definition="nabu.utils.types.TypeResult" maxOccurs="unbounded" minOccurs="0" name="valuesToSet"/>
 </structure>

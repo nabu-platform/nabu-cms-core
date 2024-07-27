@@ -20,4 +20,5 @@
     <field comment="Free comment from the user." minOccurs="0" name="comment" type="java.lang.String"/>
     <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="countryId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field comment="An address might be expressed in a particular language" foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field comment="Assumed to store geometric data in a format like https://geojson.org/" minOccurs="0" name="geometry" type="java.lang.String"/>
 </structure>
