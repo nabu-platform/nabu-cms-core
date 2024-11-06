@@ -1,8 +1,9 @@
 <structure interface="be.nabu.eai.module.services.crud.api.CRUDProvider.update" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure definition="nabu.cms.core.types.emodel.core.Account" duplicate="id, created, modified" name="account"/>
-    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" name="aliasType"/>
+    <structure collectionCrudProvider="account" collectionName="accounts" definition="nabu.cms.core.types.emodel.core.Account" duplicate="id, created, modified" label="Account" name="account"/>
+    <structure collectionName="masterDataEntries" definition="nabu.cms.core.crud.masterDataEntry.types.output" enricher="nabu.cms.core.crud.masterDataEntry.services.list" name="aliasType" persister="nabu.cms.core.crud.masterDataEntry.batch.updateAll"/>
     <structure definition="nabu.utils.types.NodeDescription" minOccurs="0" name="phoneService"/>
     <field minOccurs="0" name="formattedPhone" type="java.lang.String"/>
+    <field comment="The logical name for this entry. It can be used to base business logic on." name="aliasTypeName" type="java.lang.String"/>
 </structure>

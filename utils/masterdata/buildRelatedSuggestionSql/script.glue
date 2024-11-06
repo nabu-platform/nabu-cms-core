@@ -2,6 +2,7 @@ nabu.cms.core.crud.masterDataEntry.types.output [] alreadyChosenEntryIds ?= seri
 uuid [] additionalChoiceIds ?= series()
 uuid masterDataCategoryId ?= null
 string q ?= null
+boolean enabledOnly ?= false
 
 # group by masterdata category
 grouped = series.group(lambda(x, x/masterDataCategoryId), alreadyChosenEntryIds)
@@ -38,3 +39,6 @@ string sql = "select distinct * from " + join + " where mde.master_data_category
 
 if (q != null)
 	sql = sql + " and (lower(mde.name) like lower(:q) or lower(mde.title) like lower(:q) or lower(mde.description) like lower(:q))"
+	
+if (enabledOnly)
+	sql = sql + " and (mde.disabled is null or mde.disabled = true)"

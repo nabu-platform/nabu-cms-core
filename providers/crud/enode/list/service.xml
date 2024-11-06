@@ -352,9 +352,9 @@
 						fixedValue="true">
 					<from>="(
  	select replace('%' || n.id || '%', '-', '') as match from nodes n join node_connections nc on n.id = nc.target_id join group_roles gr on gr.node_id = nc.source_id
-		join action_roles ar on ar.role_id = gr.role_id
+		join roles r on r.id = gr.role_id
+		join action_roles ar on ar.role_id = r.id
 		join actions a on a.id = ar.action_id
-		join user_groups ug on ug.group_id = gr.group_id
 	where a.name = '" + input/meta/permissionAction + "'
 		and r.name = '$' || 'guest' and r.pseudo = true
 	union all

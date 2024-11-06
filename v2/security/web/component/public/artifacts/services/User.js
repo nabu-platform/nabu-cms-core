@@ -580,6 +580,10 @@ Vue.service("user", {
 			return false;
 		},
 		hasRole: function(role, context) {
+			// sometimes you might send an empty role (e.g. when you added a role check but forgot to fill it in)
+			if (!role) {
+				return true;
+			}
 			if (role == "$user") {
 				return !!this.loggedIn;
 			}
