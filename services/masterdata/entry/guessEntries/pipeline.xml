@@ -1,0 +1,12 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field maxOccurs="unbounded" name="names" type="java.lang.String"/>
+        <field comment="Given a field, we prioritize categories that match" minOccurs="0" name="field" type="java.lang.String"/>
+        <field minOccurs="0" name="limit" type="java.lang.Integer"/>
+    </structure>
+    <structure name="output">
+        <structure collectionName="masterDataEntries" definition="nabu.cms.core.types.emodel.core.MasterDataEntry" id="127-0-1-1-eb57550:15992d23a1e:-8000:00000000000011A7" maxOccurs="unbounded" minOccurs="0" name="entries"/>
+        <field name="rowCount" type="java.lang.Long"/>
+    </structure>
+    <field minOccurs="0" name="potentialCategoryName" type="java.lang.String"/>
+</structure>

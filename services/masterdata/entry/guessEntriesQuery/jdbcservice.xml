@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.MasterDataEntry</outputDefinition>
+	<sql>select *
+from ~master_data_entries mde
+	join ~nodes n on mde.owner_id=n.id
+	join ~master_data_categories mdg on mde.master_data_category_id = mdg.id
+-- we limit to root nodes by default
+where n.parent_id is null
+	and mde.name = any(:name)
+order by (case when :categoryName is null or mdg.name = :categoryName then 1 else 0 end) desc</sql>
+</jdbcService>
