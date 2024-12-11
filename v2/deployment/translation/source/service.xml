@@ -6,36 +6,6 @@
 			disabled="false"
 			id="76a1bff4e2c54e3aa6c2b55bd6c86086"
 			lineNumber="2">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-				disabled="false"
-				id="785991b80cd24a2f92271573fe3377f6"
-				serviceId="nabu.cms.core.crud.translation.services.list"
-				resultName="result1be7d1fd389444749c67b0845e79b763"
-				temporaryMapping="true"
-				x="172"
-				y="126"
-				invocationOrder="0"
-				asynchronous="false"
-				recache="false">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="7789834e6a754271a12fce96c0dee2f1"
-					mask="false"
-					optional="false"
-					fixedValue="false">
-				<from>input/connectionId</from>
-				<to>connectionId</to>
-			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-				disabled="false"
-				id="e3505d7222b64e8d92d6b172d3155bc6"
-				mask="false"
-				optional="false"
-				fixedValue="false">
-			<from>result1be7d1fd389444749c67b0845e79b763/results</from>
-			<to>output/translations</to>
-		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="f4293718bbf54748bcedc6062f122e0a"
@@ -44,6 +14,36 @@
 				fixedValue="false">
 			<from>input/connectionId</from>
 			<to>output/connectionId</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="fa0e8bdd8845411283bff3915c080c00"
+				serviceId="nabu.cms.core.v2.deployment.translation.selectNonOperational"
+				resultName="resultcbe1772be3eb426da072f842ebf7ba89"
+				temporaryMapping="true"
+				x="215"
+				y="115"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="acabd78011054d5f8e47c365de022f1d"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/connectionId</from>
+				<to>connection</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="06fd9797ea9c450e956da70387253306"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultcbe1772be3eb426da072f842ebf7ba89/results</from>
+			<to>output/translations</to>
 		</steps>
 	</steps>
 </sequence>
