@@ -1,6 +1,7 @@
 <structure name="pipeline">
     <structure name="input">
         <field name="userId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+        <field minOccurs="0" name="disable" type="java.lang.Boolean"/>
     </structure>
     <structure name="output"/>
     <structure collectionName="accounts" definition="nabu.cms.core.crud.account.types.output" duplicate="id, created, modified" enricher="nabu.cms.core.crud.account.services.list" name="account" persister="nabu.cms.core.crud.account.batch.updateAll"/>

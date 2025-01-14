@@ -196,8 +196,23 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="070938fca9cb4637bcae37feb5617f36"
+					id="4672e25f2c2f4a4ca2785bea41779a7f"
+					label="input/disable"
 					lineNumber="7">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="95d7055be2d84a0f9f6f04b547a1ce8b"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>false</from>
+					<to>account/enabled</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="070938fca9cb4637bcae37feb5617f36"
+					lineNumber="8">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="ca153689cfa34980a9193986067df0a8"
@@ -224,11 +239,11 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 				disabled="false"
 				id="3395dd4c67834809b060880732eafa01"
-				lineNumber="8">
+				lineNumber="9">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="39cff147af8748d28fa4c5eabcddd7cb"
-					lineNumber="9">
+					lineNumber="10">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="0128dfd881e84305a140f8f0703d497d"
@@ -264,13 +279,13 @@
 					disabled="false"
 					id="173f4ea3f6e14989ab83be6cb9eb2bbc"
 					label="!user"
-					lineNumber="10"
+					lineNumber="11"
 					code="404"
 					whitelist="false" xsi:nil="true"/>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="7f93988d57b24f41bd47affca61ad6cb"
-					lineNumber="11">
+					lineNumber="12">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="05c575512c8a4b6ba1415767f20148e9"
@@ -305,7 +320,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="cd07cafa3bde430f9d68edb0f8f830d6"
-					lineNumber="12">
+					lineNumber="13">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="73a6d9c432d7470f827dc6ba52833039"
@@ -417,8 +432,23 @@
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
+					id="210d8a81103741cc8a380ce68356c783"
+					label="input/disable"
+					lineNumber="14">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="9db4aa2b78054b0693616ffa9daf3506"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>false</from>
+					<to>user/enabled</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
 					id="a54acee5841445f690e4fb814c9584f9"
-					lineNumber="13">
+					lineNumber="15">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="0b524aa1d2154896ba7a8a3e57314a03"
@@ -447,12 +477,12 @@
 			comment="TODO: anonymize in proxy contexts"
 			disabled="false"
 			id="2c84ae55f83f44d9baa7eaad6760db42"
-			lineNumber="14">
+			lineNumber="16">
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="8ed32228accb4c2e973340d303dab9d7"
-			lineNumber="15">
+			lineNumber="17">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="cf52af084c6b4e1eb886826985569d22"
