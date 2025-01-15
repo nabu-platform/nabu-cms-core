@@ -17,5 +17,5 @@
     <field identifiable="true" minOccurs="0" name="slug" type="java.lang.String" unique="true"/>
     <field foreignKey="nabu.cms.core.types.emodel.core.MasterDataEntry:id" minOccurs="0" name="languageId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field foreignKey="nabu.cms.core.types.emodel.core.Component:id" indexed="true" name="componentId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
-    <field comment="Whether or not this node has been anonymized" minOccurs="0" name="anonymized" type="java.lang.Boolean"/>
+    <field comment="Whether or not this node has been anonymized" defaultValue="false" minOccurs="0" name="anonymized" type="java.lang.Boolean"/>
 </structure>
