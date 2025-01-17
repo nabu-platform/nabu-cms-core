@@ -3,15 +3,17 @@
     <method>PATCH</method>
     <path>/account/{accountId}/verify</path>
     <role>$user</role>
-    <permissionAction>user.manage</permissionAction>
+    <permissionAction>user.manage,user.verify</permissionAction>
     <permissionContext>=input/path/accountId</permissionContext>
     <useServiceContextAsPermissionContext>false</useServiceContextAsPermissionContext>
     <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
     <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
     <useGlobalPermissionContext>false</useGlobalPermissionContext>
+    <deviceBestEffort>false</deviceBestEffort>
     <lenient>true</lenient>
     <webApplicationId>false</webApplicationId>
     <geoPosition>false</geoPosition>
+    <useAsAuthorizationServiceContext>false</useAsAuthorizationServiceContext>
     <language>false</language>
     <allowFormBinding>false</allowFormBinding>
     <caseInsensitive>false</caseInsensitive>
@@ -25,10 +27,13 @@
     <allowRaw>false</allowRaw>
     <domain>false</domain>
     <origin>false</origin>
+    <scheme>false</scheme>
     <ignoreOffline>false</ignoreOffline>
     <allowRootArrays>false</allowRootArrays>
     <captureErrors>false</captureErrors>
     <captureSuccessful>false</captureSuccessful>
     <limitedToInterface>false</limitedToInterface>
     <allowExplicitResponseCode>false</allowExplicitResponseCode>
+    <stubbed>false</stubbed>
+    <clusterLock>false</clusterLock>
 </restInterface>

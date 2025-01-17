@@ -1,5 +1,5 @@
-<structure interface="$self:api" name="pipeline">
+<structure interface="nabu.cms.core.v2.manage.security.account.verify:api" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
-    <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" name="user"/>
+    <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" enricher="nabu.cms.core.crud.user.services.list" name="user" persister="nabu.cms.core.crud.user.batch.updateAll"/>
 </structure>
