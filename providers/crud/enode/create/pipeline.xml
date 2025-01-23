@@ -9,4 +9,5 @@
     <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
     <structure definition="nabu.cms.core.providers.crud.enode.configuration" name="configuration"/>
     <structure definition="nabu.utils.types.ContextInformation" minOccurs="0" name="contextInformation"/>
+    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" enricher="nabu.cms.core.crud.node.services.list" minOccurs="0" name="businessPackageContext" persister="nabu.cms.core.crud.node.batch.updateAll"/>
 </structure>
