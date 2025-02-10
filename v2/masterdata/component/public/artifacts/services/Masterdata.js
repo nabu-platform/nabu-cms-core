@@ -33,7 +33,7 @@ Vue.service("masterdata", {
 					value: "id",
 					values: ["id", "name"],
 					//labels: ["name", "label"]
-					labels: ["name", "title"]
+					labels: ["name", "title", "icon"]
 				});
 			});
 		}
