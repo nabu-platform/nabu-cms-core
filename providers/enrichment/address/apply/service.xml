@@ -7,64 +7,65 @@
 			disabled="false"
 			id="da1f789d905349ada30d8441563dc639"
 			lineNumber="2">
-		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="dffa048b04f04405a68351186f5ea910"
-				lineNumber="3"
-				variable="instance"
-				into="primaryKeys">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				id="40a2e3cb4ccd4acda8babeeaab438693"
+				lineNumber="3">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
-					id="a1175c4762714e40bf4ae1795ccb6252"
-					lineNumber="4">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="75326cfb527149ae9b13f55add3f19c5"
-						serviceId="nabu.utils.reflection.Type.get"
-						resultName="resultb725a743b30a41808bc53396a6e813a0"
-						temporaryMapping="true"
-						x="150"
-						y="107"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="07a9a4b7d2d246629868f5d1a8780cda"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/keyField</from>
-						<to>path</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="591c7b7c74dc455a990e86554264ef26"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>instance</from>
-						<to>typeInstance</to>
-					</steps>
-				</steps>
+					id="d3862179d20c474e85180470b88f7aae"
+					serviceId="nabu.utils.reflection.Type.getAll"
+					resultName="result4e3435603d77477e9272270d2c422be7"
+					temporaryMapping="true"
+					x="81"
+					y="68"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="98e232ef73b14d40acc51e345a5a32ff"
+						id="8e4d2ef132144af799df89a2e68d04e6"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>resultb725a743b30a41808bc53396a6e813a0/value</from>
-					<to>primaryKeys[0]</to>
+					<from>input/instances</from>
+					<to>typeInstances</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="b3f0d0109c374fb2b3baba92562de888"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/keyField</from>
+					<to>path</to>
 				</steps>
 			</steps>
-			<query>input/instances</query>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="28b931ca45f84ddba36b04ecd667a960"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result4e3435603d77477e9272270d2c422be7/values</from>
+				<to>values</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f0864985e2b64d589776c0ad14ce0064"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>result4e3435603d77477e9272270d2c422be7/values[value != null]/value</from>
+				<to>primaryKeys</to>
+			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Get all addresses for given nodes"
 				disabled="false"
 				id="2af59f9e7a9743f4aaae2411a0ba9c96"
 				label="primaryKeys != null"
-				lineNumber="5">
+				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="dd07cce1d8e641fc8a6e95da893d67df"
@@ -131,7 +132,7 @@
 				disabled="false"
 				id="d14731900ee44220903349e9d585dd7d"
 				label="addressTypeIds != null"
-				lineNumber="6">
+				lineNumber="5">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="fa9d99fed7ba41d7a11d1bf3803da841"
@@ -168,11 +169,11 @@
 			comment="Get field to type mapping"
 			disabled="false"
 			id="ef362f61ec364670a347c5d6d5063258"
-			lineNumber="7">
+			lineNumber="6">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="7ab981076f4242cc91dbfe3ba9354e06"
-				lineNumber="8">
+				lineNumber="7">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="08cc5c547b2a45f182530c326cd7b757"
@@ -228,12 +229,12 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.For"
 				disabled="false"
 				id="8b31a9c964bd40d69b7798c3d5485543"
-				lineNumber="9"
+				lineNumber="8"
 				variable="fieldToEnrich">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="a768e4c2860d4c5eba598be3336d604a"
-					lineNumber="10">
+					lineNumber="9">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="3ec9b8b19b384d7997ab906b48c44e8c"
@@ -297,7 +298,7 @@
 					disabled="false"
 					id="6e11de0408df41a8b461681dd2921edc"
 					label="!field/list &amp;&amp; addressTypeName == null"
-					lineNumber="11">
+					lineNumber="10">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="0450f1fe39724fdfae715d0b2e06ef56"
@@ -352,7 +353,7 @@
 					disabled="false"
 					id="9b6393d8712141ddb6f2e0c764aa9e31"
 					label="addressTypeName != null"
-					lineNumber="12">
+					lineNumber="11">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="05f591af3c96425bbeb61b497c5edc72"
@@ -400,67 +401,38 @@
 			comment="Enrich the instances"
 			disabled="false"
 			id="6f9363747891458fa2faf447ab6c7645"
-			lineNumber="13">
+			lineNumber="12">
 		<steps xsi:type="be.nabu.libs.services.vm.step.For"
 				disabled="false"
 				id="ff7689e37bbd42fab2a7affe2f5eb5e9"
-				lineNumber="14"
-				variable="instance">
+				lineNumber="13"
+				variable="instance"
+				index="instanceIndex">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					comment="Get the primary key"
 					disabled="false"
 					id="1be8fba788824c449b9a231b92f5a57d"
-					lineNumber="15">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="b64292e1755e49b0b760feb0a4931784"
-						serviceId="nabu.utils.reflection.Type.get"
-						resultName="result29d3e846c8714a89bbe64c7d7a8435e8"
-						temporaryMapping="true"
-						x="244"
-						y="81"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="13e8d2c8acbf41d9bbc48a8dc57d92f6"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>input/keyField</from>
-						<to>path</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="a58e1e24deaf4267977b6491000ddaf0"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>instance</from>
-						<to>typeInstance</to>
-					</steps>
-				</steps>
+					lineNumber="14">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="25dbf5c2b39c4a36a0c85b32f8e65d9e"
+						id="8e527198a5fd44a1b751bc2d4f383154"
 						mask="false"
 						optional="false"
 						fixedValue="false">
-					<from>result29d3e846c8714a89bbe64c7d7a8435e8/value</from>
+					<from>values[/instanceIndex]/value</from>
 					<to>primaryKey</to>
 				</steps>
 			</steps>
 			<steps xsi:type="be.nabu.libs.services.vm.step.For"
 					disabled="false"
 					id="b90ba0df6cd849388ed55e8a9f8b7600"
-					lineNumber="16"
+					lineNumber="15"
 					variable="fieldToEnrich">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						comment="Get applicable addresses"
 						disabled="false"
 						id="b763be207fe541e6810501838ac96c89"
-						lineNumber="17">
+						lineNumber="16">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
 							id="da1ffb51c23248d48afbc3996f63b886"
@@ -475,7 +447,7 @@
 						comment="Get the potential address type"
 						disabled="false"
 						id="662aeae46cfc4ed581e6dbe6e2a78774"
-						lineNumber="18">
+						lineNumber="17">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="1fec5b1e520948b3b59bcf4fdfddf6b5"
@@ -521,12 +493,12 @@
 						disabled="false"
 						id="37e26d343942469b844578def14be7db"
 						label="addressTypeName != null"
-						lineNumber="19">
+						lineNumber="18">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							comment="Get the address type"
 							disabled="false"
 							id="21870a8aab164833a0b046ede4de0fba"
-							lineNumber="20">
+							lineNumber="19">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 								disabled="false"
 								id="86dc8f52693647909d5d7a28b10cfd1f"
@@ -540,14 +512,14 @@
 					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							disabled="false"
 							id="4b185d2f5f914a238b758851ea670458"
-							lineNumber="21"
+							lineNumber="20"
 							query="addressType">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								comment="Address type does not exist, no addresses apply"
 								disabled="false"
 								id="70e4b37cc4cc4295881140f73e8c217d"
 								label="null"
-								lineNumber="22">
+								lineNumber="21">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
 									disabled="false"
 									id="47b6ba329e3940d691d09360f8da3d3c"
@@ -556,7 +528,7 @@
 						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 								disabled="false"
 								id="08fbfbae4cbf4105945ba3a4eca78d17"
-								lineNumber="23">
+								lineNumber="22">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="b0069b9c6724411bac07ea01b46cd1ee"
@@ -572,7 +544,7 @@
 				<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 						disabled="false"
 						id="bcf6bafa6f6d46b1a923265cec3c8ba1"
-						lineNumber="24">
+						lineNumber="23">
 					<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 							disabled="false"
 							id="6243e52357dc4e1dbd94651a9b63034a"
