@@ -60,6 +60,8 @@ Masterdata relations used to have a foreign key on the source as well, but we ha
 Important: relations can be used to artificially limit result sets as well. Suppose for a specific usecase you only need 50% of all the available entries. You can set link it via relations and limit the resultset like that.
 This creates a solution to the "choice" problem we have had.
 
+@2025-05-09: the usecase has never come up so far and we need the foreign key to easily resolve the categories. Foreign key added again.
+
 ### Proxies
 
 We want to be able to centralize masterdata where it belongs. This may mean one application (in schema A) may need masterdata from say an integration package (in schema B).

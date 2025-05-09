@@ -1,0 +1,94 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="d73aba63cb5242ecbb77767adc1110c6"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b6558ea7b31d47c1b6aebf1871a0406b"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="1abccf4089dd4ec094d5efee89538fb3"
+				serviceId="nabu.cms.core.v2.manage.masterdata.crud.masterDataEntryRelation.services.listForReverseEntryRelations"
+				resultName="resultbc30cceb982d44d89fe9535748b168c6"
+				temporaryMapping="true"
+				x="71"
+				y="52"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="620c52bab1ef4bf5b50d9918acb69386"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/masterDataEntryId</from>
+				<to>filter/sourceId[0]</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9413f889923446babf2780cfd79d1379"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/orderBy</from>
+				<to>orderBy</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="99aae5e037bc4545a1973cb18f236562"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/limit</from>
+				<to>limit</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="15da32a9f0d4423181c032f7bac14909"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/offset</from>
+				<to>offset</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3aa09038e7464379903730353ca853e4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/relationTypeId</from>
+				<to>filter/relationTypeId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="30d3667e7431421daac892aa94cd74f6"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/targetMasterDataCategoryId</from>
+				<to>filter/targetMasterDataCategoryId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="587577c15a50432ba370a5c121440ed4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/query/q</from>
+				<to>filter/q</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="3683c8acd16c4e05977d608024a95b43"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultbc30cceb982d44d89fe9535748b168c6</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+</sequence>
