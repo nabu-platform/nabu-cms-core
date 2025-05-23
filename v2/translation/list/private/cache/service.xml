@@ -29,8 +29,35 @@
 				lineNumber="4">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
-					id="9c7e76e7-7ffc-4cd1-8eb9-6748bc40784f"
+					id="eac1d5534c064b308d0f792cbceda0f3"
 					lineNumber="5">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="96a422f272364a3bba9955032f5ced1e"
+						serviceId="nabu.cms.core.v2.translation.selectLatest"
+						resultName="resulta020e999f68a4988ad088b5050ea1827"
+						temporaryMapping="true"
+						x="270"
+						y="43"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="a19eaf8d15c342e3b433bd94394265a0"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>resulta020e999f68a4988ad088b5050ea1827/results[0]/lastModified</from>
+					<to>lastModified</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="9c7e76e7-7ffc-4cd1-8eb9-6748bc40784f"
+					label="lastModified == null"
+					lineNumber="6">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="0d99f3d1-65f8-4aea-88e8-85e52553dd0a"
@@ -66,7 +93,7 @@
 					disabled="false"
 					id="4701d0bf-c09b-4aa7-83fd-a05adc8d160b"
 					label="information/lastCacheUpdate != null"
-					lineNumber="6">
+					lineNumber="7">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="67b66d72-d714-4fcb-9397-3e9bdc7f10b8"
@@ -141,14 +168,14 @@
 					comment="Compare against client side last modified"
 					disabled="false"
 					id="c5121877-d8f9-4a42-9ef4-b70880325022"
-					lineNumber="7">
+					lineNumber="8">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="754814d2-f123-4bb7-8dec-851ba78931b9"
 						mask="false"
 						optional="false"
 						fixedValue="true">
-					<from>=input/clientCache/lastModified == null || lastModified &gt; input/clientCache/lastModified</from>
+					<from>=input/clientCache/lastModified == null || (lastModified != null &amp;&amp; lastModified &gt; input/clientCache/lastModified)</from>
 					<to>output/hasChanged</to>
 				</steps>
 			</steps>
