@@ -354,12 +354,12 @@
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 							disabled="false"
-							id="ad364364120b4a06bcf0ced07c564fb8"
+							id="9b31aa93a97f46c98ecc28a8a247649e"
 							mask="false"
 							optional="false"
 							patch="false"
 							fixedValue="false">
-						<from>translation</from>
+						<from>existingTranslation</from>
 						<to>object</to>
 					</steps>
 				</steps>
@@ -465,5 +465,61 @@
 			</steps>
 		</steps>
 		<query>input/content/translations</query>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="64a3dacd8cbe481bb246f687d1f910b2"
+			label="translationsToUpdate"
+			lineNumber="16">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="6da8f383a91145c39440abdc8fa3aefa"
+				serviceId="nabu.services.jdbc.Services.update"
+				resultName="resultb5265a628fcc442f806383b375fe5327"
+				temporaryMapping="true"
+				x="59"
+				y="62"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="36d649e3ef3c4eddb0a596aed9f7dffb"
+					mask="false"
+					optional="false"
+					patch="false"
+					fixedValue="false">
+				<from>translationsToUpdate</from>
+				<to>instances</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="396f87b9ad5a4fb78bf90242275297d7"
+			label="translationsToDelete"
+			lineNumber="17">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="d9830fc1e39449c594fe681370e1efa1"
+				serviceId="nabu.services.jdbc.Services.delete"
+				resultName="result190355d90b9d4788b69bcc0acb5608cb"
+				temporaryMapping="true"
+				x="98"
+				y="65"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d1bd300a13f04e41b3d8f69ae123898d"
+					mask="false"
+					optional="false"
+					patch="false"
+					fixedValue="false">
+				<from>translationsToDelete</from>
+				<to>instances</to>
+			</steps>
+		</steps>
 	</steps>
 </sequence>
