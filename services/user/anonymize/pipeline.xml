@@ -6,4 +6,5 @@
     <structure name="output"/>
     <structure collectionName="accounts" definition="nabu.cms.core.crud.account.types.output" duplicate="id, created, modified" enricher="nabu.cms.core.crud.account.services.list" name="account" persister="nabu.cms.core.crud.account.batch.updateAll"/>
     <structure collectionName="users" definition="nabu.cms.core.crud.user.types.output" duplicate="id, created, modified" enricher="nabu.cms.core.crud.user.services.list" name="user" persister="nabu.cms.core.crud.user.batch.updateAll"/>
+    <structure collectionName="userGroups" definition="nabu.cms.core.crud.userGroup.types.output" enricher="nabu.cms.core.crud.userGroup.services.list" maxOccurs="unbounded" minOccurs="0" name="groupMemberships" persister="nabu.cms.core.crud.userGroup.batch.updateAll"/>
 </structure>

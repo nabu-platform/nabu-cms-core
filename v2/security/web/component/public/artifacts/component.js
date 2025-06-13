@@ -74,6 +74,18 @@ window.addEventListener("load", function() {
 					"type": "string"
 				}]
 			});
+			nabu.page.provide("page-function", {
+				id: "cms.revoke",
+				async: true,
+				inputs: [{
+					"name": "deviceId",
+					"required": false,
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}]
+			});
 		}
 	});
 });

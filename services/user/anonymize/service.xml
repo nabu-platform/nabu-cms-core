@@ -474,15 +474,72 @@
 		</steps>
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="We must remove all security for this user"
+			disabled="false"
+			id="ed7949472d1f4925b37ce8d9a539964f"
+			lineNumber="16">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="34dc36252b034040911ecab8ff1e873e"
+				serviceId="nabu.cms.core.crud.userGroup.services.list"
+				resultName="result299409e7b28b468ea80b77f953734ece"
+				temporaryMapping="true"
+				x="73"
+				y="127"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="eac202f33e124d6d8514c2a8ac0d45a7"
+					fixedValue="false">
+				<from>input/userId</from>
+				<to>filter/userId[0]</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1109d5e8af8a498f9886875191d232dc"
+				fixedValue="false">
+			<from>result299409e7b28b468ea80b77f953734ece/results</from>
+			<to>groupMemberships</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="a20fa3dcc34342a18c1366b8b7122818"
+			label="groupMemberships"
+			lineNumber="17">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="857decb9ad154749873be724c2b0bf89"
+				serviceId="nabu.services.jdbc.Services.delete"
+				resultName="resultd7c72f3ba28a42b19977c848040b41f2"
+				temporaryMapping="true"
+				x="74"
+				y="41"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="88b9d3eb34084f6caa044bd6e7e5aaa3"
+					fixedValue="false">
+				<from>groupMemberships</from>
+				<to>instances</to>
+			</steps>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			comment="TODO: anonymize in proxy contexts"
 			disabled="false"
 			id="2c84ae55f83f44d9baa7eaad6760db42"
-			lineNumber="16">
+			lineNumber="18">
 	</steps>
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="8ed32228accb4c2e973340d303dab9d7"
-			lineNumber="17">
+			lineNumber="19">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="cf52af084c6b4e1eb886826985569d22"

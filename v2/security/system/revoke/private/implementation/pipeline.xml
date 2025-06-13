@@ -1,0 +1,6 @@
+<structure interface="nabu.cms.core.v2.security.system.revoke:api" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <field maxOccurs="unbounded" name="notTokenId" type="java.lang.String"/>
+    <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
+</structure>

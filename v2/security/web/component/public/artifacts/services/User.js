@@ -396,6 +396,13 @@ Vue.service("user", {
 			}, promise);
 			return promise;
 		},
+		revoke: function(deviceId) {
+			var parameters = {};
+			if (deviceId) {
+				parameters.deviceId = deviceId instanceof Array ? deviceId : [deviceId];
+			}
+			return this.$services.swagger.execute("nabu.cms.core.v2.security.web.revoke", parameters);
+		},
 		login: function(username, password, remember, type, attemptRedirect) {
 			var self = this;
 			var promise = this.$services.q.defer();
