@@ -5,7 +5,7 @@
     <structure name="output"/>
     <structure definition="be.nabu.libs.http.jwt.JWTBody" minOccurs="0" name="response"/>
     <field minOccurs="0" name="now" type="java.util.Date"/>
-    <structure collectionName="Users" definition="nabu.cms.core.crud.user.types.output" duplicate="id,created,modified" name="user"/>
+    <structure collectionName="Users" definition="nabu.cms.core.crud.user.types.output" duplicate="id,created,modified" enricher="nabu.cms.core.crud.user.services.list" name="user" persister="nabu.cms.core.crud.user.batch.updateAll"/>
     <field minOccurs="0" name="nonce" type="java.lang.String"/>
     <structure definition="nabu.web.application.types.WebApplicationInformation" minOccurs="0" name="current"/>
     <structure collectionName="Roles" definition="nabu.cms.core.types.model.core.Role" maxOccurs="unbounded" minOccurs="0" name="globalRoles" namespace="nabu.cms.core.types.model.core"/>

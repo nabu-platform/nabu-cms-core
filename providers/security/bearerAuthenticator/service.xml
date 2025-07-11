@@ -243,7 +243,8 @@
 						id="b33a740ef44c4f2a83214e48b09e4607"
 						label="response/rlm != null &amp;&amp; response/rlm != input/realm"
 						lineNumber="8"
-						code="CMS-TOKEN-INVALID-REALM" xsi:nil="true"/>
+						code="CMS-TOKEN-INVALID-REALM"
+						whitelist="false" xsi:nil="true"/>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						comment="If we have a nonce, we have to resolve the authentication id"
 						disabled="false"
@@ -355,7 +356,8 @@
 							id="9b237a24-3458-405c-964e-98511a5591ce"
 							label="!output/token"
 							lineNumber="12"
-							message="Could not authenticate jwt token" xsi:nil="true"/>
+							message="Could not authenticate jwt token"
+							whitelist="false" xsi:nil="true"/>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 						comment="If we have no alias, look up the user"
@@ -403,7 +405,8 @@
 							id="cef88348-3759-4f38-be99-f96da7e18d68"
 							label="!user"
 							lineNumber="15"
-							code="CMS-TOKEN-INVALID-USER" xsi:nil="true"/>
+							code="CMS-TOKEN-INVALID-USER"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="5a552ff08b324d67a892dc79ee96907f"
@@ -411,7 +414,8 @@
 							lineNumber="16"
 							code="CMS-TOKEN-DISABLED-USER"
 							alias="=user/alias"
-							realm="=user/realm" xsi:nil="true"/>
+							realm="=user/realm"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="06fdcfda79db4a2887b488c45e92b6aa"
@@ -419,7 +423,8 @@
 							lineNumber="17"
 							code="CMS-TOKEN-UNVERIFIED-USER"
 							alias="=user/alias"
-							realm="=user/realm" xsi:nil="true"/>
+							realm="=user/realm"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="e508b2b31b1c468486d2007cd1786b12"
@@ -427,7 +432,8 @@
 							lineNumber="18"
 							code="CMS-TOKEN-INACTIVE-USER"
 							alias="=user/alias"
-							realm="=user/realm" xsi:nil="true"/>
+							realm="=user/realm"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="522fbfb7321d43a6b8fd8ff250987e60"
@@ -435,7 +441,8 @@
 							lineNumber="19"
 							code="CMS-TOKEN-INACTIVE-USER"
 							alias="=user/alias"
-							realm="=user/realm" xsi:nil="true"/>
+							realm="=user/realm"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 							disabled="false"
 							id="13a0858c49944958aa8dae4e1a7ace3c"
@@ -443,7 +450,8 @@
 							lineNumber="20"
 							code="CMS-TOKEN-INVALID-REALM"
 							alias="=user/alias"
-							realm="=user/realm" xsi:nil="true"/>
+							realm="=user/realm"
+							whitelist="false" xsi:nil="true"/>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 							comment="Map the token"
 							disabled="false"
@@ -528,7 +536,7 @@
 							comment="You are not logged in, only allowed if $guest is one of the roles"
 							disabled="false"
 							id="e89614be-9294-407b-bad7-11a6c5951942"
-							label="output/token/name == null || output/token/realm == null "
+							label="output/token/name == null || output/token/realm == null"
 							lineNumber="27">
 						<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
 								description="=&quot;User &quot; + user/alias + &quot; does not have one of the following roles: &quot; + stringifiedAllowedRoles"
@@ -537,7 +545,8 @@
 								label="&quot;$guest&quot; !# input/configuration/security/allowedRoles"
 								lineNumber="28"
 								code="CMS-AUTH-5"
-								message="The anonymous user does not have one of the mandated roles" xsi:nil="true"/>
+								message="The anonymous user does not have one of the mandated roles"
+								whitelist="false" xsi:nil="true"/>
 					</steps>
 					<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
 							disabled="false"
@@ -640,7 +649,8 @@
 								code="CMS-AUTH-5"
 								message="The user does not have one of the mandated roles"
 								alias="=user/alias"
-								realm="=user/realm" xsi:nil="true"/>
+								realm="=user/realm"
+								whitelist="false" xsi:nil="true"/>
 					</steps>
 				</steps>
 			</steps>
