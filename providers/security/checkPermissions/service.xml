@@ -1606,6 +1606,79 @@
 							<to>applicableActionIds</to>
 						</steps>
 					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							comment="If we have a role provider, add external roles"
+							disabled="false"
+							id="68343124b202401394b43049be403dcc"
+							label="input/roleProviderId != null"
+							lineNumber="60">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="abe8cba8a5bb4e0eb407e441597e63f8"
+								serviceId="nabu.cms.core.interfaces.roleProvider"
+								resultName="result48635630608c40b49459cd0cfed94d3e"
+								temporaryMapping="true"
+								x="237"
+								y="125"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="913560816f984cd0aa5f256cbf613022"
+									fixedValue="false">
+								<from>input/userId</from>
+								<to>userId</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="de1366c602d44058a4abc25ced24c9b6"
+									fixedValue="false">
+								<from>applicableNodeIds</from>
+								<to>nodeIds</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="f1742e6783f94850aac4226b2186f13e"
+									fixedValue="false">
+								<from>input/roleProviderId</from>
+								<to>implementationId</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="3ccaebc2177649ca8625974c4ffe9308"
+								serviceId="nabu.utils.List.addAll"
+								resultName="result19825a14b54e45c787aeb7698f44260f"
+								temporaryMapping="true"
+								x="499"
+								y="321"
+								invocationOrder="1"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="22d9996b411247a39f38ed43eaa6009b"
+									fixedValue="false">
+								<from>result48635630608c40b49459cd0cfed94d3e/roleIds</from>
+								<to>objects</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="02037c5ed48f4950b1606d6b6fd59fff"
+									fixedValue="false">
+								<from>applicableRoleIds</from>
+								<to>list</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="1205d6a36acd4c9fbef1ba255737d34d"
+								fixedValue="false">
+							<from>result19825a14b54e45c787aeb7698f44260f/list</from>
+							<to>applicableRoleIds</to>
+						</steps>
+					</steps>
 				</steps>
 			</steps>
 		</steps>
@@ -1613,7 +1686,7 @@
 				comment="Check the action roles for a valid combination"
 				disabled="false"
 				id="92f09a6d5a2d40d1ab762b3de21fda76"
-				lineNumber="60">
+				lineNumber="61">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="033320d834e34a98ab09546e2a1eae2d"
@@ -1627,7 +1700,7 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
 				id="0b8cee46d8e34793a93f9d61410bae29"
-				lineNumber="61">
+				lineNumber="62">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
 					id="ce37eea93a5347339407d7db608b719f"
@@ -1662,13 +1735,13 @@
 		<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 				disabled="false"
 				id="b4c43c2bb3a547d68e37d656954a9c1d"
-				lineNumber="62"
+				lineNumber="63"
 				query="amountOfApplicableActionRoles">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="22292ce2c38040b8b74ca984e2a85bec"
 					label="0"
-					lineNumber="63">
+					lineNumber="64">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="d4effd37adb54875bb9e5e5bd5009310"
@@ -1712,7 +1785,7 @@
 			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 					disabled="false"
 					id="f43601248f3646c8b25fafdbd4989fcc"
-					lineNumber="64">
+					lineNumber="65">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 						disabled="false"
 						id="2dbe961fe4124497805b7272d442ccdd"

@@ -20,11 +20,9 @@
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
-				id="18dea06a-40e8-44fb-868a-a69502bc9327"
-				mask="false"
-				optional="false"
+				id="4800e7e698204dabac38143aed62cb3d"
 				fixedValue="false">
-			<from>result5f4884b803284850a73a192525431e54/content/realms/name</from>
+			<from>result5f4884b803284850a73a192525431e54/content/results/name</from>
 			<to>allowedRealms</to>
 		</steps>
 	</steps>
@@ -38,7 +36,8 @@
 				id="219bb301-bc1c-48b8-ac51-bfec58004544"
 				label="input/query/realm !# allowedRealms"
 				lineNumber="4"
-				code="403" xsi:nil="true"/>
+				code="403"
+				whitelist="false" xsi:nil="true"/>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				comment="Drop current"
 				disabled="false"
@@ -124,6 +123,13 @@
 					fixedValue="false">
 				<from>allowedRealms</from>
 				<to>filter/realm</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4325dc72579e4d2fa6ccd7b1adccb5d0"
+					fixedValue="false">
+				<from>input/query/ids</from>
+				<to>filter/id</to>
 			</steps>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"

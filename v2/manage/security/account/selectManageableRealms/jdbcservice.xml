@@ -2,9 +2,8 @@
 	<outputDefinition>nabu.cms.core.types.emodel.core.Node</outputDefinition>
 	<sql>select *
 from ~nodes n 
-	join ~contexts c on n.id = c.id
 	-- we are interested in user realms!
-	join ~master_data_entries mde on mde.id = c.context_type_id and mde.name = 'realm'
+	join ~components c on n.component_id = c.id and c.name = 'realm'
 	join ~group_roles gr on gr.node_id = n.id
 	join ~actions a on gr.role_id = ar.role_id
 	join ~action_roles ar on ar.action_id = a.id
