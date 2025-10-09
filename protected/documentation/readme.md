@@ -6,6 +6,10 @@ For operational translations, the real time binding is greatly improved by addin
 create index idx_translation_binding on translations(instance_id, name, language_id);
 ```
 
+## Unique constraints
+
+unique on realm + lowercase(alias)
+
 # TODO
 
 We need a node connection between "$global" and all other root nodes.
