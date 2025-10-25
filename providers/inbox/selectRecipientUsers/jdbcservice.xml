@@ -1,0 +1,18 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.cms.core.types.emodel.core.User</outputDefinition>
+	<sql>select * 
+from ~users u
+	join ~nodes n on u.id = n.id
+	join (select 
+		ug.user_id
+	from ~group_roles gr
+		join ~nodes n on gr.node_id = n.id and n.id = :nodeId
+		join ~groups g on gr.group_id = g.id
+		join ~user_groups ug on ug.group_id = g.id
+		join ~action_roles ar on ar.role_id = gr.role_id
+		join ~actions a on ar.action_id = a.id and a.name = any(:actions)
+	where (:nodeId is null or gr.node_id = :nodeId
+			or (n.path like '%' || :nodeId || '%' and gr.inherit = true))
+	group by ug.user_id) m on m.user_id = u.id
+where n.enabled = true</sql>
+</jdbcService>
