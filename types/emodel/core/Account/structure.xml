@@ -7,7 +7,7 @@
     <field comment="Only filled in if it is an external URL that was received through openid" identifiable="true" minOccurs="0" name="profile" type="java.net.URI"/>
     <field comment="Only filled in if it is an external URL that was received through openid" identifiable="true" minOccurs="0" name="picture" type="java.net.URI"/>
     <field identifiable="true" minOccurs="0" name="website" type="java.net.URI"/>
-    <field comment="Primary email for this user" identifiable="true" minOccurs="0" name="email" type="java.lang.String"/>
+    <field comment="Primary email for this user" identifiable="true" minOccurs="0" name="email" pattern=".*@.*" type="java.lang.String"/>
     <field minOccurs="0" name="emailVerified" type="java.lang.Boolean"/>
     <field minOccurs="0" name="locale" type="java.lang.String"/>
     <field minOccurs="0" name="timezone" type="java.lang.String"/>
