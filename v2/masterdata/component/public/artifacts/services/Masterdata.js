@@ -75,8 +75,21 @@ Vue.service("masterdata", {
 			});
 			return result;
 		},
-	},	
+	},
 	methods: {
+		calculateCache: function() {
+			// add a non-reactive map
+			var cachedEntries = {};
+			this.preloaded.forEach(function(cat) {
+				if (cat.entries) {
+					cat.entries.forEach(function(entry) {
+						cachedEntries[entry.id] = entry;
+						cachedEntries[cat.name + "::" + entry.name] = entry;
+					});
+				}
+			});
+			this.cachedEntries = cachedEntries;
+		},
 		// add a label if it isn't there yet
 		labelize: function(entry) {
 			if (!entry.label) {
@@ -113,6 +126,13 @@ Vue.service("masterdata", {
 			return null;
 		},
 		entry: function(category, name) {
+			if (!this.cachedEntries) {
+				this.calculateCache();
+			}
+			var result = name == null ? this.cachedEntries[category] : this.cachedEntries[category + "::" + name];
+			if (result) {
+				return result;
+			}
 			// if we didn't get a name, we must be searching by id
 			if (!name) {
 				for (var i = 0; i < this.preloaded.length; i++) {
