@@ -2,6 +2,7 @@
 <restInterface>
     <method>GET</method>
     <path>/realm/{realmId}/impersonateables</path>
+    <queryParameters>blacklist</queryParameters>
     <role>$user</role>
     <permissionAction>user.list</permissionAction>
     <permissionContext>=input/path/realmId</permissionContext>
