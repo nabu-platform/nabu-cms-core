@@ -4,8 +4,8 @@
     <structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
     <structure definition="be.nabu.libs.authentication.api.Token" minOccurs="0" name="token"/>
     <field minOccurs="0" name="expires" type="java.util.Date"/>
-    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" name="node"/>
-    <structure collectionName="userDevices" definition="nabu.cms.core.crud.userDevice.types.output" minOccurs="0" name="currentDevice"/>
+    <structure collectionName="nodes" definition="nabu.cms.core.crud.node.types.output" enricher="nabu.cms.core.crud.node.services.list" name="node" persister="nabu.cms.core.crud.node.batch.updateAll"/>
+    <structure collectionName="userDevices" definition="nabu.cms.core.crud.userDevice.types.output" enricher="nabu.cms.core.crud.userDevice.services.list" minOccurs="0" name="currentDevice" persister="nabu.cms.core.crud.userDevice.batch.updateAll"/>
     <field name="canLogin" type="java.lang.Boolean"/>
     <structure definition="nabu.utils.types.NodeDescription" maxOccurs="unbounded" minOccurs="0" name="implementations"/>
     <field name="onlyOnce" type="java.lang.Boolean"/>
