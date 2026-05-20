@@ -4,10 +4,10 @@
     <field name="modified" timezone="UTC" type="java.util.Date"/>
     <field minOccurs="0" name="started" timezone="UTC" type="java.util.Date"/>
     <field minOccurs="0" name="stopped" timezone="UTC" type="java.util.Date"/>
-    <field name="tableName" type="java.lang.String"/>
-    <field name="fieldName" type="java.lang.String"/>
+    <field indexed="true" name="tableName" type="java.lang.String"/>
+    <field indexed="true" name="fieldName" type="java.lang.String"/>
     <field minOccurs="0" name="newValue" type="java.lang.String"/>
-    <field name="instanceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field indexed="true" name="instanceId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field name="changeType" type="java.lang.String"/>
     <field comment="Can point to a node audit, however this is no longer used really" minOccurs="0" name="contextId" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
     <field comment="Links to the global correlation id" minOccurs="0" name="correlationId" type="java.lang.String"/>
