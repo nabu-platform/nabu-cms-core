@@ -1,184 +1,102 @@
-<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		disabled="false"
-		id="f391ab04-fd6a-4ce3-b021-de45e815f58d"
-		lineNumber="1">
-	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
-			disabled="false"
-			id="5197a7c6-aa17-44d5-8eda-712272f72bfd"
-			lineNumber="2">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-				comment="If we are requesting a different language, it sure has changed!"
-				disabled="false"
-				id="89b7f1c8-6e32-4382-976f-7b0f626949f7"
-				label="input/clientCache/etag != input/language"
-				lineNumber="3">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-					disabled="false"
-					id="06e12eda-bab5-4113-8ae8-4a7ca826bd7a"
-					mask="false"
-					optional="false"
-					fixedValue="true">
+<sequence id="f391ab04-fd6a-4ce3-b021-de45e815f58d">
+	<switch id="5197a7c6-aa17-44d5-8eda-712272f72bfd">
+		<map id="89b7f1c8-6e32-4382-976f-7b0f626949f7"
+			comment="If we are requesting a different language, it sure has changed!"
+			label="input/clientCache/etag != input/language">
+			<link id="06e12eda-bab5-4113-8ae8-4a7ca826bd7a"
+				fixedValue="true">
 				<from>true</from>
 				<to>output/hasChanged</to>
-			</steps>
-		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
-				comment="Otherwise, we check the last cache update"
-				disabled="false"
-				id="acc913c6-abf2-4726-b063-56e8a3d520c0"
-				lineNumber="4">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					disabled="false"
-					id="eac1d5534c064b308d0f792cbceda0f3"
-					lineNumber="5">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="96a422f272364a3bba9955032f5ced1e"
-						serviceId="nabu.cms.core.v2.translation.selectLatest"
-						resultName="resulta020e999f68a4988ad088b5050ea1827"
-						temporaryMapping="true"
-						x="270"
-						y="43"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="a19eaf8d15c342e3b433bd94394265a0"
-						mask="false"
-						optional="false"
-						fixedValue="false">
+			</link>
+		</map>
+		<sequence id="acc913c6-abf2-4726-b063-56e8a3d520c0"
+			comment="Otherwise, we check the last cache update">
+			<map id="eac1d5534c064b308d0f792cbceda0f3">
+				<invoke id="96a422f272364a3bba9955032f5ced1e"
+					invocationOrder="1"
+					resultName="resulta020e999f68a4988ad088b5050ea1827"
+					serviceId="nabu.cms.core.v2.translation.selectLatest"
+					x="522"
+					y="59">
+					<link id="1430e1146896497787648c74d34fbf79">
+						<from>result7933a1b630294650a9c22c432199a223/connectionId</from>
+						<to>connection</to>
+					</link>
+				</invoke>
+				<link id="a19eaf8d15c342e3b433bd94394265a0">
 					<from>resulta020e999f68a4988ad088b5050ea1827/results[0]/lastModified</from>
 					<to>lastModified</to>
-				</steps>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					disabled="false"
-					id="9c7e76e7-7ffc-4cd1-8eb9-6748bc40784f"
-					label="lastModified == null"
-					lineNumber="6">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="0d99f3d1-65f8-4aea-88e8-85e52553dd0a"
-						serviceId="nabu.web.application.Services.information"
-						resultName="result35d53e64f5524f4c971efe6b4bb20966"
-						temporaryMapping="true"
-						x="74"
-						y="46"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="ace4c1ea-fbe8-4842-a310-4e6e780b5932"
-							mask="false"
-							optional="false"
-							fixedValue="false">
+				</link>
+				<invoke id="7933a1b630294650a9c22c432199a223"
+					resultName="result7933a1b630294650a9c22c432199a223"
+					serviceId="nabu.protocols.jdbc.pool.Services.connectionForContext"
+					x="36"
+					y="35">
+				</invoke>
+			</map>
+			<map id="9c7e76e7-7ffc-4cd1-8eb9-6748bc40784f"
+				label="lastModified == null">
+				<invoke id="0d99f3d1-65f8-4aea-88e8-85e52553dd0a"
+					resultName="result35d53e64f5524f4c971efe6b4bb20966"
+					serviceId="nabu.web.application.Services.information"
+					x="74"
+					y="46">
+					<link id="ace4c1ea-fbe8-4842-a310-4e6e780b5932">
 						<from>input/webApplicationId</from>
 						<to>webApplicationId</to>
-					</steps>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="d07f3321-473d-4482-8350-2b783855887d"
-						mask="false"
-						optional="false"
-						fixedValue="false">
+					</link>
+				</invoke>
+				<link id="d07f3321-473d-4482-8350-2b783855887d">
 					<from>result35d53e64f5524f4c971efe6b4bb20966/information</from>
 					<to>information</to>
-				</steps>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					disabled="false"
-					id="4701d0bf-c09b-4aa7-83fd-a05adc8d160b"
-					label="information/lastCacheUpdate != null"
-					lineNumber="7">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="67b66d72-d714-4fcb-9397-3e9bdc7f10b8"
-						serviceId="nabu.utils.Date.toTimestamp"
-						resultName="result5eefffdf1fe34d2bbdf083c8fd80f7e2"
-						temporaryMapping="true"
-						x="75"
-						y="63"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="e5a5c428-e59d-4172-a584-51ac3f9be404"
-							mask="false"
-							optional="false"
-							fixedValue="true">
+				</link>
+			</map>
+			<map id="4701d0bf-c09b-4aa7-83fd-a05adc8d160b"
+				label="information/lastCacheUpdate != null">
+				<invoke id="67b66d72-d714-4fcb-9397-3e9bdc7f10b8"
+					resultName="result5eefffdf1fe34d2bbdf083c8fd80f7e2"
+					serviceId="nabu.utils.Date.toTimestamp"
+					x="75"
+					y="63">
+					<link id="e5a5c428-e59d-4172-a584-51ac3f9be404"
+						fixedValue="true">
 						<from>true</from>
 						<to>asSeconds</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="52b3103d-76a8-4d30-9bf9-dab3738a9e6c"
-							mask="false"
-							optional="false"
-							fixedValue="false">
+					</link>
+					<link id="52b3103d-76a8-4d30-9bf9-dab3738a9e6c">
 						<from>information/lastCacheUpdate</from>
 						<to>date</to>
-					</steps>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
-						disabled="false"
-						id="6f14a276-cfe8-4e00-81ca-35d2f22fc2b0"
-						serviceId="nabu.utils.Date.fromTimestamp"
-						resultName="result0c9e1b6c3c3c4f6799aea302a51afcc2"
-						temporaryMapping="true"
-						x="445"
-						y="187"
-						invocationOrder="1"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="23b05f8f-a632-46ab-bb00-f792f1ff3fdb"
-							mask="false"
-							optional="false"
-							fixedValue="true">
+					</link>
+				</invoke>
+				<invoke id="6f14a276-cfe8-4e00-81ca-35d2f22fc2b0"
+					invocationOrder="1"
+					resultName="result0c9e1b6c3c3c4f6799aea302a51afcc2"
+					serviceId="nabu.utils.Date.fromTimestamp"
+					x="445"
+					y="187">
+					<link id="23b05f8f-a632-46ab-bb00-f792f1ff3fdb"
+						fixedValue="true">
 						<from>true</from>
 						<to>asSeconds</to>
-					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="91fa32ee-9383-403f-8d63-38cafe02198c"
-							mask="false"
-							optional="false"
-							fixedValue="false">
+					</link>
+					<link id="91fa32ee-9383-403f-8d63-38cafe02198c">
 						<from>result5eefffdf1fe34d2bbdf083c8fd80f7e2/timestamp</from>
 						<to>timestamp</to>
-					</steps>
-				</steps>
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="199cb863-72e0-4110-a6e0-ad0e57ae4ca3"
-						mask="false"
-						optional="false"
-						fixedValue="false">
+					</link>
+				</invoke>
+				<link id="199cb863-72e0-4110-a6e0-ad0e57ae4ca3">
 					<from>result0c9e1b6c3c3c4f6799aea302a51afcc2/date</from>
 					<to>lastModified</to>
-				</steps>
-			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-					comment="Compare against client side last modified"
-					disabled="false"
-					id="c5121877-d8f9-4a42-9ef4-b70880325022"
-					lineNumber="8">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-						disabled="false"
-						id="754814d2-f123-4bb7-8dec-851ba78931b9"
-						mask="false"
-						optional="false"
-						fixedValue="true">
+				</link>
+			</map>
+			<map id="c5121877-d8f9-4a42-9ef4-b70880325022"
+				comment="Compare against client side last modified">
+				<link id="754814d2-f123-4bb7-8dec-851ba78931b9"
+					fixedValue="true">
 					<from>=input/clientCache/lastModified == null || (lastModified != null &amp;&amp; lastModified &gt; input/clientCache/lastModified)</from>
 					<to>output/hasChanged</to>
-				</steps>
-			</steps>
-		</steps>
-	</steps>
+				</link>
+			</map>
+		</sequence>
+	</switch>
 </sequence>
