@@ -1,4 +1,4 @@
-<sequence id="cf45d3da4e614f1b94d2d214729afda4">
+<sequence id="cf92380d3b7d47bb9e79203de2c50bef">
 	<switch id="bae67e89-a754-4e72-be6a-88a291111000"
 		query="input/credentials/subType">
 		<map id="be4c9229-89c0-4cfb-9d2f-cf9438201659"
@@ -45,105 +45,121 @@
 			<to>authenticationType</to>
 		</link>
 	</map>
-	<switch id="f9096bcb79064aaab14810fdf4f0c0e7"
+	<switch id="7a3b02d9dd764a53989c8cc831645a11"
 		comment="Use some defaults"
 		label="authenticationType == null"
 		query="input/credentials/type">
-		<map id="ed3b5da5dbfc4138ba72b9c1bd1eda3b"
+		<map id="2bd4c1b6967f455b869fb9d04ecadd0d"
 			comment="Defaults to password as well"
 			label="null">
 		</map>
-		<map id="37a40328f53742efbc17f2c9c5684535"
+		<map id="3fed252b70734b55bfaaee9528c906fe"
 			label="&quot;password&quot;">
-			<link id="708fb3ec98f34e4f9e1313f43ad9f7ea"
+			<link id="8bc07d1d7533424f8d4d5b50df3efa94"
 				fixedValue="true">
 				<from>password</from>
 				<to>authenticationType/name</to>
 			</link>
 		</map>
-		<map id="aa19c82e0eb248fdbb3f2e66e2a5933b"
+		<map id="d528902771924803a17ac3f0bc96d4e5"
 			label="&quot;secret&quot;">
-			<link id="1d55271b60954105ba98a44c7fd03cd6"
+			<link id="35305408051a4f9e8f49449ef410f77f"
 				fixedValue="true">
 				<from>secret</from>
 				<to>authenticationType/name</to>
 			</link>
 		</map>
-		<map id="da31f83ee11948b1aa8f319837771406"
+		<map id="3706f6a0883c4804be2876e0488f3747"
 			label="&quot;temporary&quot;">
-			<link id="9f545ceda99a4837a1e6d83a83f8b93c"
+			<link id="8a57cee18abd4b4b8fbc82b2e20144ef"
 				fixedValue="true">
 				<from>temporary</from>
 				<to>authenticationType/name</to>
 			</link>
 		</map>
-		<map id="e0056e3412a340d9a1f61c882e37a5a7"
+		<map id="bf6ae1160d4a49c3ad5807ddd362f864"
 			label="&quot;webauthn&quot;">
-			<link id="240f73f254614505b890d852a6f72406"
+			<link id="cd8d66864fc14de8b1ff98aa0a7ff5aa"
 				fixedValue="true">
 				<from>webauthn</from>
 				<to>authenticationType/name</to>
 			</link>
 		</map>
+		<map id="1ec60acf3fe14ff3909dd932d51f0474"
+			label="&quot;webeid&quot;">
+			<link id="34c4e42c0618457095fc345a02b8ccd8"
+				fixedValue="true">
+				<from>webeid</from>
+				<to>authenticationType/name</to>
+			</link>
+		</map>
 	</switch>
-	<switch id="500867ba3624497286af3ff777e83550"
+	<switch id="ca603f4b3cc346d0a7121e903a4b5f74"
 		comment="We know some defaults"
 		label="authenticationType/authenticationServiceId == null"
 		query="authenticationType/name">
-		<map id="ff03bb8dd8a846e29af70211cb0cafed"
+		<map id="231d99e4421845bf9c318f9b884299ed"
 			label="&quot;password&quot;">
-			<link id="0eaefc1f9e764998b6014224e3ba2a48"
+			<link id="e50e5bcd683f4d38b81632732c0622a3"
 				fixedValue="true">
 				<from>nabu.cms.core.providers.security.typedAuthenticators.passwordAuthenticator</from>
 				<to>authenticationType/authenticationServiceId</to>
 			</link>
 		</map>
-		<map id="dbe48293ec2b49c5ac7c82e72a3f983c"
+		<map id="2d9d4bb36383497b9f864b1865ce013b"
 			label="&quot;secret&quot;">
-			<link id="4c49e6d0628b419dbe3bbc9d1bfd611e"
+			<link id="85bf661295c54d31be0f38368a7e30c4"
 				fixedValue="true">
 				<from>nabu.cms.core.providers.security.typedAuthenticators.secretAuthenticator</from>
 				<to>authenticationType/authenticationServiceId</to>
 			</link>
 		</map>
-		<map id="52b558d5bc45498a89fd919304127f57"
+		<map id="57f963a9f2694818b4f2cb59dfacc0a1"
 			label="&quot;temporary&quot;">
-			<link id="2d795735c2604c869ad6dbc94b06c37f"
+			<link id="7999e06f9898418dbe4cee2843f53c18"
 				fixedValue="true">
 				<from>nabu.cms.core.providers.security.typedAuthenticators.temporaryAuthenticator</from>
 				<to>authenticationType/authenticationServiceId</to>
 			</link>
 		</map>
-		<map id="ea0cb9c1c34f4e8ba74c1d7f1b3162b4"
+		<map id="7ae3b683f9cd4312a9de6460877e1760"
 			label="&quot;webauthn&quot;">
-			<link id="0e5387a865b245769629fa2fa92df7d7"
+			<link id="4242836cc6464058a88dc18ba7371c38"
 				fixedValue="true">
 				<from>nabu.cms.authentication.webauthn.providers.authenticate</from>
 				<to>authenticationType/authenticationServiceId</to>
 			</link>
 		</map>
-		<map id="badeb67a55a54d869279eecc729be7a5">
-			<invoke id="15a5dd1ed09e407191f80ff1830ce4a6"
+		<map id="fefccb66fe254aa8bd61390d33daeaab"
+			label="&quot;webeid&quot;">
+			<link id="26bfd50d79624e9f9795779249b39e5a"
+				fixedValue="true">
+				<from>nabu.cms.authentication.webeid.providers.authenticate</from>
+				<to>authenticationType/authenticationServiceId</to>
+			</link>
+		</map>
+		<map id="dcea744e9a9e4988a832945b1370926e">
+			<invoke id="b3218f1109734338ad058dd8094e348e"
 				resultName="resultb141905d54d24fb6b4196b17e369f828"
 				serviceId="nabu.utils.reflection.Service.listImplementations"
 				x="25"
 				y="25">
-				<link id="d6859b1b6a7a4352957a830c706fc755"
+				<link id="4adf5314af104acc9b70040a1e06e22b"
 					fixedValue="true">
 					<from>be.nabu.eai.authentication.api.TypedAuthenticator.authenticate</from>
 					<to>interfaceId</to>
 				</link>
-				<link id="87ad351da7b1442a9b5e1e2328bdc0e8"
+				<link id="6a68bef87b114b3db8db4e9bf6d18ee7"
 					fixedValue="true">
 					<from>authenticationType</from>
 					<to>properties[0]/key</to>
 				</link>
-				<link id="ab35e3a1f92941ec8e2c2ddd510283aa">
+				<link id="380bbb7e41b54ff1804a6576382eeb03">
 					<from>name</from>
 					<to>properties[0]/value</to>
 				</link>
 			</invoke>
-			<link id="8d6c6fba589f48d79d9cff8cbfcfd8d4">
+			<link id="8dc2f4d1378648b19ade63c46b39df3b">
 				<from>resultb141905d54d24fb6b4196b17e369f828/implementations[0]/id</from>
 				<to>authenticationType/authenticationServiceId</to>
 			</link>

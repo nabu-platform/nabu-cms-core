@@ -1,0 +1,13 @@
+<structure interface="nabu.cms.core.v2.security.web.initiateChallenge:api" name="pipeline">
+	<structure name="input"/>
+	<structure name="output"/>
+	<structure definition="nabu.cms.core.types.emodel.core.User" minOccurs="0" name="user"/>
+	<field maxOccurs="unbounded" minOccurs="0" name="realms" type="java.lang.String"/>
+	<field minOccurs="0" name="contextId" type="java.lang.String"/>
+	<field minOccurs="0" name="realm" type="java.lang.String"/>
+	<field minOccurs="0" name="ceremonyId" type="java.util.UUID"/>
+	<field minOccurs="0" name="expires" type="java.util.Date"/>
+	<field minOccurs="0" name="canLogin" type="java.lang.Boolean"/>
+	<structure definition="nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes.results" maxOccurs="unbounded" minOccurs="0" name="authenticationTypes"/>
+	<structure definition="be.nabu.eai.module.web.application.api.TemporaryAuthentication" minOccurs="0" name="authentication"/>
+</structure>

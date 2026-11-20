@@ -1,8 +1,8 @@
 <structure name="pipeline">
 	<structure name="input">
 		<field name="userId" type="java.util.UUID"/>
-		<field minOccurs="0" name="implementationId" type="java.lang.String"/>
-		<field minOccurs="0" name="useAsContext" type="java.lang.Boolean"/>
 	</structure>
-	<structure name="output"/>
+	<structure name="output">
+		<field comment="Can be a string or a json or..." minOccurs="0" name="challenge" type="java.lang.String"/>
+	</structure>
 </structure>

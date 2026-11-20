@@ -1,0 +1,264 @@
+<sequence id="fd028562a83b44c68e63c9fba81561ae">
+	<throw id="0d345a76baf1456f840f9dccef9ff227"
+		label="input/content/authenticationId == null || input/content/challengeType != &quot;webauthn&quot; || input/webApplicationId == null || input/origin == null"
+		message="Authentication unavailable"/>
+	<map id="5f44eafafa494ad399393c5847e8948c">
+		<invoke id="aa104906362f447bb14ceca6abaa6261"
+			resultName="resultChallengeApplication"
+			serviceId="nabu.web.application.Services.information"
+			x="25"
+			y="25">
+			<link id="cb4a581133ff4ba4aa6bf0358f1b0d5c">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</link>
+		</invoke>
+		<invoke id="5869ee58fac74893a75c965b0b17451d"
+			resultName="resultChallengeContext"
+			serviceId="nabu.cms.core.services.context.getApplication"
+			x="25"
+			y="110">
+			<link id="b23befe57a954b72b58ba6103f792d5a">
+				<from>input/webApplicationId</from>
+				<to>application</to>
+			</link>
+		</invoke>
+		<invoke id="636da96309024f36bf7f869e064138ed"
+			invocationOrder="1"
+			resultName="resultChallengeRealms"
+			serviceId="nabu.cms.core.v2.services.user.getAllowedRealms"
+			x="275"
+			y="195">
+			<link id="8bae11dc67ac40f7bd4c5b05b2b6fa8f">
+				<from>resultChallengeApplication/information/realm</from>
+				<to>realm</to>
+			</link>
+		</invoke>
+		<link id="02484537b52e48f8afac895dd52c46ef">
+			<from>resultChallengeContext/context/id</from>
+			<to>contextId</to>
+		</link>
+		<link id="433ee9f7eb664571a79f9a25de2ccdb0">
+			<from>resultChallengeApplication/information/realm</from>
+			<to>realm</to>
+		</link>
+		<link id="6feec75b81024e83896141b0f573a484">
+			<from>resultChallengeRealms/realms</from>
+			<to>realms</to>
+		</link>
+	</map>
+	<throw id="202913bff525462fb80d8a3363f0bfab"
+		label="contextId == null || !realms"
+		message="Authentication unavailable"/>
+	<map id="ccc19fab27864f50bc74e5ff45fdaf05">
+		<invoke id="f11c1f4aede94e55b03440b6c46bcccf"
+			resultName="resultChallengeUsers"
+			serviceId="nabu.cms.core.database.user.selectActiveByAlias2"
+			x="25"
+			y="25">
+			<link id="d13d830331e843aa81cd3962f6af88ce">
+				<from>input/content/authenticationId</from>
+				<to>parameters/alias</to>
+			</link>
+			<link id="f595ef5f68e34c0f91b43392984b3656">
+				<from>realms</from>
+				<to>parameters/realm</to>
+			</link>
+			<link id="3df126ff603c4cdd85dad09d8e916329"
+				fixedValue="true">
+				<from>false</from>
+				<to>parameters/allowUnverified</to>
+			</link>
+		</invoke>
+		<link id="e0f23c1309c5447680086bc8a296bfe5">
+			<from>resultChallengeUsers/results[0]</from>
+			<to>user</to>
+		</link>
+	</map>
+	<throw id="6b215a3b6a6440bea055578f325f7fd2"
+		label="user == null || user/anonymous == true || user/blockedSince != null || user/verified == null"
+		message="Authentication unavailable"/>
+	<switch id="6eeaed40b141484181c142d8ae6b17a7">
+		<map id="27d921dac4474787a01945bf1c1b77ac"
+			label="user/ownerId != null">
+			<invoke id="e85e946c90094358b739391d5e2f3fc2"
+				resultName="resultChallengeOwnerPermission"
+				serviceId="nabu.cms.core.services.user.canLoginAs"
+				x="25"
+				y="25">
+				<link id="d5debdf5a478432a8c278f7432d49202">
+					<from>user/ownerId</from>
+					<to>userId</to>
+				</link>
+				<link id="16ee4afd54bb45eea7c6152e6a3620c3">
+					<from>contextId</from>
+					<to>contextId</to>
+				</link>
+			</invoke>
+			<link id="5b76bc745196427e87cae4c245ae9d4c">
+				<from>resultChallengeOwnerPermission/canLogin</from>
+				<to>canLogin</to>
+			</link>
+		</map>
+		<map id="c850f39987ad4a92915c22b29ff5520d"
+			label="user/ownerId == null">
+			<invoke id="565ab399113c4acabc76c114ab8c54ac"
+				resultName="resultChallengeUserPermission"
+				serviceId="nabu.cms.core.services.user.canLoginAs"
+				x="25"
+				y="25">
+				<link id="40270d3e0351415082a6829b4326e1b3">
+					<from>user/id</from>
+					<to>userId</to>
+				</link>
+				<link id="106986a3d0774411a95d8ce1554efe00">
+					<from>contextId</from>
+					<to>contextId</to>
+				</link>
+			</invoke>
+			<link id="3a7b12bb08c84c5abfc15623256462ec">
+				<from>resultChallengeUserPermission/canLogin</from>
+				<to>canLogin</to>
+			</link>
+		</map>
+	</switch>
+	<throw id="aab7c52f3bef49fc963da33c665fc297"
+		label="canLogin != true"
+		message="Authentication unavailable"/>
+	<map id="1361b3ed3b5e4783ac418c47ad903418">
+		<invoke id="6dfaa02330514c20a267ac41490e5793"
+			resultName="resultChallengeMethods"
+			serviceId="nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes"
+			x="25"
+			y="25">
+			<link id="ca4df7346f4b40bfaa1808ec94ab08f7">
+				<from>user/id</from>
+				<to>parameters/userId</to>
+			</link>
+		</invoke>
+		<link id="c8f21083e9164fdab9249ea185639ee9">
+			<from>resultChallengeMethods/results[name == /input/content/challengeType]</from>
+			<to>authenticationTypes</to>
+		</link>
+	</map>
+	<throw id="fc1a4414a25b4bd29882bb5cdd0798a2"
+		label="!authenticationTypes"
+		message="Authentication unavailable"/>
+	<map id="15c46913c9154b58b0ff6ff3611d6fbc">
+		<invoke id="e034c34c6a27441e81ecd468078353dd"
+			resultName="resultChallengeOptions"
+			serviceId="nabu.cms.authentication.webauthn.services.authenticationOptions"
+			x="25"
+			y="25">
+			<link id="a562b36b87ff45deb97ecfcd8723d0d2">
+				<from>input/content/authenticationId</from>
+				<to>alias</to>
+			</link>
+			<link id="9e3db54d0f1f4e22ad4d056d8c056af0">
+				<from>realm</from>
+				<to>realm</to>
+			</link>
+			<link id="4e5d9d3b7e684388b217143c776aa813">
+				<from>input/webApplicationId</from>
+				<to>applicationId</to>
+			</link>
+			<link id="8c458b5541b24e29b6da391dbb25a52f">
+				<from>input/origin</from>
+				<to>origin</to>
+			</link>
+		</invoke>
+		<link id="a72ac56ce025421b8e15fe40a735f497">
+			<from>resultChallengeOptions/ceremonyId</from>
+			<to>ceremonyId</to>
+		</link>
+		<link id="731246027dc24dfd8895332a0f593e5c">
+			<from>resultChallengeOptions/expires</from>
+			<to>expires</to>
+		</link>
+		<invoke id="afdaf8da95734b42bfc12fccfac309bd"
+			invocationOrder="1"
+			resultName="resultChallengeJson"
+			serviceId="nabu.data.json.Services.marshal"
+			x="275"
+			y="110">
+			<link id="8ccfe6e0742645d69ef82fc65ad26c9e">
+				<from>resultChallengeOptions</from>
+				<to>data</to>
+			</link>
+		</invoke>
+		<invoke id="b1b683951fcb493d83be89ea3b6c4555"
+			invocationOrder="2"
+			resultName="resultChallengeString"
+			serviceId="nabu.utils.Stream.toString"
+			x="525"
+			y="195">
+			<link id="29f23ae2fac0459bb75042b6be704bdf">
+				<from>resultChallengeJson/marshalled</from>
+				<to>stream</to>
+			</link>
+		</invoke>
+		<link id="76ec6c1c226f4498a52a47a5abd63a23">
+			<from>resultChallengeString/string</from>
+			<to>output/content/challenge</to>
+		</link>
+	</map>
+	<throw id="6406787ed467447b9c24a13876a7741f"
+		label="ceremonyId == null"
+		message="Authentication unavailable"/>
+	<map id="bb6290caea994abba88b6635fc97cbe2">
+		<invoke id="b3e7a318ddab4fa2bc2cecf89bff19fc"
+			resultName="resultChallengeInitiation"
+			serviceId="nabu.web.application.Services.newTemporaryAuthentication"
+			x="25"
+			y="25">
+			<link id="7c2b6edd721146a68c490992e6251663">
+				<from>input/webApplicationId</from>
+				<to>webApplicationId</to>
+			</link>
+			<link id="1f361818bb8f42ee93de2053587467ce">
+				<from>input/content/authenticationId</from>
+				<to>alias</to>
+			</link>
+			<link id="b687f57e24ad4429ac62caf19eee9b37"
+				fixedValue="true">
+				<from>webauthnInitiation</from>
+				<to>type</to>
+			</link>
+			<link id="5122372ba98345b2ba5197009489e747"
+				fixedValue="true">
+				<from>1</from>
+				<to>maxUses</to>
+			</link>
+			<link id="716dca37e2b740209ae8a0593051d32a">
+				<from>input/device</from>
+				<to>device</to>
+			</link>
+			<link id="646a4803ad614db48ded31993d256815">
+				<from>ceremonyId</from>
+				<to>correlationId</to>
+			</link>
+			<link id="50dec8e44690486b89b3feac09d71224">
+				<from>expires</from>
+				<to>until</to>
+			</link>
+		</invoke>
+		<link id="3b275f33e2634f5da6fe8adcb04bad04">
+			<from>resultChallengeInitiation/authentication</from>
+			<to>authentication</to>
+		</link>
+	</map>
+	<throw id="0935b9a5228542ee9c42291a6fac112c"
+		label="authentication == null"
+		message="Authentication unavailable"/>
+	<map id="b90a0ac11838408f8cb94841fec5ba4e">
+		<link id="609dd12fdc42411cadf63ebcbe7c9062"
+			fixedValue="true">
+			<from>=authentication/id + ":" + authentication/secret</from>
+			<to>output/content/token</to>
+		</link>
+		<link id="1fe1a36cb5f24925b1de350cc1e1aa43">
+			<from>input/content/challengeType</from>
+			<to>output/content/challengeType</to>
+		</link>
+	</map>
+</sequence>

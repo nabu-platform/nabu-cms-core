@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2026-11-19T15:44:19.546+01:00" lastModified="2026-11-19T17:21:03.162+01:00" leaf="true" version="12">
+    <environmentId>ares</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.cms.core.services.context.getApplication</references>
+    <references>nabu.cms.authentication.webauthn.services.authenticationOptions</references>
+    <references>nabu.cms.core.v2.security.web.challengeOutput</references>
+    <references>nabu.web.application.Services.newTemporaryAuthentication</references>
+    <references>java.util.Date</references>
+    <references>nabu.cms.core.database.user.selectActiveByAlias2</references>
+    <references>nabu.cms.core.types.emodel.core.User</references>
+    <references>java.util.UUID</references>
+    <references>be.nabu.libs.authentication.api.Device</references>
+    <references>nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes.results</references>
+    <references>nabu.web.application.Services.information</references>
+    <references>be.nabu.eai.module.web.application.api.TemporaryAuthentication</references>
+    <references>nabu.cms.core.v2.services.user.selectedWeightedAuthenticationTypes</references>
+    <references>nabu.cms.core.v2.services.user.getAllowedRealms</references>
+    <references>java.lang.Boolean</references>
+    <references>java.lang.String</references>
+    <references>nabu.data.json.Services.marshal</references>
+    <references>nabu.cms.core.v2.security.web.challengeInput</references>
+    <references>nabu.cms.core.services.user.canLoginAs</references>
+    <references>nabu.utils.Stream.toString</references>
+    <summary>Begin a selected WebAuthn challenge without issuing a pending MFA token.</summary>
+</node>
